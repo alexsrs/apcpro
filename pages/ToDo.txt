@@ -1,0 +1,40 @@
+Estrutura do Aplicativo “APC Pro” com Foco em Avaliação
+
+	1.	Cadastro de Usuário e Perfil
+	•	Perfis personalizados para treinadores e atletas.
+	•	Registro de informações detalhadas, histórico médico e objetivos de treinamento.
+
+	2.	Avaliação - Análise Física Avançada (AFA)
+	•	Fase 1: Questionários e Entrevistas
+	•	Interface para aplicação de questionários detalhados sobre saúde, histórico de atividades físicas e objetivos esportivos.
+	•	Entrevistas para captar informações qualitativas sobre o bem-estar e expectativas do atleta.
+	•	Fase 2: Medidas Corporais
+	•	Ferramentas para registrar medidas antropométricas como altura, peso, percentual de gordura, e outras medidas perimetrais.
+	•	Gráficos para visualizar mudanças e tendências ao longo do tempo.
+	•	Fase 3: Testes Físicos
+	•	Cadastro e gestão de testes cardiométabólicos (VO2 máx) e neuromusculares (força, potência).
+	•	Resultados dos testes apresentados em formatos analíticos para fácil interpretação e planejamento subsequente.
+
+	3.	Biblioteca de Exercícios
+	•	Extensa biblioteca categorizada por tipo de exercício, com vídeos demonstrativos e descrições técnicas.
+
+	4.	Planejamento de Treino
+	•	Criação de macros, meso e microciclos com base nos resultados das avaliações.
+	•	Programação automática e personalizada de treinos.
+
+
+
+	5.	Registro e Controle de Treinos
+	•	Diário de treinos realizados, intensidade, duração e feedback do atleta.
+	•	Monitoramento de carga interna e externa, ajustes com base na PSE e PSR. 
+
+	6.	Monitoramento e Feedback
+	•	Painéis de controle para visualizar o progresso, adaptações e tendências de performance.
+	•	Alertas e notificações para manutenção ou ajuste de treinos.
+
+	7.	Análise de Dados e Relatórios
+	•	Relatórios detalhados sobre o progresso e a eficácia dos treinos.
+	•	Análise para otimizar continuamente o planejamento e a execução dos treinamentos.
+    
+	8.	Integração e Compartilhamento
+	•	Capacidade de compartilhar informações de treino e progresso com outros treinadores ou atletas dentro da plataforma.

@@ -1,0 +1,484 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+html,body {
+    height: 100%;
+    background: rgb(225,225,225);
+}
+
+body{
+    overflow-x: hidden;
+}
+
+
+/* Página de login */
+.box-login{
+    max-width: 600px;
+    width: 95%;
+    padding: 60px 2%;
+    background: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    border-radius: 10px;
+    box-shadow: 0px 0px 8px 5px rgba(0, 0, 0, .4);
+}
+
+.box-login h2{
+    text-align: center;
+    font-size: 19px;
+    text-transform: uppercase;
+    font-weight: normal;
+    margin: 10px 0;
+    color: black;
+
+}
+
+.box-login input[type=text],
+.box-login input[type=password]{
+    width: 100%;
+    height: 40px;
+    border: 1px solid #CCC;
+    padding-left: 8px;
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: normal;
+    color: black;
+    }
+
+.box-content form textarea{
+    width: 100%;
+    height: 150px;
+    border: 1px solid #CCC;
+    padding: 8px;
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: normal;
+    color: black;
+    resize: vertical;
+}
+
+.box-login input[type=submit]{
+    width: 100px;
+    height: 40px;
+    cursor: pointer;
+    margin-top: 10px;
+    background: #1de9b6;
+    font-size: 16px;
+    color: white;
+    border: 0;
+}
+
+/*Box erro do painel*/
+.erro-box{
+    width: 100%;
+    padding: 8px 2%;
+    text-align: center;
+    background: #F75353;
+    color: white;
+    font-size: 15px;
+}
+
+/* fim página de login */
+
+/* Painel de controle */ 
+
+.clear{
+    clear: both;
+}
+
+.center{
+    padding: 0 2%;
+    margin: 0 auto;
+}
+
+header{
+    position: relative;
+    left: 250px;
+    padding: 10px 0;
+    background: #78909C;
+    width: calc(100% - 250px);
+}
+
+.logout{
+    float: right;
+}
+
+.logout a{
+    padding: 0 20px;
+    position: relative;
+    top: 4px;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.logout a > span{
+    text-decoration: none;
+    font-size: 19px;
+    padding-left: 10px;
+}
+
+.menu-btn{
+    float: left;
+    cursor: pointer;
+    font-size: 25px;
+    color: white;
+}
+
+.menu-wraper{
+    width: 250px;
+}
+
+div.menu{
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
+    padding: 10px 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: #455A64;
+    float: left;
+    width: 250px;
+}
+
+div.box-usuario{
+    text-align: center;
+}
+
+.avatar-usuario{
+    text-align: left;
+    display: inline-block;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 3px solid #2F3D42;
+}
+
+.imagem-usuario > img{
+    display: inline-block;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 3px solid #2F3D42;
+}
+
+.avatar-usuario i{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(50);
+    font-size: 60px;
+    color: #2F3D42;
+}
+
+.nome-usuario{
+    text-align: center;
+    margin-top: 10px;
+}
+
+.nome-usuario p{
+    color: white;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+/* conteúdo principal do painel */
+
+.w100{
+    width: 100%;
+}
+
+.w50{
+    width: 49%;
+    /* background: red !important; */
+}
+
+.left{
+    float: left;
+}
+
+.right{
+    float: right;
+}
+
+.content{
+    width: calc(100% - 250px);
+    position: relative;
+    left: 250px;
+    padding: 10px;
+}
+
+.box-content{
+    background: white;
+    padding: 30px;
+    margin-bottom: 20px;
+}
+
+.box-metricas h2{
+    font-weight: 300;
+    font-size: 23px;
+}
+
+/* Tabelas */
+
+table{
+    margin: 20px 0;
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+table tr:nth-of-type(1){
+    background: #0091ea;
+    color: white;
+}
+
+table tr{
+    color: #555;
+    border-bottom: 1px solid #ccc;
+}
+
+table td{
+    padding: 8px;
+}
+
+table a.btn{
+    text-decoration: none;
+    padding: 0 4px;
+    color: white;
+  
+    font-size: 16px;
+    
+}
+
+a.btn.edit{
+    background: #F4B03E;
+}
+
+a.btn.delete{
+    background: #E05C4E;
+}
+
+
+.items-menu{
+    margin-top: 30px;
+}
+
+.items-menu h2{
+    text-align: left;
+    font-weight: bold;
+    font-size: 15px;
+    background: #2F3D42;
+    color: white;
+    padding: 8px;
+}
+
+.items-menu a{
+    display: block;
+    padding: 8px;
+    font-weight: 300;
+    font-size: 14px;
+    text-decoration: none;
+    color: white;
+    border-bottom: 2px solid #2F3D42;
+}
+
+/*Box Metricas*/
+
+.box-metricas{
+	margin-top:16px;
+	padding:0 15px;
+}
+
+.box-metrica-single{
+	float: left;
+	position: relative;
+	width: 33.3%;
+	background: #F4B03E;
+	border: 5px solid white;
+}
+
+.box-metricas .box-metrica-single:nth-of-type(2){
+	background: #E05C4E;
+}
+
+.box-metricas .box-metrica-single:nth-of-type(3){
+	background: #0091ea;
+}
+
+.box-metrica-wraper{
+	padding: 10px 20px;
+	text-align: center;
+	color: white;
+}
+
+.box-metrica-wraper h2{
+	font-size: 20px;
+}
+
+.box-metrica-wraper p{
+	padding: 10px 0;
+	font-size: 16px;
+}
+
+/* tabela responsiva */
+
+.table-responsive{
+    max-width: 960px;
+    margin: 20px auto;
+}
+
+.table-responsive .row:nth-of-type(1){
+    font-weight: bold;
+    background: #00aca7;
+    color: white;
+    border-bottom: 1px solid #333;
+}
+
+.table-responsive .row{
+    color: #555;
+    border-bottom: 1px solid #ccc;
+    padding: 8px 18px;
+}
+
+.col{
+    float: left;
+    width: 33.33%;
+}
+
+.box-content form{
+    margin: 30px 0;
+}
+
+
+.box-content form label{
+    font-size: 17px;
+    font-weight: 300;
+    color: black;
+    display: block;
+    margin-top: 8px;
+}
+
+.box-content form input[type=text],
+.box-content form input[type=password]{
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: normal;
+    color: black;
+    width: 100%;
+    height: 40px;
+    padding-left: 8px;
+    border: 1px solid #ccc;
+}
+
+.box-content form select{
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: normal;
+    color: black;
+    width: 100%;
+    height: 40px;
+    padding-left: 8px;
+    border: 1px solid #ccc;
+}
+
+.box-content form input[type=file]{
+    margin-top: 8px;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+}
+
+.box-content form input[type=submit]{
+    width: 100px;
+    height: 40px;
+    cursor: pointer;
+    margin-top: 10px;
+    background: #1de9b6;
+    font-size: 16px;
+    color: white;
+    border: 0;
+
+}
+
+/* box de alerta */
+
+.box-alert{
+    width: 100%;
+    padding: 8px 0;
+    text-align: center;
+}
+
+.sucesso{
+    background: #A5D6A7;
+    color: white;
+}
+
+.erro{
+    background: #F75353;
+    color: white;
+}
+
+.menu-active{
+    background: #304D63;
+}
+
+.menu-active::before{
+    content: '>> ';
+}
+
+.form-group-login label{
+    font-size: 13px;
+    padding-right: 6px;
+    font-weight: 300;
+    color: black;
+}
+
+form .form-group-login:nth-of-type(2){
+    position: relative;
+    top: 10px;
+}
+
+@media screen and (max-width: 1200px){
+    .box-metrica-single{
+        height: 120px;
+    }
+}
+
+@media screen and (max-width: 1024px){
+    .box-metrica-single{
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 768px){
+   
+
+    .content{
+        width: 100%;
+        left: 0;
+    }
+
+    header{
+        left: 0;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 400px){
+    .menu-wraper{
+        width: 200px;
+    }
+}
+    
+
