@@ -14,6 +14,12 @@
                 $_SESSION['cargo'] = $info['cargo'];
                 $_SESSION['nome'] = $info['nome'];
                 $_SESSION['img'] = $info['img'];
+                $_SESSION['email'] = $info['email'];
+                $_SESSION['data_nascimento'] = $info['data_nascimento'];
+                $_SESSION['data_inicio'] = $info['data_inicio'];
+                $_SESSION['sexo'] = $info['sexo'];
+
+
                 header('location: '.INCLUDE_PATH_PAINEL);
                 die();
         }
@@ -48,6 +54,12 @@
                     $_SESSION['cargo'] = $info['cargo'];
                     $_SESSION['nome'] = $info['nome'];
                     $_SESSION['img'] = $info['img'];
+                    $_SESSION['email'] = $info['email'];
+                    $_SESSION['data_nascimento'] = $info['data_nascimento'];
+                    $_SESSION['data_inicio'] = $info['data_inicio'];
+                    $_SESSION['sexo'] = $info['sexo'];
+
+
                     if(isset($_POST['lembrar'])){
                         setcookie('lembrar',true,time()+(60*60*24),'/');
                         setcookie('user',$user,time()+(60*60*24),'/');

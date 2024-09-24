@@ -17,6 +17,7 @@
             $cargo = $_POST['cargo'];
             $email = $_POST['email'];
             $data_nascimento = $_POST['data_nascimento'];
+            $data_inicio = $_POST['data_inicio'];
             $sexo = $_POST['sexo'];
             // validar os campos antes de add
             if($user ==''){
@@ -29,13 +30,14 @@
                 Painel::alert('erro','O cargo precisa ser selecionado');
             } else if($imagem['name'] == ''){
                 Painel::alert('erro','A imagem precisa estar selecionada');
-
-            } else if($email['email'] == ''){
+            } else if($email == ''){
                 Painel::alert('erro','O email precisa ser informado');    
-            } else if($data_nascimento['data_nascimento'] == ''){
+            } else if($data_nascimento == ''){
                 Painel::alert('erro','A data de nascimento precisa ser informada');
-            } else if($sexo['sexo'] == ''){
-                Painel::alert('erro','o sexo precisa ser informado');
+            } else if($data_inicio == ''){
+                Painel::alert('erro','A data de inicio de treinamento precisa ser informada');
+            } else if($sexo == ''){
+                Painel::alert('erro','o gênero precisa ser informado');
             } else {
                 // podemos cadastrar !
                 if($cargo >= $_SESSION['cargo']){
@@ -48,7 +50,7 @@
                     //Apenas cadastrar no banco de dados 
                     $usuario = new Usuario();
                     $img = Painel::uploadImagem($imagem);
-                    $usuario->cadastrarUsuario($user,$password,$img,$nome,$cargo,$email,$data_nascimento,$sexo);
+                    $usuario->cadastrarUsuario($user,$password,$img,$nome,$cargo,$email,$data_nascimento,$data_inicio,$sexo);
                     Painel::alert('sucesso','Usuário '.$user. ' cadastrado com sucesso');
                 }
             }     
@@ -91,13 +93,21 @@
         <input type="email" name="email" />
     </div><!-- form-group -->
 
-    <div class="form-group">
+
+    <div class="form-group left w50">
         <label>Data de nascimento:</label>
         <input type="date" name="data_nascimento" />
     </div><!-- form-group -->
 
+    <div class="form-group right w50">
+        <label>Inicio do treinamento:</label>
+        <input type="date" name="data_inicio" />
+    </div><!-- form-group -->
+    <div class="clear"></div><!-- clear -->
+    
+
     <div class="form-group">
-        <label>Sexo:</label>
+        <label>Gênero:</label>
         <select name="sexo">
             <?php 
                 foreach (Painel::$sexos as $key => $value){

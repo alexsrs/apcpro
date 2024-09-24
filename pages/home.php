@@ -17,7 +17,7 @@
 	<section class="descricao-autor">
 		<div class="center">
 			<div id="sobre" class="w50 left">
-				<h2>APC PRO</h2>
+				<h2>APC Pro</h2>
 				<p>O “APC Pro” redefine o treinamento personalizado, posicionando-se como o personal trainer definitivo na palma da sua mão. Essa ferramenta inovadora transforma o acesso e a entrega de treinamentos físicos, permitindo a profissionais de educação física conduzir avaliações detalhadas e personalizadas tanto presencialmente quanto à distância.</p>
 				<p>Com o “APC Pro”, o planejamento de treinos torna-se extremamente acessível e executável em qualquer parte do mundo, garantindo que cada aspecto do treino seja meticulosamente organizado e monitorado. Os usuários podem seguir sessões com vídeos explicativos integrados, contadores de tempo para cada exercício, e um sistema intuitivo que permite a escolha entre cronômetros digitais ou analógicos, controle de séries e repetições, tudo ao alcance dos dedos.</p>
 				<p>Durante o treino, é possível adicionar notas sobre a execução e as cargas usadas, enriquecendo o feedback para ajustes futuros. Ao final de cada sessão, uma avaliação imediata através da tabela de percepção subjetiva de esforço permite ao usuário e ao treinador avaliar a intensidade do treino, garantindo uma compreensão clara do impacto de cada sessão.</p>

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-	<title>Projeto 01 - PHP</title>
+	<title>APC Pro</title>
 	<link href="<?php echo INCLUDE_PATH; ?>css/all.css" rel="stylesheet">
 	<link href="<?php echo INCLUDE_PATH; ?>css/fontawesome.min.css" rel="stylesheet">
  	<link href="<?php echo INCLUDE_PATH; ?>css/brands.min.css" rel="stylesheet">
@@ -40,7 +40,7 @@
 	
 	<header>
 		<div class="center">
-			<div class="logo left"><a href="<?php echo INCLUDE_PATH; ?>">APC PRO</a></div><!-- logo -->
+			<div class="logo left"><a href="<?php echo INCLUDE_PATH; ?>">APC Pro</a></div><!-- logo -->
 			<nav class="desktop right">
 				<ul>
 					<li><a href="<?php echo INCLUDE_PATH; ?>">Home</a></li>
@@ -82,7 +82,7 @@
 </div><!--container-principal-->
 	<footer class="">
 		<div class="center">
-			<p>APC PRO - Todos os direitos reservados</p>
+			<p>APC Pro - Todos os direitos reservados</p>
 		</div><!-- center -->	
 	</footer>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

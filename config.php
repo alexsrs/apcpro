@@ -32,20 +32,31 @@
 	define('DATABASE','apcpro');
 
 	//constantes para o painel de controle
-	define('NOME_EMPRESA','APC PRO');
+	define('NOME_EMPRESA','APC Pro');
 
 	// Funções
 	function pegaCargo($indice){
 		return Painel::$cargos[$indice];
 	}
 
+	// Funcão atualizada abaixo para versão atual do PHP
+	
+	// function selecionadoMenu($par){
+	//	$url = explode('/',@$_GET['url'])[0];
+	//		if($url == $par){
+	//			echo 'class="menu-active"';
+	//		}
+	//	}
 
-	function selecionadoMenu($par){
-		$url = explode('/',@$_GET['url'])[0];
-			if($url == $par){
-				echo 'class="menu-active"';
-			}
+	function selecionadoMenu($par) {
+		// Verifica se o parâmetro 'url' existe e captura o valor, senão define uma string vazia
+		$url = isset($_GET['url']) ? explode('/', filter_var($_GET['url'], FILTER_SANITIZE_URL))[0] : '';
+		
+		// Compara a URL com o parâmetro passado e aplica a classe CSS se forem iguais
+		if ($url === $par) {
+			echo 'class="menu-active"';
 		}
+	}
 
 	function verificaPermissaoMenu($permissao){
 		if($_SESSION['cargo'] >= $permissao){

@@ -8,7 +8,7 @@
         ];
 
         public static $sexos = [
-            ' ' => '--Selecione uma opção--',
+            ' ' => '-- Selecione uma opção --',
             'F' => 'Feminino',
 			'M' => 'Masculino',
 			'O' => 'Outros'

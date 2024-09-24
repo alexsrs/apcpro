@@ -44,33 +44,39 @@
         <div class="items-menu">
             <h2>Cadastro de usuários</h2>
             <a <?php selecionadoMenu('adicionar-usuario'); ?> <?php verificaPermissaoMenu(1); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>adicionar-usuario">Adicionar usuário</a>
-            <a <?php selecionadoMenu('editar-usuario'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>editar-usuario">Editar usuário</a>
+            <a <?php selecionadoMenu('editar-perfil'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>editar-perfil">Editar perfil</a>
             
             
             <h2>Análise física avançada</h2>
-            
+            <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
+            <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
            
             
             
             
             <h2>Biblioteca de exercícios</h2>
-            
+            <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
+            <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             
             
             
             <h2>Planejamento de treino</h2>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
+            <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             
             
             <h2>Registro e controle de treinos</h2>
+            <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             
             
             <h2>Monitoramento e feedback</h2>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
+            <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             
             
             <h2>Análise de dados e relatórios</h2>
+            <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
 
             <h2>Configurações do site</h2>
