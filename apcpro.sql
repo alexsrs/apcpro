@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 24-Set-2024 às 13:59
+-- Tempo de geração: 24-Set-2024 às 16:41
 -- Versão do servidor: 8.0.31
 -- versão do PHP: 7.4.33
 
@@ -34,14 +34,7 @@ CREATE TABLE IF NOT EXISTS `tb_admin.online` (
   `ultima_acao` datetime NOT NULL,
   `token` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb3;
-
---
--- Extraindo dados da tabela `tb_admin.online`
---
-
-INSERT INTO `tb_admin.online` (`id`, `ip`, `ultima_acao`, `token`) VALUES
-(29, '::1', '2024-09-24 10:53:52', '66f2c47063bf8');
+) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -57,18 +50,24 @@ CREATE TABLE IF NOT EXISTS `tb_admin.usuarios` (
   `img` varchar(255) NOT NULL,
   `nome` varchar(255) NOT NULL,
   `cargo` int NOT NULL,
+  `email` varchar(90) NOT NULL,
+  `data_nascimento` date NOT NULL,
+  `sexo` varchar(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Extraindo dados da tabela `tb_admin.usuarios`
 --
 
-INSERT INTO `tb_admin.usuarios` (`id`, `user`, `password`, `img`, `nome`, `cargo`) VALUES
-(1, 'admin', 'admin', '655387240a70f.jpg', 'Alex Sandro', 2),
-(6, 'alexsrs', 'crea1234', '6553aa2217cfe.jpg', 'Alex Sandro', 0),
-(3, 'jose', 'jose', '65538e3e42833.jpg', 'Jose aluno', 0),
-(4, 'prof', 'prof', '65538e7ea62a1.jpg', 'Professor baitola', 1);
+INSERT INTO `tb_admin.usuarios` (`id`, `user`, `password`, `img`, `nome`, `cargo`, `email`, `data_nascimento`, `sexo`) VALUES
+(1, 'admin', 'admin', '655387240a70f.jpg', 'Alex Sandro', 2, 'teste@folao.com', '2024-09-04', 'M'),
+(6, 'alexsrs', 'crea1234', '6553aa2217cfe.jpg', 'Alex Sandro', 0, 'teste@teste.net', '2024-09-18', 'F'),
+(3, 'jose', 'jose', '65538e3e42833.jpg', 'Jose aluno', 0, 'cade@cade.com', '2024-09-02', 'O'),
+(4, 'prof', 'prof', '65538e7ea62a1.jpg', 'Professor baitola', 1, '', '0000-00-00', ''),
+(7, 'teste', 'teste', '66f2c68510739.jpg', 'Testando ', 0, '', '0000-00-00', ''),
+(8, 'aluno1', 'aluno1', '66f2e45aba9d5.jpg', 'Aluno 1 ', 0, 'cootidr@seap.rj.gov.br', '1981-01-04', 'O'),
+(9, 'teste2', 'teste2', '66f2e871137a0.jpg', 'teste 2', 1, 'alexsrs@seap.rj.gov.br', '2015-06-16', 'M');
 
 -- --------------------------------------------------------
 
@@ -82,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `tb_admin.visitas` (
   `ip` varchar(255) NOT NULL,
   `dia` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Extraindo dados da tabela `tb_admin.visitas`
@@ -102,7 +101,9 @@ INSERT INTO `tb_admin.visitas` (`id`, `ip`, `dia`) VALUES
 (11, '192.168.0.101', '2023-11-14'),
 (12, '::1', '2023-11-21'),
 (13, '::1', '2023-11-29'),
-(14, '::1', '2024-09-24');
+(14, '::1', '2024-09-24'),
+(15, '::1', '2024-09-24'),
+(16, '::1', '2024-09-24');
 
 -- --------------------------------------------------------
 

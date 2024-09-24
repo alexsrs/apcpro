@@ -7,6 +7,14 @@
 			'2' => 'Administrador'
         ];
 
+        public static $sexos = [
+            ' ' => '--Selecione uma opção--',
+            'F' => 'Feminino',
+			'M' => 'Masculino',
+			'O' => 'Outros'
+        ];
+
+
         public static function logado(){
             return isset($_SESSION['login']) ? true : false;
         }

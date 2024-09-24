@@ -1,5 +1,5 @@
 <?php 
-    verificaPermissaoPagina(2);
+    verificaPermissaoPagina(1);
 ?>
 
 <div class="box-content">
@@ -15,6 +15,9 @@
             $password = $_POST['password'];
             $imagem = $_FILES['imagem'];
             $cargo = $_POST['cargo'];
+            $email = $_POST['email'];
+            $data_nascimento = $_POST['data_nascimento'];
+            $sexo = $_POST['sexo'];
             // validar os campos antes de add
             if($user ==''){
                 Painel::alert('erro','O login esta vazio');
@@ -26,7 +29,13 @@
                 Painel::alert('erro','O cargo precisa ser selecionado');
             } else if($imagem['name'] == ''){
                 Painel::alert('erro','A imagem precisa estar selecionada');
-            
+
+            } else if($email['email'] == ''){
+                Painel::alert('erro','O email precisa ser informado');    
+            } else if($data_nascimento['data_nascimento'] == ''){
+                Painel::alert('erro','A data de nascimento precisa ser informada');
+            } else if($sexo['sexo'] == ''){
+                Painel::alert('erro','o sexo precisa ser informado');
             } else {
                 // podemos cadastrar !
                 if($cargo >= $_SESSION['cargo']){
@@ -39,7 +48,7 @@
                     //Apenas cadastrar no banco de dados 
                     $usuario = new Usuario();
                     $img = Painel::uploadImagem($imagem);
-                    $usuario->cadastrarUsuario($user,$password,$img,$nome,$cargo);
+                    $usuario->cadastrarUsuario($user,$password,$img,$nome,$cargo,$email,$data_nascimento,$sexo);
                     Painel::alert('sucesso','Usuário '.$user. ' cadastrado com sucesso');
                 }
             }     
@@ -74,7 +83,28 @@
     <div class="form-group">
         <label>Imagem</label>
         <input type="file" name="imagem" />
-        <input type="hidden" name="imagem_atual"  />
+        <input type="hidden" name="imagem_atual" />
+    </div><!-- form-group -->
+
+    <div class="form-group">
+        <label>E-mail:</label>
+        <input type="email" name="email" />
+    </div><!-- form-group -->
+
+    <div class="form-group">
+        <label>Data de nascimento:</label>
+        <input type="date" name="data_nascimento" />
+    </div><!-- form-group -->
+
+    <div class="form-group">
+        <label>Sexo:</label>
+        <select name="sexo">
+            <?php 
+                foreach (Painel::$sexos as $key => $value){
+                    echo '<option value="'.$key.'">'.$value.'</option>';
+                }
+            ?>
+        </select>
     </div><!-- form-group -->
     
     <div class="form-group">
