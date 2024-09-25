@@ -7,7 +7,6 @@
         if(isset($_POST['acao'])){
             // enviando o formulario 
             
-            //$usuario = new Usuario();
             $nome = $_POST['nome'];
             $password = $_POST['password'];
             $imagem = $_FILES['imagem'];
@@ -21,31 +20,29 @@
             if($imagem['name'] != ''){
                 // existe upload de nova imagem 
 
-                
                 if(Painel::imagemValida($imagem)){
                     Painel::deleteImagem($imagem_atual);
                     $imagem = Painel::uploadImagem($imagem);
-                    if($usuario->atualizarUsuario($nome,$password,$imagem,$email,$data_nascimento,$data_inicio,$sexo)){
+                    if($usuario->atualizarUsuario($nome, $password, $imagem, $email, $data_nascimento, $data_inicio, $sexo)){
                         $_SESSION['img'] = $imagem;
-                        Painel::alert('sucesso','Usuário atualizado com sucesso');
+                        Painel::alert('sucesso', 'Usuário atualizado com sucesso');
                     } else {
-                        Painel::alert('erro','Ocorreu um erro ao atualizar o usuário');
+                        Painel::alert('erro', 'Ocorreu um erro ao atualizar o usuário');
                     }
 
                 } else {
-                    Painel::alert('erro', 'O formato da imagem não é valido');
+                    Painel::alert('erro', 'O formato da imagem não é válido');
                 }
 
             } else {
                 $imagem = $imagem_atual;
-                if($usuario->atualizarUsuario($nome,$password,$imagem,$email,$data_nascimento,$data_inicio,$sexo)){
-                    Painel::alert('sucesso','Usuário atualizado com sucesso');
+                if($usuario->atualizarUsuario($nome, $password, $imagem, $email, $data_nascimento, $data_inicio, $sexo)){
+                    Painel::alert('sucesso', 'Usuário atualizado com sucesso');
                 } else {
-                    Painel::alert('erro','Ocorreu um erro ao atualizar o usuário');
+                    Painel::alert('erro', 'Ocorreu um erro ao atualizar o usuário');
                 }
             }
         }
-
     ?>
 
     <div class="form-group">
@@ -71,30 +68,26 @@
 
     <div class="form-group left w50">
         <label>Data de nascimento:</label>
-        <input type="date" name="data_nascimento" value="<?php echo $_SESSION['data_nascimento']; ?>"  />
+        <input type="date" name="data_nascimento" value="<?php echo $_SESSION['data_nascimento']; ?>" />
     </div><!-- form-group -->
 
     <div class="form-group right w50">
-        <label>Inicio do treinamento:</label>
+        <label>Início do treinamento:</label>
         <input type="date" name="data_inicio" value="<?php echo $_SESSION['data_inicio']; ?>" />
     </div><!-- form-group -->
     <div class="clear"></div><!-- clear -->
 
-    
-    
     <div class="form-group">
-    <label>Gênero:</label>
-    <select name="sexo">
-        <?php 
-            foreach (Painel::$sexos as $key => $value){
-                $selected = ($_SESSION['sexo'] == $key) ? 'selected' : '';
-                echo '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
-            }
-        ?>
-    </select>
-</div><!-- form-group -->
-
-
+        <label>Gênero:</label>
+        <select name="sexo">
+            <?php 
+                foreach (Painel::$sexos as $key => $value){
+                    $selected = ($_SESSION['sexo'] == $key) ? 'selected' : '';
+                    echo '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
+                }
+            ?>
+        </select>
+    </div><!-- form-group -->
 
     <div class="form-group">
         <input type="submit" name="acao" value="Atualizar"/>

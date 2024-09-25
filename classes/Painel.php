@@ -10,8 +10,7 @@
         public static $sexos = [
             ' ' => '-- Selecione uma opção --',
             'F' => 'Feminino',
-			'M' => 'Masculino',
-			'O' => 'Outros'
+			'M' => 'Masculino'
         ];
 
 

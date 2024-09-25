@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 24/09/2024 às 21:54
--- Versão do servidor: 8.3.0
--- Versão do PHP: 8.3.6
+-- Tempo de geração: 25-Set-2024 às 17:37
+-- Versão do servidor: 8.0.31
+-- versão do PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tb_admin.online`
+-- Estrutura da tabela `tb_admin.online`
 --
 
 DROP TABLE IF EXISTS `tb_admin.online`;
@@ -34,20 +34,19 @@ CREATE TABLE IF NOT EXISTS `tb_admin.online` (
   `ultima_acao` datetime NOT NULL,
   `token` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb3;
 
 --
--- Despejando dados para a tabela `tb_admin.online`
+-- Extraindo dados da tabela `tb_admin.online`
 --
 
 INSERT INTO `tb_admin.online` (`id`, `ip`, `ultima_acao`, `token`) VALUES
-(37, '::1', '2024-09-24 18:53:36', '66f334b891711'),
-(36, '::1', '2024-09-24 18:51:26', '66f3345e01af5');
+(43, '::1', '2024-09-25 14:13:29', '66f4322c5e2c0');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tb_admin.usuarios`
+-- Estrutura da tabela `tb_admin.usuarios`
 --
 
 DROP TABLE IF EXISTS `tb_admin.usuarios`;
@@ -62,28 +61,25 @@ CREATE TABLE IF NOT EXISTS `tb_admin.usuarios` (
   `data_nascimento` date NOT NULL,
   `data_inicio` date NOT NULL,
   `sexo` varchar(1) NOT NULL,
+  `professor_id` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3;
 
 --
--- Despejando dados para a tabela `tb_admin.usuarios`
+-- Extraindo dados da tabela `tb_admin.usuarios`
 --
 
-INSERT INTO `tb_admin.usuarios` (`id`, `user`, `password`, `img`, `nome`, `cargo`, `email`, `data_nascimento`, `data_inicio`, `sexo`) VALUES
-(1, 'admin', 'admin', '655387240a70f.jpg', 'Alex Sandro', 2, 'alexsrs@gmail.com', '1981-01-04', '2024-09-30', 'M'),
-(6, 'alexsrs', 'crea1234', '6553aa2217cfe.jpg', 'Alex Sandro', 0, 'teste@teste.net', '2024-09-18', '0000-00-00', 'F'),
-(3, 'jose', 'jose', '65538e3e42833.jpg', 'Jose aluno', 0, 'cade@cade.com', '2024-09-02', '0000-00-00', 'O'),
-(4, 'prof', 'prof', '65538e7ea62a1.jpg', 'Professor baitola', 1, 'prof@prof.com', '2014-09-02', '2024-09-25', 'M'),
-(7, 'teste', 'teste', '66f2c68510739.jpg', 'Testando ', 0, '', '0000-00-00', '0000-00-00', ''),
-(8, 'aluno1', 'aluno1', '66f2e45aba9d5.jpg', 'Aluno 1 ', 0, 'cootidr@seap.rj.gov.br', '1981-01-04', '0000-00-00', 'O'),
-(9, 'teste2', 'teste2', '66f2e871137a0.jpg', 'teste 2', 1, 'alexsrs@seap.rj.gov.br', '2015-06-16', '0000-00-00', 'M'),
-(10, 'teste 3', 'teste3', '66f31d0841aab.jpeg', 'Teste 3 ', 0, 'alexsrs@gmail.com', '2024-09-06', '0000-00-00', ' '),
-(11, 'teste4', 'teste4', '66f3344411edd.jpeg', 'Teste 4', 0, 'test4@test.net', '1986-07-05', '2024-10-11', 'F');
+INSERT INTO `tb_admin.usuarios` (`id`, `user`, `password`, `img`, `nome`, `cargo`, `email`, `data_nascimento`, `data_inicio`, `sexo`, `professor_id`) VALUES
+(1, 'admin', 'admin', '655387240a70f.jpg', 'Alex Sandro', 2, 'alexsrs@gmail.com', '1981-01-04', '2024-09-30', 'M', 0),
+(4, 'prof', 'prof', '65538e7ea62a1.jpg', 'Professor baitola', 1, 'prof@prof.com', '2014-09-02', '2024-09-25', 'M', 1),
+(7, 'teste', 'teste', '66f2c68510739.jpg', 'Testando ', 0, 'teste@aluno.net', '2024-09-05', '2024-09-11', 'F', 1),
+(15, 'joao', 'joao', '66f42cc21846d.jpg', 'Joao', 0, 'alexsrs@gmail.com', '1981-01-04', '1982-02-05', 'M', 4),
+(16, 'prof2', 'prof2', '66f42d0c0dea8.jpg', 'professor 2', 1, 'cootidr@seap.rj.gov.br', '1973-01-06', '2024-12-26', 'F', 1);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tb_admin.visitas`
+-- Estrutura da tabela `tb_admin.visitas`
 --
 
 DROP TABLE IF EXISTS `tb_admin.visitas`;
@@ -95,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `tb_admin.visitas` (
 ) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb3;
 
 --
--- Despejando dados para a tabela `tb_admin.visitas`
+-- Extraindo dados da tabela `tb_admin.visitas`
 --
 
 INSERT INTO `tb_admin.visitas` (`id`, `ip`, `dia`) VALUES
@@ -120,7 +116,7 @@ INSERT INTO `tb_admin.visitas` (`id`, `ip`, `dia`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tb_site.depoimentos`
+-- Estrutura da tabela `tb_site.depoimentos`
 --
 
 DROP TABLE IF EXISTS `tb_site.depoimentos`;
@@ -133,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `tb_site.depoimentos` (
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 
 --
--- Despejando dados para a tabela `tb_site.depoimentos`
+-- Extraindo dados da tabela `tb_site.depoimentos`
 --
 
 INSERT INTO `tb_site.depoimentos` (`id`, `nome`, `depoimento`, `data`) VALUES

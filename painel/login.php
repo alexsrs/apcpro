@@ -8,6 +8,7 @@
         if($sql->rowCount() == 1){
             $info = $sql->fetch();
                 //logamos com sucesso
+                $_SESSION['id'] = $info['id'];
                 $_SESSION['login'] = true;
                 $_SESSION['user'] = $user;
                 $_SESSION['password'] = $password;
@@ -49,6 +50,7 @@
                     $info = $sql->fetch();
                     //logamos com sucesso
                     $_SESSION['login'] = true;
+                    $_SESSION['id'] = $info['id'];
                     $_SESSION['user'] = $user;
                     $_SESSION['password'] = $password;
                     $_SESSION['cargo'] = $info['cargo'];

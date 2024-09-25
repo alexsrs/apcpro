@@ -45,6 +45,7 @@
             <h2>Cadastro de usuários</h2>
             <a <?php selecionadoMenu('adicionar-usuario'); ?> <?php verificaPermissaoMenu(1); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>adicionar-usuario">Adicionar usuário</a>
             <a <?php selecionadoMenu('editar-perfil'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>editar-perfil">Editar perfil</a>
+            <a <?php selecionadoMenu('listar-usuarios'); ?> <?php verificaPermissaoMenu(1); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>listar-usuarios">Listar usuário</a>
             
             
             <h2>Análise física avançada</h2>
@@ -81,8 +82,8 @@
 
             <h2>Configurações do site</h2>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
-            <a <?php selecionadoMenu('cadastrar-depoimento'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>cadastrar-depoimento">Cadastrar depoimento</a>
-            <a <?php selecionadoMenu('listar-depoimentos'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>listar-depoimentos">Listar depoimentos</a>
+            <a <?php selecionadoMenu('cadastrar-depoimento'); ?><?php verificaPermissaoMenu(2); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>cadastrar-depoimento">Cadastrar depoimento</a>
+            <a <?php selecionadoMenu('listar-depoimentos'); ?><?php verificaPermissaoMenu(2); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>listar-depoimentos">Listar depoimentos</a>
             <a <?php selecionadoMenu('cadastrar-servico'); ?>href="">Cadastrar serviço</a>
             <a <?php selecionadoMenu('listar-serviços'); ?>href="">Listar serviços</a>
             <a <?php selecionadoMenu('cadastrar-slider'); ?>href="">Cadastrar slider</a>
