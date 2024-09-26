@@ -16,11 +16,11 @@
                 $_SESSION['nome'] = $info['nome'];
                 $_SESSION['img'] = $info['img'];
                 $_SESSION['email'] = $info['email'];
+                $_SESSION['email'] = $info['telefone'];
                 $_SESSION['data_nascimento'] = $info['data_nascimento'];
                 $_SESSION['data_inicio'] = $info['data_inicio'];
                 $_SESSION['sexo'] = $info['sexo'];
-
-
+                $_SESSION['cpf'] = $info['cpf'];
                 header('location: '.INCLUDE_PATH_PAINEL);
                 die();
         }
@@ -57,9 +57,11 @@
                     $_SESSION['nome'] = $info['nome'];
                     $_SESSION['img'] = $info['img'];
                     $_SESSION['email'] = $info['email'];
+                    $_SESSION['telefone'] = $info['telefone'];
                     $_SESSION['data_nascimento'] = $info['data_nascimento'];
                     $_SESSION['data_inicio'] = $info['data_inicio'];
                     $_SESSION['sexo'] = $info['sexo'];
+                    $_SESSION['cpf'] = $info['cpf'];
 
 
                     if(isset($_POST['lembrar'])){

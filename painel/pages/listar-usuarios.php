@@ -12,36 +12,39 @@ $sql->execute(array($professorID));
 $usuarios = $sql->fetchAll();
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Alunos</title>
-    <link href="<?php echo INCLUDE_PATH; ?>css/style.css" rel="stylesheet"/>
-</head>
-<body>
     <div class="box-content">
-        <h2><i class="fa fa-users" aria-hidden="true"></i> Lista de Alunos</h2>
+        <h2><i class="fa fa-users" aria-hidden="true"></i> Lista de usuários</h2>
+
 
         <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>E-mail</th>
-                    <th>Data de Nascimento</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
+            
+                        <tr>
+                            <td>Nome</td>
+                            <td>CPF</td>
+                            <td>E-mail</td>
+                            <td>telefone</td>
+                            <td>Gênero</td>
+                            <td>Idade</td>
+                            <td>Inicio do treinamento</td>
+                            <td>Ações</td>
+                        </tr>
                 <?php if(count($usuarios) > 0): ?>
                     <?php foreach($usuarios as $usuario): ?>
                         <tr>
-                            <td><?php echo $usuario['id']; ?></td>
                             <td><?php echo $usuario['nome']; ?></td>
+                            <td><?php echo $usuario['cpf']; ?></td>
                             <td><?php echo $usuario['email']; ?></td>
-                            <td><?php echo $usuario['data_nascimento']; ?></td>
+                            <td><?php echo $usuario['telefone']; ?></td>
+                            <td><?php echo $usuario['sexo']; ?></td>
+                            <td>
+                                <?php 
+                                    $dataNascimento = new DateTime($usuario['data_nascimento']);
+                                    $hoje = new DateTime(); // Data atual
+                                    $idade = $hoje->diff($dataNascimento)->y; // Calcula a diferença de anos
+                                    echo $idade;
+                                ?>
+                            </td>
+                            <td><?php echo (new DateTime($usuario['data_inicio']))->format('d/m/Y'); ?></td>
                             <td>
                                 <a href="editar_usuario.php?id=<?php echo $usuario['id']; ?>">Editar</a>
                             </td>
@@ -52,8 +55,7 @@ $usuarios = $sql->fetchAll();
                         <td colspan="5">Nenhum aluno cadastrado.</td>
                     </tr>
                 <?php endif; ?>
-            </tbody>
+            
         </table>
     </div><!-- box-content -->
-</body>
-</html>
+

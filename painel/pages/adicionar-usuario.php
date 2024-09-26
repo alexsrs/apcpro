@@ -15,9 +15,11 @@
             $password = $_POST['password'];
             $imagem = $_FILES['imagem'];
             $email = $_POST['email'];
+            $telefone= $_POST['telefone'];
             $data_nascimento = $_POST['data_nascimento'];
             $data_inicio = $_POST['data_inicio'];
             $sexo = $_POST['sexo'];
+            $cpf = $_POST['cpf'];
 
             // Obter o ID do usuário logado
             $professor_ID = $_SESSION['id']; // Supondo que o ID do usuário logado está armazenado em $_SESSION['id']
@@ -42,13 +44,17 @@
             } else if($imagem['name'] == ''){
                 Painel::alert('erro', 'A imagem precisa estar selecionada');
             } else if($email == ''){
-                Painel::alert('erro', 'O email precisa ser informado');    
+                Painel::alert('erro', 'O email precisa ser informado');
+            } else if($telefone == ''){
+                Painel::alert('erro', 'O telefone precisa ser informado');  
             } else if($data_nascimento == ''){
                 Painel::alert('erro', 'A data de nascimento precisa ser informada');
             } else if($data_inicio == ''){
                 Painel::alert('erro', 'A data de início de treinamento precisa ser informada');
             } else if($sexo == ''){
                 Painel::alert('erro', 'O gênero precisa ser informado');
+            } else if($cpf == ''){
+                Painel::alert('erro', 'O CPF precisa ser informado');
             } else {
                 // podemos cadastrar !
                 if($cargo >= $_SESSION['cargo']){
@@ -62,16 +68,21 @@
                     $usuario = new Usuario();
                     $img = Painel::uploadImagem($imagem);
                     // Passando o professor_ID ao cadastrar
-                    $usuario->cadastrarUsuario($user, $password, $img, $nome, $cargo, $email, $data_nascimento, $data_inicio, $sexo, $professor_ID);
+                    $usuario->cadastrarUsuario($user, $password, $img, $nome, $cargo, $email, $telefone, $data_nascimento, $data_inicio, $sexo, $cpf, $professor_ID);
                     Painel::alert('sucesso', 'Usuário '.$user. ' cadastrado com sucesso');
                 }
             }     
         }
     ?>
 
-    <div class="form-group">
+    <div class="form-group left w50">
         <label>Login:</label>
         <input type="text" name="user">
+    </div><!-- form-group -->
+
+    <div class="form-group right w50">
+        <label>Senha:</label>
+        <input type="password" name="password">
     </div><!-- form-group -->
 
     <div class="form-group">
@@ -79,10 +90,7 @@
         <input type="text" name="nome">
     </div><!-- form-group -->
 
-    <div class="form-group">
-        <label>Senha:</label>
-        <input type="password" name="password">
-    </div><!-- form-group -->
+    
 
     <div class="form-group">
         <label>Imagem:</label>
@@ -90,9 +98,30 @@
         <input type="hidden" name="imagem_atual" />
     </div><!-- form-group -->
 
-    <div class="form-group">
+    <div class="form-group left w50">
         <label>E-mail:</label>
         <input type="email" name="email" />
+    </div><!-- form-group -->
+
+    <div class="form-group right w50">
+        <label>Telefone:</label>
+        <input type="text" name="telefone" />
+    </div><!-- form-group -->
+
+    <div class="form-group left w50">
+        <label>Gênero:</label>
+        <select name="sexo">
+            <?php 
+                foreach (Painel::$sexos as $key => $value){
+                    echo '<option value="'.$key.'">'.$value.'</option>';
+                }
+            ?>
+        </select>
+    </div><!-- form-group -->
+
+    <div class="form-group right w50">
+        <label>CPF:</label>
+        <input type="text" name="cpf" />
     </div><!-- form-group -->
 
     <div class="form-group left w50">
@@ -106,16 +135,7 @@
     </div><!-- form-group -->
     <div class="clear"></div><!-- clear -->
 
-    <div class="form-group">
-        <label>Gênero:</label>
-        <select name="sexo">
-            <?php 
-                foreach (Painel::$sexos as $key => $value){
-                    echo '<option value="'.$key.'">'.$value.'</option>';
-                }
-            ?>
-        </select>
-    </div><!-- form-group -->
+    
     
     <div class="form-group">
         <input type="submit" name="acao" value="Cadastrar"/>

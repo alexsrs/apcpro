@@ -12,9 +12,11 @@
             $imagem = $_FILES['imagem'];
             $imagem_atual = $_POST['imagem_atual'];
             $email = $_POST['email'];
+            $telefone = $_POST['telefone'];
             $data_nascimento = $_POST['data_nascimento'];
             $data_inicio = $_POST['data_inicio'];
             $sexo = $_POST['sexo'];
+            $cpf = $_POST['cpf'];
             $usuario = new Usuario();
 
             if($imagem['name'] != ''){
@@ -23,7 +25,7 @@
                 if(Painel::imagemValida($imagem)){
                     Painel::deleteImagem($imagem_atual);
                     $imagem = Painel::uploadImagem($imagem);
-                    if($usuario->atualizarUsuario($nome, $password, $imagem, $email, $data_nascimento, $data_inicio, $sexo)){
+                    if($usuario->atualizarUsuario($nome, $password, $imagem, $email, $telefone, $data_nascimento, $data_inicio, $sexo, $cpf)){
                         $_SESSION['img'] = $imagem;
                         Painel::alert('sucesso', 'Usuário atualizado com sucesso');
                     } else {
@@ -36,7 +38,7 @@
 
             } else {
                 $imagem = $imagem_atual;
-                if($usuario->atualizarUsuario($nome, $password, $imagem, $email, $data_nascimento, $data_inicio, $sexo)){
+                if($usuario->atualizarUsuario($nome, $password, $imagem, $email, $telefone, $data_nascimento, $data_inicio, $sexo, $cpf)){
                     Painel::alert('sucesso', 'Usuário atualizado com sucesso');
                 } else {
                     Painel::alert('erro', 'Ocorreu um erro ao atualizar o usuário');
@@ -61,9 +63,30 @@
         <input type="hidden" name="imagem_atual" value="<?php echo $_SESSION['img']; ?>" />
     </div><!-- form-group -->
 
-    <div class="form-group">
+    <div class="form-group left w50">
         <label>E-mail:</label>
         <input type="email" name="email" value="<?php echo $_SESSION['email']; ?>" />
+    </div><!-- form-group -->
+
+    <div class="form-group right w50">
+        <label>Telefone:</label>
+        <input type="text" name="telefone" value="<?php echo $_SESSION['telefone']; ?>" />
+    </div><!-- form-group -->
+
+    <div class="form-group left w50">
+        <label>Gênero:</label>
+        <select name="sexo">
+            <?php 
+                foreach (Painel::$sexos as $key => $value){
+                    $selected = ($_SESSION['sexo'] == $key) ? 'selected' : '';
+                    echo '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
+                }
+            ?>
+        </select>
+    </div><!-- form-group -->
+    <div class="form-group right w50">
+        <label>CPF:</label>
+        <input type="text" name="cpf" value="<?php echo $_SESSION['cpf']; ?>" />
     </div><!-- form-group -->
 
     <div class="form-group left w50">
@@ -77,17 +100,7 @@
     </div><!-- form-group -->
     <div class="clear"></div><!-- clear -->
 
-    <div class="form-group">
-        <label>Gênero:</label>
-        <select name="sexo">
-            <?php 
-                foreach (Painel::$sexos as $key => $value){
-                    $selected = ($_SESSION['sexo'] == $key) ? 'selected' : '';
-                    echo '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
-                }
-            ?>
-        </select>
-    </div><!-- form-group -->
+   
 
     <div class="form-group">
         <input type="submit" name="acao" value="Atualizar"/>

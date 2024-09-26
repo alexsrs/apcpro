@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 25-Set-2024 às 17:37
--- Versão do servidor: 8.0.31
--- versão do PHP: 8.2.0
+-- Tempo de geração: 26/09/2024 às 00:10
+-- Versão do servidor: 8.3.0
+-- Versão do PHP: 8.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_admin.online`
+-- Estrutura para tabela `tb_admin.online`
 --
 
 DROP TABLE IF EXISTS `tb_admin.online`;
@@ -34,19 +34,12 @@ CREATE TABLE IF NOT EXISTS `tb_admin.online` (
   `ultima_acao` datetime NOT NULL,
   `token` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb3;
-
---
--- Extraindo dados da tabela `tb_admin.online`
---
-
-INSERT INTO `tb_admin.online` (`id`, `ip`, `ultima_acao`, `token`) VALUES
-(43, '::1', '2024-09-25 14:13:29', '66f4322c5e2c0');
+) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_admin.usuarios`
+-- Estrutura para tabela `tb_admin.usuarios`
 --
 
 DROP TABLE IF EXISTS `tb_admin.usuarios`;
@@ -58,28 +51,31 @@ CREATE TABLE IF NOT EXISTS `tb_admin.usuarios` (
   `nome` varchar(255) NOT NULL,
   `cargo` int NOT NULL,
   `email` varchar(90) NOT NULL,
+  `telefone` varchar(30) NOT NULL,
   `data_nascimento` date NOT NULL,
   `data_inicio` date NOT NULL,
   `sexo` varchar(1) NOT NULL,
+  `cpf` varchar(30) NOT NULL,
   `professor_id` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb3;
 
 --
--- Extraindo dados da tabela `tb_admin.usuarios`
+-- Despejando dados para a tabela `tb_admin.usuarios`
 --
 
-INSERT INTO `tb_admin.usuarios` (`id`, `user`, `password`, `img`, `nome`, `cargo`, `email`, `data_nascimento`, `data_inicio`, `sexo`, `professor_id`) VALUES
-(1, 'admin', 'admin', '655387240a70f.jpg', 'Alex Sandro', 2, 'alexsrs@gmail.com', '1981-01-04', '2024-09-30', 'M', 0),
-(4, 'prof', 'prof', '65538e7ea62a1.jpg', 'Professor baitola', 1, 'prof@prof.com', '2014-09-02', '2024-09-25', 'M', 1),
-(7, 'teste', 'teste', '66f2c68510739.jpg', 'Testando ', 0, 'teste@aluno.net', '2024-09-05', '2024-09-11', 'F', 1),
-(15, 'joao', 'joao', '66f42cc21846d.jpg', 'Joao', 0, 'alexsrs@gmail.com', '1981-01-04', '1982-02-05', 'M', 4),
-(16, 'prof2', 'prof2', '66f42d0c0dea8.jpg', 'professor 2', 1, 'cootidr@seap.rj.gov.br', '1973-01-06', '2024-12-26', 'F', 1);
+INSERT INTO `tb_admin.usuarios` (`id`, `user`, `password`, `img`, `nome`, `cargo`, `email`, `telefone`, `data_nascimento`, `data_inicio`, `sexo`, `cpf`, `professor_id`) VALUES
+(1, 'admin', 'admin', '655387240a70f.jpg', 'Alex Sandro', 2, 'alexsrs@gmail.com', '(21) 98989-0615', '1981-01-04', '2024-09-30', 'M', '086899137-69', 0),
+(4, 'prof', 'prof', '65538e7ea62a1.jpg', 'Professor baitola', 1, 'prof@prof.com', '(21) 98989-0615', '2014-09-02', '2024-09-25', 'M', '086899137-69', 1),
+(7, 'teste', 'teste', '66f2c68510739.jpg', 'Testando ', 0, 'teste@aluno.net', '(21) 98989-0615', '2024-09-05', '2024-09-11', 'F', '086899137-69', 1),
+(15, 'joao', 'joao', '66f42cc21846d.jpg', 'Joao', 0, 'alexsrs@gmail.com', '(21) 98989-0615', '1981-01-04', '1982-02-05', 'M', '086899137-69', 4),
+(16, 'prof2', 'prof2', '66f42d0c0dea8.jpg', 'professor 2', 1, 'cootidr@seap.rj.gov.br', '(21) 98989-0615', '1973-01-06', '2024-12-26', 'F', '086899137-69', 1),
+(17, 'jkerbin ', '1234', '66f4a3ad8411e.jpeg', 'Jebediah Kerbin', 0, 'jkerbin@terra.com.br', '(21) 96787-0567', '1992-11-06', '2024-10-12', 'M', '121232343-79', 4);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_admin.visitas`
+-- Estrutura para tabela `tb_admin.visitas`
 --
 
 DROP TABLE IF EXISTS `tb_admin.visitas`;
@@ -91,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `tb_admin.visitas` (
 ) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb3;
 
 --
--- Extraindo dados da tabela `tb_admin.visitas`
+-- Despejando dados para a tabela `tb_admin.visitas`
 --
 
 INSERT INTO `tb_admin.visitas` (`id`, `ip`, `dia`) VALUES
@@ -116,7 +112,7 @@ INSERT INTO `tb_admin.visitas` (`id`, `ip`, `dia`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_site.depoimentos`
+-- Estrutura para tabela `tb_site.depoimentos`
 --
 
 DROP TABLE IF EXISTS `tb_site.depoimentos`;
@@ -129,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `tb_site.depoimentos` (
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 
 --
--- Extraindo dados da tabela `tb_site.depoimentos`
+-- Despejando dados para a tabela `tb_site.depoimentos`
 --
 
 INSERT INTO `tb_site.depoimentos` (`id`, `nome`, `depoimento`, `data`) VALUES
