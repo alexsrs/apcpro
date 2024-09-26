@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 26/09/2024 às 00:10
+-- Tempo de geração: 26/09/2024 às 17:33
 -- Versão do servidor: 8.3.0
 -- Versão do PHP: 8.3.6
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `tb_admin.online` (
   `ultima_acao` datetime NOT NULL,
   `token` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -57,7 +57,8 @@ CREATE TABLE IF NOT EXISTS `tb_admin.usuarios` (
   `sexo` varchar(1) NOT NULL,
   `cpf` varchar(30) NOT NULL,
   `professor_id` int NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `professor_id` (`professor_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb3;
 
 --
@@ -108,6 +109,42 @@ INSERT INTO `tb_admin.visitas` (`id`, `ip`, `dia`) VALUES
 (15, '::1', '2024-09-24'),
 (16, '::1', '2024-09-24'),
 (17, '::1', '2024-09-24');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `tb_perfis_usuarios`
+--
+
+DROP TABLE IF EXISTS `tb_perfis_usuarios`;
+CREATE TABLE IF NOT EXISTS `tb_perfis_usuarios` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `usuario_id` int NOT NULL,
+  `data_avaliacao` date NOT NULL,
+  `peso` float NOT NULL,
+  `altura` float NOT NULL,
+  `obesidade` tinyint(1) NOT NULL,
+  `diabetes` tinyint(1) NOT NULL,
+  `hipertensao` tinyint(1) NOT NULL,
+  `depressao` tinyint(1) NOT NULL,
+  `pos_covid` tinyint(1) NOT NULL,
+  `idoso` tinyint(1) NOT NULL,
+  `gestante` tinyint(1) NOT NULL,
+  `posparto` tinyint(1) NOT NULL,
+  `emagrecer` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `usuario_id` (`usuario_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
+
+--
+-- Despejando dados para a tabela `tb_perfis_usuarios`
+--
+
+INSERT INTO `tb_perfis_usuarios` (`id`, `usuario_id`, `data_avaliacao`, `peso`, `altura`, `obesidade`, `diabetes`, `hipertensao`, `depressao`, `pos_covid`, `idoso`, `gestante`, `posparto`, `emagrecer`) VALUES
+(1, 1, '0000-00-00', 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0),
+(2, 17, '0000-00-00', 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0),
+(3, 1, '0000-00-00', 69, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0),
+(4, 17, '2024-09-26', 69, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 

@@ -66,8 +66,25 @@
 		}
 	}
 
+	function verificaPermissaoMenuPreciso($permissao){
+		if($_SESSION['cargo'] == $permissao){
+			return;
+		} else {
+			echo 'style="display:none;"';
+		}
+	}
+
 	function verificaPermissaoPagina($permissao){
 		if($_SESSION['cargo'] >= $permissao){
+			return;
+		} else {
+			include('painel/pages/permissao-negada.php');
+			die();
+		}
+	}
+
+	function verificaPermissaoPaginaPreciso($permissao){
+		if($_SESSION['cargo'] == $permissao){
 			return;
 		} else {
 			include('painel/pages/permissao-negada.php');

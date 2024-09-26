@@ -49,6 +49,7 @@
             
             
             <h2>Análise física avançada</h2>
+            <a <?php selecionadoMenu('formulario-perfis'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>formulario-perfis">Pré avaliação</a>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
            

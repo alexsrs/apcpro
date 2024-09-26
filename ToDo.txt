@@ -1,7 +1,42 @@
 Estrutura do Aplicativo “APC Pro” com Foco em Avaliação
 
 	1.	Cadastro de Usuário e Perfil
-	•	Perfis personalizados para treinadores e atletas.
+	•	Perfis personalizados para treinadores e atletas.    OK
+	•	Implementar sistema de cadastro inicial automatizado conforme LGPD   - Pendente
+
+	1.2 Pré avaliação para identificar o perfil conforme abaixo
+	
+	•	Com obesidade
+	•	Com diabeltes mellitus
+	•	Com hipertensão arterial
+	•	Com depressão
+	•	Fase pós-covid
+	•	Terceira idade [idosos]
+	•	Mulheres Gestantes
+	•	Mulheres no pós-parto
+	•	Mulheres que desejam emagrecer
+	•	Homens e mulheres não idosos
+
+	Tabela SQL 
+	
+	CREATE TABLE tb_perfis_usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    obesidade BOOLEAN NOT NULL,
+    diabetes BOOLEAN NOT NULL,
+    hipertensao BOOLEAN NOT NULL,
+    depressao BOOLEAN NOT NULL,
+    pos_covid BOOLEAN NOT NULL,
+    idoso BOOLEAN NOT NULL,
+    gestante BOOLEAN NOT NULL,
+    posparto BOOLEAN NOT NULL,
+    emagrecer BOOLEAN NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES tb_admin.usuarios(id) ON DELETE CASCADE
+);
+	
+
+
+
 	•	Registro de informações detalhadas, histórico médico e objetivos de treinamento.
 
 	2.	Avaliação - Análise Física Avançada (AFA)

@@ -450,7 +450,19 @@ form .form-group-login:nth-of-type(2){
     top: 10px;
 }
 
+.box-content form fieldset {
+    margin-top: 40px;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
 
+.box-content form legend {
+    font-size: 1.5em;
+    color: #007bff;
+    padding: 0 10px;
+}
 
 
 
