@@ -4,14 +4,12 @@
 
 <div class="box-content">
 <h2><i class="fa fa-pencil" aria-hidden="true"></i> Informe as condições de saúde atuais:</h2>
-    <form method="post">
-        
+    <form method="post">   
         <?php
-
             if (isset($_POST['acao'])) {
                 // Obtém o usuario_id da sessão
                 $usuario_id = $_SESSION['id'];
-                $data_avaliacao = (new DateTime())->format('Y-m-d');
+                $data_avaliacao = (new DateTime())->format('Y-m-d H:i:s');
                 $peso = $_POST['peso'];
                 $altura = $_POST['altura'];
                 // Obtém os dados do formulário e define valor padrão 0 para não marcados
@@ -33,27 +31,27 @@
                 $gestante = isset($_POST['gestante']) ? 1 : 0;
                 $posparto = isset($_POST['posparto']) ? 1 : 0;
                 $emagrecer = isset($_POST['emagrecer']) ? 1 : 0;
+                $objetivo = $_POST['objetivo'];
 
                 // Salva o perfil do usuário
                 $perfil = new Perfil();
-                $perfil->cadastrarPerfil($usuario_id, $data_avaliacao, $peso, $altura, $obesidade, $diabetes, $hipertensao, $depressao, $pos_covid, $idoso, $gestante, $posparto, $emagrecer);
+                $perfil->cadastrarPerfil($usuario_id, $data_avaliacao, $peso, $altura, $obesidade, $diabetes, $hipertensao, $depressao, $pos_covid, $idoso, $gestante, $posparto, $emagrecer, $objetivo);
 
                 Painel::alert('sucesso', 'Perfil cadastrado com sucesso');
             }
         ?>
         <!-- Perguntas adicionais -->
-        <p>Responda as perguntas para aplicação da ANAMNESE INTELIGENTE que é mais
-rápida, prática e com maior possibilidade de aplicação pelo personal
-trainer na prescrição do programa de treinamento individualizado.</p>
+        <p>Responda as perguntas para aplicação da ANAMNESE INTELIGENTE de forma mais
+rápida, prática e com maior possibilidade de prescrição de um programa de treinamento individualizado.</p>
         
         <div class="form-group left w50">
             <label>Peso:</label>
-            <input type="text" name="peso">
+            <input type="text" name="peso" data-mask="900.0" >
         </div><!-- form-group -->
 
         <div class="form-group right w50">
             <label>Altura:</label>
-            <input type="text" name="altura">
+            <input type="text" name="altura" data-mask="0.00" >
         </div><!-- form-group -->
         <div class="clear"></div><!-- clear -->
 
@@ -97,8 +95,32 @@ trainer na prescrição do programa de treinamento individualizado.</p>
         </fieldset>
         
         <div class="clear"></div><!-- clear -->
-        <div class="form-group">
-            <input type="submit" name="acao" value="Enviar"/>
-        </div><!-- form-group -->
+
+        
+
+
+
+    <div class="form-group">
+        <label>Objetivo do treinamento</label>
+        <select name="objetivo">
+            <?php 
+                // Conectar ao banco de dados
+                $sql = MySql::conectar()->prepare("SELECT id, objetivo FROM tb_objetivos_treinamento");
+                $sql->execute();
+                $objetivos = $sql->fetchAll();
+
+                // Exibir uma opção padrão
+                echo '<option value="0">-- Selecione o objetivo --</option>';
+
+                // Preencher o select com os dados do banco de dados
+                foreach ($objetivos as $objetivo) {
+                    echo '<option value="'.$objetivo['id'].'">'.$objetivo['objetivo'].'</option>';
+                }
+            ?>
+        </select>
+    </div><!-- form-group -->
+    <div class="form-group">
+        <input type="submit" name="acao" value="Enviar"/>
+    </div><!-- form-group -->
     </form>
 </div><!-- box-content -->

@@ -86,7 +86,7 @@
     </div><!-- form-group -->
     <div class="form-group right w50">
         <label>CPF:</label>
-        <input type="text" name="cpf" value="<?php echo $_SESSION['cpf']; ?>" />
+        <input type="text" name="cpf" data-mask="000.000.000-00" value="<?php echo $_SESSION['cpf']; ?>" />
     </div><!-- form-group -->
 
     <div class="form-group left w50">
@@ -99,8 +99,6 @@
         <input type="date" name="data_inicio" value="<?php echo $_SESSION['data_inicio']; ?>" />
     </div><!-- form-group -->
     <div class="clear"></div><!-- clear -->
-
-   
 
     <div class="form-group">
         <input type="submit" name="acao" value="Atualizar"/>

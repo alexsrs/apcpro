@@ -105,7 +105,7 @@
 
     <div class="form-group right w50">
         <label>Telefone:</label>
-        <input type="text" name="telefone" />
+        <input type="text" name="telefone" data-mask="(00) 00000-0000" />
     </div><!-- form-group -->
 
     <div class="form-group left w50">
@@ -121,7 +121,7 @@
 
     <div class="form-group right w50">
         <label>CPF:</label>
-        <input type="text" name="cpf" />
+        <input type="text" name="cpf" data-mask="000.000.000-00" />
     </div><!-- form-group -->
 
     <div class="form-group left w50">

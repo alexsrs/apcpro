@@ -14,10 +14,7 @@ $usuarios = $sql->fetchAll();
 
     <div class="box-content">
         <h2><i class="fa fa-users" aria-hidden="true"></i> Lista de usuários</h2>
-
-
         <table>
-            
                         <tr>
                             <td>Nome</td>
                             <td>CPF</td>
@@ -46,8 +43,9 @@ $usuarios = $sql->fetchAll();
                             </td>
                             <td><?php echo (new DateTime($usuario['data_inicio']))->format('d/m/Y'); ?></td>
                             <td>
-                                <a href="editar_usuario.php?id=<?php echo $usuario['id']; ?>">Editar</a>
-                            </td>
+                                <a class="btn edit" href="editar_usuario.php?id=<?php echo $usuario['id']; ?>"><i class="fa fa-pencil"></i> Editar</a>
+                                <a class="btn delete" href=""><i class="fa fa-times"></i> Excluir</a></td>
+                           
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 26/09/2024 às 17:33
+-- Tempo de geração: 27/09/2024 às 00:00
 -- Versão do servidor: 8.3.0
 -- Versão do PHP: 8.3.6
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `tb_admin.online` (
   `ultima_acao` datetime NOT NULL,
   `token` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `tb_admin.usuarios` (
   `professor_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `professor_id` (`professor_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `tb_admin.usuarios`
@@ -71,7 +71,8 @@ INSERT INTO `tb_admin.usuarios` (`id`, `user`, `password`, `img`, `nome`, `cargo
 (7, 'teste', 'teste', '66f2c68510739.jpg', 'Testando ', 0, 'teste@aluno.net', '(21) 98989-0615', '2024-09-05', '2024-09-11', 'F', '086899137-69', 1),
 (15, 'joao', 'joao', '66f42cc21846d.jpg', 'Joao', 0, 'alexsrs@gmail.com', '(21) 98989-0615', '1981-01-04', '1982-02-05', 'M', '086899137-69', 4),
 (16, 'prof2', 'prof2', '66f42d0c0dea8.jpg', 'professor 2', 1, 'cootidr@seap.rj.gov.br', '(21) 98989-0615', '1973-01-06', '2024-12-26', 'F', '086899137-69', 1),
-(17, 'jkerbin ', '1234', '66f4a3ad8411e.jpeg', 'Jebediah Kerbin', 0, 'jkerbin@terra.com.br', '(21) 96787-0567', '1992-11-06', '2024-10-12', 'M', '121232343-79', 4);
+(17, 'jkerbin ', '1234', '66f4a3ad8411e.jpeg', 'Jebediah Kerbin', 0, 'jkerbin@terra.com.br', '(21) 96787-0567', '1992-11-06', '2024-10-12', 'M', '121232343-79', 4),
+(18, 'zuka', '1234', '66f5a7e46eace.png', 'Zuka da Silva sauro', 1, 'zuka@dell.com', '(21) 95499-1323', '1967-09-01', '2025-01-12', 'F', '111.222.333-44', 1);
 
 -- --------------------------------------------------------
 
@@ -113,6 +114,34 @@ INSERT INTO `tb_admin.visitas` (`id`, `ip`, `dia`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `tb_objetivos_treinamento`
+--
+
+DROP TABLE IF EXISTS `tb_objetivos_treinamento`;
+CREATE TABLE IF NOT EXISTS `tb_objetivos_treinamento` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `objetivo` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3;
+
+--
+-- Despejando dados para a tabela `tb_objetivos_treinamento`
+--
+
+INSERT INTO `tb_objetivos_treinamento` (`id`, `objetivo`) VALUES
+(1, 'Melhora do condicionamento físico'),
+(2, 'Perda de peso'),
+(3, 'Fortalecimento muscular'),
+(4, 'Definição muscular'),
+(5, 'Ganho de massa muscular'),
+(6, 'Diminuição do risco de doenças cardiovasculares e metabólicas'),
+(7, 'Melhora do aspecto físico e social'),
+(8, 'Melhorar a sua qualidade de vida'),
+(9, 'Alto rendimento físico-esportivo');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `tb_perfis_usuarios`
 --
 
@@ -120,7 +149,7 @@ DROP TABLE IF EXISTS `tb_perfis_usuarios`;
 CREATE TABLE IF NOT EXISTS `tb_perfis_usuarios` (
   `id` int NOT NULL AUTO_INCREMENT,
   `usuario_id` int NOT NULL,
-  `data_avaliacao` date NOT NULL,
+  `data_avaliacao` datetime NOT NULL,
   `peso` float NOT NULL,
   `altura` float NOT NULL,
   `obesidade` tinyint(1) NOT NULL,
@@ -132,19 +161,28 @@ CREATE TABLE IF NOT EXISTS `tb_perfis_usuarios` (
   `gestante` tinyint(1) NOT NULL,
   `posparto` tinyint(1) NOT NULL,
   `emagrecer` tinyint(1) NOT NULL,
+  `objetivo_id` int NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `usuario_id` (`usuario_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
+  KEY `usuario_id` (`usuario_id`),
+  KEY `objetivo_id` (`objetivo_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `tb_perfis_usuarios`
 --
 
-INSERT INTO `tb_perfis_usuarios` (`id`, `usuario_id`, `data_avaliacao`, `peso`, `altura`, `obesidade`, `diabetes`, `hipertensao`, `depressao`, `pos_covid`, `idoso`, `gestante`, `posparto`, `emagrecer`) VALUES
-(1, 1, '0000-00-00', 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0),
-(2, 17, '0000-00-00', 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0),
-(3, 1, '0000-00-00', 69, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0),
-(4, 17, '2024-09-26', 69, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0);
+INSERT INTO `tb_perfis_usuarios` (`id`, `usuario_id`, `data_avaliacao`, `peso`, `altura`, `obesidade`, `diabetes`, `hipertensao`, `depressao`, `pos_covid`, `idoso`, `gestante`, `posparto`, `emagrecer`, `objetivo_id`) VALUES
+(1, 1, '0000-00-00 00:00:00', 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0),
+(2, 17, '0000-00-00 00:00:00', 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0),
+(3, 1, '0000-00-00 00:00:00', 69, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0),
+(4, 17, '2024-09-26 00:00:00', 69, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(5, 1, '2024-09-26 00:00:00', 115, 1.73, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0),
+(6, 1, '2024-09-26 00:00:00', 89.3, 1.79, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(7, 1, '2024-09-26 00:00:00', 65.2, 1.78, 0, 0, 0, 1, 0, 0, 0, 0, 0, 9),
+(8, 17, '2024-09-26 00:00:00', 795, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(9, 17, '2024-09-26 18:08:17', 89.2, 2.01, 1, 1, 0, 0, 1, 0, 0, 0, 1, 9),
+(10, 1, '2024-09-26 00:00:00', 12, 1.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5),
+(11, 1, '2024-09-26 20:03:38', 90, 1.91, 0, 0, 1, 0, 0, 0, 0, 0, 0, 9);
 
 -- --------------------------------------------------------
 
