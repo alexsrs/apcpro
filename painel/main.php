@@ -42,13 +42,13 @@
             </div><!-- nome-usuario -->
         </div><!-- box-usuario -->
         <div class="items-menu">
-            <h2>Cadastro de usuários</h2>
+            <h2 id="menu-usuarios" class="ativo">Cadastro de usuários</h2>
             <a <?php selecionadoMenu('adicionar-usuario'); ?> <?php verificaPermissaoMenu(1); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>adicionar-usuario">Adicionar usuário</a>
             <a <?php selecionadoMenu('editar-perfil'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>editar-perfil">Editar perfil</a>
             <a <?php selecionadoMenu('listar-usuarios'); ?> <?php verificaPermissaoMenu(1); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>listar-usuarios">Listar usuário</a>
             
             
-            <h2>Análise física avançada</h2>
+            <h2 id="menu-analise">Análise física avançada</h2>
             <a <?php selecionadoMenu('formulario-perfis'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>formulario-perfis">Pré avaliação</a>
             <a <?php selecionadoMenu('anamnese-inteligente'); ?>href="">Anamnese Inteligente</a>
             <a <?php selecionadoMenu('medidas-corporais'); ?>href="">Medidas Corporais</a>
@@ -56,37 +56,37 @@
             
             
             
-            <h2>Biblioteca de exercícios</h2>
+            <h2 id="menu-biblioteca">Biblioteca de exercícios</h2>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             
             
             
-            <h2>Planejamento de treino</h2>
+            <h2 id="menu-planejamento">Planejamento de treino</h2>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             
             
-            <h2>Registro e controle de treinos</h2>
+            <h2 id="menu-controle">Registro e controle de treinos</h2>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             
             
-            <h2>Monitoramento e feedback</h2>
+            <h2 id="menu-monitoramento">Monitoramento e feedback</h2>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             
             
-            <h2>Análise de dados e relatórios</h2>
+            <h2 id="menu-relatorio">Análise de dados e relatórios</h2>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
 
-            <h2>Configurações do site</h2>
+            <h2 id="menu-configuracao">Configurações do site</h2>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             <a <?php selecionadoMenu('cadastrar-depoimento'); ?><?php verificaPermissaoMenu(2); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>cadastrar-depoimento">Cadastrar depoimento</a>
             <a <?php selecionadoMenu('listar-depoimentos'); ?><?php verificaPermissaoMenu(2); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>listar-depoimentos">Listar depoimentos</a>
-            <a <?php selecionadoMenu('cadastrar-servico'); ?>href="">Cadastrar serviço</a>
-            <a <?php selecionadoMenu('listar-serviços'); ?>href="">Listar serviços</a>
+            <a <?php selecionadoMenu('cadastrar-funcionalidade'); ?>href="">Cadastrar funcionalidade</a>
+            <a <?php selecionadoMenu('listar-funcionalidades'); ?>href="">Listar Funcionalidades</a>
             <a <?php selecionadoMenu('cadastrar-slider'); ?>href="">Cadastrar slider</a>
             <a <?php selecionadoMenu('listar-slides'); ?>href="">Listar slides</a>
 

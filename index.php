@@ -45,7 +45,7 @@
 				<ul>
 					<li><a href="<?php echo INCLUDE_PATH; ?>">Home</a></li>
 					<li><a href="<?php echo INCLUDE_PATH; ?>sobre">Sobre</a></li>
-					<li><a href="<?php echo INCLUDE_PATH; ?>servicos">Serviços</a></li>
+					<li><a href="<?php echo INCLUDE_PATH; ?>funcionalidades">Funcionalidades</a></li>
 					<li><a realtime="contato" href="<?php echo INCLUDE_PATH; ?>contato">Contato</a></li>
 					<li><a realtime="entrar" href="<?php echo INCLUDE_PATH_PAINEL; ?>"><span>Entrar</span></a></li>
 				</ul>
@@ -55,7 +55,7 @@
 				<ul>
 					<li><a href="<?php echo INCLUDE_PATH; ?>">Home</a></li>
 					<li><a href="<?php echo INCLUDE_PATH; ?>sobre">Sobre</a></li>
-					<li><a href="<?php echo INCLUDE_PATH; ?>servicos">Serviços</a></li>
+					<li><a href="<?php echo INCLUDE_PATH; ?>funcionalidades">Funcionalidades</a></li>
 					<li><a realtime="contato" href="<?php echo INCLUDE_PATH; ?>contato">Contato</a></li>
 					<li><a realtime="entrar" href="<?php echo INCLUDE_PATH_PAINEL; ?>"><span>Entrar</span></a></li>
 				</ul>

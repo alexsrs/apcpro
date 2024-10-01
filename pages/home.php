@@ -68,7 +68,7 @@
 					</div><!-- depoimento-single -->
 			</div><!-- w50 -->
 			<div id="servicos" class="w50 left servicos-container">
-				<h2 class="title">Serviços</h2>
+				<h2 class="title">Funcionalidades</h2>
 				<div class="servicos">
 					<ul>
 						<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut eros vel tortor blandit ultrices ac ac justo. Nulla euismod diam id risus maximus rutrum. Integer mollis diam ex, vel molestie orci scelerisque a. Phasellus est risus, pulvinar id volutpat mattis, luctus accumsan purus.</li>
