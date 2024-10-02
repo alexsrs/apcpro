@@ -26,8 +26,8 @@
 				echo '<target target="sobre" />';
 				# code...
 				break;
-			case 'servicos':
-				echo '<target target="servicos" />';
+			case 'funcionalidades':
+				echo '<target target="funcionalidades" />';
 				# code...
 				break;		
 		}
@@ -70,7 +70,7 @@
 		include('pages/'.$url.'.php');
 	} else {
 		// podemos fazer o que quiser poir a pagina nao existe
-		if ($url != 'sobre' && $url != 'servicos') {
+		if ($url != 'sobre' && $url != 'funcionalidades') {
 			$pagina404 = true;
 			include('pages/404.php');
 			# code...

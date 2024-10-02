@@ -311,7 +311,7 @@ section.extras{
 	background: #404580;
 }
 
-.depoimentos-container,.servicos-container{
+.depoimentos-container,.funcionalidades-container{
 	padding: 0 50px;
 }
 
@@ -340,12 +340,12 @@ p.nome-autor{
 	margin-top: 10px;
 }
 
-.servicos ul{ 
+.funcionalidades ul{ 
 	margin: 20px 0;
 	list-style-position: inside;
 }
 
-.servicos li{
+.funcionalidades li{
 	margin-bottom: 15px;
 	font-size: 15px;
 	color: white;

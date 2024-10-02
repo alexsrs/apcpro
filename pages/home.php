@@ -67,16 +67,16 @@
 						<p class="nome-autor">Lorem ipsum dolor</p>
 					</div><!-- depoimento-single -->
 			</div><!-- w50 -->
-			<div id="servicos" class="w50 left servicos-container">
+			<div id="funcionalidades" class="w50 left funcionalidades-container">
 				<h2 class="title">Funcionalidades</h2>
-				<div class="servicos">
+				<div class="funcionalidades">
 					<ul>
 						<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut eros vel tortor blandit ultrices ac ac justo. Nulla euismod diam id risus maximus rutrum. Integer mollis diam ex, vel molestie orci scelerisque a. Phasellus est risus, pulvinar id volutpat mattis, luctus accumsan purus.</li>
 						<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut eros vel tortor blandit ultrices ac ac justo. Nulla euismod diam id risus maximus rutrum. Integer mollis diam ex, vel molestie orci scelerisque a. Phasellus est risus, pulvinar id volutpat mattis, luctus accumsan purus.</li>
 						<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut eros vel tortor blandit ultrices ac ac justo. Nulla euismod diam id risus maximus rutrum. Integer mollis diam ex, vel molestie orci scelerisque a. Phasellus est risus, pulvinar id volutpat mattis, luctus accumsan purus.</li>
 						<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut eros vel tortor blandit ultrices ac ac justo. Nulla euismod diam id risus maximus rutrum. Integer mollis diam ex, vel molestie orci scelerisque a. Phasellus est risus, pulvinar id volutpat mattis, luctus accumsan purus.</li>
 					</ul>
-				</div><!-- servicos -->
+				</div><!-- funcionalidades -->
 			</div><!-- w50 -->
 			<div class="clear"></div><!-- clear --> 
 		</div><!-- center -->
