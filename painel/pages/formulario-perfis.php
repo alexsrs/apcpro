@@ -56,12 +56,13 @@ rápida, prática e com maior possibilidade de prescrição de um programa de tr
         
         <div class="form-group left w50"> 
             <label for="peso">Peso: </label>
-            <input type="range" id="peso" class="slider" name="peso" min="40.0" max="299.9" step="0.1" value="50" oninput="updatePeso(this.value)">
+            <input type="range" id="peso" class="slider" name="peso" min="40.0" max="299.9" step="0.1" value="50.0" oninput="updatePeso(this.value)">
                 </br>
-            <span id="peso-valor">50.0</span> kg
+            <input type="text" id="peso-valor" value="50.0 Kg"></input>
+           <!-- <span id="peso-valor">50.0</span> kg -->
             <script>
-                function updatePeso(valor) {
-                    document.getElementById('peso-valor').innerText = parseFloat(valor).toFixed(1);
+                function updatePeso(value) {
+                    document.getElementById('peso-valor').value = parseFloat(value).toFixed(1) + ' Kg';
                 }
             </script>
         </div><!-- form-group -->
@@ -70,11 +71,14 @@ rápida, prática e com maior possibilidade de prescrição de um programa de tr
             <label for="altura">Altura: </label>
             <input type="range" id="altura" class="slider" name="altura" min="1.20" max="2.51" step="0.01" value="1.50" oninput="updateAltura(this.value)">
                 </br>
-            <span id="altura-valor">1.50</span> m
+            <input type="text" id="altura-valor" value="1.50 m"></input>
+            <!-- <span id="altura-valor">1.50</span> m -->
             <script>
-                function updateAltura(valor) {
-                    document.getElementById('altura-valor').innerText = parseFloat(valor).toFixed(2);
+
+                function updateAltura(value) {
+                    document.getElementById('altura-valor').value = parseFloat(value).toFixed(2) + ' m';
                 }
+             
             </script>
         </div><!-- form-group -->
         <div class="clear"></div><!-- clear -->
