@@ -25,7 +25,7 @@
             
             <?php } ?>
         </table>
-    </div>
+    </div><!--wraper-table-->
 
     <div class="paginacao">
         <a class="page-selected" href="">1</a>

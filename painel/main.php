@@ -42,13 +42,13 @@
             </div><!-- nome-usuario -->
         </div><!-- box-usuario -->
         <div class="items-menu">
-            <h2 id="menu-usuarios" class="ativo">Cadastro de usuários</h2>
+            <h2 id="menu-usuarios" class="ativo"><i class="fa fa-id-card-o" aria-hidden="true"></i> Cadastro de usuários</h2>
             <a <?php selecionadoMenu('adicionar-usuario'); ?> <?php verificaPermissaoMenu(1); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>adicionar-usuario">Adicionar usuário</a>
             <a <?php selecionadoMenu('editar-perfil'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>editar-perfil">Editar perfil</a>
             <a <?php selecionadoMenu('listar-usuarios'); ?> <?php verificaPermissaoMenu(1); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>listar-usuarios">Listar usuário</a>
             
             
-            <h2 id="menu-analise">Análise física avançada</h2>
+            <h2 id="menu-analise"><i class="fa fa-line-chart" aria-hidden="true"></i> Análise física avançada</h2>
             <a <?php selecionadoMenu('formulario-perfis'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>formulario-perfis">Pré avaliação</a>
             <a <?php selecionadoMenu('anamnese-inteligente'); ?>href="">Anamnese Inteligente</a>
             <a <?php selecionadoMenu('medidas-corporais'); ?>href="">Medidas Corporais</a>
@@ -56,33 +56,32 @@
             
             
             
-            <h2 id="menu-biblioteca">Biblioteca de exercícios</h2>
+            <h2 id="menu-biblioteca"><i class="fa fa-book" aria-hidden="true"></i> Biblioteca de exercícios</h2>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             
             
             
-            <h2 id="menu-planejamento">Planejamento de treino</h2>
+            <h2 id="menu-planejamento"><i class="fa fa-calendar" aria-hidden="true"></i> Planejamento de treino</h2>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             
             
-            <h2 id="menu-controle">Registro e controle de treinos</h2>
+            <h2 id="menu-controle"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Controle de treinos</h2>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             
             
-            <h2 id="menu-monitoramento">Monitoramento e feedback</h2>
+            <h2 id="menu-monitoramento"><i class="fa fa-bar-chart" aria-hidden="true"></i> Monitoramento e feedback</h2>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             
             
-            <h2 id="menu-relatorio">Análise de dados e relatórios</h2>
+            <h2 id="menu-relatorio"><i class="fa fa-file-text-o" aria-hidden="true"></i> Dados e relatórios</h2>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
 
-            <h2 id="menu-configuracao">Configurações do site</h2>
-            <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
+            <h2 id="menu-configuracao"><i class="fa fa-cogs" aria-hidden="true"></i> Configurações do site</h2>
             <a <?php selecionadoMenu('cadastrar-depoimento'); ?><?php verificaPermissaoMenu(2); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>cadastrar-depoimento">Cadastrar depoimento</a>
             <a <?php selecionadoMenu('listar-depoimentos'); ?><?php verificaPermissaoMenu(2); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>listar-depoimentos">Listar depoimentos</a>
             <a <?php selecionadoMenu('cadastrar-funcionalidade'); ?>href="">Cadastrar funcionalidade</a>

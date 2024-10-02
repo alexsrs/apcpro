@@ -301,11 +301,16 @@ a.btn.delete{
 
 .items-menu h2{
     text-align: left;
-    font-weight: bold;
+    font-weight: normal;
     font-size: 15px;
     background: #2F3D42;
     color: white;
     padding: 8px;
+    cursor: pointer;
+}
+
+.items-menu h2 i {
+    padding-right: 6px;
 }
 
 .items-menu a{
@@ -435,7 +440,17 @@ a.btn.delete{
     font-size: 16px;
     color: white;
     border: 0;
+}
 
+.box-content form button {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    margin-top: 33px;
+    background: #1de9b6;
+    font-size: 16px;
+    color: white;
+    border: 0;
 }
 
 /* box de alerta */
@@ -490,7 +505,50 @@ form .form-group-login:nth-of-type(2){
     padding: 0 10px;
 }
 
+/* Estilos para o modal */
+#modalObjetivo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Garante que o modal esteja sobre os outros elementos */
+}
 
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 50%; /* O modal terá 50% da largura da tela */
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* Estilos para alinhar o botão e o select */
+.flex-container {
+    display: flex;
+    align-items: center;
+}
+
+.select-container {
+    flex: 1; /* O select ocupará o máximo possível */
+}
+
+.button-container {
+    margin-left: 10px; /* Espaço entre o select e o botão */
+}
+
+.button-container button {
+    margin-top: 500px;
+    padding: 8px 12px; /* Ajuste do tamanho do botão */
+}
 
 
 @media screen and (max-width: 1200px){
@@ -517,6 +575,13 @@ form .form-group-login:nth-of-type(2){
     header{
         left: 0;
         width: 100%;
+    }
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 600px) {
+    .modal-content {
+        width: 90%; /* Ajusta para 90% da tela em dispositivos móveis */
     }
 }
 

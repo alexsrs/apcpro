@@ -39,6 +39,16 @@
 
                 Painel::alert('sucesso', 'Perfil cadastrado com sucesso');
             }
+            
+            // Adiciona um novo objetivo
+            if (isset($_POST['novo_objetivo'])) {
+                $novo_objetivo = $_POST['novo_objetivo_texto'];
+                if (!empty($novo_objetivo)) {
+                    $sql = MySql::conectar()->prepare("INSERT INTO tb_objetivos_treinamento (objetivo) VALUES (?)");
+                    $sql->execute([$novo_objetivo]);
+                    Painel::alert('sucesso', 'Novo objetivo adicionado com sucesso!');
+                }
+            }
         ?>
         <!-- Perguntas adicionais -->
         <p>Responda as perguntas para aplicação da ANAMNESE INTELIGENTE de forma mais
@@ -55,7 +65,8 @@ rápida, prática e com maior possibilidade de prescrição de um programa de tr
         </div><!-- form-group -->
         <div class="clear"></div><!-- clear -->
 
-        <fieldset class="left w50">
+        <div class="form-group left w50">
+        <fieldset>
         <legend>Dados de saúde</legend>
             <label for="obesidade">
                 <input type="checkbox" id="obesidade" name="obesidade" value="1"> Obesidade
@@ -77,8 +88,10 @@ rápida, prática e com maior possibilidade de prescrição de um programa de tr
                 <input type="checkbox" id="pos_covid" name="pos_covid" value="1"> Fase pós-covid
             </label><br>
         </fieldset>
-        
-        <fieldset class="right w50">
+        </div><!-- form-group -->
+
+        <div class="form-group right w50">
+        <fieldset>
         <legend>Dados de Mulheres</legend>
         <label for="gestante">
             <input type="checkbox" id="gestante" name="gestante" value="1"> Mulheres Gestantes
@@ -93,14 +106,12 @@ rápida, prática e com maior possibilidade de prescrição de um programa de tr
         </label><br><br>
 
         </fieldset>
+        </div><!-- form-group -->
         
         <div class="clear"></div><!-- clear -->
 
-        
-
-
-
-    <div class="form-group">
+    <div class="form-group flex-container">
+    <div class="select-container">
         <label>Objetivo do treinamento</label>
         <select name="objetivo">
             <?php 
@@ -118,9 +129,33 @@ rápida, prática e com maior possibilidade de prescrição de um programa de tr
                 }
             ?>
         </select>
-    </div><!-- form-group -->
+    </div><!-- select-container -->
+    
+    <!-- Botão ao lado do select -->
+    <div class="button-container">
+        
+        <button type="button" onclick="document.getElementById('modalObjetivo').style.display='flex'"><i class="fa fa-plus" aria-hidden="true"></i></button>
+    </div><!-- button-container -->
+</div><!-- form-group -->
+
+    
+    <div class="clear"></div><!-- clear -->           
     <div class="form-group">
         <input type="submit" name="acao" value="Enviar"/>
     </div><!-- form-group -->
     </form>
 </div><!-- box-content -->
+
+<!-- Modal -->
+<div id="modalObjetivo" style="display:none;">
+    <div class="modal-content">
+        <form method="post">
+            <h3>Adicionar Novo Objetivo</h3>
+            <input type="text" name="novo_objetivo_texto" placeholder="Digite o novo objetivo" required>
+            <input type="submit" name="novo_objetivo" value="Adicionar">
+            <button type="button" onclick="document.getElementById('modalObjetivo').style.display='none'">Fechar</button>
+        </form>
+    </div>
+</div>
+
+
