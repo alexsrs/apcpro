@@ -54,58 +54,88 @@
         <p>Responda as perguntas para aplicação da ANAMNESE INTELIGENTE de forma mais
 rápida, prática e com maior possibilidade de prescrição de um programa de treinamento individualizado.</p>
         
-        <div class="form-group left w50">
-            <label>Peso:</label>
-            <input type="text" name="peso" data-mask="900.0" >
+        <div class="form-group left w50"> 
+            <label for="peso">Peso: </label>
+            <input type="range" id="peso" class="slider" name="peso" min="40.0" max="299.9" step="0.1" value="50" oninput="updatePeso(this.value)">
+                </br>
+            <span id="peso-valor">50.0</span> kg
+            <script>
+                function updatePeso(valor) {
+                    document.getElementById('peso-valor').innerText = parseFloat(valor).toFixed(1);
+                }
+            </script>
         </div><!-- form-group -->
 
-        <div class="form-group right w50">
-            <label>Altura:</label>
-            <input type="text" name="altura" data-mask="0.00" >
+        <div class="form-group right w50"> 
+            <label for="altura">Altura: </label>
+            <input type="range" id="altura" class="slider" name="altura" min="1.20" max="2.51" step="0.01" value="1.50" oninput="updateAltura(this.value)">
+                </br>
+            <span id="altura-valor">1.50</span> m
+            <script>
+                function updateAltura(valor) {
+                    document.getElementById('altura-valor').innerText = parseFloat(valor).toFixed(2);
+                }
+            </script>
         </div><!-- form-group -->
         <div class="clear"></div><!-- clear -->
 
-        <div class="form-group left w50">
-        <fieldset>
-        <legend>Dados de saúde</legend>
-            <label for="obesidade">
-                <input type="checkbox" id="obesidade" name="obesidade" value="1"> Obesidade
-            </label><br>
-            
-            <label for="diabetes">
-                <input type="checkbox" id="diabetes" name="diabetes" value="1"> Com diabetes mellitus
-            </label><br>
+        <div class="form-group left w50">       
+            <fieldset>
+                <legend>Dados de saúde</legend>
 
-            <label for="hipertensao">
-                <input type="checkbox" id="hipertensao" name="hipertensao" value="1"> Com hipertensão arterial
-            </label><br>
+                <label class="switch-label" for="obesidade">
+                    <input type="checkbox" id="obesidade" name="obesidade" value="1">
+                    <span class="slider-switch round"></span>
+                    <span class="slider-text">Obesidade</span>
+                </label><br>
 
-            <label for="depressao">
-                <input type="checkbox" id="depressao" name="depressao" value="1"> Com depressão
-            </label><br>
+                <label class="switch-label" for="diabetes">
+                    <input type="checkbox" id="diabetes" name="diabetes" value="1">
+                    <span class="slider-switch round"></span>
+                    <span class="slider-text">Diabetes</span>
+                </label><br>
 
-            <label for="pos_covid">
-                <input type="checkbox" id="pos_covid" name="pos_covid" value="1"> Fase pós-covid
-            </label><br>
-        </fieldset>
+                <label class="switch-label" for="hipertensao">
+                    <input type="checkbox" id="hipertensao" name="hipertensao" value="1">
+                    <span class="slider-switch round"></span>
+                    <span class="slider-text">Hipertensão</span>
+                </label><br>
+
+                <label class="switch-label" for="depressao">
+                    <input type="checkbox" id="depressao" name="depressao" value="1">
+                    <span class="slider-switch round"></span>
+                    <span class="slider-text">Depresssão</span>
+                </label><br>
+
+                <label class="switch-label" for="pos_covid">
+                    <input type="checkbox" id="pos_covid" name="pos_covid" value="1">
+                    <span class="slider-switch round"></span>
+                    <span class="slider-text">Pós-covid</span>
+                </label><br>
+            </fieldset>
         </div><!-- form-group -->
 
         <div class="form-group right w50">
-        <fieldset>
-        <legend>Dados de Mulheres</legend>
-        <label for="gestante">
-            <input type="checkbox" id="gestante" name="gestante" value="1"> Mulheres Gestantes
-        </label><br>
+            <fieldset>
+                <legend>Dados de Mulheres</legend>
+                <label class="switch-label" for="gestante">
+                    <input type="checkbox" id="gestante" name="gestante" value="1">
+                    <span class="slider-switch round"></span>
+                    <span class="slider-text">Gestante</span>
+                </label><br>
 
-        <label for="posparto">
-            <input type="checkbox" id="posparto" name="posparto" value="1"> Mulheres no pós-parto
-        </label><br>
+                <label class="switch-label" for="posparto">
+                    <input type="checkbox" id="posparto" name="posparto" value="1">
+                    <span class="slider-switch round"></span>
+                    <span class="slider-text">Pós-parto</span>
+                </label><br>
 
-        <label for="emagrecer">
-            <input type="checkbox" id="emagrecer" name="emagrecer" value="1"> Mulheres que desejam emagrecer
-        </label><br><br>
-
-        </fieldset>
+                <label class="switch-label" for="emagrecer">
+                    <input type="checkbox" id="emagrecer" name="emagrecer" value="1">
+                    <span class="slider-switch round"></span>
+                    <span class="slider-text">Deseja emagrecer</span>
+                </label><br>
+            </fieldset>
         </div><!-- form-group -->
         
         <div class="clear"></div><!-- clear -->

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 27/09/2024 às 00:00
+-- Tempo de geração: 02/10/2024 às 11:11
 -- Versão do servidor: 8.3.0
 -- Versão do PHP: 8.3.6
 
@@ -34,7 +34,14 @@ CREATE TABLE IF NOT EXISTS `tb_admin.online` (
   `ultima_acao` datetime NOT NULL,
   `token` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb3;
+
+--
+-- Despejando dados para a tabela `tb_admin.online`
+--
+
+INSERT INTO `tb_admin.online` (`id`, `ip`, `ultima_acao`, `token`) VALUES
+(59, '::1', '2024-10-02 08:02:28', '66fd220a73eef');
 
 -- --------------------------------------------------------
 
@@ -86,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `tb_admin.visitas` (
   `ip` varchar(255) NOT NULL,
   `dia` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `tb_admin.visitas`
@@ -109,7 +116,8 @@ INSERT INTO `tb_admin.visitas` (`id`, `ip`, `dia`) VALUES
 (14, '::1', '2024-09-24'),
 (15, '::1', '2024-09-24'),
 (16, '::1', '2024-09-24'),
-(17, '::1', '2024-09-24');
+(17, '::1', '2024-09-24'),
+(18, '::1', '2024-10-01');
 
 -- --------------------------------------------------------
 
@@ -122,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `tb_objetivos_treinamento` (
   `id` int NOT NULL AUTO_INCREMENT,
   `objetivo` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `tb_objetivos_treinamento`
@@ -165,7 +173,7 @@ CREATE TABLE IF NOT EXISTS `tb_perfis_usuarios` (
   PRIMARY KEY (`id`),
   KEY `usuario_id` (`usuario_id`),
   KEY `objetivo_id` (`objetivo_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `tb_perfis_usuarios`
@@ -182,7 +190,9 @@ INSERT INTO `tb_perfis_usuarios` (`id`, `usuario_id`, `data_avaliacao`, `peso`, 
 (8, 17, '2024-09-26 00:00:00', 795, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (9, 17, '2024-09-26 18:08:17', 89.2, 2.01, 1, 1, 0, 0, 1, 0, 0, 0, 1, 9),
 (10, 1, '2024-09-26 00:00:00', 12, 1.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5),
-(11, 1, '2024-09-26 20:03:38', 90, 1.91, 0, 0, 1, 0, 0, 0, 0, 0, 0, 9);
+(11, 1, '2024-09-26 20:03:38', 90, 1.91, 0, 0, 1, 0, 0, 0, 0, 0, 0, 9),
+(12, 1, '2024-10-02 05:16:12', 135.8, 1.68, 1, 0, 0, 0, 0, 0, 0, 0, 1, 7),
+(13, 1, '2024-10-02 08:02:24', 299.9, 2.51, 1, 0, 0, 1, 0, 0, 0, 0, 1, 3);
 
 -- --------------------------------------------------------
 

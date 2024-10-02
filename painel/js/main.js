@@ -82,4 +82,5 @@ $(function() {
     });
 
     $('[formato=data]').mask('99/99/9999');
+
 });
