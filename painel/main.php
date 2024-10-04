@@ -12,10 +12,6 @@
     <title>Painel de controle</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- <link href="<?php echo INCLUDE_PATH; ?>css/fontawesome.min.css" rel="stylesheet">
-    <link href="<?php echo INCLUDE_PATH; ?>css/fontawesome.css" rel="stylesheet">
- 	<link href="<?php echo INCLUDE_PATH; ?>css/brands.min.css" rel="stylesheet">
-	<link href="<?php echo INCLUDE_PATH; ?>css/solid.min.css" rel="stylesheet"> -->
     <link href="<?php echo INCLUDE_PATH_PAINEL ?>css/style.css" rel="stylesheet"/> 
 
 </head>
@@ -38,14 +34,15 @@
 
             <div class="nome-usuario">
                 <p><?php echo $_SESSION['nome']; ?></p>
-                <p><?php echo pegaCargo($_SESSION['cargo']); ?></p>
+                <p><?php echo pegaCargo($_SESSION['cargo']); ?></p><br>
+                <button><a href="<?php echo INCLUDE_PATH_PAINEL ?>editar-perfil"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>  Editar perfil</a></button>
             </div><!-- nome-usuario -->
         </div><!-- box-usuario -->
         <div class="items-menu">
             <h2 id="menu-usuarios" class="ativo"><i class="fa fa-id-card-o" aria-hidden="true"></i> Cadastro de usuários</h2>
             <a <?php selecionadoMenu('adicionar-usuario'); ?> <?php verificaPermissaoMenu(1); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>adicionar-usuario">Adicionar usuário</a>
-            <a <?php selecionadoMenu('editar-perfil'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>editar-perfil">Editar perfil</a>
-            <a <?php selecionadoMenu('listar-usuarios'); ?> <?php verificaPermissaoMenu(1); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>listar-usuarios">Listar usuário</a>
+            
+            <a <?php selecionadoMenu('listar-usuarios'); ?> <?php verificaPermissaoMenu(1); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>listar-usuarios">Listar usuários</a>
             
             
             <h2 id="menu-analise"><i class="fa fa-line-chart" aria-hidden="true"></i> Análise física avançada</h2>

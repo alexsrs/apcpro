@@ -31,20 +31,20 @@
 	</section><!--descricao-autor-->
 	<section class="especialidades">
 		<div class="center">
-			<h2 class="title">Especialidades</h2>
+			<!-- <h2 class="title">Especialidades</h2> -->
 			<div class="box-especialidade w33 left">
-				<h3><i class="fab fa-css3"></i></h3>
-				<h4>CSS3</h4>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut eros vel tortor blandit ultrices ac ac justo. Nulla euismod diam id risus maximus rutrum. Integer mollis diam ex, vel molestie orci scelerisque a. Phasellus est risus, pulvinar id volutpat mattis, luctus accumsan purus.</p>
+				<h3><i class="fa fa-line-chart"></i></h3>
+				<h4>ANAMNESE INTELIGENTE</h4>
+				<p>Interface para aplicação de questionários detalhados sobre saúde, entrevistas para captar informações qualitativas sobre o bem-estar e expectativas do atleta, com aperguntas pertinentes para que o personal trainer tenha informações relevantes para prescrever o treinamento com segurança e de forma individualizada.</p>
+			</div><!-- box-especialidade -->
+			<div class="box-especialidade w33 left"> 
+				<h3><i class="fa fa-book"></i></h3>
+				<h4>BIBLIOTECA DE EXERCICIOS</h4>
+				<p>Extensa biblioteca categorizada por tipo de exercício, com vídeos demonstrativos e descrições técnicas. Nulla euismod diam id risus maximus rutrum. Integer mollis diam ex, vel molestie orci scelerisque a. Phasellus est risus, pulvinar id volutpat mattis, luctus accumsan purus.</p>
 			</div><!-- box-especialidade -->
 			<div class="box-especialidade w33 left">
-				<h3><i class="fab fa-html5"></i></h3>
-				<h4>HTML5</h4>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut eros vel tortor blandit ultrices ac ac justo. Nulla euismod diam id risus maximus rutrum. Integer mollis diam ex, vel molestie orci scelerisque a. Phasellus est risus, pulvinar id volutpat mattis, luctus accumsan purus.</p>
-			</div><!-- box-especialidade -->
-			<div class="box-especialidade w33 left">
-				<h3><i class="fab fa-js-square"></i></h3>
-				<h4>JavaScript</h4>
+				<h3><i class="fa fa-diamond"></i></h3>
+				<h4>TREINO PERSONALIZADO</h4>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut eros vel tortor blandit ultrices ac ac justo. Nulla euismod diam id risus maximus rutrum. Integer mollis diam ex, vel molestie orci scelerisque a. Phasellus est risus, pulvinar id volutpat mattis, luctus accumsan purus.</p>
 			</div><!-- box-especialidade -->
 			<div class="clear"></div><!--clear-->

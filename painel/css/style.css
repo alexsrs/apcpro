@@ -191,6 +191,30 @@ div.box-usuario{
     font-weight: 300;
 }
 
+.nome-usuario button a{
+    text-decoration: none;
+}
+
+.nome-usuario button {
+  width: 120px;
+  height: 40px;
+  border: 3px solid #007bff;
+  border-radius: 45px;
+  transition: all 0.3s;
+  cursor: pointer;
+  background: white;
+  font-size: 0.8em;
+  font-weight: 550;
+  text-decoration: nome;
+}
+.nome-usuario button a:hover {
+    color: white;
+}
+.nome-usuario button:hover {
+  background: #007bff;
+  
+  font-size: 0.9em;
+}
 /* conteúdo principal do painel */
 
 .w100{

@@ -13,6 +13,7 @@ html,body{
 img{
 	width: 100%;
 	max-width: 400px;
+	padding-top: 50px;
 }
 
 .center{
@@ -208,17 +209,20 @@ section.banner-container form h2{
 }
 
 section.banner-container form input[type=email]{
-	width: 100%;
+	width: 70%;
 	height: 66px;
 	margin-top: 10px;
 	background: white;
 	color: #333;
 	font-size: 22px;
 	padding-left: 10px;
+	border-radius: 20em;
+	border: none;
+	text-align: center;
 }
 
 section.banner-container form input[type=submit]{
-	width: 60%;
+	width: 30%;
 	height: 66px;
 	margin-top: 20px;
 	background: #ad5389;
@@ -301,11 +305,12 @@ section.especialidades h2.title{
 
 .box-especialidade h3{
 	color: #404580;
-	font-size: 40px;
+	font-size: 60px;
+	padding-bottom: 10px;
 }
 
 .box-especialidade h4{
-	color: #BABABA;
+	color: #8a8a8a;
 	font-weight: 300;
 	font-size: 25px;
 }

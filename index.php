@@ -5,10 +5,7 @@
 <html lang="pt-br">
 <head>
 	<title>APC Pro</title>
-	<link href="<?php echo INCLUDE_PATH; ?>css/all.css" rel="stylesheet">
-	<link href="<?php echo INCLUDE_PATH; ?>css/fontawesome.min.css" rel="stylesheet">
- 	<link href="<?php echo INCLUDE_PATH; ?>css/brands.min.css" rel="stylesheet">
-	<link href="<?php echo INCLUDE_PATH; ?>css/solid.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="<?php echo INCLUDE_PATH; ?>estilo/style.css">
@@ -51,7 +48,7 @@
 				</ul>
 			</nav>
 			<nav class="mobile right">
-				<div class="botao-menu-mobile"><i class="fas fa-align-justify"></i></div>
+				<div class="botao-menu-mobile"><i class="fa fa-bars"></i></div>
 				<ul>
 					<li><a href="<?php echo INCLUDE_PATH; ?>">Home</a></li>
 					<li><a href="<?php echo INCLUDE_PATH; ?>sobre">Sobre</a></li>

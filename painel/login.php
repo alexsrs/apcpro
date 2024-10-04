@@ -48,6 +48,10 @@
                 $sql->execute(array($user,$password));
                 if($sql->rowCount() == 1){
                     $info = $sql->fetch();
+                    session_start();
+                    header("Cache-Control: no-cache, no-store, must-revalidate");
+                    header("Pragma: no-cache");
+                    header("Expires: 0");
                     //logamos com sucesso
                     $_SESSION['login'] = true;
                     $_SESSION['id'] = $info['id'];
@@ -69,7 +73,7 @@
                         setcookie('user',$user,time()+(60*60*24),'/');
                         setcookie('password',$password,time()+(60*60*24),'/');
                     }
-                    header('location: '.INCLUDE_PATH_PAINEL);
+                    echo "<script>window.location.href='" . INCLUDE_PATH_PAINEL . "';</script>";
                     die();
                 }else{
                     //Falhou 

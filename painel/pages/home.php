@@ -75,7 +75,7 @@
 </div><!-- box-content -->
      
 <div class="box-content left w100">
-    <h2><i class="fa fa-rocket" aria-hidden="true"></i> Usuários no painel</h2>
+    <h2><i class="fa fa-rocket" aria-hidden="true"></i> Usuários do painel</h2>
     <div class="table-responsive">
         <div class="row">
             <div class="col">

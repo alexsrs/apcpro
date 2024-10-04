@@ -20,7 +20,18 @@
 		};
 
 	spl_autoload_register($autoload);
-		
+
+	// site on line
+	//define('INCLUDE_PATH','https://www.apcpro.com.br/');
+	//define('INCLUDE_PATH_PAINEL',INCLUDE_PATH.'painel/');
+	//define('BASE_DIR_PAINEL',__DIR__.'/painel');
+	//ConexÃ£o com Banco de dados
+	//define('HOST','localhost');
+	//define('USER','apcpro25');
+	//define('PASSWORD','Sofi@171216');
+	//define('DATABASE','apcpro25_apcpro');
+
+	//Site local ambiente de teste 
 	define('INCLUDE_PATH','http://localhost/apcpro/');
 	define('INCLUDE_PATH_PAINEL',INCLUDE_PATH.'painel/');
 	define('BASE_DIR_PAINEL',__DIR__.'/painel');
