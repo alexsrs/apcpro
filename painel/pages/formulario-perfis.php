@@ -1,5 +1,6 @@
 <?php 
     verificaPermissaoPagina(0);
+    include_once('pages/funcoes.php');
 ?>
 
 <div class="box-content">
@@ -37,7 +38,16 @@
                 $perfil = new Perfil();
                 $perfil->cadastrarPerfil($usuario_id, $data_avaliacao, $peso, $altura, $obesidade, $diabetes, $hipertensao, $depressao, $pos_covid, $idoso, $gestante, $posparto, $emagrecer, $objetivo);
 
-                Painel::alert('sucesso', 'Perfil cadastrado com sucesso');
+                Painel::alert('sucesso', 'Pré-avaliação cadastrado com sucesso');
+                
+                //session_write_close(); // Grava os dados da sessão no servidor
+               //session_start(); // Reinicia a sessão para recarregar as variáveis
+                $anamneseLink = obterLinkAnamnese($usuario_id); // Obtenha o link correto após salvar os dados
+                echo "<script>window.location.href='" . INCLUDE_PATH_PAINEL . $anamneseLink . "'</script>";
+
+                //header('Location: ' . INCLUDE_PATH_PAINEL . $anamneseLink);
+                exit(); // Encerra o script imediatamente para evitar execução adicional
+
             }
             
             // Adiciona um novo objetivo

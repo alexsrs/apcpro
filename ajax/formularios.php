@@ -1,5 +1,5 @@
 <?php
-   include('../config.php');
+   include_once('../config.php');
    $data =[];
    $assunto = 'Novo contato do site';
    $corpo ='';
@@ -8,7 +8,7 @@
        $corpo.="<hr>";
    }
    $info = array('assunto'=>$assunto,'corpo'=>$corpo);
-   $mail = new Email('smtp.titan.email', 'teste@creapix.com.br','123456teste','PROJETO01');
+   $mail = new Email('smtp.titan.email', 'site@apcpro.com.br','H@lf2500','APC Pro');
    $mail->addAddress('alexsrs@gmail.com','ADM do Site');
    $mail->formatarEmail($info);
    if($mail->enviarEmail()){

@@ -2,8 +2,21 @@
     if(isset($_GET['logout'])){
         Painel::logout();
     }
-?>
 
+    // Utilize include_once para evitar múltiplas inclusões
+    include_once('../config.php');
+    include_once('pages/funcoes.php'); // Inclua o arquivo com a função separada
+
+    // Verifique se o usuário está logado e se 'id' está definido
+    if (!isset($_SESSION['id'])) {
+        echo "Usuário não está logado.";
+        exit;
+    }
+
+    $usuario_id = $_SESSION['id'];
+    $anamneseLink = obterLinkAnamnese($usuario_id);
+    
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -13,7 +26,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="<?php echo INCLUDE_PATH_PAINEL ?>css/style.css" rel="stylesheet"/> 
-
 </head>
 <body>  
 <div class="menu">
@@ -47,7 +59,7 @@
             
             <h2 id="menu-analise"><i class="fa fa-line-chart" aria-hidden="true"></i> Análise física avançada</h2>
             <a <?php selecionadoMenu('formulario-perfis'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>formulario-perfis">Pré avaliação</a>
-            <a <?php selecionadoMenu('anamnese-inteligente'); ?>href="">Anamnese Inteligente</a>
+            <a <?php selecionadoMenu('anamnese-inteligente'); ?> href="<?php echo INCLUDE_PATH_PAINEL . $anamneseLink; ?>">Anamnese Inteligente</a>
             <a <?php selecionadoMenu('medidas-corporais'); ?>href="">Medidas Corporais</a>
             <a <?php selecionadoMenu('testes-fisicos'); ?>href="">Testes Físicos</a>
             
@@ -85,10 +97,7 @@
             <a <?php selecionadoMenu('listar-funcionalidades'); ?>href="">Listar Funcionalidades</a>
             <a <?php selecionadoMenu('cadastrar-slider'); ?>href="">Cadastrar slider</a>
             <a <?php selecionadoMenu('listar-slides'); ?>href="">Listar slides</a>
-
-
         </div><!-- items-menu -->
-
     </div><!-- menu-wraper -->
 </div><!-- menu -->
 
@@ -108,16 +117,9 @@
 
 <div class="content">
     <?php Painel::loadPage(); ?>
-    
-
 </div><!-- content -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="<?php echo INCLUDE_PATH_PAINEL ?>js/jquery.mask.js"></script>
 <script src="<?php echo INCLUDE_PATH_PAINEL ?>js/main.js"></script>
 </body>
 </html>
-
-
-
-
-
