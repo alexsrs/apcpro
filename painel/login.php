@@ -81,7 +81,10 @@
                 }
             }
         ?>
-        <h2>Faça o login:</h2>
+        <div class="logo-login">
+            <img decoding="async" src="<?php echo INCLUDE_PATH ?>images/logomarca-v.png" alt="A Descriptive Caption For The Image" title="My Image How To Add An Image Html">
+        </div>
+        <h2>Faça o login</h2>
         <form method="post">
             <input type="text" name="user" placeholder="Login..." required>
             <input type="password" name="password" placeholder="Senha..." required>

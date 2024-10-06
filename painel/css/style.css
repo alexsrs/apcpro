@@ -19,7 +19,7 @@ body{
 .box-login{
     max-width: 600px;
     width: 95%;
-    padding: 60px 2%;
+    padding: 40px 2%;
     background: white;
     position: absolute;
     left: 50%;
@@ -38,6 +38,15 @@ body{
     margin: 10px 0;
     color: black;
 
+}
+
+.box-login img {
+	width: 40%;
+    
+}
+
+.logo-login {
+    text-align: center;
 }
 
 .box-login input[type=text],

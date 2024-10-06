@@ -37,7 +37,7 @@
 	
 	<header>
 		<div class="center">
-			<div class="logo left"><a href="<?php echo INCLUDE_PATH; ?>">APC Pro</a></div><!-- logo -->
+			<div class="logo left"><img src="<?php echo INCLUDE_PATH ?>images/logomarca-h.png"/></div><!-- logo -->
 			<nav class="desktop right">
 				<ul>
 					<li><a href="<?php echo INCLUDE_PATH; ?>">Home</a></li>
