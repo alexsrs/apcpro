@@ -1,6 +1,14 @@
 <?php 
     verificaPermissaoPagina(0);
     include_once('pages/funcoes.php');
+    // Obtém o usuario_id da sessão
+    $usuario_id = $_SESSION['id'];
+    $sql = MySql::conectar()->prepare("SELECT sexo FROM `tb_admin.usuarios` WHERE id = ?");
+    $sql->execute([$usuario_id]);
+    // Consulta ao banco de dados para obter o sexo do usuário logado
+    $result = $sql->fetch();
+    // Verifica se o sexo do usuário é 'H' (homem)
+    $sexo = $result['sexo'];
 ?>
 
 <div class="box-content">
@@ -8,8 +16,7 @@
     <form method="post">   
         <?php
             if (isset($_POST['acao'])) {
-                // Obtém o usuario_id da sessão
-                $usuario_id = $_SESSION['id'];
+                
                 $data_avaliacao = (new DateTime())->format('Y-m-d H:i:s');
                 $peso = $_POST['peso'];
                 $altura = $_POST['altura'];
@@ -19,16 +26,17 @@
                 $hipertensao = isset($_POST['hipertensao']) ? 1 : 0;
                 $depressao = isset($_POST['depressao']) ? 1 : 0;
                 $pos_covid = isset($_POST['pos_covid']) ? 1 : 0;
-
-                // Verifica se a data de nascimento está definida na sessão
-                if (isset($_SESSION['dataNascimento'])) {
-                    $dataNascimento = new DateTime($_SESSION['dataNascimento']);
+                // Busca a data de nascimento no banco de dados
+                $sql = MySql::conectar()->prepare("SELECT data_nascimento FROM `tb_admin.usuarios` WHERE id = ?");
+                $sql->execute([$usuario_id]);
+                $data_nascimento_result = $sql->fetch();
+                if ($data_nascimento_result) {
+                    $dataNascimento = new DateTime($data_nascimento_result['data_nascimento']);
                     $idade = (new DateTime())->diff($dataNascimento)->y;
-                    $idoso = $idade >= 65 ? 1 : 0;
+                    $idoso = $idade >= 65 ? 1 : 0; // Define como idoso se a idade for maior ou igual a 65
                 } else {
-                    $idoso = 0; // Considera como não idoso caso a data de nascimento não esteja disponível
+                    $idoso = 0; // Caso não encontre a data de nascimento, considera como não idoso
                 }
-
                 $gestante = isset($_POST['gestante']) ? 1 : 0;
                 $posparto = isset($_POST['posparto']) ? 1 : 0;
                 $emagrecer = isset($_POST['emagrecer']) ? 1 : 0;
@@ -39,15 +47,20 @@
                 $perfil->cadastrarPerfil($usuario_id, $data_avaliacao, $peso, $altura, $obesidade, $diabetes, $hipertensao, $depressao, $pos_covid, $idoso, $gestante, $posparto, $emagrecer, $objetivo);
 
                 Painel::alert('sucesso', 'Pré-avaliação cadastrado com sucesso');
+
+                // Adiciona um timer de 10 segundos antes de redirecionar
+                
                 
                 //session_write_close(); // Grava os dados da sessão no servidor
-               //session_start(); // Reinicia a sessão para recarregar as variáveis
-                $anamneseLink = obterLinkAnamnese($usuario_id); // Obtenha o link correto após salvar os dados
-                echo "<script>window.location.href='" . INCLUDE_PATH_PAINEL . $anamneseLink . "'</script>";
-
+                //session_start(); // Reinicia a sessão para recarregar as variáveis
+                //$anamneseLink = obterLinkAnamnese($usuario_id); // Obtenha o link correto após salvar os dados
+                echo "<script>
+                    setTimeout(function() {
+                        window.location.href='" . INCLUDE_PATH_PAINEL . obterLinkAnamnese($usuario_id) . "';
+                    }, 5000); // 5000 milissegundos = 5 segundos
+                    </script>";
                 //header('Location: ' . INCLUDE_PATH_PAINEL . $anamneseLink);
                 exit(); // Encerra o script imediatamente para evitar execução adicional
-
             }
             
             // Adiciona um novo objetivo
@@ -130,14 +143,16 @@ rápida, prática e com maior possibilidade de prescrição de um programa de tr
         </div><!-- form-group -->
 
         <div class="form-group right w50">
+
+        <?php if ($sexo != 'M'): ?>
             <fieldset>
                 <legend>Dados de Mulheres</legend>
+                <!-- Campos específicos para mulheres -->
                 <label class="switch-label" for="gestante">
                     <input type="checkbox" id="gestante" name="gestante" value="1">
                     <span class="slider-switch round"></span>
                     <span class="slider-text">Gestante</span>
                 </label><br>
-
                 <label class="switch-label" for="posparto">
                     <input type="checkbox" id="posparto" name="posparto" value="1">
                     <span class="slider-switch round"></span>
@@ -150,7 +165,8 @@ rápida, prática e com maior possibilidade de prescrição de um programa de tr
                     <span class="slider-text">Deseja emagrecer</span>
                 </label><br>
             </fieldset>
-        </div><!-- form-group -->
+        <?php endif; ?>
+        </div>
         
         <div class="clear"></div><!-- clear -->
 

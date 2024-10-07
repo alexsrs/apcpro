@@ -27,30 +27,60 @@ function obterLinkAnamnese($usuario_id) {
     if (!$perfil) {
         return "anamnese-geral"; // Página padrão se não houver perfil
     }
-
-    // Verifica as condições e retorna o link adequado
+    // Contabiliza quantas condições estão marcadas como true
+    $conditionsTrue = 0;
+    
     if ($perfil['obesidade']) {
-        return "anamnese-obesidade";
-    } elseif ($perfil['diabetes']) {
-        return "anamnese-diabetes";
-    } elseif ($perfil['hipertensao']) {
-        return "anamnese-hipertensao";
-    } elseif ($perfil['depressao']) {
-        return "anamnese-depressao";
-    } elseif ($perfil['pos_covid']) {
-        return "anamnese-pos-covid";
-    } elseif ($perfil['idoso']) {
-        return "anamnese-idoso";
-    } elseif ($perfil['gestante']) {
-        return "anamnese-gestante";
-    } elseif ($perfil['posparto']) {
-        return "anamnese-posparto";
-    } elseif ($perfil['emagrecer']) {
-        return "anamnese-emagrecer";
-    } else {
-        return "anamnese-geral"; // Anamnese geral para não idosos
+        $conditionsTrue++;
+        $link = "anamnese-obesidade";
     }
-
+    if ($perfil['diabetes']) {
+        $conditionsTrue++;
+        $link = "anamnese-diabetes";
+    }
+    if ($perfil['hipertensao']) {
+        $conditionsTrue++;
+        $link = "anamnese-hipertensao";
+    }
+    if ($perfil['depressao']) {
+        $conditionsTrue++;
+        $link = "anamnese-depressao";
+    }
+    if ($perfil['pos_covid']) {
+        $conditionsTrue++;
+        $link = "anamnese-pos-covid";
+    }
+    if ($perfil['idoso']) {
+        $conditionsTrue++;
+        $link = "anamnese-idoso";
+    }
+    if ($perfil['gestante']) {
+        $conditionsTrue++;
+        $link = "anamnese-gestante";
+    }
+    if ($perfil['posparto']) {
+        $conditionsTrue++;
+        $link = "anamnese-posparto";
+    }
+    if ($perfil['emagrecer']) {
+        $conditionsTrue++;
+        $link = "anamnese-emagrecer";
+    }
+    // Se for idoso, redireciona para anamnese-idoso
+    if ($perfil['idoso']) {
+        $conditionsTrue++;
+        return "anamnese-idoso";
+    }
+    // Se tiver mais de uma condição verdadeira, redireciona para anamnese-multipla
+    if ($conditionsTrue > 1) {
+        return "anamnese-multipla";
+    }
+    // Caso não tenha nenhuma condição marcada, vai para anamnese-geral
+    if ($conditionsTrue == 0) {
+        return "anamnese-geral";
+    }
+    return $link ?? "anamnese-geral";
+    
     $stmt->close();
     $conn->close();
 }

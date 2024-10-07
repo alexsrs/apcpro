@@ -41,8 +41,8 @@
                 Painel::alert('erro', 'O nome está vazio');
             } else if ($password == ''){
                 Painel::alert('erro', 'A senha está vazia');
-            } else if($imagem['name'] == ''){
-                Painel::alert('erro', 'A imagem precisa estar selecionada');
+            //} else if($imagem['name'] == ''){
+            //   Painel::alert('erro', 'A imagem precisa estar selecionada');
             } else if($email == ''){
                 Painel::alert('erro', 'O email precisa ser informado');
             } else if($telefone == ''){
@@ -59,8 +59,8 @@
                 // podemos cadastrar !
                 if($cargo >= $_SESSION['cargo']){
                     Painel::alert('erro', 'Você não pode cadastrar um usuário com permissões maiores que as suas');
-                } else if(Painel::imagemValida($imagem) == false){
-                    Painel::alert('erro', 'O formato da imagem não é válido');
+                //} else if(Painel::imagemValida($imagem) == false){
+                //    Painel::alert('erro', 'O formato da imagem não é válido');
                 } else if (Usuario::userExists($user)){
                     Painel::alert('erro', 'O login já está em uso, selecione outro');
                 } else {
