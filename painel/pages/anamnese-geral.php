@@ -162,13 +162,8 @@ rápida, prática e com maior possibilidade de prescrição de um programa de tr
                             <span class="slider-switch round"></span>
                             <span class="slider-text">Treino com peso do corpo</span>
                         </label>
-                        
             </fieldset>
         </div><!--form-group w100-->
-
-
-
-
     <div class="clear"></div><!-- clear -->
     
     
