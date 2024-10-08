@@ -13,6 +13,12 @@ class Painel {
         'M' => 'Masculino'
     ];
 
+    public static $intensidade = [
+        'L' => 'Leve',
+        'M' => 'Moderada',
+        'V' => 'Vigorosa'
+    ];
+
     public static function logado(){
         return isset($_SESSION['login']) ? true : false;
     }

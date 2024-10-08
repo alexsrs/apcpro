@@ -7,34 +7,77 @@ Estrutura do Aplicativo “APC Pro” com Foco em Avaliação
 	1.2 Pré avaliação para identificar o perfil conforme abaixo
 	•	Registro de informações detalhadas, histórico médico e objetivos de treinamento.
 	
-	•	Com obesidade
-	•	Com diabeltes mellitus
-	•	Com hipertensão arterial
-	•	Com depressão
-	•	Fase pós-covid
-	•	Terceira idade [idosos]
-	•	Mulheres Gestantes
-	•	Mulheres no pós-parto
-	•	Mulheres que desejam emagrecer
-	•	Homens e mulheres não idosos
-
-	Tabela SQL 
 	
-	CREATE TABLE tb_perfis_usuarios (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    usuario_id INT NOT NULL,
-    obesidade BOOLEAN NOT NULL,
-    diabetes BOOLEAN NOT NULL,
-    hipertensao BOOLEAN NOT NULL,
-    depressao BOOLEAN NOT NULL,
-    pos_covid BOOLEAN NOT NULL,
-    idoso BOOLEAN NOT NULL,
-    gestante BOOLEAN NOT NULL,
-    posparto BOOLEAN NOT NULL,
-    emagrecer BOOLEAN NOT NULL,
-    FOREIGN KEY (usuario_id) REFERENCES tb_admin.usuarios(id) ON DELETE CASCADE
-);
-	
+	2 - Qual é a sua disponibilidade para treinar?
+_______ dias na semana _______ minutos por dia
+3 - Quais são os tipos de exercícios físicos que você gosta?
+( ) musculação ( ) treino com o peso do corpo ( ) esteira
+( ) bike ( ) natação ( ) lutas
+( ) outros:_______________________________________
+4 - Existe alguma coisa que você NÃO GOSTA de fazer durante a prática
+do exercício?
+( ) Não ( ) Sim.
+Quais? ________________________________________________________
+Licenciado para - Fabiano de Brito - 01183252722 - Protegido por Eduzz.com
+43
+5 - Nos últimos 3 meses, você estava praticando algum tipo de exercício
+físico?
+( ) Sim ( ) Não
+Se a sua resposta foi SIM, por favor, me informe:
+Qual o tipo de exercício físico estava praticando? ___________________
+_____________________________________________________________.
+Quantas vezes por semana estava praticando?____________vezes por
+semana
+Quantos minutos por dia estava praticando? ____________minutos por dia
+Qual era a intensidade? ( ) Leve ( ) Moderada ( ) Vigorosa
+6 - Você apresenta alguma doença que foi diagnosticada pelo médico?
+( ) Não ( ) Sim
+Qual (is)? ___________________________________________________
+Caso a sua resposta tenha sido SIM, por favor, informe o nome dos remédios
+que está tomando:____________________________________________
+7 - Você fez alguma cirurgia?
+( ) Sim ( ) Não
+Se a sua resposta foi SIM, por favor, indique a região do corpo onde foi realizado a
+cirurgia:___________________________________________
+Licenciado para - Fabiano de Brito - 01183252722 - Protegido por Eduzz.com
+44
+8 - Atualmente você sente algum tipo de dor ou desconforto muscular?
+( ) Não ( ) Sim Qual (is) região (ões): ___________________________________
+Para cada região que foi relatou sentir DOR, por favor, usando a escala de dor
+abaixo, atribua uma nota e caso tenha alguma dificuldade de realizar movimentos
+no dia a dia, descreva ao lado da nota quais são as principais dificuldades.
+0 1 2 3 4 5 6 7 8 9 10
+Sem dor Dor insuportável
+Região 1:______________________ Nota:________ Dificuldade:_______________
+Região 2:______________________ Nota:________ Dificuldade:_______________
+Região 3:______________________ Nota:________ Dificuldade:_______________
+Região 4:______________________ Nota:________ Dificuldade:_______________
+9 - Você sente dor no peito quando realizada exercício físico?
+( ) Sim ( ) Não
+10 - Você já perdeu o equilíbrio por causa de tontura ou alguma vez
+perdeu a consciência?
+( ) Sim ( ) Não
+Licenciado para - Fabiano de Brito - 01183252722 - Protegido por Eduzz.com
+45
+11 - Imagine movimentos que você realizada em seu dia a dia (na sua
+casa, no trabalho, subir e descer escadas, caminhar, correr), você sente
+algum tipo de desconforto ao realizar essas atividades?
+( ) Sim ( ) Não
+Se a sua resposta foi SIM, por favor, descreva abaixo quais são os tipos
+de atividades e a dificuldade que sente: __________________________
+____________________________________________________________
+12 - Algum parente seu de primeiro grau tem problemas cardíacos?
+( ) Sim ( ) Não
+Se a sua resposta foi SIM, por favor informe o número
+de parentes de primeiro grau que tem problemas
+cardíacas:___________________________________________________
+13 - Você Fuma?
+( ) Sim ( ) Não
+14 - Se tiver outras informações que julgar ser relevante para elaboração
+o seu programa de treinamento, por favor, descreva abaixo:
+_________________________________________________________________
+_________________________________________________________________
+________________________________________________________________
 
 
 	2.	Avaliação - Análise Física Avançada (AFA)
