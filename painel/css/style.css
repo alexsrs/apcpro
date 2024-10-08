@@ -440,6 +440,7 @@ a.btn.delete{
 .box-content form input[type=text],
 .box-content form input[type=password],
 .box-content form input[type=email],
+.box-content form input[type=number],
 .box-content form input[type=date]{
     margin-top: 8px;
     font-size: 16px;
@@ -481,14 +482,19 @@ a.btn.delete{
 }
 
 .box-content form button {
-    width: 40px;
+    width: auto;
     height: 40px;
     cursor: pointer;
-    margin-top: 33px;
+    margin-top: 35px;
     background: #007bff;
     font-size: 16px;
     color: white;
     border: 0;
+    padding: 5px 10px;
+}
+
+.box-content form button:hover {
+    background-color: #ff1a1a;
 }
 
 /* box de alerta */
@@ -693,36 +699,36 @@ form .form-group-login:nth-of-type(2){
 
 #regioes-container {
     text-align: left; /* Para alinhar à esquerda */
-    
 
 }
 .regiao-container {
     
     position: relative;
-
-    display: inline-block;
-    vertical-align: top; /* Alinha os blocos no topo */
+    display: flex;
+    
     width: 100%; /* Largura fixa para manter o alinhamento */
     margin-right: 20px; /* Espaçamento entre os blocos */
     padding: 10px;
 }
+.regiao-container label{
+    margin-right: 10px;
+}
+
+.regiao-container input{
+    margin-right: 10px;
+}
+
 
 .remove-regiao {
-    position: absolute;
-    top: 10px;
     right: 10px;
     background: #ff4d4d;
     border: none;
     color: white;
-    padding: 5px 10px;
-    cursor: pointer;
-    font-size: 16px;
+    
 }
 
-
-.remove-regiao:hover {
-    position: relative;
-    background-color: #ff1a1a;
+.box-content form button.remove-regiao {
+    margin-top: 7px;
 }
 
 .img-escala{

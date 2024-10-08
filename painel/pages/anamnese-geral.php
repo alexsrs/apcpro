@@ -6,24 +6,17 @@
      // Obtém o usuario_id da sessão
      $usuario_id = $_SESSION['id'];
 ?>
-
 <form method="post">   
         <?php
-            
-            if (isset($_POST['acao'])) {
-                
-                
+            if (isset($_POST['acao'])) {  
             }
         ?>
         <!-- Perguntas adicionais -->
         <p>Responda as perguntas para aplicação da ANAMNESE INTELIGENTE de forma mais
 rápida, prática e com maior possibilidade de prescrição de um programa de treinamento individualizado.</p>
-
         <div class="form-group" >       
             <fieldset>
                 <legend>Disponibilidade de treino</legend>
-                
-
                 <label class="switch-label" for="domingo" style="display: inline-block; margin-right: 70px;">
                     <input type="checkbox" id="domingo" name="domingo" value="1">
                     <span class="slider-switch round"></span>
@@ -34,19 +27,16 @@ rápida, prática e com maior possibilidade de prescrição de um programa de tr
                     <span class="slider-switch round"></span>
                     <span class="slider-text">Seg</span>
                 </label>
-
                 <label class="switch-label" for="terca" style="display: inline-block; margin-right: 70px;">
                     <input type="checkbox" id="terca" name="terca" value="1">
                     <span class="slider-switch round"></span>
                     <span class="slider-text">Ter</span>
                 </label>
-
                 <label class="switch-label" for="quarta" style="display: inline-block; margin-right: 70px;">
                     <input type="checkbox" id="quarta" name="quarta" value="1">
                     <span class="slider-switch round"></span>
                     <span class="slider-text">Qua</span>
                 </label>
-
                 <label class="switch-label" for="quinta" style="display: inline-block; margin-right: 70px;">
                     <input type="checkbox" id="quinta" name="quinta" value="1">
                     <span class="slider-switch round"></span>
@@ -66,10 +56,8 @@ rápida, prática e com maior possibilidade de prescrição de um programa de tr
         <label>Quantos minutos por dia</label>
         <input type="text" name="nome">
     </div><!-- form-group -->
-
             </fieldset>
         </div><!-- form-group -->
-
         <div class="form-group">
             <fieldset>
                 <legend>Atividade Física</legend>
@@ -206,7 +194,6 @@ rápida, prática e com maior possibilidade de prescrição de um programa de tr
                         <input type="text" name="regiao-cirurgia" style="flex-grow: 1;">
                     </div><!-- form-group -->
                     <br><br>
-
                     <!-- Pergunta sobre dor muscular -->
                 <label>Atualmente você sente algum tipo de dor ou desconforto muscular?</label>
                 <label class="switch-label" for="dor-muscular">
@@ -224,16 +211,71 @@ rápida, prática e com maior possibilidade de prescrição de um programa de tr
                 <div id="regioes-container">
             <!-- Região 1 -->
                     <div class="regiao-container">
-                        <button type="button" class="remove-regiao" onclick="removerRegiao(this)">Remover</button>
                         <label for="regiao1">Região:</label>
-                        <input type="text" id="regiao1" name="regiao[]" placeholder="Descreva a região" required><br>
+                        <input type="text" id="regiao1" name="regiao[]" required><br>
                         <label for="nota1">Nota:</label>
                         <input type="number" id="nota1" name="nota[]" min="0" max="10" placeholder="0-10" required><br>
                         <label for="dificuldade1">Dificuldade:</label>
-                        <input type="text" id="dificuldade1" name="dificuldade[]" placeholder="Descreva dificuldades"><br>
+                        <input type="text" id="dificuldade1" name="dificuldade[]">
+                        <button type="button" class="remove-regiao" onclick="removerRegiao(this)">Remover</button><br>
                     </div><!--regiao-container-->
                 </div><!--regioes-container-->                        
                 <button type="button" id="adicionar-regiao">Adicionar Região</button><br><br>
+                <br><br>
+                <label>Você sente dor no peito quando realiza exercício físico?</label>
+                    <label class="switch-label" for="dor-peito">
+                        <input type="checkbox" id="dor-peito" name="dor-peito" value="1">
+                        <span class="slider-switch round"></span>
+                        <span class="slider-text">Sim</span>
+                    </label>
+                <br><br>
+                <label>Você já perdeu o equilíbrio por causa de tontura ou alguma vez perdeu a consciência?</label>
+                    <label class="switch-label" for="tontura">
+                        <input type="checkbox" id="tontura" name="tontura" value="1">
+                        <span class="slider-switch round"></span>
+                        <span class="slider-text">Sim</span>
+                    </label>
+                <br><br>
+                    <div class="form-group">
+                    <label>Imagine movimentos que você realizada em seu dia a dia (na sua casa, no trabalho, subir e descer escadas, caminhar, correr), você sente algum tipo de desconforto ao realizar essas atividades?</label>
+                        <label class="switch-label" for="movimento-diario">
+                            <input type="checkbox" id="movimento-diario" name="movimento-diario" value="1">
+                            <span class="slider-switch round"></span>
+                            <span class="slider-text">Sim</span>
+                        </label>
+                    </div><!-- form-group -->
+                    <div class="form-group">  
+                        <label>Se a sua resposta foi SIM, por favor, descreva abaixo quais são os tipos de atividades e a dificuldade que sente:</label>
+                        <input type="text" name="movimentos-dia" style="flex-grow: 1;">
+                    </div><!-- form-group -->
+                    <br><br>
+                    <div class="form-group">
+                    <label>Algum parente seu de primeiro grau tem problemas cardíacos?</label>
+                        <label class="switch-label" for="parente-cardiaco">
+                            <input type="checkbox" id=parente-cardiaco" name="parente-cardiaco" value="1">
+                            <span class="slider-switch round"></span>
+                            <span class="slider-text">Sim</span>
+                        </label>
+                    </div><!-- form-group -->
+                    <div class="form-group">  
+                        <label>Se a sua resposta foi SIM, por favor informe o número de parentes de primeiro grau que tem problemas cardíacas:_</label>
+                        <input type="text" name="num-parente-cardiaco" style="flex-grow: 1;">
+                    </div><!-- form-group -->
+                    <br><br>
+                <label>Você Fuma?</label>
+                    <label class="switch-label" for="fumante">
+                        <input type="checkbox" id="fumante" name="fumante" value="1">
+                        <span class="slider-switch round"></span>
+                        <span class="slider-text">Sim</span>
+                    </label>
+                <br><br>
+                <label> Se tiver outras informações que julgar ser relevante para elaboração do seu programa de treinamento, por favor, descreva abaixo:</label>
+                <textarea id="info-pertinente" name="info-pertinente" rows="3" cols="50"></textarea>
+                <br><br><br>
+                <div class="form-group">
+                    <input type="checkbox" id="aceito" name="aceito" value="1">
+                    <label for="aceito"> Atesto para os devidos fins que recebi todas as orientações necessárias para responder o questionário, li e entendi todas as perguntas e respondi com a verdade.</label>
+                </div>
             </fieldset>
         </div><!--form-group w100-->
     <div class="clear"></div><!-- clear -->

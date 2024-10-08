@@ -95,13 +95,13 @@ let contadorRegiao = 1;
             div.className = 'regiao-container';
 
             div.innerHTML = `
-                <button type="button" class="remove-regiao">Remover</button>
                 <label for="regiao${contadorRegiao}">Região:</label>
-                <input type="text" id="regiao${contadorRegiao}" name="regiao[]" placeholder="Descreva a região" required><br>
+                <input type="text" id="regiao${contadorRegiao}" name="regiao[]" required><br>
                 <label for="nota${contadorRegiao}">Nota:</label>
                 <input type="number" id="nota${contadorRegiao}" name="nota[]" min="0" max="10" placeholder="0-10" required><br>
                 <label for="dificuldade${contadorRegiao}">Dificuldade:</label>
-                <input type="text" id="dificuldade${contadorRegiao}" name="dificuldade[]" placeholder="Descreva dificuldades"><br>
+                <input type="text" id="dificuldade${contadorRegiao}" name="dificuldade[]">
+                <button type="button" class="remove-regiao">Remover</button><br>
             `;
 
             container.appendChild(div);

@@ -14,6 +14,7 @@ class Painel {
     ];
 
     public static $intensidade = [
+        ' ' => '-- Selecione uma opção --',
         'L' => 'Leve',
         'M' => 'Moderada',
         'V' => 'Vigorosa'
