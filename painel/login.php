@@ -81,6 +81,7 @@
                 }
             }
         ?>
+        <div class="clear"><!--clear-->
         <div class="logo-login">
             <img decoding="async" src="<?php echo INCLUDE_PATH ?>images/logomarca-v.png" alt="A Descriptive Caption For The Image" title="My Image How To Add An Image Html">
         </div>

@@ -1,8 +1,8 @@
 RewriteEngine on
 
 # Redirecionar HTTP para HTTPS
-RewriteCond %{HTTPS} off
-RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+#RewriteCond %{HTTPS} off
+#RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Se o arquivo ou diretório não existir, redireciona para o index.php
 RewriteCond %{SCRIPT_FILENAME} !-f

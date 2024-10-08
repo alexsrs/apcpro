@@ -1,4 +1,5 @@
 <?php
+
 function obterLinkAnamnese($usuario_id) {
     // Conexão com o banco de dados usando as constantes definidas em config.php
     $conn = new mysqli(HOST, USER, PASSWORD, DATABASE);

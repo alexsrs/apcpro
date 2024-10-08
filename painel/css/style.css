@@ -235,6 +235,11 @@ div.box-usuario{
     /* background: red !important; */
 }
 
+.w33{
+	width: 33.3%;
+	padding: 0 10px;
+}
+
 .left{
     float: left;
 }
@@ -684,6 +689,49 @@ form .form-group-login:nth-of-type(2){
 .button-container button {
     margin-top: 500px;
     padding: 8px 12px; /* Ajuste do tamanho do botão */
+}
+
+#regioes-container {
+    text-align: left; /* Para alinhar à esquerda */
+    
+
+}
+.regiao-container {
+    
+    position: relative;
+
+    display: inline-block;
+    vertical-align: top; /* Alinha os blocos no topo */
+    width: 100%; /* Largura fixa para manter o alinhamento */
+    margin-right: 20px; /* Espaçamento entre os blocos */
+    padding: 10px;
+}
+
+.remove-regiao {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ff4d4d;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+
+.remove-regiao:hover {
+    position: relative;
+    background-color: #ff1a1a;
+}
+
+.img-escala{
+    text-align: center;
+    padding: 10px 0;
+}
+.box-content img {
+    width: 20%;
+    min-width: 300px;
 }
 
 
