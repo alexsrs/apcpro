@@ -32,7 +32,7 @@
 	//define('DATABASE','apcpro25_apcpro');
 
 	//Site local ambiente de teste 
-	define('INCLUDE_PATH','https://localhost/apcpro/');
+	define('INCLUDE_PATH','http://localhost/apcpro/');
 	define('INCLUDE_PATH_PAINEL',INCLUDE_PATH.'painel/');
 	define('BASE_DIR_PAINEL',__DIR__.'/painel');
 
@@ -62,7 +62,6 @@
 	function selecionadoMenu($par) {
 		// Verifica se o parâmetro 'url' existe e captura o valor, senão define uma string vazia
 		$url = isset($_GET['url']) ? explode('/', filter_var($_GET['url'], FILTER_SANITIZE_URL))[0] : '';
-		
 		// Compara a URL com o parâmetro passado e aplica a classe CSS se forem iguais
 		if ($url === $par) {
 			echo 'class="menu-active"';

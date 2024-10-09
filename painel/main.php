@@ -52,19 +52,18 @@
             </div><!-- nome-usuario -->
         </div><!-- box-usuario -->
         <div class="items-menu">
-            <h2 id="menu-usuarios" class="ativo"><i class="fa fa-id-card-o" aria-hidden="true"></i> Cadastro de <?php if($_SESSION['cargo'] == 2) { echo 'professores'; } else { echo 'alunos'; } ?></h2>
-            <a <?php verificaPermissaoMenu(2); selecionadoMenu('adicionar-usuario');  ?> href="<?php echo INCLUDE_PATH_PAINEL ?>adicionar-usuario">Adicionar <?php if($_SESSION['cargo'] == 2) { echo 'professores'; } else { echo 'alunos'; } ?> </a>
-            <a <?php selecionadoMenu('listar-usuarios'); ?> <?php verificaPermissaoMenu(2); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>listar-usuarios">Listar <?php if($_SESSION['cargo'] == 2) { echo 'professores'; } else { echo 'alunos'; } ?></a>
+            <h2 <?php verificaPermissaoMenu(1); ?>id="menu-usuarios" class="ativo"><i class="fa fa-id-card-o" aria-hidden="true"></i> Cadastro de <?php if($_SESSION['cargo'] == 2) { echo 'professores'; } else { echo 'alunos'; } ?></h2>
+            <a <?php selecionadoMenu('adicionar-usuario');  ?> href="<?php echo INCLUDE_PATH_PAINEL ?>adicionar-usuario">Adicionar <?php if($_SESSION['cargo'] == 2) { echo 'professores'; } else { echo 'alunos'; } ?> </a>
+            <a <?php selecionadoMenu('listar-usuarios'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>listar-usuarios">Listar <?php if($_SESSION['cargo'] == 2) { echo 'professores'; } else { echo 'alunos'; } ?></a>
             
             
             <h2 id="menu-analise"><i class="fa fa-line-chart" aria-hidden="true"></i> Análise física avançada</h2>
             <a <?php selecionadoMenu('formulario-perfis'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>formulario-perfis">Pré avaliação</a>
-            <a <?php selecionadoMenu('anamnese-inteligente'); ?> href="<?php echo INCLUDE_PATH_PAINEL . $anamneseLink; ?>">Anamnese Inteligente</a>
+            <a <?php selecionadoMenu($anamneseLink); ?> href="<?php echo INCLUDE_PATH_PAINEL . $anamneseLink;?>">Anamnese Inteligente</a>
             <a <?php selecionadoMenu('medidas-corporais'); ?>href="">Medidas Corporais</a>
             <a <?php selecionadoMenu('testes-fisicos'); ?>href="">Testes Físicos</a>
-            
-            
-            
+    
+
             <h2 id="menu-biblioteca"><i class="fa fa-book" aria-hidden="true"></i> Biblioteca de exercícios</h2>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
@@ -90,9 +89,9 @@
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
 
-            <h2 id="menu-configuracao"><i class="fa fa-cogs" aria-hidden="true"></i> Configurações do site</h2>
-            <a <?php selecionadoMenu('cadastrar-depoimento'); ?><?php verificaPermissaoMenu(2); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>cadastrar-depoimento">Cadastrar depoimento</a>
-            <a <?php selecionadoMenu('listar-depoimentos'); ?><?php verificaPermissaoMenu(2); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>listar-depoimentos">Listar depoimentos</a>
+            <h2 <?php verificaPermissaoMenu(2); ?>id="menu-configuracao"><i class="fa fa-cogs" aria-hidden="true"></i> Configurações do site</h2>
+            <a <?php selecionadoMenu('cadastrar-depoimento'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>cadastrar-depoimento">Cadastrar depoimento</a>
+            <a <?php selecionadoMenu('listar-depoimentos'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>listar-depoimentos">Listar depoimentos</a>
             <a <?php selecionadoMenu('cadastrar-funcionalidade'); ?>href="">Cadastrar funcionalidade</a>
             <a <?php selecionadoMenu('listar-funcionalidades'); ?>href="">Listar Funcionalidades</a>
             <a <?php selecionadoMenu('cadastrar-slider'); ?>href="">Cadastrar slider</a>

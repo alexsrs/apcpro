@@ -77,12 +77,12 @@
 
     <div class="form-group left w50">
         <label>Login:</label>
-        <input type="text" name="user">
+        <input type="text" name="user" autocomplete="__away">
     </div><!-- form-group -->
 
     <div class="form-group right w50">
         <label>Senha:</label>
-        <input type="password" name="password">
+        <input type="password" name="password" autocomplete="__away">
     </div><!-- form-group -->
 
     <div class="form-group">
