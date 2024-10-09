@@ -52,10 +52,9 @@
             </div><!-- nome-usuario -->
         </div><!-- box-usuario -->
         <div class="items-menu">
-            <h2 id="menu-usuarios" class="ativo"><i class="fa fa-id-card-o" aria-hidden="true"></i> Cadastro de usuários</h2>
-            <a <?php selecionadoMenu('adicionar-usuario'); ?> <?php verificaPermissaoMenu(1); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>adicionar-usuario">Adicionar usuário</a>
-            
-            <a <?php selecionadoMenu('listar-usuarios'); ?> <?php verificaPermissaoMenu(1); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>listar-usuarios">Listar usuários</a>
+            <h2 id="menu-usuarios" class="ativo"><i class="fa fa-id-card-o" aria-hidden="true"></i> Cadastro de <?php if($_SESSION['cargo'] == 2) { echo 'professores'; } else { echo 'alunos'; } ?></h2>
+            <a <?php verificaPermissaoMenu(2); selecionadoMenu('adicionar-usuario');  ?> href="<?php echo INCLUDE_PATH_PAINEL ?>adicionar-usuario">Adicionar <?php if($_SESSION['cargo'] == 2) { echo 'professores'; } else { echo 'alunos'; } ?> </a>
+            <a <?php selecionadoMenu('listar-usuarios'); ?> <?php verificaPermissaoMenu(2); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>listar-usuarios">Listar <?php if($_SESSION['cargo'] == 2) { echo 'professores'; } else { echo 'alunos'; } ?></a>
             
             
             <h2 id="menu-analise"><i class="fa fa-line-chart" aria-hidden="true"></i> Análise física avançada</h2>

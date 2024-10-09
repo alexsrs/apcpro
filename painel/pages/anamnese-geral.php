@@ -250,9 +250,10 @@ rápida, prática e com maior possibilidade de prescrição de um programa de tr
                     </div><!-- form-group -->
                     <br><br>
                     <div class="form-group">
+
                     <label>Algum parente seu de primeiro grau tem problemas cardíacos?</label>
                         <label class="switch-label" for="parente-cardiaco">
-                            <input type="checkbox" id=parente-cardiaco" name="parente-cardiaco" value="1">
+                            <input type="checkbox" id="parente-cardiaco" name="parente-cardiaco" value="1">
                             <span class="slider-switch round"></span>
                             <span class="slider-text">Sim</span>
                         </label>

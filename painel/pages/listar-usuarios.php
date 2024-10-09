@@ -13,7 +13,47 @@ $usuarios = $sql->fetchAll();
 ?>
 
     <div class="box-content">
-        <h2><i class="fa fa-users" aria-hidden="true"></i> Lista de usuários</h2>
+    <h2><i class="fa fa-search mr-2"></i> Filtros</h2>
+        
+        <form>
+            
+            
+            <div class="form-group left w100">
+                <label for="GrupoFiltro">Grupo</label>
+                <select name="GrupoFiltro" id="GrupoFiltro" class="form-control"><option value="">Selecione um grupo</option>
+                    <option value="null">Atletas sem grupo</option>
+                    <option value="1278">VOLEIBOL FEMININO - SUPERLIGA 2024</option>
+                </select>
+            </div>
+            <div class="clear"></div><!-- clear -->
+                <div class="linha">
+            <div class="form-group w33">
+                <label for="NomeFiltro">Nome</label>
+                <input type="text" name="NomeFiltro" id="NomeFiltro" placeholder="Nome do atleta" class="form-control default-focus">
+            </div>
+            <div class="form-group w33">
+                <label for="IdadeFiltro">Idade</label>
+                <input type="number" name="IdadeFiltro" id="IdadeFiltro" placeholder="Idade do atleta" class="form-control">
+            </div>
+            <div class="form-group w33">
+                <label for="GeneroFiltro">Gênero</label>
+                <select id="GeneroFiltro" name="GeneroFiltro" class="form-control">
+                    <option selected="" value="">Selecione um gênero</option>
+                    <option value="m">Masculino</option>
+                    <option value="f">Feminino</option>
+                </select>
+            </div>
+</div>
+            <div class="clear"></div><!-- clear -->
+            <div class="form-group">
+                <button type="submit" name="filtrar"><a><i class="fa fa-search mr-2"></i>Pesquisar</a></button>
+            </div>
+
+        </form>
+    </div><!--box-content-->
+
+    <div class="box-content">
+    <h2><i class="fa fa-users" aria-hidden="true"></i> Lista de <?php if($_SESSION['cargo'] == 2) { echo 'professores'; } else { echo 'alunos'; } ?></h2>
         <div class="wraper-table">
             <table>
                             <tr>
@@ -57,6 +97,7 @@ $usuarios = $sql->fetchAll();
                 
             </table>
         </div><!--wraper-table-->
+
         <div class="paginacao">
             <a class="page-selected" href="">1</a>
             <a href="">2</a>
