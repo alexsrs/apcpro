@@ -23,7 +23,7 @@ class Email
         $this->mailer->CharSet = 'UTF-8';
         $this->mailer->SMTPDebug = 0; // Ativar debug
     }
-
+    
     public function addAddress($email, $nome)
     {
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
