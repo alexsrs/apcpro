@@ -12,12 +12,14 @@
 	session_start();
 	date_default_timezone_set('America/Sao_Paulo');
 
-	$autoload = function($class){
-		if($class =="Email"){
-			require_once('classes/phpmailer/PHPMailerAutoload.php');
+	require 'vendor/autoload.php'; // Inclua o autoload do Composer
+
+	$autoload = function($class) {
+		$classPath = 'classes/' . $class . '.php';
+		if (file_exists($classPath)) {
+			include($classPath);
 		}
-			include('classes/'.$class.'.php');
-		};
+	};
 
 	spl_autoload_register($autoload);
 
