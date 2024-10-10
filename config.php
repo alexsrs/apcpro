@@ -32,7 +32,7 @@
 	//define('DATABASE','apcpro25_apcpro');
 
 	//Site local ambiente de teste 
-	define('INCLUDE_PATH','http://localhost/apcpro/');
+	define('INCLUDE_PATH','https://localhost/apcpro/');
 	define('INCLUDE_PATH_PAINEL',INCLUDE_PATH.'painel/');
 	define('BASE_DIR_PAINEL',__DIR__.'/painel');
 

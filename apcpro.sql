@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 08/10/2024 às 09:15
+-- Tempo de geração: 10/10/2024 às 20:58
 -- Versão do servidor: 8.3.0
 -- Versão do PHP: 8.3.6
 
@@ -34,14 +34,7 @@ CREATE TABLE IF NOT EXISTS `tb_admin.online` (
   `ultima_acao` datetime NOT NULL,
   `token` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=91 DEFAULT CHARSET=utf8mb3;
-
---
--- Despejando dados para a tabela `tb_admin.online`
---
-
-INSERT INTO `tb_admin.online` (`id`, `ip`, `ultima_acao`, `token`) VALUES
-(90, '::1', '2024-10-07 13:29:36', '6703ffd2d5dc5');
+) ENGINE=MyISAM AUTO_INCREMENT=110 DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -64,25 +57,31 @@ CREATE TABLE IF NOT EXISTS `tb_admin.usuarios` (
   `sexo` varchar(1) NOT NULL,
   `cpf` varchar(30) NOT NULL,
   `professor_id` int NOT NULL,
+  `grupo_id` int NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `professor_id` (`professor_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb3;
+  KEY `professor_id` (`professor_id`),
+  KEY `grupo_id` (`grupo_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `tb_admin.usuarios`
 --
 
-INSERT INTO `tb_admin.usuarios` (`id`, `user`, `password`, `img`, `nome`, `cargo`, `email`, `telefone`, `data_nascimento`, `data_inicio`, `sexo`, `cpf`, `professor_id`) VALUES
-(1, 'admin', 'admin', '655387240a70f.jpg', 'Alex Sandro', 2, 'alexsrs@gmail.com', '(21) 98989-0615', '1981-01-04', '2024-09-30', 'M', '086.899.137-69', 0),
-(4, 'prof', 'prof', '65538e7ea62a1.jpg', 'Professor baitola', 1, 'prof@prof.com', '(21) 98989-0615', '2014-09-02', '2024-09-25', 'M', '086899137-69', 1),
-(7, 'teste', 'teste', '66f2c68510739.jpg', 'Testando ', 0, 'teste@aluno.net', '(21) 98989-0615', '2024-09-05', '2024-09-11', 'F', '086899137-69', 1),
-(15, 'joao', 'joao', '66f42cc21846d.jpg', 'Joao', 0, 'alexsrs@gmail.com', '(21) 98989-0615', '1981-01-04', '1982-02-05', 'M', '086899137-69', 4),
-(16, 'prof2', 'prof2', '66f42d0c0dea8.jpg', 'professor 2', 1, 'cootidr@seap.rj.gov.br', '(21) 98989-0615', '1973-01-06', '2024-12-26', 'F', '086899137-69', 1),
-(17, 'jkerbin ', '1234', '66f4a3ad8411e.jpeg', 'Jebediah Kerbin', 0, 'jkerbin@terra.com.br', '(21) 96787-0567', '1992-11-06', '2024-10-12', 'M', '121232343-79', 4),
-(18, 'zuka', '1234', '66f5a7e46eace.png', 'Zuka da Silva sauro', 1, 'zuka@dell.com', '(21) 95499-1323', '1967-09-01', '2025-01-12', 'F', '111.222.333-44', 1),
-(19, 'teste0', 'teste0', '66ff3eb0994ea.jpeg', 'Teste 0', 1, 'cootidr@seap.rj.gov.br', '(21) 32346-260', '1937-10-03', '2024-11-06', ' ', '111.111.111-11', 1),
-(20, 'fernanda', 'fernanda', '', 'Fernanda', 1, 'alexsrs@gmail.com', '(21) 98487-0182', '1985-07-05', '2024-11-08', 'F', '111.111.111-11', 1),
-(21, 'sofia', 'sofia', '', 'sofia', 1, 'sofia@teste.com', '(11) 11111-1111', '2007-02-07', '2024-11-04', 'F', '111.111.111-11', 1);
+INSERT INTO `tb_admin.usuarios` (`id`, `user`, `password`, `img`, `nome`, `cargo`, `email`, `telefone`, `data_nascimento`, `data_inicio`, `sexo`, `cpf`, `professor_id`, `grupo_id`) VALUES
+(1, 'admin', 'admin', '655387240a70f.jpg', 'Alex Sandro', 2, 'alexsrs@gmail.com', '(21) 98989-0615', '1981-01-04', '2024-09-30', 'M', '086.899.137-69', 0, 0),
+(4, 'prof', 'prof', '65538e7ea62a1.jpg', 'Professor baitola', 1, 'prof@prof.com', '(21) 98989-0615', '2014-09-02', '2024-09-25', 'M', '086899137-69', 1, 0),
+(7, 'teste', 'teste', '66f2c68510739.jpg', 'Testando ', 0, 'teste@aluno.net', '(21) 98989-0615', '2024-09-05', '2024-09-11', 'F', '086899137-69', 1, 0),
+(15, 'joao', 'joao', '66f42cc21846d.jpg', 'Joao', 0, 'alexsrs@gmail.com', '(21) 98989-0615', '1981-01-04', '1982-02-05', 'M', '086899137-69', 4, 0),
+(16, 'prof2', 'prof2', '66f42d0c0dea8.jpg', 'professor 2', 1, 'cootidr@seap.rj.gov.br', '(21) 98989-0615', '1973-01-06', '2024-12-26', 'F', '086899137-69', 1, 0),
+(17, 'jkerbin ', '1234', '66f4a3ad8411e.jpeg', 'Jebediah Kerbin', 0, 'jkerbin@terra.com.br', '(21) 96787-0567', '1992-11-06', '2024-10-12', 'M', '121232343-79', 4, 0),
+(18, 'zuka', '1234', '66f5a7e46eace.png', 'Zuka da Silva sauro', 1, 'zuka@dell.com', '(21) 95499-1323', '1967-09-01', '2025-01-12', 'F', '111.222.333-44', 1, 0),
+(19, 'teste0', 'teste0', '66ff3eb0994ea.jpeg', 'Teste 0', 1, 'cootidr@seap.rj.gov.br', '(21) 32346-260', '1937-10-03', '2024-11-06', ' ', '111.111.111-11', 1, 0),
+(20, 'fernanda', 'fernanda', '', 'Fernanda', 1, 'alexsrs@gmail.com', '(21) 98487-0182', '1985-07-05', '2024-11-08', 'F', '111.111.111-11', 1, 0),
+(21, 'sofia', 'sofia', '', 'sofia', 1, 'sofia@teste.com', '(11) 11111-1111', '2007-02-07', '2024-11-04', 'F', '111.111.111-11', 1, 0),
+(22, 'Joselia', 'joselia', '', 'Joselia', 1, 'joselia@test.com', '(21) 22222-2222', '1963-09-05', '2024-11-01', 'F', '122.222.222-22', 1, 2),
+(23, 'Josias', 'josias', '', 'Josias da silva', 1, 'alexsrs@gmail.com', '(21) 98487-0182', '1986-11-08', '2024-11-01', 'M', '000.000.000-00', 1, 1),
+(24, 'natalia', 'natalia', '', 'Natalia xupa q e de uva', 1, 'alexsrs@gmail.com', '(11) 11111-1111', '1991-05-24', '2024-10-31', 'F', '122.222.222-22', 1, 31),
+(25, 'louro', 'louro', '', 'Louro José', 1, 'aaaaa@jjjjjjjj.clm', '(22) 22222-2222', '1976-12-09', '2024-11-08', 'M', '333.333.333-33', 1, 31);
 
 -- --------------------------------------------------------
 
@@ -126,6 +125,29 @@ INSERT INTO `tb_admin.visitas` (`id`, `ip`, `dia`) VALUES
 (21, '::1', '2024-10-05'),
 (22, '::1', '2024-10-05'),
 (23, '::1', '2024-10-05');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `tb_grupos_usuarios`
+--
+
+DROP TABLE IF EXISTS `tb_grupos_usuarios`;
+CREATE TABLE IF NOT EXISTS `tb_grupos_usuarios` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `grupo` varchar(255) NOT NULL,
+  `professor_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb3;
+
+--
+-- Despejando dados para a tabela `tb_grupos_usuarios`
+--
+
+INSERT INTO `tb_grupos_usuarios` (`id`, `grupo`, `professor_id`) VALUES
+(1, 'Time de volley Tijuca Tenis Clube', 1),
+(2, 'Academia XYZ', 1),
+(31, 'As barrigudas', 1);
 
 -- --------------------------------------------------------
 
