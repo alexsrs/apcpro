@@ -12,16 +12,14 @@
 	session_start();
 	date_default_timezone_set('America/Sao_Paulo');
 
-	require 'vendor/autoload.php'; // Inclua o autoload do Composer
-
-	$autoload = function($class) {
-		$classPath = 'classes/' . $class . '.php';
-		if (file_exists($classPath)) {
-			include($classPath);
-		}
-	};
-
-	spl_autoload_register($autoload);
+		// Defina o autoload para suas classes personalizadas
+		$autoload = function($class) {
+			if($class =="Email"){
+				require_once('vendor/autoload.php');
+			}
+				include('classes/'.$class.'.php');
+			};
+		spl_autoload_register($autoload);
 
 	// site on line
 	//define('INCLUDE_PATH','https://www.apcpro.com.br/');
@@ -51,15 +49,6 @@
 	function pegaCargo($indice){
 		return Painel::$cargos[$indice];
 	}
-
-	// Funcão atualizada abaixo para versão atual do PHP
-	
-	// function selecionadoMenu($par){
-	//	$url = explode('/',@$_GET['url'])[0];
-	//		if($url == $par){
-	//			echo 'class="menu-active"';
-	//		}
-	//	}
 
 	function selecionadoMenu($par) {
 		// Verifica se o parâmetro 'url' existe e captura o valor, senão define uma string vazia
