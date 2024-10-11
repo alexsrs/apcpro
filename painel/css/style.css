@@ -291,10 +291,7 @@ table{
 
 }
 
-table tr:nth-of-type(1){
-    background: #007bff;
-    color: white;
-}
+
 
 table tr{
     color: #555;
@@ -312,6 +309,11 @@ table a.btn{
     font-size: 16px;
     
 }
+thead tr,
+tfoot tr {
+    background: #007bff;
+    color: white;
+}
 
 a.btn.edit{
     background: #F4B03E;
@@ -319,28 +321,6 @@ a.btn.edit{
 
 a.btn.delete{
     background: #E05C4E;
-}
-
-/* Paginação */
-
-.paginacao{
-    margin: 20px 0;
-    text-align: center;
-}
-
-.paginacao a{
-    font-size: 14px;
-    margin: 0 8px;
-    display: inline-block;
-    padding: 3px 4px;
-    border: 1px solid #ccc;
-    text-decoration: none;
-    color: #666;
-}
-
-.paginacao a.page-selected{
-    background: rgb(220, 220, 220);
-
 }
 
 

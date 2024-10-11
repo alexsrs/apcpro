@@ -4,6 +4,8 @@ $(function() {
 
     var targetSizeMenu = (windowSize <= 400) ? 200 : 250;
 
+
+
     if (windowSize <= 768) {
         $('.menu').css('width', '0').css('padding', '0');
         open = false;
@@ -48,8 +50,21 @@ $(function() {
         targetSizeMenu = (windowSize <= 400) ? 200 : 250;
     });
 
-    // Lógica para o dropdown do menu
+    // Lógica para o datatables.js
     $(document).ready(function() {
+        $('#lista-usuarios').DataTable({
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/2.1.8/i18n/pt-BR.json'
+            },
+            pageLength: 10,   // Define o número de registros por página
+            select: true,
+            searching: false, // Remove a caixa de pesquisa
+            
+            columnDefs: [
+                { orderable: false, targets: 5 } // Altera o índice da coluna "Ações" (0-indexed)
+            ]
+        });
+        
         // Restaurar o estado do menu salvo no Local Storage
         var activeMenu = localStorage.getItem('activeMenu');
         if (activeMenu) {
@@ -82,6 +97,7 @@ $(function() {
     });
 
     $('[formato=data]').mask('99/99/9999');
+
 });
 
 let contadorRegiao = 1;

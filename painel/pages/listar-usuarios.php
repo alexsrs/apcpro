@@ -8,13 +8,6 @@ require_once('../config.php');
 // Busca o ID do professor logado
 $professorID = $_SESSION['id'];
 
-// Defina o número de itens por página
-$itens_por_pagina = 10;
-
-// Captura o número da página atual
-$pagina_atual = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$inicio = ($pagina_atual - 1) * $itens_por_pagina;
-
 // Captura os filtros
 $grupoFiltro = isset($_GET['GrupoFiltro']) ? $_GET['GrupoFiltro'] : '';
 $nomeFiltro = isset($_GET['NomeFiltro']) ? $_GET['NomeFiltro'] : '';
@@ -40,15 +33,13 @@ if ($idadeFiltro) {
     $sql .= " AND u.data_nascimento <= ?";
     $filters[] = $dataNascimentoFiltro;
 }
-
 if ($generoFiltro) {
     $sql .= " AND u.sexo = ?";
     $filters[] = $generoFiltro;
 }
 
-$sql .= " LIMIT ?, ?";
-$filters[] = $inicio;
-$filters[] = $itens_por_pagina;
+// Remova a cláusula LIMIT
+// $sql .= " LIMIT ?, ?"; // Esta linha foi removida
 
 // Prepara e executa a consulta
 $sql = MySql::conectar()->prepare($sql);
@@ -58,7 +49,7 @@ for ($i = 1; $i <= count($filters); $i++) {
 $sql->execute();
 $usuarios = $sql->fetchAll();
 
-// Contar total de usuários com filtros
+// Contar total de usuários com filtros (opcional se você não precisar do total)
 $sqlTotal = "SELECT COUNT(*) FROM `tb_admin.usuarios` WHERE professor_id = ?";
 $totalFilters = [$professorID];
 
@@ -84,15 +75,14 @@ $sqlTotal = MySql::conectar()->prepare($sqlTotal);
 $sqlTotal->execute($totalFilters);
 $total_usuarios = $sqlTotal->fetchColumn();
 
-// Calcula o total de páginas
-$total_paginas = ceil($total_usuarios / $itens_por_pagina);
-
 // Busca os grupos associados ao professor
 $sqlGrupos = MySql::conectar()->prepare("SELECT * FROM `tb_grupos_usuarios` WHERE professor_id = ?");
 $sqlGrupos->bindValue(1, $professorID, PDO::PARAM_INT);
 $sqlGrupos->execute();
 $grupos = $sqlGrupos->fetchAll();
 ?>
+
+
 
 <div class="box-content">
     <h2><i class="fa fa-search mr-2"></i> Filtros</h2>
@@ -135,9 +125,8 @@ $grupos = $sqlGrupos->fetchAll();
 </div><!--box-content-->
 
 <div class="box-content">
-    <h2><i class="fa fa-users" aria-hidden="true"></i> Lista de <?php echo ($_SESSION['cargo'] == 2) ? 'professores' : 'alunos'; ?></h2>
-    <div class="wraper-table">
-        <table>
+<table id="lista-usuarios" class="display" style="width:100%" data-order='[[ 1, "asc" ]]'>
+        <thead>
             <tr>
                 <td>Nome</td>
                 <td>Gênero</td>
@@ -146,7 +135,9 @@ $grupos = $sqlGrupos->fetchAll();
                 <td>Grupo</td>
                 <td>Ações</td>
             </tr>
-            <?php if(count($usuarios) > 0): ?>
+        </thead>
+        <tbody>
+        <?php if(count($usuarios) > 0): ?>
                 <?php foreach($usuarios as $usuario): ?>
                     <tr>
                         <td><?php echo $usuario['nome']; ?></td>
@@ -167,16 +158,20 @@ $grupos = $sqlGrupos->fetchAll();
                         </td>
                     </tr>
                 <?php endforeach; ?>
-            <?php else: ?>
-                <tr>
-                    <td colspan="8">Nenhum usuário encontrado.</td>
-                </tr>
+            
             <?php endif; ?>
-        </table>
-    </div><!--wraper-table-->
-    <div class="paginacao">
-        <?php for($i = 1; $i <= $total_paginas; $i++): ?>
-            <a class="<?php echo ($i == $pagina_atual) ? 'page-selected' : ''; ?>" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
-        <?php endfor; ?>
-    </div><!--paginacao-->
-</div><!-- box-content -->
+            
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>Nome</td>
+                <td>Gênero</td>
+                <td>Idade</td>
+                <td>Início do treinamento</td>
+                <td>Grupo</td>
+                <td>Ações</td>
+            </tr>
+        </tfoot>
+    </table>
+
+</div>

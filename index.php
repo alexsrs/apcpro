@@ -82,7 +82,7 @@
 			<p>APC Pro - Todos os direitos reservados</p>
 		</div><!-- center -->	
 	</footer>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 	<script src="<?php echo INCLUDE_PATH; ?>js/constant.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCnh9a-0dAbErxqWnQiJQqfL4DU_9YLEb8"></script>
 	<script src="<?php echo INCLUDE_PATH;?>js/initMap.js"></script>
