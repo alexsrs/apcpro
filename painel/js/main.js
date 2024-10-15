@@ -64,6 +64,16 @@ $(function() {
                 { orderable: false, targets: 5 } // Altera o índice da coluna "Ações" (0-indexed)
             ]
         });
+
+        $('#anamnesesTable').DataTable({
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/2.1.8/i18n/pt-BR.json'
+            },
+            pageLength: 10,   // Define o número de registros por página
+            select: true,
+            searching: false,
+            ordering: false // Remove a caixa de pesquisa
+        });
         
         // Restaurar o estado do menu salvo no Local Storage
         var activeMenu = localStorage.getItem('activeMenu');

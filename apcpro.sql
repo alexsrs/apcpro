@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 10/10/2024 às 20:58
+-- Tempo de geração: 15/10/2024 às 11:14
 -- Versão do servidor: 8.3.0
 -- Versão do PHP: 8.3.6
 
@@ -34,7 +34,14 @@ CREATE TABLE IF NOT EXISTS `tb_admin.online` (
   `ultima_acao` datetime NOT NULL,
   `token` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=110 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=121 DEFAULT CHARSET=utf8mb3;
+
+--
+-- Despejando dados para a tabela `tb_admin.online`
+--
+
+INSERT INTO `tb_admin.online` (`id`, `ip`, `ultima_acao`, `token`) VALUES
+(120, '::1', '2024-10-14 14:17:30', '670d2d415702e');
 
 -- --------------------------------------------------------
 
@@ -95,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `tb_admin.visitas` (
   `ip` varchar(255) NOT NULL,
   `dia` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `tb_admin.visitas`
@@ -124,7 +131,8 @@ INSERT INTO `tb_admin.visitas` (`id`, `ip`, `dia`) VALUES
 (20, '::1', '2024-10-05'),
 (21, '::1', '2024-10-05'),
 (22, '::1', '2024-10-05'),
-(23, '::1', '2024-10-05');
+(23, '::1', '2024-10-05'),
+(24, '::1', '2024-10-13');
 
 -- --------------------------------------------------------
 
@@ -204,7 +212,7 @@ CREATE TABLE IF NOT EXISTS `tb_perfis_usuarios` (
   PRIMARY KEY (`id`),
   KEY `usuario_id` (`usuario_id`),
   KEY `objetivo_id` (`objetivo_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `tb_perfis_usuarios`
@@ -271,7 +279,9 @@ INSERT INTO `tb_perfis_usuarios` (`id`, `usuario_id`, `data_avaliacao`, `peso`, 
 (58, 1, '2024-10-07 11:44:50', 50, 1.5, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0),
 (59, 1, '2024-10-07 12:30:14', 50, 1.5, 1, 0, 0, 0, 0, 0, 0, 0, 0, 9),
 (60, 1, '2024-10-07 12:32:54', 50, 1.5, 0, 0, 0, 0, 1, 0, 0, 0, 0, 5),
-(61, 1, '2024-10-07 13:29:45', 50, 1.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+(61, 1, '2024-10-07 13:29:45', 50, 1.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(62, 1, '2024-10-13 08:15:01', 50, 1.5, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0),
+(63, 1, '2024-10-13 09:29:15', 84.3, 1.84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7);
 
 -- --------------------------------------------------------
 
@@ -297,6 +307,77 @@ INSERT INTO `tb_site.depoimentos` (`id`, `nome`, `depoimento`, `data`) VALUES
 (2, 'jose', 'testando com data', '05/04/2023'),
 (3, 'Testonildo', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '29/11/2023'),
 (4, 'Alex Sandro Ribeiro de souza', 'deixa pra lá', '27/11/2023');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `tb_usuarios_anamnese`
+--
+
+DROP TABLE IF EXISTS `tb_usuarios_anamnese`;
+CREATE TABLE IF NOT EXISTS `tb_usuarios_anamnese` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `usuario_id` int NOT NULL,
+  `data_avaliacao` datetime NOT NULL,
+  `domingo` tinyint(1) DEFAULT '0',
+  `segunda` tinyint(1) DEFAULT '0',
+  `terca` tinyint(1) DEFAULT '0',
+  `quarta` tinyint(1) DEFAULT '0',
+  `quinta` tinyint(1) DEFAULT '0',
+  `sexta` tinyint(1) DEFAULT '0',
+  `sabado` tinyint(1) DEFAULT '0',
+  `minutos_dia` int DEFAULT NULL,
+  `exercicios` text,
+  `outros_exercicios` varchar(255) DEFAULT NULL,
+  `nao_gosta` tinyint(1) DEFAULT '0',
+  `nao_gosta_exercicios` varchar(255) DEFAULT NULL,
+  `atividade_recente` tinyint(1) DEFAULT '0',
+  `nome_atividade_recente` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `dias_semana_recente` int DEFAULT NULL,
+  `horas_dia_recente` float DEFAULT NULL,
+  `intensidade` varchar(50) DEFAULT NULL,
+  `doencas` tinyint(1) DEFAULT '0',
+  `doencas_nome` varchar(255) DEFAULT NULL,
+  `remedios` varchar(255) DEFAULT NULL,
+  `cirurgias` tinyint(1) DEFAULT '0',
+  `regiao_cirurgia` varchar(255) DEFAULT NULL,
+  `dor_muscular` tinyint(1) DEFAULT '0',
+  `regioes_dor` text,
+  `dor_peito` tinyint(1) DEFAULT '0',
+  `tontura` tinyint(1) DEFAULT '0',
+  `movimento_diario` tinyint(1) DEFAULT '0',
+  `movimentos_dia` text,
+  `parente_cardiaco` tinyint(1) DEFAULT '0',
+  `num_parente_cardiaco` int DEFAULT NULL,
+  `fumante` tinyint(1) DEFAULT '0',
+  `info_pertinente` text,
+  `aceito` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3;
+
+--
+-- Despejando dados para a tabela `tb_usuarios_anamnese`
+--
+
+INSERT INTO `tb_usuarios_anamnese` (`id`, `usuario_id`, `data_avaliacao`, `domingo`, `segunda`, `terca`, `quarta`, `quinta`, `sexta`, `sabado`, `minutos_dia`, `exercicios`, `outros_exercicios`, `nao_gosta`, `nao_gosta_exercicios`, `atividade_recente`, `nome_atividade_recente`, `dias_semana_recente`, `horas_dia_recente`, `intensidade`, `doencas`, `doencas_nome`, `remedios`, `cirurgias`, `regiao_cirurgia`, `dor_muscular`, `regioes_dor`, `dor_peito`, `tontura`, `movimento_diario`, `movimentos_dia`, `parente_cardiaco`, `num_parente_cardiaco`, `fumante`, `info_pertinente`, `aceito`) VALUES
+(1, 1, '2024-10-13 10:47:29', 0, 1, 1, 0, 0, 0, 0, NULL, '[\"musculacao\",\"esteira\",\"outros\"]', 'Capoeira', 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[{\"regiao\":\"Ombro\",\"nota\":4,\"dificuldade\":\"Dores musculares\"}]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1),
+(2, 1, '2024-10-13 10:49:52', 0, 1, 0, 0, 1, 1, 0, NULL, '[\"esteira\",\"bike\",\"outros\"]', 'Capoeira', 0, 'Capoeira&#039;', 1, NULL, 2, 1, 'M', 1, 'cachaça, barrigao', 'nenhum', 1, 'no cerebro', 1, '[{\"regiao\":\"Ombro\",\"nota\":6,\"dificuldade\":\"Dores musculares\"},{\"regiao\":\"Pesco\\u00e7o\",\"nota\":1,\"dificuldade\":\"Dores musculares\"}]', 0, 0, 1, 'correr', 1, NULL, 1, 'Vamos ver', 1),
+(3, 1, '2024-10-14 09:51:32', 1, 1, 1, 1, 1, 0, 0, 50, '[\"musculacao\",\"esteira\",\"natacao\"]', NULL, 0, 'Capoeira', 1, NULL, NULL, NULL, 'L', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 1, 'correr', 1, NULL, 1, 'sou cansado', 1),
+(4, 1, '2024-10-14 10:30:52', 1, 1, 1, 1, 1, 1, 1, 60, '[\"natacao\",\"outros\"]', 'Tênis', NULL, 'Capoeira', 1, NULL, NULL, 30, 'L', 0, NULL, NULL, 0, NULL, 0, '[{\"regiao\":\"Ombro\",\"nota\":5,\"dificuldade\":\"Dores musculares\"}]', 0, 0, 1, 'correr', 1, NULL, 1, 'Nada a declarar', 1),
+(5, 1, '2024-10-14 10:33:06', 1, 1, 1, 1, 1, 1, 1, 60, '[\"natacao\",\"outros\"]', 'Tênis', NULL, 'Capoeira', 1, NULL, NULL, 30, 'L', 0, NULL, NULL, 0, NULL, 0, '[{\"regiao\":\"Ombro\",\"nota\":5,\"dificuldade\":\"Dores musculares\"}]', 0, 0, 1, 'correr', 1, NULL, 1, 'Nada a declarar', 1),
+(6, 1, '2024-10-14 10:38:23', 1, 1, 1, 1, 1, 1, 1, 60, '[\"natacao\",\"outros\"]', 'Tênis', 1, 'Capoeira', 1, NULL, NULL, 30, 'L', 0, NULL, NULL, 0, NULL, 0, '[{\"regiao\":\"Ombro\",\"nota\":5,\"dificuldade\":\"Dores musculares\"}]', 0, 0, 1, 'correr', 1, NULL, 1, 'Nada a declarar', 1),
+(7, 1, '2024-10-14 10:39:05', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 1, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1),
+(8, 1, '2024-10-14 10:58:05', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 1, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1),
+(9, 1, '2024-10-14 10:59:33', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 1, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1),
+(10, 1, '2024-10-14 11:00:30', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1),
+(11, 1, '2024-10-14 11:04:17', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, 'Capoeira', 1, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1),
+(12, 1, '2024-10-14 11:12:03', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, '', 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1),
+(13, 1, '2024-10-14 11:13:14', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 1, '', 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1),
+(14, 1, '2024-10-14 11:15:27', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 1, '', 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1),
+(15, 1, '2024-10-14 11:17:05', 1, 1, 1, 0, 0, 0, 0, 60, '[\"musculacao\",\"outros\"]', 'Tênis', 1, 'Capoeira', 1, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1),
+(16, 1, '2024-10-14 11:26:31', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 1, '', 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1),
+(17, 1, '2024-10-14 11:29:44', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 1, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1),
+(18, 1, '2024-10-14 11:40:38', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 1, 'beber', 1, 'capoeira', 2, 12, 'L', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
