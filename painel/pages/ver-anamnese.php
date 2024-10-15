@@ -1,6 +1,5 @@
 <?php
 include_once('pages/funcoes.php');
-include_once('classes/Anamnese.php');
 
 // Verifica a permissão da página
 verificaPermissaoPagina(0);
@@ -37,11 +36,12 @@ if (!$dados_anamnese) {
 
     <h3>Atividade Física</h3>
     <p><strong>Exercícios:</strong> <?php echo htmlspecialchars($dados_anamnese['exercicios']); ?></p>
+    
     <p><strong>Outros Exercícios:</strong> <?php echo htmlspecialchars($dados_anamnese['outros_exercicios']); ?></p>
     <p><strong>Não Gosta:</strong> <?php echo htmlspecialchars($dados_anamnese['nao_gosta']); ?></p>
     <p><strong>Não Gosta Exercícios:</strong> <?php echo htmlspecialchars($dados_anamnese['nao_gosta_exercicios']); ?></p>
     <p><strong>Atividade Recente:</strong> <?php echo htmlspecialchars($dados_anamnese['atividade_recente']); ?></p>
-    <p><strong>Tipo de Exercício Recente:</strong> <?php echo htmlspecialchars($dados_anamnese['tipo_exercicio_recente']); ?></p>
+    <p><strong>Tipo de Exercício Recente:</strong> <?php echo isset($dados_anamnese['tipo_exercicio_recente']) ? htmlspecialchars($dados_anamnese['tipo_exercicio_recente']) : 'N/A'; ?></p>
     <p><strong>Dias da Semana Recente:</strong> <?php echo htmlspecialchars($dados_anamnese['dias_semana_recente']); ?></p>
     <p><strong>Horas por Dia Recente:</strong> <?php echo htmlspecialchars($dados_anamnese['horas_dia_recente']); ?></p>
     <p><strong>Intensidade:</strong> <?php echo htmlspecialchars($dados_anamnese['intensidade']); ?></p>
@@ -64,5 +64,5 @@ if (!$dados_anamnese) {
     <p><strong>Informações Pertinentes:</strong> <?php echo htmlspecialchars($dados_anamnese['info_pertinente']); ?></p>
     <p><strong>Aceito:</strong> <?php echo htmlspecialchars($dados_anamnese['aceito']); ?></p>
 
-    <a href="listar-anamnese.php">Voltar para a lista</a>
+    <a href="listar-anamnese">Voltar para a lista</a>
 </div>

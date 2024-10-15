@@ -38,6 +38,21 @@ if ($generoFiltro) {
     $filters[] = $generoFiltro;
 }
 
+if (isset($_POST['id_usuario'])) {
+    $idUsuario = (int)$_POST['id_usuario'];
+    
+    // Chama o método excluirUsuario da classe Usuario
+    if (Usuario::excluirUsuario($idUsuario)) {
+        Painel::alert('sucesso', 'Usuário excluído com sucesso');
+        //echo '<script>alert("Usuário excluído com sucesso!");</script>';
+        // Opcionalmente, você pode redirecionar para a mesma página para limpar o POST
+        //echo '<script>window.location.href="' . INCLUDE_PATH_PAINEL . 'listar-usuarios";</script>';
+    } else {
+        //echo '<script>alert("Erro ao excluir o usuário!");</script>';
+        Painel::alert('Erro', 'Não foi possível excluir o usuário!');
+    }
+}
+
 // Remova a cláusula LIMIT
 // $sql .= " LIMIT ?, ?"; // Esta linha foi removida
 
@@ -80,6 +95,7 @@ $sqlGrupos = MySql::conectar()->prepare("SELECT * FROM `tb_grupos_usuarios` WHER
 $sqlGrupos->bindValue(1, $professorID, PDO::PARAM_INT);
 $sqlGrupos->execute();
 $grupos = $sqlGrupos->fetchAll();
+
 ?>
 
 
@@ -153,8 +169,9 @@ $grupos = $sqlGrupos->fetchAll();
                         <td><?php echo (new DateTime($usuario['data_inicio']))->format('d/m/Y'); ?></td>
                         <td><?php echo isset($usuario['grupo_nome']) ? $usuario['grupo_nome'] : 'Sem grupo'; ?></td>
                         <td>
-                            <a class="btn edit" href="editar_usuario.php?id=<?php echo $usuario['id']; ?>"><i class="fa fa-pencil"></i> Editar</a>
-                            <a class="btn delete" href=""><i class="fa fa-times"></i> Excluir</a>
+                            <a class="btn view" href="<?php echo INCLUDE_PATH_PAINEL . 'ver-perfil?id=' . $usuario['id']; ?>"><i class="fa fa-eye" aria-hidden="true"></i> Visualizar</a>
+                            <a class="btn edit" href="<?php echo INCLUDE_PATH_PAINEL . 'editar-perfil?id=' . $usuario['id']; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a>
+                            <a class="btn delete open-modal" data-id="<?php echo $usuario['id']; ?>" href="#"><i class="fa fa-times"></i> Excluir</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -175,3 +192,19 @@ $grupos = $sqlGrupos->fetchAll();
     </table>
 
 </div>
+
+<!-- Modal de Confirmação -->
+<div id="excluirModal" class="modal-excluir" style="display: none;">
+    <div class="modal-excluir-content">
+        <h2>Atenção!</h2>
+        <p>Tem certeza que deseja excluir este usuário? Esta ação não pode ser desfeita.</p>
+        <form id="formExcluirUsuario" method="POST">
+            <input type="hidden" name="id_usuario" id="id_usuario_excluir" value="">
+            <div class="modal-excluir-actions">
+                <button type="button" id="cancelarExcluir" class="btn">Cancelar</button>
+                <button type="submit" class="btn delete">Confirmar</button>
+            </div>
+        </form>
+    </div>
+</div>
+

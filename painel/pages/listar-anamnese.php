@@ -84,7 +84,8 @@ if ($anamneses === false) {
                     </td>
                     <td><?php echo htmlspecialchars($anamnese['minutos_dia'] ?? 'N/A'); ?></td>
                     <td>
-                        <a href="<?php echo INCLUDE_PATH_PAINEL . $anamnese['id']; ?>">Ver</a>
+                    <a href="<?php echo INCLUDE_PATH_PAINEL . 'ver-anamnese?id=' . $anamnese['id']; ?>">Ver</a>
+                       <!-- <a href="<?php echo INCLUDE_PATH_PAINEL . $anamnese['id']; ?>">Ver</a> -->
                     </td>
                 </tr>
             <?php endforeach; ?>

@@ -110,6 +110,28 @@ $(function() {
 
 });
 
+
+// Abrir o modal ao clicar no botão de excluir
+const excluirBtns = document.querySelectorAll('.open-modal');
+const modal = document.getElementById('excluirModal');
+const idInput = document.getElementById('id_usuario_excluir');
+
+excluirBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const excluirId = btn.getAttribute('data-id'); // Captura o ID do usuário
+        idInput.value = excluirId; // Define o valor do input hidden no modal
+        modal.style.display = 'flex'; // Exibe o modal
+    });
+});
+
+// Fechar o modal ao clicar em "Cancelar"
+document.getElementById('cancelarExcluir').addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+
+
 let contadorRegiao = 1;
 
         // Função para adicionar uma nova região

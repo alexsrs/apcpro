@@ -323,6 +323,9 @@ a.btn.delete{
     background: #E05C4E;
 }
 
+a.btn.view{
+    background: #04f74d;
+}
 
 .items-menu{
     margin-top: 30px;
@@ -730,6 +733,39 @@ form .form-group-login:nth-of-type(2){
 .box-content img {
     width: 20%;
     min-width: 300px;
+}
+
+.modal-excluir {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal-excluir-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 400px;
+}
+.modal-excluir-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.btn {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+.btn.delete {
+    background-color: #e74c3c;
+    color: white;
 }
 
 

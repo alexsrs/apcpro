@@ -7,7 +7,6 @@
     
     if (isset($_POST['novo_grupo'])) {
         $novo_grupo = $_POST['novo_grupo_texto'];
-        $professor_ID = $_SESSION['id']; // O professor logado
         if (!empty($novo_grupo)) {
             $sql = MySql::conectar()->prepare("INSERT INTO tb_grupos_usuarios (grupo, professor_id) VALUES (?, ?)");
             $sql->execute([$novo_grupo, $professor_ID]);

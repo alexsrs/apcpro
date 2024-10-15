@@ -49,7 +49,10 @@
             <div class="nome-usuario">
                 <p><?php echo $_SESSION['nome']; ?></p>
                 <p><?php echo pegaCargo($_SESSION['cargo']); ?></p><br>
-                <button><a href="<?php echo INCLUDE_PATH_PAINEL ?>editar-perfil"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>  Editar perfil</a></button>
+
+                <button><a href="<?php echo INCLUDE_PATH_PAINEL . 'editar-perfil?id=' . $usuario_id; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar perfil</a></button>
+
+            
             </div><!-- nome-usuario -->
         </div><!-- box-usuario -->
         <div class="items-menu">
