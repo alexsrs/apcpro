@@ -361,9 +361,9 @@ rápida, prática e com maior possibilidade de prescrição de um programa de tr
             <!-- Região 1 -->
                     <div class="regiao-container">
                         <label for="regiao1">Região:</label>
-                        <input type="text" id="regiao1" name="regiao[]" required><br>
+                        <input type="text" id="regiao1" name="regiao[]"><br>
                         <label for="nota1">Nota:</label>
-                        <input type="number" id="nota1" name="nota[]" min="0" max="10" placeholder="0-10" required><br>
+                        <input type="number" id="nota1" name="nota[]" min="0" max="10" placeholder="0-10"><br>
                         <label for="dificuldade1">Dificuldade:</label>
                         <input type="text" id="dificuldade1" name="dificuldade[]">
                         <button type="button" class="remove-regiao" onclick="removerRegiao(this)">Remover</button><br>
