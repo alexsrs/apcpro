@@ -64,8 +64,8 @@
             <h2 id="menu-analise"><i class="fa fa-line-chart" aria-hidden="true"></i> Análise física avançada</h2>
             <a <?php selecionadoMenu('formulario-perfis'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>formulario-perfis">Pré avaliação</a>
             <a <?php selecionadoMenu($anamneseLink); ?> href="<?php echo INCLUDE_PATH_PAINEL . $anamneseLink;?>">Anamnese Inteligente</a>
-            <a <?php selecionadoMenu('medidas-corporais'); ?>href="">Medidas Corporais</a>
-            <a <?php selecionadoMenu('testes-fisicos'); ?>href="">Testes Físicos</a>
+            <a <?php selecionadoMenu('medidas-corporais'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>medida-corporal">Medidas Corporal</a>
+            <a <?php selecionadoMenu('testes-fisicos'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>teste-fisico">Testes Físico</a>
     
 
             <h2 id="menu-biblioteca"><i class="fa fa-book" aria-hidden="true"></i> Biblioteca de exercícios</h2>

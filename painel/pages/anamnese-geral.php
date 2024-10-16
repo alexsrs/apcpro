@@ -2,9 +2,39 @@
     verificaPermissaoPagina(0);
     include_once('pages/funcoes.php');
 
-    // Obtém o usuario_id da sessão
-    $usuario_id = $_SESSION['id'];
+    // Verifica se foi passado o parâmetro 'id' na URL
+    if (isset($_GET['id']) && !empty($_GET['id'])) {
+        // Se o ID foi passado via GET, usamos esse ID
+        $usuario_id = intval($_GET['id']);
+    } else {
+        // Caso contrário, usamos o ID da sessão (usuário logado)
+        $usuario_id = $_SESSION['id'];
+    }
+
+    // Inicializa a próxima etapa, se necessário
+    if (!isset($_SESSION['etapa'])) {
+        $_SESSION['etapa'] = 2;
+    }
 ?>
+<div class="step-indicator">
+    <div class="step <?php echo ($_SESSION['etapa'] >= 1) ? 'completed' : ''; ?>">
+        <div class="step-number">1</div>
+        <div class="step-label">Perfil</div>
+    </div>
+    <div class="step <?php echo ($_SESSION['etapa'] >= 2) ? 'completed' : ''; ?>">
+        <div class="step-number">2</div>
+        <div class="step-label">Anamnese</div>
+    </div>
+    <div class="step <?php echo ($_SESSION['etapa'] >= 3) ? 'completed' : ''; ?>">
+        <div class="step-number">3</div>
+        <div class="step-label">Medidas Corporais</div>
+    </div>
+    <div class="step <?php echo ($_SESSION['etapa'] >= 4) ? 'completed' : ''; ?>">
+        <div class="step-number">4</div>
+        <div class="step-label">Teste Físico</div>
+    </div>
+</div>
+
 <div class="box-content">
     <h2><i class="fa fa-pencil" aria-hidden="true"></i>ANAMNESE INTELIGENTE PARA HOMENS E MULHERES [ADULTOS]</h2>
     <form method="post">   
@@ -82,12 +112,41 @@
                             }
                         }
                         $dados['regioes_dor'] = json_encode($regioes);
+
+                        
+
                     }
 
                     // Chamar o método para cadastrar a anamnese
                     if ($anamnese->cadastrarAnamnese($dados)) {
                         Painel::alert('sucesso', 'Anamnese cadastrada com sucesso!');
                         // Redirecionar ou limpar o formulário conforme necessidade
+                        $_SESSION['etapa'] = 3;
+
+                        // Defina o tempo de contagem regressiva
+                $tempoContagem = 5; // Tempo em segundos
+
+                // Exibir a mensagem de contagem
+                echo "<div id='contador' style='text-align:center; color:#007bff; padding-top:20px;'>Redirecionando em <span id='tempo'>$tempoContagem</span> segundos...</div>";
+
+                echo "<script>
+                    // Defina o tempo de contagem
+                    var tempo = $tempoContagem;
+                    
+                    // Atualiza a contagem a cada segundo
+                    var intervalo = setInterval(function() {
+                        tempo--;
+                        document.getElementById('tempo').innerText = tempo;
+
+                        // Quando o tempo acabar, redirecione
+                        if (tempo <= 0) {
+                            clearInterval(intervalo);
+                            window.location.href='" . INCLUDE_PATH_PAINEL . 'medida-corporal' . "?id=" . $usuario_id . "';
+                        }
+                    }, 1000);
+                </script>";
+                exit();
+
                     } else {
                         Painel::alert('erro', 'Ocorreu um erro ao cadastrar a anamnese. Por favor, tente novamente.');
                     }

@@ -5,6 +5,7 @@ include_once('pages/funcoes.php');
 verificaPermissaoPagina(0);
 
 // Obtém o ID da anamnese da URL
+
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
 $anamnese = new Anamnese();
@@ -15,6 +16,8 @@ if (!$dados_anamnese) {
     echo "Anamnese não encontrada.";
     exit;
 }
+
+
 ?>
 
 <div class="box-content">
@@ -35,34 +38,34 @@ if (!$dados_anamnese) {
     </ul>
 
     <h3>Atividade Física</h3>
-    <p><strong>Exercícios:</strong> <?php echo htmlspecialchars($dados_anamnese['exercicios']); ?></p>
-    
-    <p><strong>Outros Exercícios:</strong> <?php echo htmlspecialchars($dados_anamnese['outros_exercicios']); ?></p>
+    <p><strong>Exercícios:</strong> <?php echo htmlspecialchars($dados_anamnese['exercicios'] ?? 'N/A'); ?></p>
+    <p><strong>Outros Exercícios:</strong> <?php echo htmlspecialchars($dados_anamnese['outros_exercicios'] ?? 'N/A'); ?></p>
     <p><strong>Não Gosta:</strong> <?php echo htmlspecialchars($dados_anamnese['nao_gosta']); ?></p>
-    <p><strong>Não Gosta Exercícios:</strong> <?php echo htmlspecialchars($dados_anamnese['nao_gosta_exercicios']); ?></p>
+    <p><strong>Não Gosta Exercícios:</strong> <?php echo htmlspecialchars($dados_anamnese['nao_gosta_exercicios'] ?? 'N/A'); ?></p>
     <p><strong>Atividade Recente:</strong> <?php echo htmlspecialchars($dados_anamnese['atividade_recente']); ?></p>
     <p><strong>Tipo de Exercício Recente:</strong> <?php echo isset($dados_anamnese['tipo_exercicio_recente']) ? htmlspecialchars($dados_anamnese['tipo_exercicio_recente']) : 'N/A'; ?></p>
-    <p><strong>Dias da Semana Recente:</strong> <?php echo htmlspecialchars($dados_anamnese['dias_semana_recente']); ?></p>
-    <p><strong>Horas por Dia Recente:</strong> <?php echo htmlspecialchars($dados_anamnese['horas_dia_recente']); ?></p>
+    <p><strong>Dias da Semana Recente:</strong> <?php echo htmlspecialchars($dados_anamnese['dias_semana_recente'] ?? 'N/A'); ?></p>
+    <p><strong>Horas por Dia Recente:</strong> <?php echo htmlspecialchars($dados_anamnese['horas_dia_recente'] ?? 'N/A'); ?></p>
     <p><strong>Intensidade:</strong> <?php echo htmlspecialchars($dados_anamnese['intensidade']); ?></p>
 
     <h3>Dados Médicos</h3>
     <p><strong>Doenças:</strong> <?php echo htmlspecialchars($dados_anamnese['doencas']); ?></p>
-    <p><strong>Nomes das Doenças:</strong> <?php echo htmlspecialchars($dados_anamnese['doencas_nome']); ?></p>
-    <p><strong>Remédios:</strong> <?php echo htmlspecialchars($dados_anamnese['remedios']); ?></p>
+    <p><strong>Nomes das Doenças:</strong> <?php echo htmlspecialchars($dados_anamnese['doencas_nome'] ?? 'N/A'); ?></p>
+    <p><strong>Remédios:</strong> <?php echo htmlspecialchars($dados_anamnese['remedios'] ?? 'N/A'); ?></p>
     <p><strong>Cirurgias:</strong> <?php echo htmlspecialchars($dados_anamnese['cirurgias']); ?></p>
-    <p><strong>Região da Cirurgia:</strong> <?php echo htmlspecialchars($dados_anamnese['regiao_cirurgia']); ?></p>
+    <p><strong>Região da Cirurgia:</strong> <?php echo htmlspecialchars($dados_anamnese['regiao_cirurgia'] ?? 'N/A'); ?></p>
     <p><strong>Dor Muscular:</strong> <?php echo htmlspecialchars($dados_anamnese['dor_muscular']); ?></p>
-    <p><strong>Regiões da Dor:</strong> <?php echo htmlspecialchars($dados_anamnese['regioes_dor']); ?></p>
+    <p><strong>Regiões da Dor:</strong> <?php echo htmlspecialchars($dados_anamnese['regioes_dor'] ?? 'N/A'); ?></p>
     <p><strong>Dor no Peito:</strong> <?php echo htmlspecialchars($dados_anamnese['dor_peito']); ?></p>
     <p><strong>Tontura:</strong> <?php echo htmlspecialchars($dados_anamnese['tontura']); ?></p>
     <p><strong>Movimento Diário:</strong> <?php echo htmlspecialchars($dados_anamnese['movimento_diario']); ?></p>
-    <p><strong>Movimentos por Dia:</strong> <?php echo htmlspecialchars($dados_anamnese['movimentos_dia']); ?></p>
+    <p><strong>Movimentos por Dia:</strong> <?php echo htmlspecialchars($dados_anamnese['movimentos_dia'] ?? 'N/A'); ?></p>
     <p><strong>Parente Cardíaco:</strong> <?php echo htmlspecialchars($dados_anamnese['parente_cardiaco']); ?></p>
-    <p><strong>Número de Parentes Cardíacos:</strong> <?php echo htmlspecialchars($dados_anamnese['num_parente_cardiaco']); ?></p>
+    <p><strong>Número de Parentes Cardíacos:</strong> <?php echo htmlspecialchars($dados_anamnese['num_parente_cardiaco'] ?? 'N/A'); ?></p>
     <p><strong>Fumante:</strong> <?php echo htmlspecialchars($dados_anamnese['fumante']); ?></p>
-    <p><strong>Informações Pertinentes:</strong> <?php echo htmlspecialchars($dados_anamnese['info_pertinente']); ?></p>
+    <p><strong>Informações Pertinentes:</strong> <?php echo htmlspecialchars($dados_anamnese['info_pertinente'] ?? 'N/A'); ?></p>
     <p><strong>Aceito:</strong> <?php echo htmlspecialchars($dados_anamnese['aceito']); ?></p>
 
-    <a href="listar-anamnese">Voltar para a lista</a>
+    
+    <a href="listar-usuarios">Voltar para a lista</a>
 </div>

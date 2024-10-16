@@ -1,42 +1,86 @@
 <?php 
     verificaPermissaoPagina(0);
     include_once('pages/funcoes.php');
-    // Obtém o usuario_id da sessão
-    $usuario_id = $_SESSION['id'];
+    
+
+    // Obtém o usuario_id da sessão ou pela URL (para admins ou edições externas)
+    if (isset($_GET['id'])) {
+        $usuario_id = (int)$_GET['id']; // ID passado pela URL
+    } else {
+        $usuario_id = $_SESSION['id']; // ID do usuário logado
+    }
+
+    // Verifica se o ID existe no banco de dados
     $sql = MySql::conectar()->prepare("SELECT sexo FROM `tb_admin.usuarios` WHERE id = ?");
     $sql->execute([$usuario_id]);
-    // Consulta ao banco de dados para obter o sexo do usuário logado
     $result = $sql->fetch();
-    // Verifica se o sexo do usuário é 'H' (homem)
+    
+    // Caso o usuário não exista
+    if (!$result) {
+        echo "Usuário não encontrado!";
+        exit();
+    }
+
+    // Inicializa a etapa na sessão, se ainda não estiver definida
+    if (!isset($_SESSION['etapa'])) {
+        $_SESSION['etapa'] = 1;
+    }
+
+    // Consulta ao banco de dados para obter o sexo do usuário
     $sexo = $result['sexo'];
 ?>
+<div class="step-indicator">
+    <div class="step <?php echo ($_SESSION['etapa'] >= 1) ? 'completed' : ''; ?>">
+        <div class="step-number">1</div>
+        <div class="step-label">Perfil</div>
+    </div>
+    <div class="step <?php echo ($_SESSION['etapa'] >= 2) ? 'completed' : ''; ?>">
+        <div class="step-number">2</div>
+        <div class="step-label">Anamnese</div>
+    </div>
+    <div class="step <?php echo ($_SESSION['etapa'] >= 3) ? 'completed' : ''; ?>">
+        <div class="step-number">3</div>
+        <div class="step-label">Medidas Corporais</div>
+    </div>
+    <div class="step <?php echo ($_SESSION['etapa'] >= 4) ? 'completed' : ''; ?>">
+        <div class="step-number">4</div>
+        <div class="step-label">Teste Físico</div>
+    </div>
+</div>
 
 <div class="box-content">
 <h2><i class="fa fa-pencil" aria-hidden="true"></i> Informe as condições de saúde atuais:</h2>
     <form method="post">   
         <?php
+
+
+
+
+
             if (isset($_POST['acao'])) {
-                
+                // Obtém os dados do formulário
                 $data_avaliacao = (new DateTime())->format('Y-m-d H:i:s');
                 $peso = $_POST['peso'];
                 $altura = $_POST['altura'];
-                // Obtém os dados do formulário e define valor padrão 0 para não marcados
                 $obesidade = isset($_POST['obesidade']) ? 1 : 0;
                 $diabetes = isset($_POST['diabetes']) ? 1 : 0;
                 $hipertensao = isset($_POST['hipertensao']) ? 1 : 0;
                 $depressao = isset($_POST['depressao']) ? 1 : 0;
                 $pos_covid = isset($_POST['pos_covid']) ? 1 : 0;
+
                 // Busca a data de nascimento no banco de dados
                 $sql = MySql::conectar()->prepare("SELECT data_nascimento FROM `tb_admin.usuarios` WHERE id = ?");
                 $sql->execute([$usuario_id]);
                 $data_nascimento_result = $sql->fetch();
+
                 if ($data_nascimento_result) {
                     $dataNascimento = new DateTime($data_nascimento_result['data_nascimento']);
                     $idade = (new DateTime())->diff($dataNascimento)->y;
-                    $idoso = $idade >= 65 ? 1 : 0; // Define como idoso se a idade for maior ou igual a 65
+                    $idoso = $idade >= 65 ? 1 : 0;
                 } else {
-                    $idoso = 0; // Caso não encontre a data de nascimento, considera como não idoso
+                    $idoso = 0; 
                 }
+
                 $gestante = isset($_POST['gestante']) ? 1 : 0;
                 $posparto = isset($_POST['posparto']) ? 1 : 0;
                 $emagrecer = isset($_POST['emagrecer']) ? 1 : 0;
@@ -46,24 +90,34 @@
                 $perfil = new Perfil();
                 $perfil->cadastrarPerfil($usuario_id, $data_avaliacao, $peso, $altura, $obesidade, $diabetes, $hipertensao, $depressao, $pos_covid, $idoso, $gestante, $posparto, $emagrecer, $objetivo);
 
-                Painel::alert('sucesso', 'Pré-avaliação cadastrado com sucesso');
+                Painel::alert('sucesso', 'Pré-avaliação cadastrada com sucesso!');
+                $_SESSION['etapa'] = 2;
+                
+                // Defina o tempo de contagem regressiva
+                $tempoContagem = 5; // Tempo em segundos
 
-                // Adiciona um timer de 10 segundos antes de redirecionar
-                
-                
-                //session_write_close(); // Grava os dados da sessão no servidor
-                //session_start(); // Reinicia a sessão para recarregar as variáveis
-                //$anamneseLink = obterLinkAnamnese($usuario_id); // Obtenha o link correto após salvar os dados
+                // Exibir a mensagem de contagem
+                echo "<div id='contador' style='text-align:center; color:#007bff; padding-top:20px;'>Redirecionando em <span id='tempo'>$tempoContagem</span> segundos...</div>";
+
                 echo "<script>
-                    setTimeout(function() {
-                        window.location.href='" . INCLUDE_PATH_PAINEL . obterLinkAnamnese($usuario_id) . "';
-                    }, 5000); // 5000 milissegundos = 5 segundos
-                    </script>";
-                //header('Location: ' . INCLUDE_PATH_PAINEL . $anamneseLink);
-                exit(); // Encerra o script imediatamente para evitar execução adicional
+                    // Defina o tempo de contagem
+                    var tempo = $tempoContagem;
+                    
+                    // Atualiza a contagem a cada segundo
+                    var intervalo = setInterval(function() {
+                        tempo--;
+                        document.getElementById('tempo').innerText = tempo;
+
+                        // Quando o tempo acabar, redirecione
+                        if (tempo <= 0) {
+                            clearInterval(intervalo);
+                            window.location.href='" . INCLUDE_PATH_PAINEL . obterLinkAnamnese($usuario_id) . "?id=" . $usuario_id . "';
+                        }
+                    }, 1000);
+                </script>";
+                exit();
             }
-            
-            // Adiciona um novo objetivo
+
             if (isset($_POST['novo_objetivo'])) {
                 $novo_objetivo = $_POST['novo_objetivo_texto'];
                 if (!empty($novo_objetivo)) {
@@ -73,37 +127,30 @@
                 }
             }
         ?>
-        <!-- Perguntas adicionais -->
-        <p>Responda as perguntas para aplicação da ANAMNESE INTELIGENTE de forma mais
-rápida, prática e com maior possibilidade de prescrição de um programa de treinamento individualizado.</p>
-        
+        <!-- Formulário de saúde -->
         <div class="form-group left w50"> 
             <label for="peso">Peso: </label>
             <input type="range" id="peso" class="slider" name="peso" min="40.0" max="299.9" step="0.1" value="50.0" oninput="updatePeso(this.value)">
-                </br>
+            <br>
             <input type="text" id="peso-valor" value="50.0 Kg"></input>
-           <!-- <span id="peso-valor">50.0</span> kg -->
             <script>
                 function updatePeso(value) {
                     document.getElementById('peso-valor').value = parseFloat(value).toFixed(1) + ' Kg';
                 }
             </script>
-        </div><!-- form-group -->
+        </div>
 
         <div class="form-group right w50"> 
             <label for="altura">Altura: </label>
             <input type="range" id="altura" class="slider" name="altura" min="1.20" max="2.51" step="0.01" value="1.50" oninput="updateAltura(this.value)">
-                </br>
+            <br>
             <input type="text" id="altura-valor" value="1.50 m"></input>
-            <!-- <span id="altura-valor">1.50</span> m -->
             <script>
-
                 function updateAltura(value) {
                     document.getElementById('altura-valor').value = parseFloat(value).toFixed(2) + ' m';
                 }
-             
             </script>
-        </div><!-- form-group -->
+        </div>
         <div class="clear"></div><!-- clear -->
 
         <div class="form-group left w50">       

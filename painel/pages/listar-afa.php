@@ -1,16 +1,47 @@
 <?php 
+
 verificaPermissaoPagina(0);
 include_once('pages/funcoes.php');
 
-$anamnese = new Anamnese();
-$anamneses = $anamnese->listarAnamneses();
 
-// Verifica se ocorreu um erro
-if ($anamneses === false) {
-    echo "<p>Ocorreu um erro ao buscar as anamneses.</p>";
-    exit; // Para a execução se houver erro
+if (isset($_GET['id'])) {
+    $usuario_id = (int)$_GET['id']; // ID passado pela URL
+} else {
+    $usuario_id = $_SESSION['id']; // ID do usuário logado
 }
+
+if (isset($_GET['id'])) {
+    $id_aluno = intval($_GET['id']); // Certificar que o valor recebido é um número inteiro
+    // Verifica se o ID existe no banco de dados
+    $sql = MySql::conectar()->prepare("SELECT sexo FROM `tb_admin.usuarios` WHERE id = ?");
+    $sql->execute([$id_aluno]);
+    $result = $sql->fetch();
+    
+    if (!$result) {
+        echo "Usuário não encontrado.";
+        exit();
+    }
+} else {
+    echo "ID do aluno não fornecido.";
+    exit();
+}
+
+// Instancia a classe Anamnese
+$anamnese = new Anamnese();
+// Busca as anamneses relacionadas ao usuário
+$anamneses = $anamnese->buscarAnamnesePorUsuarioId($id_aluno);
+
+// Verifica se ocorreu um erro ou se não há anamneses
+if ($anamneses === false || empty($anamneses)) {
+    echo "<p>Nenhuma anamnese encontrada para esse usuário.</p>";
+    exit;
+}
+
+
 ?>
+<div class="box-content">
+
+</div>
 <div class="box-content">
     <h2>Lista de Anamneses</h2>
     <table id="anamnesesTable" class="display">
@@ -31,7 +62,8 @@ if ($anamneses === false) {
         <tbody>
             <?php foreach ($anamneses as $anamnese): ?>
                 <tr>
-                    <td><?php echo htmlspecialchars($anamnese['data_avaliacao']); ?></td>
+             
+                    <td><?php echo (new DateTime($anamnese['data_avaliacao']))->format('d/m/Y H:i'); ?></td>
                     <td>
                         <?php if ($anamnese['domingo'] == 1): ?>
                             <i class="fa fa-check" style="color: green;"></i>
