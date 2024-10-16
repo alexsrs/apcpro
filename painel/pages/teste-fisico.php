@@ -38,7 +38,7 @@
     </div>
     <div class="step <?php echo ($_SESSION['etapa'] >= 3) ? 'completed' : ''; ?>">
         <div class="step-number">3</div>
-        <div class="step-label">Medidas Corporais</div>
+        <div class="step-label">Medida corporal</div>
     </div>
     <div class="step <?php echo ($_SESSION['etapa'] >= 4) ? 'completed' : ''; ?>">
         <div class="step-number">4</div>

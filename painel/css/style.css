@@ -809,6 +809,29 @@ form .form-group-login:nth-of-type(2){
     color: #666;
 }
 
+/* Whattsapp botão*/
+    a.whatsapp-link {
+    background-color: #25D366;
+    text-decoration: none;
+    padding: 8px 28px;
+    border-radius: 28px;
+    font-size: 17px;
+    border: none;
+    color: white;
+}
+
+
+a.afa-link {
+ 
+    background-color: #007bff;
+    text-decoration: none;
+    padding: 8px 28px;
+    border-radius: 28px;
+    font-size: 17px;
+    border: none;
+    color: white;
+}
+
 
 @media screen and (max-width: 1200px){
     .box-metrica-single{

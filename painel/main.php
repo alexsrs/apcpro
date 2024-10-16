@@ -60,11 +60,11 @@
             <a <?php selecionadoMenu('adicionar-usuario');  ?> href="<?php echo INCLUDE_PATH_PAINEL ?>adicionar-usuario">Adicionar <?php if($_SESSION['cargo'] == 2) { echo 'professores'; } else { echo 'alunos'; } ?> </a>
             <a <?php selecionadoMenu('listar-usuarios'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>listar-usuarios">Listar <?php if($_SESSION['cargo'] == 2) { echo 'professores'; } else { echo 'alunos'; } ?></a>
             
-            
-            <h2 id="menu-analise"><i class="fa fa-line-chart" aria-hidden="true"></i> Análise física avançada</h2>
+   
+            <h2 <?php verificaPermissaoMenuAlunoAdm(0); ?>id="menu-analise"><i class="fa fa-line-chart" aria-hidden="true"></i> Análise física avançada</h2>
             <a <?php selecionadoMenu('formulario-perfis'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>formulario-perfis">Pré avaliação</a>
             <a <?php selecionadoMenu($anamneseLink); ?> href="<?php echo INCLUDE_PATH_PAINEL . $anamneseLink;?>">Anamnese Inteligente</a>
-            <a <?php selecionadoMenu('medidas-corporais'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>medida-corporal">Medidas Corporal</a>
+            <a <?php selecionadoMenu('medidas-corporais'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>medida-corporal">Medida Corporal</a>
             <a <?php selecionadoMenu('testes-fisicos'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>teste-fisico">Testes Físico</a>
     
 

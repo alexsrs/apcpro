@@ -1,14 +1,24 @@
 <?php 
     verificaPermissaoPagina(0);
     include_once('pages/funcoes.php');
+    
 
-    // Verifica se foi passado o parâmetro 'id' na URL
-    if (isset($_GET['id']) && !empty($_GET['id'])) {
-        // Se o ID foi passado via GET, usamos esse ID
-        $usuario_id = intval($_GET['id']);
+    // Obtém o usuario_id da sessão ou pela URL (para admins ou edições externas)
+    if (isset($_GET['id'])) {
+        $usuario_id = (int)$_GET['id']; // ID passado pela URL
     } else {
-        // Caso contrário, usamos o ID da sessão (usuário logado)
-        $usuario_id = $_SESSION['id'];
+        $usuario_id = $_SESSION['id']; // ID do usuário logado
+    }
+
+    // Verifica se o ID existe no banco de dados
+    $sql = MySql::conectar()->prepare("SELECT sexo FROM `tb_admin.usuarios` WHERE id = ?");
+    $sql->execute([$usuario_id]);
+    $result = $sql->fetch();
+    
+    // Caso o usuário não exista
+    if (!$result) {
+        echo "Usuário não encontrado!";
+        exit();
     }
 
     // Inicializa a próxima etapa, se necessário
@@ -16,6 +26,7 @@
         $_SESSION['etapa'] = 2;
     }
 ?>
+
 <div class="step-indicator">
     <div class="step <?php echo ($_SESSION['etapa'] >= 1) ? 'completed' : ''; ?>">
         <div class="step-number">1</div>
@@ -27,7 +38,7 @@
     </div>
     <div class="step <?php echo ($_SESSION['etapa'] >= 3) ? 'completed' : ''; ?>">
         <div class="step-number">3</div>
-        <div class="step-label">Medidas Corporais</div>
+        <div class="step-label">Medida corporal</div>
     </div>
     <div class="step <?php echo ($_SESSION['etapa'] >= 4) ? 'completed' : ''; ?>">
         <div class="step-number">4</div>
@@ -112,9 +123,6 @@
                             }
                         }
                         $dados['regioes_dor'] = json_encode($regioes);
-
-                        
-
                     }
 
                     // Chamar o método para cadastrar a anamnese
@@ -124,29 +132,28 @@
                         $_SESSION['etapa'] = 3;
 
                         // Defina o tempo de contagem regressiva
-                $tempoContagem = 5; // Tempo em segundos
+                        $tempoContagem = 5; // Tempo em segundos
 
-                // Exibir a mensagem de contagem
-                echo "<div id='contador' style='text-align:center; color:#007bff; padding-top:20px;'>Redirecionando em <span id='tempo'>$tempoContagem</span> segundos...</div>";
+                        // Exibir a mensagem de contagem
+                        echo "<div id='contador' style='text-align:center; color:#007bff; padding-top:20px;'>Redirecionando em <span id='tempo'>$tempoContagem</span> segundos...</div>";
 
-                echo "<script>
-                    // Defina o tempo de contagem
-                    var tempo = $tempoContagem;
-                    
-                    // Atualiza a contagem a cada segundo
-                    var intervalo = setInterval(function() {
-                        tempo--;
-                        document.getElementById('tempo').innerText = tempo;
+                        echo "<script>
+                            // Defina o tempo de contagem
+                            var tempo = $tempoContagem;
+                            
+                            // Atualiza a contagem a cada segundo
+                            var intervalo = setInterval(function() {
+                                tempo--;
+                                document.getElementById('tempo').innerText = tempo;
 
-                        // Quando o tempo acabar, redirecione
-                        if (tempo <= 0) {
-                            clearInterval(intervalo);
-                            window.location.href='" . INCLUDE_PATH_PAINEL . 'medida-corporal' . "?id=" . $usuario_id . "';
-                        }
-                    }, 1000);
-                </script>";
-                exit();
-
+                                // Quando o tempo acabar, redirecione
+                                if (tempo <= 0) {
+                                    clearInterval(intervalo);
+                                    window.location.href='" . INCLUDE_PATH_PAINEL . 'medida-corporal' . "?id=" . $usuario_id . "';
+                                }
+                            }, 1000);
+                        </script>";
+                        exit();
                     } else {
                         Painel::alert('erro', 'Ocorreu um erro ao cadastrar a anamnese. Por favor, tente novamente.');
                     }

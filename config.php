@@ -3,15 +3,10 @@
 	/* 
 	TODO:  Variável global com os cargos estamos usando 2 mais vamos otimizar e unificar
 	*/
-
-
-
-
-	//Carregar classes 	
-
+	
 	session_start();
 	date_default_timezone_set('America/Sao_Paulo');
-
+		//Carregar classes 	
 		// Defina o autoload para suas classes personalizadas
 		$autoload = function($class) {
 			if($class =="Email"){
@@ -64,6 +59,14 @@
 			return;
 		} else {
 			echo 'style="display:none;"';
+		}
+	}
+
+	function verificaPermissaoMenuAlunoAdm($permissao) {
+		if ($_SESSION['cargo'] == $permissao || $_SESSION['cargo'] == 2) {
+			return; // Se a permissão for verdadeira, não faz nada
+		} else {
+			echo 'style="display:none;"'; // Se a permissão não for verdadeira, retorna o estilo para ocultar
 		}
 	}
 

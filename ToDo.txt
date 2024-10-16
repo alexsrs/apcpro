@@ -12,7 +12,7 @@ Estrutura do Aplicativo “APC Pro” com Foco em Avaliação
 	•	Fase 1: Questionários e Entrevistas
 	•	Interface para aplicação de questionários detalhados sobre saúde, histórico de atividades físicas e objetivos esportivos.
 	•	Entrevistas para captar informações qualitativas sobre o bem-estar e expectativas do atleta.
-	•	Fase 2: Medidas Corporais
+	•	Fase 2: Medida corporal
 	•	Ferramentas para registrar medidas antropométricas como altura, peso, percentual de gordura, e outras medidas perimetrais.
 	•	Gráficos para visualizar mudanças e tendências ao longo do tempo.
 	•	Fase 3: Testes Físicos

@@ -142,7 +142,7 @@ class Anamnese {
     }
 
     public function buscarAnamnesePorUsuarioId($usuario_id) {
-        $sql = $this->db->prepare("SELECT * FROM tb_usuarios_anamnese WHERE usuario_id = :usuario_id");
+        $sql = $this->db->prepare("SELECT * FROM tb_usuarios_anamnese WHERE usuario_id = :usuario_id ORDER BY data_avaliacao DESC");
         $sql->bindParam(':usuario_id', $usuario_id);
         $sql->execute();
         return $sql->fetchAll(PDO::FETCH_ASSOC); // Retorna todas as anamneses do usuário
