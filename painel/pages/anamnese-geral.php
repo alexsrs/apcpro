@@ -11,7 +11,7 @@
     }
 
     // Verifica se o ID existe no banco de dados
-    $sql = MySql::conectar()->prepare("SELECT sexo FROM `tb_admin.usuarios` WHERE id = ?");
+    $sql = MySql::conectar()->prepare("SELECT * FROM `tb_admin.usuarios` WHERE id = ?");
     $sql->execute([$usuario_id]);
     $result = $sql->fetch();
     

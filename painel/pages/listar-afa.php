@@ -1,6 +1,6 @@
 <?php 
 
-verificaPermissaoPagina(0);
+verificaPermissaoPagina(1);
 include_once('pages/funcoes.php');
 
 if (isset($_GET['id'])) {
@@ -12,7 +12,7 @@ if (isset($_GET['id'])) {
 if (isset($_GET['id'])) {
     $id_aluno = intval($_GET['id']); // Certificar que o valor recebido é um número inteiro
     // Verifica se o ID existe no banco de dados e seleciona o telefone
-    $sql = MySql::conectar()->prepare("SELECT telefone FROM `tb_admin.usuarios` WHERE id = ?");
+    $sql = MySql::conectar()->prepare("SELECT telefone, nome, img FROM `tb_admin.usuarios` WHERE id = ?");
     $sql->execute([$id_aluno]);
     $result = $sql->fetch();
 
@@ -21,6 +21,8 @@ if (isset($_GET['id'])) {
         exit();
     } else {
         $telefone = $result['telefone']; // Atribui o telefone à variável $telefone
+        $nome = $result['nome'];
+        $img = $result['img'];
     }
 } else {
     echo "ID do aluno não fornecido.";
@@ -40,15 +42,22 @@ $anamneses = $anamnese->buscarAnamnesePorUsuarioId($id_aluno);
 
 ?>
 <div class="box-content">
-    <body>
-        <a class="whatsapp-link" href="https://web.whatsapp.com/send?phone=55<?php echo $telefone ?>&text=Ol%C3%A1%2C%20para%20dar%20continuidade%20ao%20seu%20processo%20de%20acompanhamento%2C%20pedimos%20que%20voc%C3%AA%20preencha%20sua%20*Avalia%C3%A7%C3%A3o%20F%C3%ADsica*.%20Isso%20nos%20ajudar%C3%A1%20a%20criar%20um%20plano%20personalizado%20para%20suas%20necessidades.%0A%0A%20Clique%20no%20link%20abaixo%20para%20preencher%20sua%20avalia%C3%A7%C3%A3o%3A%0A%0Ahttps%3A%2F%2Flocalhost%2Fapcpro%2Fpainel%2Fformulario-perfis%3Fid%3D<?php echo urlencode($usuario_id); ?>%0A%0ASe%20precisar%20de%20ajuda%2C%20estamos%20%C3%A0%20disposi%C3%A7%C3%A3o.%20%F0%9F%98%8A" target="_blank">
-        <i class="fa fa-whatsapp"></i> Solicitar avaliação</a>
+ 
+        <div class="">
+                    <img src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo $img; ?>" />
+                    <p><?php echo $nome; ?></p>            
+        </div><!-- imagem-usuario -->
+    <div>
+        <body>
+            <a class="whatsapp-link" href="https://web.whatsapp.com/send?phone=55<?php echo $telefone ?>&text=Ol%C3%A1%2C%20para%20dar%20continuidade%20ao%20seu%20processo%20de%20acompanhamento%2C%20pedimos%20que%20voc%C3%AA%20preencha%20sua%20*Avalia%C3%A7%C3%A3o%20F%C3%ADsica*.%20Isso%20nos%20ajudar%C3%A1%20a%20criar%20um%20plano%20personalizado%20para%20suas%20necessidades.%0A%0A%20Clique%20no%20link%20abaixo%20para%20preencher%20sua%20avalia%C3%A7%C3%A3o%3A%0A%0Ahttps%3A%2F%2Flocalhost%2Fapcpro%2Fpainel%2Fformulario-perfis%3Fid%3D<?php echo urlencode($usuario_id); ?>%0A%0ASe%20precisar%20de%20ajuda%2C%20estamos%20%C3%A0%20disposi%C3%A7%C3%A3o.%20%F0%9F%98%8A" target="_blank">
+            <i class="fa fa-whatsapp"></i> Solicitar avaliação</a>
 
-    </body>
-    <body>
-        <a class="afa-link" href="<?php echo INCLUDE_PATH_PAINEL . 'formulario-perfis?id=' . $usuario_id; ?>">
-        <i class="fa fa-link"></i> Realizar avaliação</a>
-    </body>
+        </body>
+        <body>
+            <a class="afa-link" href="<?php echo INCLUDE_PATH_PAINEL . 'formulario-perfis?id=' . $usuario_id; ?>">
+            <i class="fa fa-link"></i> Realizar avaliação</a>
+        </body>
+    </div>
 </div>
 
 
