@@ -44,6 +44,10 @@
     </div>
     <div class="step <?php echo ($_SESSION['etapa'] >= 4) ? 'completed' : ''; ?>">
         <div class="step-number">4</div>
+        <div class="step-label">Aptidão Cardiorespiratória</div>
+    </div>
+    <div class="step <?php echo ($_SESSION['etapa'] >= 5) ? 'completed' : ''; ?>">
+        <div class="step-number">5</div>
         <div class="step-label">Teste Físico</div>
     </div>
 </div>

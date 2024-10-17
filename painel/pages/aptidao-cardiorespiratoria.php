@@ -23,7 +23,7 @@
 
     // Inicializa a etapa na sessão, se ainda não estiver definida
     if (!isset($_SESSION['etapa'])) {
-        $_SESSION['etapa'] = 3;
+        $_SESSION['etapa'] = 4;
     }
 ?>
 
@@ -50,6 +50,6 @@
     </div>
 </div>
 <div class="box-content">
-<h2><i class="fa fa-pencil" aria-hidden="true"></i>Teste Físico</h2>
+<h2><i class="fa fa-pencil" aria-hidden="true"></i>Aptidão Cardiorespiratória</h2>
 
 </div><!--box-content-->

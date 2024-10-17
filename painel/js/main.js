@@ -172,4 +172,37 @@ document.addEventListener('DOMContentLoaded', function() {
     if (btnAdicionar) {
         btnAdicionar.addEventListener('click', adicionarRegiao);
     }
+
+
+    function calcularMedia(grupo) {
+        const valor1 = parseFloat(document.getElementById(grupo + '-1').value) || 0;
+        const valor2 = parseFloat(document.getElementById(grupo + '-2').value) || 0;
+        const valor3 = parseFloat(document.getElementById(grupo + '-3').value) || 0;
+    
+        // Calcula a média
+        const media = (valor1 + valor2 + valor3) / 3;
+    
+        // Atualiza o campo de média correspondente
+        document.getElementById(grupo + '-m').value = media.toFixed(2);
+    
+        // Atualiza o somatório
+        calcularSomatorio();
+    }
+    
+    // Função para calcular o somatório de todas as médias
+    function calcularSomatorio() {
+        const grupos = ['tricipital', 'subescapular', 'suprailiaca', 'abdominal', 'supraespinhal', 'coxa-guedes', 'coxa-pollock', 'panturrilha', 'peitoral', 'axilar-media', 'biceps'];
+        
+        let somatorio = 0;
+    
+        // Somando as médias de cada grupo
+        grupos.forEach(grupo => {
+            const media = parseFloat(document.getElementById(grupo + '-m').value) || 0;
+            somatorio += media;
+        });
+    
+        // Atualiza o campo de somatório
+        document.getElementById('somatorio').value = somatorio.toFixed(2);
+    }
 });
+

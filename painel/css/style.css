@@ -436,7 +436,7 @@ a.btn.view{
 .box-content form input[type=email],
 .box-content form input[type=number],
 .box-content form input[type=date]{
-    margin-top: 8px;
+    margin: 6px;
     font-size: 16px;
     font-weight: normal;
     color: black;
@@ -574,7 +574,29 @@ form .form-group-login:nth-of-type(2){
     cursor: pointer;
 }
 
+.form-group-antropometria {
+    display: flex;
+    align-items: center; /* Alinha o label e o input no centro verticalmente */
+    margin-bottom: 10px;
+}
 
+.form-group-antropometria label {
+    width: 195px; /* Defina uma largura fixa ou use porcentagens */
+    margin-right: 10px;
+}
+
+.form-group-antropometria input {
+    flex: 1; /* O input preencherá o espaço restante */
+}
+
+.video-tutorial img{
+    margin-top: 50px;
+    width: 100% !important;
+}
+.form-group iframe {
+    margin-top: 50px;
+    align-items: center;
+}
 
 
 /* The switch - the box around the slider */
