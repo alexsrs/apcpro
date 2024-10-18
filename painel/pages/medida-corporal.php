@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         'coxa_medial_esquerda' => $_POST['coxa-medial-esquerda'],
         'panturrilha_direita' => $_POST['panturrilha-direita'],
         'panturrilha_esquerda' => $_POST['panturrilha-esquerda'],
-        'tricipital-m' => $_POST['tricipital'],
+        'tricipital' => $_POST['tricipital'],
         'subescapular' => $_POST['subescapular'],
         'suprailiaca' => $_POST['suprailiaca'],
         'abdominal' => $_POST['abdominal'],
@@ -127,6 +127,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($medidas->gravarMedidas($usuario_id, $dadosMedidas, $dataAvaliacao)) {
         Painel::alert('sucesso', 'Dados gravados com sucesso!');
+        $_SESSION['etapa'] = 4;
+
+                        // Defina o tempo de contagem regressiva
+                        $tempoContagem = 5; // Tempo em segundos
+
+                        // Exibir a mensagem de contagem
+                        echo "<div id='contador' style='text-align:center; color:#007bff; padding-top:20px;'>Redirecionando em <span id='tempo'>$tempoContagem</span> segundos...</div>";
+
+                        echo "<script>
+                            // Defina o tempo de contagem
+                            var tempo = $tempoContagem;
+                            
+                            // Atualiza a contagem a cada segundo
+                            var intervalo = setInterval(function() {
+                                tempo--;
+                                document.getElementById('tempo').innerText = tempo;
+
+                                // Quando o tempo acabar, redirecione
+                                if (tempo <= 0) {
+                                    clearInterval(intervalo);
+                                    window.location.href='" . INCLUDE_PATH_PAINEL . 'aptidao-cardiorespiratoria' . "?id=" . $usuario_id . "';
+                                }
+                            }, 1000);
+                        </script>";
+                        exit();
     } else {
         Painel::alert('erro', 'Erro ao gravar dados.');
         echo "";
@@ -243,96 +268,96 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <legend>Composição corporal</legend>
                     <div class="form-group-antropometria">
                         <label>Tricipital</label>
-                        <input type="number" name="tricipital" id="tricipital-m" placeholder="média" disabled />
+                        <input type="text" name="tricipital" id="tricipital-m" placeholder="média" readonly />
                         <input type="number" id="tricipital-1" placeholder="valor 1" oninput="calcularMedia('tricipital')" />
                         <input type="number" id="tricipital-2" placeholder="valor 2" oninput="calcularMedia('tricipital')" />
                         <input type="number" id="tricipital-3" placeholder="valor 3" oninput="calcularMedia('tricipital')" />
                     </div>
                     <div class="form-group-antropometria">
                         <label>Subescapular</label>
-                        <input type="number" id="subescapular-m" disabled/>
+                        <input type="number"  name="subescapular" id="subescapular-m" readonly/>
                         <input type="number" id="subescapular-1" oninput="calcularMedia('subescapular')"/>
                         <input type="number" id="subescapular-2" oninput="calcularMedia('subescapular')"/>
                         <input type="number" id="subescapular-3" oninput="calcularMedia('subescapular')"/>
                     </div><!-- form-group -->
                     <div class="form-group-antropometria">
                         <label>Suprailíaca</label>
-                        <input type="number" id="suprailiaca-m" disabled/>
+                        <input type="number" name="suprailiaca" id="suprailiaca-m" readonly/>
                         <input type="number" id="suprailiaca-1" oninput="calcularMedia('suprailiaca')"/>
                         <input type="number" id="suprailiaca-2" oninput="calcularMedia('suprailiaca')"/>
                         <input type="number" id="suprailiaca-3" oninput="calcularMedia('suprailiaca')"/>
                     </div><!-- form-group -->
                     <div class="form-group-antropometria">
                         <label>Abdominal</label>
-                        <input type="number" id="abdominal-m" disabled/>
+                        <input type="number" name="abdominal" id="abdominal-m" readonly/>
                         <input type="number" id="abdominal-1" oninput="calcularMedia('abdominal')"/>
                         <input type="number" id="abdominal-2" oninput="calcularMedia('abdominal')"/>
                         <input type="number" id="abdominal-3" oninput="calcularMedia('abdominal')"/>
                     </div><!-- form-group -->
                     <div class="form-group-antropometria">
                         <label>Supraespinhal</label>
-                        <input type="number" id="supraespinhal-m" disabled/>
+                        <input type="number" name="supraespinhal" id="supraespinhal-m" readonly/>
                         <input type="number" id="supraespinhal-1" oninput="calcularMedia('supraespinhal')"/>
                         <input type="number" id="supraespinhal-2" oninput="calcularMedia('supraespinhal')"/>
                         <input type="number" id="supraespinhal-3" oninput="calcularMedia('supraespinhal')"/>
                     </div><!-- form-group -->
                     <div class="form-group-antropometria">
                         <label>Coxa Guedes</label>
-                        <input type="number" id="coxa-guedes-m" disabled/>
+                        <input type="number" name="coxa-guedes" id="coxa-guedes-m" readonly/>
                         <input type="number" id="coxa-guedes-1" oninput="calcularMedia('coxa-guedes')"/>
                         <input type="number" id="coxa-guedes-2" oninput="calcularMedia('coxa-guedes')"/>
                         <input type="number" id="coxa-guedes-3" oninput="calcularMedia('coxa-guedes')"/>
                     </div><!-- form-group -->
                     <div class="form-group-antropometria">
                         <label>Coxa Pollock</label>
-                        <input type="number" id="coxa-pollock-m" disabled/>
+                        <input type="number" name="coxa-pollock" id="coxa-pollock-m" readonly/>
                         <input type="number" id="coxa-pollock-1" oninput="calcularMedia('coxa-pollock')"/>
                         <input type="number" id="coxa-pollock-2" oninput="calcularMedia('coxa-pollock')"/>
                         <input type="number" id="coxa-pollock-3" oninput="calcularMedia('coxa-pollock')"/>
                     </div><!-- form-group -->
                     <div class="form-group-antropometria">
                         <label>Panturrilha</label>
-                        <input type="number" id="panturrilha-m" disabled/>
+                        <input type="number" name="panturrilha" id="panturrilha-m" readonly/>
                         <input type="number" id="panturrilha-1" oninput="calcularMedia('panturrilha')"/>
                         <input type="number" id="panturrilha-2" oninput="calcularMedia('panturrilha')"/>
                         <input type="number" id="panturrilha-3" oninput="calcularMedia('panturrilha')"/>
                     </div><!-- form-group -->
                     <div class="form-group-antropometria">
                         <label>Peitoral</label>
-                        <input type="number" id="peitoral-m" disabled/>
+                        <input type="number" name="peitoral" id="peitoral-m" readonly/>
                         <input type="number" id="peitoral-1" oninput="calcularMedia('peitoral')"/>
                         <input type="number" id="peitoral-2" oninput="calcularMedia('peitoral')"/>
                         <input type="number" id="peitoral-3" oninput="calcularMedia('peitoral')"/>
                     </div><!-- form-group -->
                     <div class="form-group-antropometria">
                         <label>Axilar Média</label>
-                        <input type="number" id="axilar-media-m" disabled/>
+                        <input type="number" name="axilar-media" id="axilar-media-m" readonly/>
                         <input type="number" id="axilar-media-1" oninput="calcularMedia('axilar-media')"/>
                         <input type="number" id="axilar-media-2" oninput="calcularMedia('axilar-media')"/>
                         <input type="number" id="axilar-media-3" oninput="calcularMedia('axilar-media')"/>
                     </div><!-- form-group -->
                     <div class="form-group-antropometria">
                         <label>Biceps</label>
-                        <input type="number" id="biceps-m" disabled/>
+                        <input type="number" name="biceps" id="biceps-m" readonly/>
                         <input type="number" id="biceps-1" oninput="calcularMedia('biceps')"/>
                         <input type="number" id="biceps-2" oninput="calcularMedia('biceps')"/>
                         <input type="number" id="biceps-3" oninput="calcularMedia('biceps')"/>
                     </div><!-- form-group -->
                     <div class="form-group-antropometria left w50">
                         <label>SOMATÓRIO</label>
-                        <input type="number" id="somatorio" disabled oninput="calcularSomatorio()"/>
+                        <input type="number" name="somatorio" id="somatorio" readonly oninput="calcularSomatorio()"/>
                     </div><!-- form-group -->
                     <div class="form-group-antropometria right w50">
                         <label>SOMATÓRIO Pollock 3D</label>
-                        <input type="number" id="somatorio-pollock-3D" disabled disabled oninput="calcularSomatorioPollock3d()"/>
+                        <input type="number" name="somatorio-pollock-3D" id="somatorio-pollock-3D" readonly readonly oninput="calcularSomatorioPollock3d()"/>
                     </div><!-- form-group -->
                     <div class="form-group-antropometria left w50">
                         <label>SOMATÓRIO Pollock 7D</label>
-                        <input type="number" id="somatorio-pollock-7D" disabled oninput="calcularSomatorioPollock7d()"/>
+                        <input type="number" name="somatorio-pollock-7D" id="somatorio-pollock-7D" readonly oninput="calcularSomatorioPollock7d()"/>
                     </div><!-- form-group -->
                     <div class="form-group-antropometria right w50">
                         <label>SOMATÓRIO Guedes 3D</label>
-                        <input type="number" id="somatorio-guedes-3D" disabled oninput="calcularSomatorioGuedes3d()"/>
+                        <input type="number" name="somatorio-guedes-3D" id="somatorio-guedes-3D" readonly oninput="calcularSomatorioGuedes3d()"/>
                     </div><!-- form-group -->
                     <div class="clear"></div><!-- clear -->    
                     <div class="form-group-antropometria left w50">
