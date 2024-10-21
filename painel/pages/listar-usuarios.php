@@ -181,16 +181,6 @@ $grupos = $sqlGrupos->fetchAll();
             <?php endif; ?>
             
         </tbody>
-        <tfoot>
-            <tr>
-                <td>Nome</td>
-                <td>Gênero</td>
-                <td>Idade</td>
-                <td>Início do treinamento</td>
-                <td>Grupo</td>
-                <td>Ações</td>
-            </tr>
-        </tfoot>
     </table>
 
 </div>

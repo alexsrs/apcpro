@@ -61,7 +61,13 @@ $(function() {
             searching: false, // Remove a caixa de pesquisa
             
             columnDefs: [
-                { orderable: false, targets: 5 } // Altera o índice da coluna "Ações" (0-indexed)
+                { orderable: false, targets: 5 },
+                { width: "30%", targets: 0 }, // Primeira coluna
+                { className: "text-center", width: "3%", targets: 1 }, // Segunda coluna
+                { className: "text-center", width: "3%", targets: 2 }, // Terceira coluna
+                { className: "text-center", width: "3%", targets: 3 }, // Quarta coluna
+                { className: "text-center", width: "26%", targets: 4 }, // E assim por diante
+                { className: "text-center", width: "35%", targets: 5 } // Altera o índice da coluna "Ações" (0-indexed)
             ]
         });
 
@@ -72,7 +78,56 @@ $(function() {
             pageLength: 10,   // Define o número de registros por página
             select: true,
             searching: false,
-            ordering: false // Remove a caixa de pesquisa
+            ordering: false, // Remove a caixa de pesquisa
+            responsive: true,
+            autoWidth: false,
+            columnDefs: [
+                { className: "text-center", width: "15%", targets: 0 }, // Primeira coluna
+                { className: "text-center", width: "5%", targets: 1 }, // Segunda coluna
+                { className: "text-center", width: "5%", targets: 2 }, // Terceira coluna
+                { className: "text-center", width: "5%", targets: 3 }, // Quarta coluna
+                { className: "text-center", width: "5%", targets: 4 }, // E assim por diante
+                { className: "text-center", width: "5%", targets: 5 },
+                { className: "text-center", width: "5%", targets: 6 },
+                { className: "text-center", width: "5%", targets: 7 },
+                { className: "text-center", width: "15%", targets: 8 },
+                { className: "text-center", width: "15%", targets: 9 }
+            ]
+        });
+
+        $('#perfilTable').DataTable({
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/2.1.8/i18n/pt-BR.json'
+            },
+            pageLength: 10,   // Define o número de registros por página
+            select: true,
+            responsive: true,
+            searching: false,
+            ordering: false, // Remove a caixa de pesquisa
+            autoWidth: false, // Desabilita ajuste automático da largura
+            columnDefs: [
+                { className: "text-center", width: "20%", targets: 0 },
+                { className: "text-center", width: "15%", targets: 1 },
+                { className: "text-center", width: "15%", targets: 2 },
+                { className: "text-center", width: "20%", targets: 3 }
+            ]
+        });
+
+        $('#medidaCorporalTable').DataTable({
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/2.1.8/i18n/pt-BR.json'
+            },
+            pageLength: 10,   // Define o número de registros por página
+            select: true,
+            responsive: true,
+            searching: false,
+            ordering: false, // Remove a caixa de pesquisa
+            autoWidth: false, // Desabilita ajuste automático da largura
+            columnDefs: [
+                { className: "text-center", width: "50%", targets: 0 },
+                { className: "text-center", width: "50%", targets: 1 }
+                
+            ]
         });
         
         // Restaurar o estado do menu salvo no Local Storage

@@ -266,6 +266,15 @@ div.box-usuario{
     padding: 10px;
 }
 
+.text-center, th {
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+table.dataTable thead td {
+    text-align: center;
+}
+
 .box-content{
     background: white;
     padding: 30px;
@@ -422,6 +431,48 @@ a.btn.view{
     margin: 30px 0;
 }
 
+.box-content h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.box-content h2 i {
+    font-size: 20px;
+    color: #555;
+}
+
+.perfil-info {
+    margin-bottom: 20px;
+}
+
+.perfil-info p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.perfil-info strong {
+    font-weight: bold;
+    color: #333;
+}
+
+.btn.voltar {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn.voltar:hover {
+    background-color: #0056b3;
+}
 
 .box-content form label{
     font-size: 17px;
@@ -735,7 +786,6 @@ form .form-group-login:nth-of-type(2){
     margin-right: 10px;
 }
 
-
 .remove-regiao {
     right: 10px;
     background: #ff4d4d;
@@ -751,10 +801,6 @@ form .form-group-login:nth-of-type(2){
 .img-escala{
     text-align: center;
     padding: 10px 0;
-}
-.box-content img {
-    width: 20%;
-    min-width: 300px;
 }
 
 .modal-excluir {
@@ -788,6 +834,20 @@ form .form-group-login:nth-of-type(2){
 .btn.delete {
     background-color: #e74c3c;
     color: white;
+}
+
+.black p{
+    color: black;
+    text-align: left;
+}
+
+.acoes-button {
+    padding-top: 20px;
+    text-align: center;
+}
+
+table.dataTable {
+    width: 100% !important; /* Força o DataTable a ocupar 100% da largura do contêiner */
 }
 
 .step-indicator {
@@ -836,6 +896,7 @@ form .form-group-login:nth-of-type(2){
     background-color: #25D366;
     text-decoration: none;
     padding: 8px 28px;
+    margin: 10px;
     border-radius: 28px;
     font-size: 17px;
     border: none;
@@ -849,6 +910,7 @@ a.afa-link {
     text-decoration: none;
     padding: 8px 28px;
     border-radius: 28px;
+    margin: 10px;
     font-size: 17px;
     border: none;
     color: white;

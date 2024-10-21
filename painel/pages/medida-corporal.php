@@ -84,7 +84,7 @@ function calcularSomatorioPollock7d() {
 </script>";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $medidas = new MedidasCorporais();
+    $medidas = new MedidaCorporal();
     $dadosMedidas = [
         'punho_direito' => $_POST['punho-direito'],
         'ante_braco_direito' => $_POST['ante-braco-direito'],
@@ -123,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         'bimaleolar' => $_POST['bimaleolar']
     ];
 
-    $dataAvaliacao = date('Y-m-d'); // Data da avaliação atual
+    $dataAvaliacao = (new DateTime())->format('Y-m-d H:i:s');
 
     if ($medidas->gravarMedidas($usuario_id, $dadosMedidas, $dataAvaliacao)) {
         Painel::alert('sucesso', 'Dados gravados com sucesso!');

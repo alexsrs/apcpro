@@ -93,7 +93,26 @@
             }     
         }
     ?>
+    <div class="form-group flex-container">
+        <div class="select-container">
+            <label>Grupo</label>
+            <select name="grupo">
+                <?php 
+                    // Exibir uma opção padrão
+            echo '<option value="0">-- Selecione para adicionar a um grupo --</option>';
 
+        // Preencher o select com os dados filtrados pelo professor logado
+            foreach ($grupos as $grupo) {
+                echo '<option value="'.$grupo['id'].'">'.$grupo['grupo'].'</option>';
+            }
+                ?>
+            </select>
+        </div><!-- select-container -->
+           <!-- Botão ao lado do select -->
+        <div class="button-container">
+            <button type="button" onclick="document.getElementById('modalGrupo').style.display='flex'"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        </div><!-- button-container -->
+    </div><!-- form-group -->
     <div class="form-group left w50">
         <label>Login:</label>
         <input type="text" name="user" autocomplete="__away">
@@ -151,31 +170,6 @@
         <input type="date" name="data_inicio" />
     </div><!-- form-group -->
     <div class="clear"></div><!-- clear -->
-
-    <div class="form-group flex-container">
-    <div class="select-container">
-        <label>Grupo</label>
-        <select name="grupo">
-            <?php 
-                  // Exibir uma opção padrão
-    echo '<option value="0">-- Selecione para adicionar a um grupo --</option>';
-
-    // Preencher o select com os dados filtrados pelo professor logado
-    foreach ($grupos as $grupo) {
-        echo '<option value="'.$grupo['id'].'">'.$grupo['grupo'].'</option>';
-    }
-            ?>
-        </select>
-        </div><!-- select-container -->
-           <!-- Botão ao lado do select -->
-    <div class="button-container">
-    <button type="button" onclick="document.getElementById('modalGrupo').style.display='flex'"><i class="fa fa-plus" aria-hidden="true"></i>
-</button>
-    </div><!-- button-container -->
-</div><!-- form-group -->
-    
-
-    
     
     <div class="form-group">
         <input type="submit" name="acao" value="Cadastrar"/>

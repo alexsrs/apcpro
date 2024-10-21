@@ -25,8 +25,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="<?php echo INCLUDE_PATH_PAINEL ?>css/style.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css">
+    <link href="<?php echo INCLUDE_PATH_PAINEL ?>css/style.css" rel="stylesheet"/>
     <title>Painel APC PRO</title>
 </head>
 <body>  
@@ -64,9 +64,9 @@
             <h2 <?php verificaPermissaoMenuAlunoAdm(0); ?>id="menu-analise"><i class="fa fa-line-chart" aria-hidden="true"></i> Análise física avançada</h2>
             <a <?php selecionadoMenu('formulario-perfis'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>formulario-perfis">Avaliação</a>
             <a <?php selecionadoMenu($anamneseLink); ?> href="<?php echo INCLUDE_PATH_PAINEL . $anamneseLink;?>">Anamnese Inteligente</a>
-            <a <?php selecionadoMenu('medidas-corporais'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>medida-corporal">Medida Corporal</a>
+            <a <?php selecionadoMenu('medida-corporal'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>medida-corporal">Medida Corporal</a>
             <a <?php selecionadoMenu('aptidao-cardiorespiratoria'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>aptidao-cardiorespiratoria">Aptidão Cardiorespiratória</a>
-            <a <?php selecionadoMenu('testes-fisicos'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>teste-fisico">Testes Físico</a>
+            <a <?php selecionadoMenu('teste-fisico'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>teste-fisico">Testes Físico</a>
             <h2 id="menu-biblioteca"><i class="fa fa-book" aria-hidden="true"></i> Biblioteca de exercícios</h2>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>

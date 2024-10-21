@@ -56,11 +56,6 @@
 <h2><i class="fa fa-pencil" aria-hidden="true"></i> Informe as condições de saúde atuais:</h2>
     <form method="post">   
         <?php
-
-
-
-
-
             if (isset($_POST['acao'])) {
                 // Obtém os dados do formulário
                 $data_avaliacao = (new DateTime())->format('Y-m-d H:i:s');
@@ -132,6 +127,33 @@
             }
         ?>
         <!-- Formulário de saúde -->
+        <div class="form-group flex-container">
+    <div class="select-container">
+        <label>Objetivo do treinamento</label>
+        <select name="objetivo">
+            <?php 
+                // Conectar ao banco de dados
+                $sql = MySql::conectar()->prepare("SELECT id, objetivo FROM tb_objetivos_treinamento");
+                $sql->execute();
+                $objetivos = $sql->fetchAll();
+
+                // Exibir uma opção padrão
+                echo '<option value="0">-- Selecione o objetivo --</option>';
+
+                // Preencher o select com os dados do banco de dados
+                foreach ($objetivos as $objetivo) {
+                    echo '<option value="'.$objetivo['id'].'">'.$objetivo['objetivo'].'</option>';
+                }
+            ?>
+        </select>
+    </div><!-- select-container -->
+    
+    <!-- Botão ao lado do select -->
+    <div class="button-container">
+        
+        <button type="button" onclick="document.getElementById('modalObjetivo').style.display='flex'"><i class="fa fa-plus" aria-hidden="true"></i></button>
+    </div><!-- button-container -->
+</div><!-- form-group -->
         <div class="form-group left w50"> 
             <label for="peso">Peso: </label>
             <input type="range" id="peso" class="slider" name="peso" min="40.0" max="299.9" step="0.1" value="50.0" oninput="updatePeso(this.value)">
@@ -221,33 +243,7 @@
         
         <div class="clear"></div><!-- clear -->
 
-    <div class="form-group flex-container">
-    <div class="select-container">
-        <label>Objetivo do treinamento</label>
-        <select name="objetivo">
-            <?php 
-                // Conectar ao banco de dados
-                $sql = MySql::conectar()->prepare("SELECT id, objetivo FROM tb_objetivos_treinamento");
-                $sql->execute();
-                $objetivos = $sql->fetchAll();
-
-                // Exibir uma opção padrão
-                echo '<option value="0">-- Selecione o objetivo --</option>';
-
-                // Preencher o select com os dados do banco de dados
-                foreach ($objetivos as $objetivo) {
-                    echo '<option value="'.$objetivo['id'].'">'.$objetivo['objetivo'].'</option>';
-                }
-            ?>
-        </select>
-    </div><!-- select-container -->
     
-    <!-- Botão ao lado do select -->
-    <div class="button-container">
-        
-        <button type="button" onclick="document.getElementById('modalObjetivo').style.display='flex'"><i class="fa fa-plus" aria-hidden="true"></i></button>
-    </div><!-- button-container -->
-</div><!-- form-group -->
 
     
     <div class="clear"></div><!-- clear -->           

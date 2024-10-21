@@ -1,9 +1,12 @@
 <?php
-class MedidasCorporais {
+class MedidaCorporal {
+
+    private $db;
     private $conexao;
     
     public function __construct() {
         $this->conexao = MySql::conectar();
+        $this->db = MySql::conectar();
     }
 
     public function gravarMedidas($usuario_id, $dadosMedidas, $dataAvaliacao) {
@@ -26,5 +29,39 @@ class MedidasCorporais {
         } else {
             return false;
         }
+    }
+
+    public function listarMedidaCorporal() {
+        try {
+            $sql = $this->db->prepare("
+                SELECT a.*, u.nome 
+                FROM tb_medidas_corporais a 
+                JOIN `tb_admin.usuarios` u ON a.usuario_id = u.id 
+                ORDER BY a.data_avaliacao DESC
+            ");
+            $sql->execute();
+            
+            // Verifique se há resultados
+            $resultados = $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $resultados ?: []; // Retorna um array vazio se não houver resultados
+        } catch (PDOException $e) {
+            // Log de erro detalhado
+            error_log("Erro ao listar Medidas corporais: " . $e->getMessage());
+            return false; // Retorna false em caso de erro
+        }
+    }
+
+    public function buscarMedidaCorporalPorId($id) {
+        $sql = $this->db->prepare("SELECT * FROM tb_medidas_corporais WHERE id = :id");
+        $sql->bindParam(':id', $id);
+        $sql->execute();
+        return $sql->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function buscarMedidaCorporalPorUsuarioId($usuario_id) {
+        $sql = $this->db->prepare("SELECT * FROM tb_medidas_corporais WHERE usuario_id = :usuario_id ORDER BY data_avaliacao DESC");
+        $sql->bindParam(':usuario_id', $usuario_id);
+        $sql->execute();
+        return $sql->fetchAll(PDO::FETCH_ASSOC); // Retorna todas as medidas corporais do usuário
     }
 }

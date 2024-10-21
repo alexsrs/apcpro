@@ -358,8 +358,8 @@ rápida, prática e com maior possibilidade de prescrição de um programa de tr
                 <!-- Instruções da escala de dor -->
                 <label>Para cada região que sentir dor, por favor, usando a escala abaixo, atribua uma nota de dor e, se houver dificuldades em movimentos, descreva ao lado:</label>
                 <div class="img-escala">
-                    <img src="<?php echo INCLUDE_PATH ?>images/escala-dor.jpg"/>
-                </div>
+                <img src="<?php echo INCLUDE_PATH ?>images/escala-dor.jpg" style="max-width: 300px !important;" />
+                </div> 
                 <!-- Container para as regiões dinâmicas -->
                 <div id="regioes-container">
             <!-- Região 1 -->
