@@ -640,29 +640,6 @@ form .form-group-login:nth-of-type(2){
     flex: 1; /* O input preencherá o espaço restante */
 }
 
-.table-corconi {
-    min-width: 50%;
-    font-weight: 300;
-    color: black;
-    display: block;
-}
-
-.table-corconi form input[type=text]{
-    margin: 0%;
-    padding: 0%;
-}
-
-
-.table-corconi tr {
-    padding: 0px !important;
-    border: none;
-    margin: 0px !important;
-}
-
-.table-corconi td{
-    height: 20px !important; /* Defina a altura que desejar */
-}
-
 .video-tutorial img{
     margin-top: 50px;
     width: 100% !important;
@@ -814,7 +791,6 @@ form .form-group-login:nth-of-type(2){
     background: #ff4d4d;
     border: none;
     color: white;
-    
 }
 
 .box-content form button.remove-regiao {
@@ -926,9 +902,7 @@ table.dataTable {
     color: white;
 }
 
-
 a.afa-link {
- 
     background-color: #007bff;
     text-decoration: none;
     padding: 8px 28px;
@@ -939,6 +913,45 @@ a.afa-link {
     color: white;
 }
 
+.conconi-table {
+    width: 100%;  
+}
+
+.conconi-table form label {
+    display: inline-block; 
+}
+
+.conconi-table table {
+    border: 1px solid #007bff;;
+    min-width: 50%;
+}
+.conconi-table table tr{
+    font-size: 14px;
+}
+
+.conconi-table table td{
+    padding: 3px 8px !important;
+}
+
+.conconi-table input[type=text]{
+        margin: 0px !important;
+        font-size: 14px !important; 
+        font-weight: normal !important;
+        height: 30px !important;
+        text-align: center !important;
+        max-width: 70px !important;
+    }
+p.conconi {
+    text-align: justify;
+    margin: 10px;
+}
+
+.conconi-video {
+    text-align: center;
+}
+.conconi-video iframe{
+    margin-top: 0px;
+}
 
 @media screen and (max-width: 1200px){
     .box-metrica-single{
