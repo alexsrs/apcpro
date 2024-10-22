@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 15/10/2024 às 11:14
+-- Tempo de geração: 22/10/2024 às 10:09
 -- Versão do servidor: 8.3.0
 -- Versão do PHP: 8.3.6
 
@@ -34,14 +34,14 @@ CREATE TABLE IF NOT EXISTS `tb_admin.online` (
   `ultima_acao` datetime NOT NULL,
   `token` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=121 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=133 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `tb_admin.online`
 --
 
 INSERT INTO `tb_admin.online` (`id`, `ip`, `ultima_acao`, `token`) VALUES
-(120, '::1', '2024-10-14 14:17:30', '670d2d415702e');
+(132, '::1', '2024-10-22 07:09:00', '6713d66f315ad');
 
 -- --------------------------------------------------------
 
@@ -82,9 +82,9 @@ INSERT INTO `tb_admin.usuarios` (`id`, `user`, `password`, `img`, `nome`, `cargo
 (16, 'prof2', 'prof2', '66f42d0c0dea8.jpg', 'professor 2', 1, 'cootidr@seap.rj.gov.br', '(21) 98989-0615', '1973-01-06', '2024-12-26', 'F', '086899137-69', 1, 0),
 (17, 'jkerbin ', '1234', '66f4a3ad8411e.jpeg', 'Jebediah Kerbin', 0, 'jkerbin@terra.com.br', '(21) 96787-0567', '1992-11-06', '2024-10-12', 'M', '121232343-79', 4, 0),
 (18, 'zuka', '1234', '66f5a7e46eace.png', 'Zuka da Silva sauro', 1, 'zuka@dell.com', '(21) 95499-1323', '1967-09-01', '2025-01-12', 'F', '111.222.333-44', 1, 0),
-(19, 'teste0', 'teste0', '66ff3eb0994ea.jpeg', 'Teste 0', 1, 'cootidr@seap.rj.gov.br', '(21) 32346-260', '1937-10-03', '2024-11-06', ' ', '111.111.111-11', 1, 0),
+(19, 'teste0', 'teste0', '66ff3eb0994ea.jpeg', 'Teste 0', 1, 'cootidr@seap.rj.gov.br', '(21) 32346-260', '1937-10-03', '2024-11-06', 'M', '111.111.111-11', 1, 0),
 (20, 'fernanda', 'fernanda', '', 'Fernanda', 1, 'alexsrs@gmail.com', '(21) 98487-0182', '1985-07-05', '2024-11-08', 'F', '111.111.111-11', 1, 0),
-(21, 'sofia', 'sofia', '', 'sofia', 1, 'sofia@teste.com', '(11) 11111-1111', '2007-02-07', '2024-11-04', 'F', '111.111.111-11', 1, 0),
+(21, 'sofia', 'sofia', '6711118ee2354.jpeg', 'sofia', 1, 'sofia@teste.com', '(11) 11111-1111', '2007-02-07', '2024-11-04', 'F', '111.111.111-11', 1, 0),
 (22, 'Joselia', 'joselia', '', 'Joselia', 1, 'joselia@test.com', '(21) 22222-2222', '1963-09-05', '2024-11-01', 'F', '122.222.222-22', 1, 2),
 (23, 'Josias', 'josias', '', 'Josias da silva', 1, 'alexsrs@gmail.com', '(21) 98487-0182', '1986-11-08', '2024-11-01', 'M', '000.000.000-00', 1, 1),
 (24, 'natalia', 'natalia', '', 'Natalia xupa q e de uva', 1, 'alexsrs@gmail.com', '(11) 11111-1111', '1991-05-24', '2024-10-31', 'F', '122.222.222-22', 1, 31),
@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `tb_admin.visitas` (
   `ip` varchar(255) NOT NULL,
   `dia` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `tb_admin.visitas`
@@ -132,7 +132,8 @@ INSERT INTO `tb_admin.visitas` (`id`, `ip`, `dia`) VALUES
 (21, '::1', '2024-10-05'),
 (22, '::1', '2024-10-05'),
 (23, '::1', '2024-10-05'),
-(24, '::1', '2024-10-13');
+(24, '::1', '2024-10-13'),
+(25, '::1', '2024-10-21');
 
 -- --------------------------------------------------------
 
@@ -160,6 +161,68 @@ INSERT INTO `tb_grupos_usuarios` (`id`, `grupo`, `professor_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `tb_medidas_corporais`
+--
+
+DROP TABLE IF EXISTS `tb_medidas_corporais`;
+CREATE TABLE IF NOT EXISTS `tb_medidas_corporais` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `usuario_id` int NOT NULL,
+  `punho_direito` float DEFAULT NULL,
+  `ante_braco_direito` float DEFAULT NULL,
+  `braco_direito_relaxado` float DEFAULT NULL,
+  `braco_direito_contraido` float DEFAULT NULL,
+  `punho_esquerdo` float DEFAULT NULL,
+  `ante_braco_esquerdo` float DEFAULT NULL,
+  `braco_esquerdo_relaxado` float DEFAULT NULL,
+  `braco_esquerdo_contraido` float DEFAULT NULL,
+  `pescoco` float DEFAULT NULL,
+  `torax` float DEFAULT NULL,
+  `cintura` float DEFAULT NULL,
+  `abdomen` float DEFAULT NULL,
+  `quadril` float DEFAULT NULL,
+  `coxa_medial_direita` float DEFAULT NULL,
+  `coxa_medial_esquerda` float DEFAULT NULL,
+  `panturrilha_direita` float DEFAULT NULL,
+  `panturrilha_esquerda` float DEFAULT NULL,
+  `tricipital` float DEFAULT NULL,
+  `subescapular` float DEFAULT NULL,
+  `suprailiaca` float DEFAULT NULL,
+  `abdominal` float DEFAULT NULL,
+  `supraespinhal` float DEFAULT NULL,
+  `coxa_guedes` float DEFAULT NULL,
+  `coxa_pollock` float DEFAULT NULL,
+  `peitoral` float DEFAULT NULL,
+  `axilar_media` float DEFAULT NULL,
+  `biceps` float DEFAULT NULL,
+  `somatorio` float DEFAULT NULL,
+  `somatorio_pollock_3D` float DEFAULT NULL,
+  `somatorio_pollock_7D` float DEFAULT NULL,
+  `somatorio_guedes_3D` float DEFAULT NULL,
+  `biestiloide` float DEFAULT NULL,
+  `biepicondiliano` float DEFAULT NULL,
+  `bicondiliano` float DEFAULT NULL,
+  `bimaleolar` float DEFAULT NULL,
+  `data_avaliacao` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `usuario_id` (`usuario_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
+
+--
+-- Despejando dados para a tabela `tb_medidas_corporais`
+--
+
+INSERT INTO `tb_medidas_corporais` (`id`, `usuario_id`, `punho_direito`, `ante_braco_direito`, `braco_direito_relaxado`, `braco_direito_contraido`, `punho_esquerdo`, `ante_braco_esquerdo`, `braco_esquerdo_relaxado`, `braco_esquerdo_contraido`, `pescoco`, `torax`, `cintura`, `abdomen`, `quadril`, `coxa_medial_direita`, `coxa_medial_esquerda`, `panturrilha_direita`, `panturrilha_esquerda`, `tricipital`, `subescapular`, `suprailiaca`, `abdominal`, `supraespinhal`, `coxa_guedes`, `coxa_pollock`, `peitoral`, `axilar_media`, `biceps`, `somatorio`, `somatorio_pollock_3D`, `somatorio_pollock_7D`, `somatorio_guedes_3D`, `biestiloide`, `biepicondiliano`, `bicondiliano`, `bimaleolar`, `data_avaliacao`) VALUES
+(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 22, 6, 14, 6, 2, 2, 2, 2, '2024-10-17 00:00:00'),
+(2, 4, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 88, 24, 56, 24, 8, 8, 5, 8, '2024-10-17 00:00:00'),
+(3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2024-10-17 00:00:00'),
+(4, 7, 13, 23, 34, 36, 13, 22, 33, 35, 30, 67, 56, 59, 34, 45, 46, 29, 29, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 253, 69, 161, 69, 23, 22, 24, 25, '2024-10-18 00:00:00'),
+(5, 4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2024-10-21 05:52:10'),
+(6, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2024-10-21 07:52:06');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `tb_objetivos_treinamento`
 --
 
@@ -168,7 +231,7 @@ CREATE TABLE IF NOT EXISTS `tb_objetivos_treinamento` (
   `id` int NOT NULL AUTO_INCREMENT,
   `objetivo` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `tb_objetivos_treinamento`
@@ -184,7 +247,8 @@ INSERT INTO `tb_objetivos_treinamento` (`id`, `objetivo`) VALUES
 (7, 'Melhora do aspecto físico e social'),
 (8, 'Melhorar a sua qualidade de vida'),
 (9, 'Alto rendimento físico-esportivo'),
-(10, 'superliga voley');
+(10, 'superliga voley'),
+(11, 'teste');
 
 -- --------------------------------------------------------
 
@@ -212,7 +276,7 @@ CREATE TABLE IF NOT EXISTS `tb_perfis_usuarios` (
   PRIMARY KEY (`id`),
   KEY `usuario_id` (`usuario_id`),
   KEY `objetivo_id` (`objetivo_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=84 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `tb_perfis_usuarios`
@@ -281,7 +345,27 @@ INSERT INTO `tb_perfis_usuarios` (`id`, `usuario_id`, `data_avaliacao`, `peso`, 
 (60, 1, '2024-10-07 12:32:54', 50, 1.5, 0, 0, 0, 0, 1, 0, 0, 0, 0, 5),
 (61, 1, '2024-10-07 13:29:45', 50, 1.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (62, 1, '2024-10-13 08:15:01', 50, 1.5, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0),
-(63, 1, '2024-10-13 09:29:15', 84.3, 1.84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7);
+(63, 1, '2024-10-13 09:29:15', 84.3, 1.84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7),
+(64, 4, '2024-10-15 19:34:21', 148.4, 1.95, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1),
+(65, 1, '2024-10-15 19:35:10', 178.6, 2.07, 0, 0, 1, 0, 0, 0, 0, 0, 0, 10),
+(66, 4, '2024-10-15 19:56:54', 153.7, 2.51, 1, 1, 1, 1, 1, 0, 0, 0, 0, 10),
+(67, 1, '2024-10-15 19:57:31', 40, 1.2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
+(68, 1, '2024-10-15 20:25:07', 50, 1.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(69, 4, '2024-10-15 20:58:43', 152.5, 2.06, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4),
+(70, 1, '2024-10-15 23:09:56', 50, 1.5, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0),
+(71, 1, '2024-10-15 23:14:53', 50, 1.5, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0),
+(72, 1, '2024-10-15 23:15:31', 50, 1.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(73, 1, '2024-10-15 23:16:39', 50, 1.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(74, 1, '2024-10-15 23:17:26', 50, 1.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(75, 1, '2024-10-15 23:18:31', 50, 1.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(76, 1, '2024-10-15 23:18:53', 50, 1.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(77, 1, '2024-10-15 23:29:04', 50, 1.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(78, 18, '2024-10-15 23:48:36', 93.6, 1.8, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(79, 1, '2024-10-17 10:35:55', 166, 1.76, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8),
+(80, 17, '2024-10-17 10:36:45', 156.6, 1.85, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5),
+(81, 7, '2024-10-18 12:11:59', 299.9, 2.51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6),
+(82, 7, '2024-10-19 12:52:32', 137.3, 1.81, 1, 0, 0, 0, 0, 0, 0, 0, 0, 9),
+(83, 20, '2024-10-21 07:51:41', 89.5, 1.68, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6);
 
 -- --------------------------------------------------------
 
@@ -353,7 +437,7 @@ CREATE TABLE IF NOT EXISTS `tb_usuarios_anamnese` (
   `info_pertinente` text,
   `aceito` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `tb_usuarios_anamnese`
@@ -377,7 +461,17 @@ INSERT INTO `tb_usuarios_anamnese` (`id`, `usuario_id`, `data_avaliacao`, `domin
 (15, 1, '2024-10-14 11:17:05', 1, 1, 1, 0, 0, 0, 0, 60, '[\"musculacao\",\"outros\"]', 'Tênis', 1, 'Capoeira', 1, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1),
 (16, 1, '2024-10-14 11:26:31', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 1, '', 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1),
 (17, 1, '2024-10-14 11:29:44', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 1, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1),
-(18, 1, '2024-10-14 11:40:38', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 1, 'beber', 1, 'capoeira', 2, 12, 'L', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1);
+(18, 1, '2024-10-14 11:40:38', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 1, 'beber', 1, 'capoeira', 2, 12, 'L', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1),
+(19, 1, '2024-10-15 19:58:22', 1, 1, 1, 1, 1, 1, 1, NULL, '[\"musculacao\",\"peso_corpo\",\"esteira\",\"bike\",\"natacao\",\"lutas\",\"combolas\"]', NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1),
+(20, 4, '2024-10-15 19:58:38', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1),
+(21, 1, '2024-10-15 23:23:28', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1),
+(22, 1, '2024-10-15 23:24:07', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1),
+(23, 1, '2024-10-15 23:26:49', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1),
+(24, 1, '2024-10-15 23:28:08', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1),
+(25, 1, '2024-10-15 23:30:48', 1, 0, 1, 0, 1, 1, 1, NULL, '[\"natacao\",\"lutas\",\"outros\"]', 'Tênis', 1, 'Correr', 1, 'capoeira', 2, 1, 'L', 0, NULL, NULL, 0, NULL, 1, '[{\"regiao\":\"Ombro\",\"nota\":5,\"dificuldade\":\"Dores musculares\"}]', 0, 0, 0, NULL, 0, NULL, 1, 'Sou mocorongo', 1),
+(26, 17, '2024-10-17 10:37:31', 0, 1, 0, 1, 0, 1, 0, NULL, '[\"esteira\"]', NULL, 1, 'Correr', 1, 'Futebol', 1, 1, 'L', 0, NULL, NULL, 1, 'Lobotomia', 0, '[]', 1, 0, 0, NULL, 0, NULL, 0, NULL, 1),
+(27, 7, '2024-10-18 12:13:16', 0, 1, 0, 1, 0, 1, 0, 60, '[\"musculacao\",\"esteira\",\"bike\"]', NULL, 1, 'Futebol', 1, 'Bike', 2, 1, 'L', 0, NULL, NULL, 0, NULL, 1, '[{\"regiao\":\"Ombro\",\"nota\":4,\"dificuldade\":\"Dores musculares\"}]', 0, 0, 0, NULL, 1, NULL, 1, 'nada a declarar', 1),
+(28, 20, '2024-10-21 07:51:57', 0, 1, 0, 1, 0, 1, 0, NULL, '[\"musculacao\",\"natacao\"]', NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

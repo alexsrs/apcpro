@@ -640,6 +640,29 @@ form .form-group-login:nth-of-type(2){
     flex: 1; /* O input preencherá o espaço restante */
 }
 
+.table-corconi {
+    min-width: 50%;
+    font-weight: 300;
+    color: black;
+    display: block;
+}
+
+.table-corconi form input[type=text]{
+    margin: 0%;
+    padding: 0%;
+}
+
+
+.table-corconi tr {
+    padding: 0px !important;
+    border: none;
+    margin: 0px !important;
+}
+
+.table-corconi td{
+    height: 20px !important; /* Defina a altura que desejar */
+}
+
 .video-tutorial img{
     margin-top: 50px;
     width: 100% !important;
@@ -957,4 +980,3 @@ a.afa-link {
     }
 }
     
-
