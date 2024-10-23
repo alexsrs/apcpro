@@ -33,15 +33,26 @@ class Painel {
     public static function loadPage(){
         if (isset($_GET['url'])) {
             $url = explode('/', $_GET['url']);
+            
+            // Adiciona uma condição para não redirecionar quando a URL contiver 'buscar-peso'
+            if ($url[0] === 'buscar-peso') {
+                include('pages/buscar-peso.php');  // Certifique-se de que o caminho está correto
+                return;  // Evita redirecionar depois de incluir o arquivo
+            }
+
             if (file_exists('pages/' . $url[0] . '.php')) {
                 include('pages/' . $url[0] . '.php');
             } else {
                 header('Location: ' . INCLUDE_PATH_PAINEL);
+                exit();
             }
         } else {
             include('pages/home.php');
         }
     }
+
+
+
 
     public static function listarUsuariosOnline(){
         self::limparUsuariosOnline();

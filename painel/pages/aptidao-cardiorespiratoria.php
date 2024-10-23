@@ -2,7 +2,6 @@
     verificaPermissaoPagina(0);
     include_once('pages/funcoes.php');
     
-
     // Obtém o usuario_id da sessão ou pela URL (para admins ou edições externas)
     if (isset($_GET['id'])) {
         $usuario_id = (int)$_GET['id']; // ID passado pela URL
@@ -25,6 +24,23 @@
     if (!isset($_SESSION['etapa'])) {
         $_SESSION['etapa'] = 4;
     }
+
+	$sql = MySql::conectar()->prepare("SELECT peso FROM `tb_perfis_usuarios` WHERE usuario_id = ? ORDER BY data_avaliacao DESC LIMIT 1");
+    $sql->execute([$usuario_id]);
+
+    if ($sql->rowCount() > 0) {
+        $peso = $sql->fetch()['peso'];
+        // Retorna o peso como JSON
+		echo "<script>console.log(" . json_encode($peso) . ");</script>";
+        //echo $peso;
+    } else {
+        // Retorna uma resposta de erro caso o usuário não seja encontrado
+        echo json_encode(['erro' => 'Usuário não encontrado']);
+    }
+
+	// Exibir o usuario_id para uso no JavaScript
+    echo "<script>var usuario_id = " . json_encode($usuario_id) . ";</script>";
+	echo "<script>var peso = " . $peso . ";</script>";
 ?>
 
 <div class="step-indicator">
@@ -85,7 +101,7 @@
 						<tr>
 							<td rowspan=3 height="auto" align="center" valign=middle><b>AQUECIMENTO</b></td>
 							<td align="center" valign=middle><b>1</b></td>
-							<td align="center" valign=middle><b>5 KM/H</b></td>
+							<td align="center" valign=middle><b id="">5 KM/H</b></td>
 							<td align="center" valign=middle><input type="text" name="fc-t1"/></td>
 							<td align="center" valign=middle><input type="text" name="pse-t1"/></td>
 						</tr>
@@ -185,7 +201,7 @@
 			</div><!--form-group-->
 		</div><!--form-group-->
 
-		<div class="form-group left w33" style="padding: 0 0 0 100px; max-width: 45%;">	
+		<div class="form-group left w33" style="padding: 0 0 0 80px; max-width: 45%;">	
 			<div class="conconi-table" >
 			<table>
 				<thead>
@@ -196,7 +212,7 @@
 				<tbody>
 					<tr>
                 		<td align="center" valign=middle><b>FC de repouso:</b></td>
-                		<td align="center" valign=middle><input type="text" name="fc-repouso" id="fc-repouso" oninput="calcula()"/></td>
+                		<td align="center" valign=middle><input type="text" name="fc-repouso" id="fc-repouso" /></td>
             		</tr>
 					<tr>
 						<td align="center" valign=middle><b>FC máxima:</b></td>
@@ -220,16 +236,17 @@
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>VO² máxima (ml. kg. min):</b></td>
-						<td align="center" valign=middle><input type="text" name="vo2-max-ml" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="vo2-max-ml" id="vo2-max-ml" readonly/></td>
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>VO² máxima (L. min):</b></td>
-						<td align="center" valign=middle><input type="text" name="vo2-max-l" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="vo2-max-l" id="vo2-max-l" readonly/></td>
 					</tr>
 
 					<tr>
 						<td align="center" valign=middle><b>FC L1:</b></td>
-						<td align="center" valign=middle><input type="text" name="fc-l1" readonly/></td>
+						
+						<td align="center" valign=middle><input type="text" name="limiar1" id="limiar1" placeholder="Limiar 1" readonly></td>
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>FC L1 (% FC máxima)</b></td>
@@ -237,21 +254,18 @@
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>FC L2:</b></td>
-						<td align="center" valign=middle><input type="text" name="fc-l2" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="limiar2" id="limiar2" placeholder="Limiar 2" readonly></td>
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>FC L2 (% FC máxima)</b></td>
 						<td align="center" valign=middle><input type="text" name="fc-l2-percent" readonly/></td>
 					</tr>
-
-
-					
 				</tbody>
 			</table>
             </div><!-- form-group -->
 		</div><!--form-group-->
 
-		<div class="form-group center w33" style="padding: 0 100px 0 100px; max-width: 45%;">	
+		<div class="form-group center w33" style="padding: 0 80px 0 80px; max-width: 45%;">	
 			<div class="conconi-table">
 			<table>
 				<thead>
@@ -372,27 +386,21 @@
 			</table>
             </div><!-- form-group -->
 		</div><!--form-group-->
-
-			
-	
-
-
-
     </fieldset>
 </div><!-- form-group-->
 </form>
-
-
 </div><!--box-content-->
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+
         // Função para calcular a FC máxima
         function calcularFCMaxima() {
             let fcMax = 0;
             // Loop por todos os campos de FC
             document.querySelectorAll("input[name^='fc-t']").forEach(function(input) {
                 let valor = parseFloat(input.value);
+
                 if (!isNaN(valor) && valor > fcMax) {
                     fcMax = valor;
                 }
@@ -433,58 +441,173 @@
             document.querySelector("input[name='velocidade-max']").value = velocidadeMax || '';
         }
 
+        // Função para calcular os limiares 1 e 2
+        function calcularLimiar() {
+            let cargas = [];
+            let frequencias = [];
+
+            document.querySelectorAll("input[name^='fc-t']").forEach(function(input, index) {
+                let carga = 5 + index; // Exemplo: carga em função do índice
+                let valorFC = parseFloat(input.value);
+                if (!isNaN(valorFC)) {
+                    cargas.push(carga);
+                    frequencias.push(valorFC);
+                }
+            });
+
+			document.querySelectorAll("td[id='']").forEach(function(td, index) {
+			let velocidade = td.innerText.trim(); // Captura o texto da célula
+			if (velocidade.endsWith("KM/H")) {
+				let valorVelocidade = parseFloat(velocidade); // Converte para número
+				if (!isNaN(valorVelocidade)) {
+					cargas.push(valorVelocidade); // Adiciona ao array de cargas
+				}
+			}
+    		});
+
+            // Lógica simplificada para encontrar os limiares
+            let limiar1 = encontrarLimiar1(cargas, frequencias);
+            let limiar2 = encontrarLimiar2(cargas, frequencias);
+
+            // Atualiza os campos de limiar
+            document.getElementById('limiar1').value = limiar1;
+            document.getElementById('limiar2').value = limiar2;
+        }
+
+		function calcularRegressaoLinear(cargas, frequencias) {
+    		const n = cargas.length;
+
+    		const somaX = cargas.reduce((a, b) => a + b, 0);
+    		const somaY = frequencias.reduce((a, b) => a + b, 0);
+    		const somaXY = cargas.reduce((sum, x, i) => sum + x * frequencias[i], 0);
+    		const somaX2 = cargas.reduce((sum, x) => sum + x * x, 0);
+    
+			// Cálculo da inclinação (a)
+			const a = (n * somaXY - somaX * somaY) / (n * somaX2 - somaX * somaX);
+			
+			// Cálculo da interseção (b)
+			const b = (somaY - a * somaX) / n;
+			
+			return { a, b };
+		}
+
 		
+
+        function encontrarLimiar1(cargas, frequencias) {
+    const { a } = calcularRegressaoLinear(cargas, frequencias);
+    
+    let limiar1 = 0;
+    
+    // Verifica a mudança na inclinação
+    for (let i = 1; i < frequencias.length; i++) {
+        const inclinaçãoAtual = (frequencias[i] - frequencias[i - 1]) / (cargas[i] - cargas[i - 1]);
+        if (inclinaçãoAtual > a * 1.2) { // Exemplo de um critério
+            limiar1 = frequencias[i];
+            break;
+        }
+    }
+    
+    return limiar1;
+}
+
+function encontrarLimiar2(cargas, frequencias) {
+    const { a } = calcularRegressaoLinear(cargas, frequencias);
+    
+    let limiar2 = 0;
+    
+    // Verifica a mudança na inclinação
+    for (let i = 1; i < frequencias.length; i++) {
+        const inclinaçãoAtual = (frequencias[i] - frequencias[i - 1]) / (cargas[i] - cargas[i - 1]);
+        if (inclinaçãoAtual > a * 0.6) { // Exemplo de um critério mais alto
+            limiar2 = frequencias[i];
+            break;
+        }
+    }
+    
+    return limiar2;
+}
 
         // Função para recalcular todos os resultados
         function recalcularResultados() {
             calcularFCMaxima();
             calcularPSEMaxima();
             calcularVelocidadeMaxima();
+            calcularLimiar(); // Chama a função para calcular os limiares
+            buscaPesoUsuario(usuario_id); // Use usuario_id agora
         }
 
         // Atribui a função de recalcular resultados sempre que o usuário preencher um campo de FC ou PSE
         document.querySelectorAll("input[name^='fc-t'], input[name^='pse-t']").forEach(function(input) {
             input.addEventListener("input", recalcularResultados);
         });
+
+        // Função para calcular o índice de FC
+        function calculaIndiceFC() {
+            var fcRepouso = parseFloat(document.getElementById('fc-repouso').value);
+            var fcMax = parseFloat(document.getElementById('fc-max').value);
+
+            if (!isNaN(fcRepouso) && !isNaN(fcMax) && fcRepouso > 0) {
+                var indiceFC = fcMax / fcRepouso;
+                document.getElementById('indice-fc').value = indiceFC.toFixed(2);
+            } else {
+                document.getElementById('indice-fc').value = '';
+            }
+        }
+
+        // Função para calcular os METs
+        function calculaMets() {
+            var indiceFC = parseFloat(document.getElementById('indice-fc').value);
+            if (!isNaN(indiceFC)) {
+                var mets = (6 * indiceFC) - 5;
+                document.getElementById('mets').value = mets.toFixed(2);
+            } else {
+                document.getElementById('mets').value = '';
+            }
+        }
+
+        // Função para calcular o VO2 máximo (ml/kg/min)
+        function calculaVo2MaxMl() {
+            var mets = parseFloat(document.getElementById('mets').value);
+            if (!isNaN(mets)) {
+                var vo2MaxMl = mets * 3.5;
+                document.getElementById('vo2-max-ml').value = vo2MaxMl.toFixed(2);
+            } else {
+                document.getElementById('vo2-max-ml').value = '';
+            }
+        }
+
+        function calculaVo2MaxL(peso) {
+            var vo2MaxMl = parseFloat(document.getElementById('vo2-max-ml').value);
+            
+            if (!isNaN(vo2MaxMl) && !isNaN(peso) && peso > 0) {
+                var vo2MaxL = (vo2MaxMl * peso) / 1000;
+                document.getElementById('vo2-max-l').value = vo2MaxL.toFixed(2);
+            } else {
+                document.getElementById('vo2-max-l').value = '';
+            }
+        }
+
+        // Função geral para calcular
+        function calcula() {
+            calculaIndiceFC();
+            calculaMets();
+            calculaVo2MaxMl();
+            buscaPesoUsuario(usuario_id); // Use usuario_id agora
+        }
+
+        // Monitora as mudanças nos campos de entrada
+        var camposParaMonitorar = ['fc-repouso', 'fc-max'];
+        camposParaMonitorar.forEach(function(id) {
+            document.getElementById(id).addEventListener('input', calcula);
+        });
+
+        function buscaPesoUsuario(usuario_id) {
+            if (peso) { // Certifique-se de que a variável peso é acessível aqui
+                calculaVo2MaxL(peso); // Chame sua função com o peso
+            } else {
+                console.error('Peso não encontrado ou inválido');
+                document.getElementById('vo2-max-l').value = '';
+            }
+        }
     });
-
-	function calculaIndiceFC() {
-			// Obter os valores dos campos de FC de repouso e velocidade máxima
-			var fcRepouso = parseFloat(document.getElementById('fc-repouso').value);
-			var fcMax = parseFloat(document.getElementById('fc-max').value);
-
-			// Verifica se os valores são números válidos
-			if (!isNaN(fcRepouso) && !isNaN(fcMax) && fcRepouso > 0) {
-				// Calcula o índice de FC
-				var indiceFC = fcMax / fcRepouso;
-				
-				// Atualiza o campo de índice de FC
-				document.getElementById('indice-fc').value = indiceFC.toFixed(2);
-			} else {
-				// Limpa o campo se os valores não forem válidos
-				document.getElementById('indice-fc').value = '';
-			}
-		}
-
-		function calculaMets() {
-			// Obter os valores dos campos de FC de repouso e velocidade máxima
-			var indiceFc = parseFloat(document.getElementById('indice-fc').value);
-			
-			// Verifica se os valores são números válidos
-			if (!isNaN(indiceFC) && fcRepouso > 0) {
-				// Calcula o índice de FC
-				var mets = (6 * indiceFc)-5;
-				
-				// Atualiza o campo de índice de FC
-				document.getElementById('mets').value = mets.toFixed(2);
-			} else {
-				// Limpa o campo se os valores não forem válidos
-				document.getElementById('mets').value = '';
-			}
-		}
-
-		function calcula() {
-			calculaIndiceFC();
-			calculaMets();
-		}
 </script>
