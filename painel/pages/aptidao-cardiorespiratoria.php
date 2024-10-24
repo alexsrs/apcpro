@@ -41,6 +41,60 @@
 	// Exibir o usuario_id para uso no JavaScript
     echo "<script>var usuario_id = " . json_encode($usuario_id) . ";</script>";
 	echo "<script>var peso = " . $peso . ";</script>";
+
+	function verificarChavesNecessarias($chaves, $array) {
+		foreach ($chaves as $chave) {
+			if (!isset($array[$chave])) {
+				echo json_encode(['erro' => "$chave não fornecido"]);
+				exit;
+			}
+		}
+	}
+	
+	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		// Lista de chaves necessárias
+		
+	
+		// Suponha que $pdo seja sua conexão PDO
+		$aptidao = new AptidaoCardioRespiratoria($sql);
+		
+		// Adiciona a data da avaliação (pode ser a data atual ou uma data específica)
+		$_POST['data_avaliacao'] = date('Y-m-d H:i:s'); // Ou outra data conforme necessário
+		
+		// Chama o método para salvar
+		if ($aptidao->salvar($_POST)) {
+			echo "Dados salvos com sucesso!";
+			Painel::alert('sucesso', 'Dados gravados com sucesso!');
+        	$_SESSION['etapa'] = 5;
+
+                        // Defina o tempo de contagem regressiva
+                        $tempoContagem = 5; // Tempo em segundos
+
+                        // Exibir a mensagem de contagem
+                        echo "<div id='contador' style='text-align:center; color:#007bff; padding-top:20px;'>Redirecionando em <span id='tempo'>$tempoContagem</span> segundos...</div>";
+
+                        echo "<script>
+                            // Defina o tempo de contagem
+                            var tempo = $tempoContagem;
+                            
+                            // Atualiza a contagem a cada segundo
+                            var intervalo = setInterval(function() {
+                                tempo--;
+                                document.getElementById('tempo').innerText = tempo;
+
+                                // Quando o tempo acabar, redirecione
+                                if (tempo <= 0) {
+                                    clearInterval(intervalo);
+                                    window.location.href='" . INCLUDE_PATH_PAINEL . 'teste-fisico' . "?id=" . $usuario_id . "';
+                                }
+                            }, 1000);
+                        </script>";
+                        exit();
+		} else {
+			Painel::alert('erro', 'Erro ao gravar dados.');
+        	echo "";
+		}
+	}
 ?>
 
 <div class="step-indicator">
@@ -74,7 +128,6 @@
         <div class="form-group w50 left">
             <div class="form-group">
                 <p class="conconi">O Teste de Conconi é uma ferramenta utilizada por atletas e profissionais de educação física para avaliar a capacidade aeróbica de um indivíduo. Esse teste foi desenvolvido pelo fisiologista italiano Francesco Conconi e consiste em uma avaliação progressiva da frequência cardíaca em relação à intensidade do exercício.</p>
-                
             </div><!-- form-group -->
             <div class="form-group ">
                 <p class="conconi">Para realizar o Teste de Conconi, o atleta é submetido a um protocolo de exercício em esteira ou bicicleta ergométrica, no qual a intensidade do esforço é aumentada a cada estágio. Durante o teste, a frequência cardíaca do atleta é monitorada continuamente, geralmente por meio de um monitor cardíaco, para que se possa avaliar a relação entre a intensidade do exercício e a resposta do coração.</p>
@@ -86,6 +139,7 @@
 		<div class="clear"></div><!-- clear -->
 		
 		<div class="form-group left w33">
+		<input type="hidden" name="usuario_id" value="<?php echo $usuario_id; ?>">
 			<div class="conconi-table" >
 				<table>
 				<thead>
@@ -250,7 +304,7 @@
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>FC L1 (% FC máxima)</b></td>
-						<td align="center" valign=middle><input type="text" name="fc-l1-percent" id="fc-l1-percent" style="background-color: #EBE7E1;" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="fc_l1_percent" id="fc-l1-percent" style="background-color: #EBE7E1;" readonly/></td>
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>FC L2:</b></td>
@@ -258,7 +312,7 @@
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>FC L2 (% FC máxima)</b></td>
-						<td align="center" valign=middle><input type="text" name="fc-l2-percent" id="fc-l2-percent" style="background-color: #EBE7E1;" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="fc_l2_percent" id="fc_l2_percent" style="background-color: #EBE7E1;" readonly/></td>
 					</tr>
 				</tbody>
 			</table>
@@ -386,6 +440,11 @@
 			</table>
             </div><!-- form-group -->
 		</div><!--form-group-->
+		<div class="clear"></div><!-- clear -->           
+		<div class="form-group">
+			<input type="submit" name="acao" value="Enviar"/>
+		</div><!-- form-group -->
+    </form>
     </fieldset>
 </div><!-- form-group-->
 </form>
@@ -429,10 +488,10 @@
                 let percentualL2 = (limiar2 / fcMax) * 100;
 
                 document.getElementById('fc-l1-percent').value = percentualL1.toFixed(2);
-                document.getElementById('fc-l2-percent').value = percentualL2.toFixed(2);
+                document.getElementById('fc_l2_percent').value = percentualL2.toFixed(2);
             } else {
                 document.getElementById('fc-l1-percent').value = '';
-                document.getElementById('fc-l2-percent').value = '';
+                document.getElementById('fc_l2_percent').value = '';
             }
         }
 
