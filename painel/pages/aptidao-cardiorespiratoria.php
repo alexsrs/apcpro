@@ -216,49 +216,49 @@
             		</tr>
 					<tr>
 						<td align="center" valign=middle><b>FC máxima:</b></td>
-						<td align="center" valign=middle><input type="text" name="fc-max" id="fc-max" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="fc-max" id="fc-max" style="background-color: #EBE7E1;" readonly/></td>
 					</tr>
 					<tr>
                 		<td align="center" valign=middle><b>Velocidade máxima:</b></td>
-                		<td align="center" valign=middle><input type="text" name="velocidade-max" id="velocidade-max" readonly/></td>
+                		<td align="center" valign=middle><input type="text" name="velocidade-max" id="velocidade-max" style="background-color: #EBE7E1;" readonly/></td>
             		</tr>
 					<tr>
 						<td align="center" valign=middle><b>PSE máxima:</b></td>
-						<td align="center" valign=middle><input type="text" name="pse-max" id="pse-max" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="pse-max" id="pse-max" style="background-color: #EBE7E1;" readonly/></td>
 					</tr>
 					<tr>
                 		<td align="center" valign=middle><b>Índice de FC:</b></td>
-                		<td align="center" valign=middle><input type="text" name="indice-fc" id="indice-fc" readonly/></td>
+                		<td align="center" valign=middle><input type="text" name="indice-fc" id="indice-fc" style="background-color: #EBE7E1;" readonly/></td>
             		</tr>
 					<tr>
 						<td align="center" valign=middle><b>METs:</b></td>
-						<td align="center" valign=middle><input type="text" name="mets" id="mets" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="mets" id="mets" style="background-color: #EBE7E1;" readonly/></td>
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>VO² máxima (ml. kg. min):</b></td>
-						<td align="center" valign=middle><input type="text" name="vo2-max-ml" id="vo2-max-ml" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="vo2-max-ml" id="vo2-max-ml" style="background-color: #EBE7E1;" readonly/></td>
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>VO² máxima (L. min):</b></td>
-						<td align="center" valign=middle><input type="text" name="vo2-max-l" id="vo2-max-l" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="vo2-max-l" id="vo2-max-l" style="background-color: #EBE7E1;" readonly/></td>
 					</tr>
 
 					<tr>
 						<td align="center" valign=middle><b>FC L1:</b></td>
 						
-						<td align="center" valign=middle><input type="text" name="limiar1" id="limiar1" placeholder="Limiar 1" readonly></td>
+						<td align="center" valign=middle><input type="text" name="limiar1" id="limiar1" style="background-color: #EBE7E1;" readonly></td>
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>FC L1 (% FC máxima)</b></td>
-						<td align="center" valign=middle><input type="text" name="fc-l1-percent" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="fc-l1-percent" id="fc-l1-percent" style="background-color: #EBE7E1;" readonly/></td>
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>FC L2:</b></td>
-						<td align="center" valign=middle><input type="text" name="limiar2" id="limiar2" placeholder="Limiar 2" readonly></td>
+						<td align="center" valign=middle><input type="text" name="limiar2" id="limiar2" style="background-color: #EBE7E1;" readonly></td>
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>FC L2 (% FC máxima)</b></td>
-						<td align="center" valign=middle><input type="text" name="fc-l2-percent" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="fc-l2-percent" id="fc-l2-percent" style="background-color: #EBE7E1;" readonly/></td>
 					</tr>
 				</tbody>
 			</table>
@@ -277,110 +277,110 @@
 				<tbody>
                 	<tr>
 						<td align="center" valign=middle><b>30</b></td>
-						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_30" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_30" style="background-color: #EBE7E1;" readonly/></td>
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>35</b></td>
-						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_35" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_35" style="background-color: #EBE7E1;" readonly/></td>
 					<tr>
 						<td align="center" valign=middle><b>40</b></td>
-						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_40" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_40" style="background-color: #EBE7E1;" readonly/></td>
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>45</b></td>
-						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_45" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_45" style="background-color: #EBE7E1;" readonly/></td>
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>50</b></td>
-						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_50" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_50" style="background-color: #EBE7E1;" readonly/></td>
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>55</b></td>
-						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_44" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_55" style="background-color: #EBE7E1;" readonly/></td>
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>60</b></td>
-						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_60" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_60" style="background-color: #EBE7E1;" readonly/></td>
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>65</b></td>
-						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_65" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_65" style="background-color: #EBE7E1;" readonly/></td>
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>70</b></td>
-						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_70" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_70" style="background-color: #EBE7E1;" readonly/></td>
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>75</b></td>
-						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_75" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_75" style="background-color: #EBE7E1;" readonly/></td>
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>80</b></td>
-						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_80" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_80" style="background-color: #EBE7E1;" readonly/></td>
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>85</b></td>
-						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_85" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_85" style="background-color: #EBE7E1;" readonly/></td>
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>90</b></td>
-						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_90" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_90" style="background-color: #EBE7E1;" readonly/></td>
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>95</b></td>
-						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_95" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_95" style="background-color: #EBE7E1;" readonly/></td>
 					</tr>
 					<tr>
 						<td align="center" valign=middle style="background-color: red; color:white"><b>100</b></td>
-						<td align="center" valign=middle style="background-color: red; color:white"><input type="text" name="ivo2_x_kmh_100" readonly/></td>
+						<td align="center" valign=middle style="background-color: red; color:white"><input type="text" name="ivo2_x_kmh_100" style="background-color: #EBE7E1;" readonly/></td>
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>105</b></td>
-						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_105" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_105" style="background-color: #EBE7E1;" readonly/></td>
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>110</b></td>
-						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_110" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_110" style="background-color: #EBE7E1;" readonly/></td>
 					</tr><tr>
 						<td align="center" valign=middle><b>115</b></td>
-						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_115" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_115" style="background-color: #EBE7E1;" readonly/></td>
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>120</b></td>
-						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_120" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_120" style="background-color: #EBE7E1;" readonly/></td>
 					</tr><tr>
 						<td align="center" valign=middle><b>125</b></td>
-						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_125"  readonly/></td>
+						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_125" style="background-color: #EBE7E1;"  readonly/></td>
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>130</b></td>
-						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_130" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_130" style="background-color: #EBE7E1;" readonly/></td>
 					</tr><tr>
 						<td align="center" valign=middle><b>135</b></td>
-						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_135" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_135" style="background-color: #EBE7E1;" readonly/></td>
 					</tr><tr>
 						<td align="center" valign=middle><b>140</b></td>
-						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_140" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_140" style="background-color: #EBE7E1;" readonly/></td>
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>145</b></td>
-						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_145" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_145" style="background-color: #EBE7E1;" readonly/></td>
 					</tr><tr>
 						<td align="center" valign=middle><b>150</b></td>
-						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_150" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_150" style="background-color: #EBE7E1;" readonly/></td>
 					</tr><tr>
 						<td align="center" valign=middle><b>155</b></td>
-						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_155" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_155" style="background-color: #EBE7E1;" readonly/></td>
 					</tr><tr>
 						<td align="center" valign=middle><b>160</b></td>
-						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_160" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_160" style="background-color: #EBE7E1;" readonly/></td>
 					</tr>
 					<tr>
 						<td align="center" valign=middle><b>165</b></td>
-						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_165" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_165" style="background-color: #EBE7E1;" readonly/></td>
 					</tr><tr>
 						<td align="center" valign=middle><b>170</b></td>
-						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_170" readonly/></td>
+						<td align="center" valign=middle><input type="text" name="ivo2_x_kmh_170" style="background-color: #EBE7E1;" readonly/></td>
 					</tr>
 				</tbody>
 			</table>
@@ -394,19 +394,21 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
 
-        // Função para calcular a FC máxima
-        function calcularFCMaxima() {
-            let fcMax = 0;
-            // Loop por todos os campos de FC
-            document.querySelectorAll("input[name^='fc-t']").forEach(function(input) {
-                let valor = parseFloat(input.value);
+        // Função para calcular a FC máxima e retornar o valor
+		function calcularFCMaxima() {
+			let fcMax = 0;
+			// Loop por todos os campos de FC
+			document.querySelectorAll("input[name^='fc-t']").forEach(function(input) {
+				let valor = parseFloat(input.value);
 
-                if (!isNaN(valor) && valor > fcMax) {
-                    fcMax = valor;
-                }
-            });
-            document.querySelector("input[name='fc-max']").value = fcMax || '';
-        }
+				if (!isNaN(valor) && valor > fcMax) {
+					fcMax = valor;
+				}
+			});
+			document.querySelector("input[name='fc-max']").value = fcMax || '';
+			
+			return fcMax; // Agora retorna o valor da FC máxima
+		}
 
         // Função para calcular a PSE máxima
         function calcularPSEMaxima() {
@@ -418,6 +420,36 @@
                 }
             });
             document.querySelector("input[name='pse-max']").value = pseMax || '';
+        }
+
+		// Função para calcular os percentuais dos limiares
+        function calcularPercentuaisLimiar(fcMax, limiar1, limiar2) {
+            if (!isNaN(fcMax) && fcMax > 0) {
+                let percentualL1 = (limiar1 / fcMax) * 100;
+                let percentualL2 = (limiar2 / fcMax) * 100;
+
+                document.getElementById('fc-l1-percent').value = percentualL1.toFixed(2);
+                document.getElementById('fc-l2-percent').value = percentualL2.toFixed(2);
+            } else {
+                document.getElementById('fc-l1-percent').value = '';
+                document.getElementById('fc-l2-percent').value = '';
+            }
+        }
+
+		function atualizarValoresVO2() {
+            let valor100 = parseFloat(document.querySelector("input[name='ivo2_x_kmh_100']").value);
+
+            if (!isNaN(valor100)) {
+                let percentuais = [30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 105, 110, 115, 120, 125, 130, 135, 140, 145, 150, 155, 160, 165, 170];
+                
+                percentuais.forEach(function(percentual) {
+                    let inputName = "ivo2_x_kmh_" + percentual;
+                    let inputField = document.querySelector("input[name='" + inputName + "']");
+                    if (inputField) {
+                        inputField.value = ((valor100 * percentual) / 100).toFixed(2);
+                    }
+                });
+            }
         }
 
         // Função para calcular a velocidade máxima
@@ -439,40 +471,35 @@
             });
 
             document.querySelector("input[name='velocidade-max']").value = velocidadeMax || '';
+			document.querySelector("input[name='ivo2_x_kmh_100']").value = velocidadeMax || '';
+			atualizarValoresVO2(); // Chama a função para atualizar os demais inputs
         }
 
-        // Função para calcular os limiares 1 e 2
-        function calcularLimiar() {
-            let cargas = [];
-            let frequencias = [];
+		function calcularLimiar() {
+			let cargas = [];
+			let frequencias = [];
 
-            document.querySelectorAll("input[name^='fc-t']").forEach(function(input, index) {
-                let carga = 5 + index; // Exemplo: carga em função do índice
-                let valorFC = parseFloat(input.value);
-                if (!isNaN(valorFC)) {
-                    cargas.push(carga);
-                    frequencias.push(valorFC);
-                }
-            });
-
-			document.querySelectorAll("td[id='']").forEach(function(td, index) {
-			let velocidade = td.innerText.trim(); // Captura o texto da célula
-			if (velocidade.endsWith("KM/H")) {
-				let valorVelocidade = parseFloat(velocidade); // Converte para número
-				if (!isNaN(valorVelocidade)) {
-					cargas.push(valorVelocidade); // Adiciona ao array de cargas
+			document.querySelectorAll("input[name^='fc-t']").forEach(function(input, index) {
+				let carga = 5 + index; // Exemplo: carga em função do índice
+				let valorFC = parseFloat(input.value);
+				if (!isNaN(valorFC)) {
+					cargas.push(carga);
+					frequencias.push(valorFC);
 				}
-			}
-    		});
+			});
 
-            // Lógica simplificada para encontrar os limiares
-            let limiar1 = encontrarLimiar1(cargas, frequencias);
-            let limiar2 = encontrarLimiar2(cargas, frequencias);
+			// Lógica simplificada para encontrar os limiares
+			let limiar1 = encontrarLimiar1(cargas, frequencias);
+			let limiar2 = encontrarLimiar2(cargas, frequencias);
 
-            // Atualiza os campos de limiar
-            document.getElementById('limiar1').value = limiar1;
-            document.getElementById('limiar2').value = limiar2;
-        }
+			// Atualiza os campos de limiar
+			document.getElementById('limiar1').value = limiar1;
+			document.getElementById('limiar2').value = limiar2;
+
+			// Chama calcularPercentuaisLimiar com o valor retornado por calcularFCMaxima
+			let fcMax = calcularFCMaxima(); // Agora, captura o valor da FC máxima corretamente
+			calcularPercentuaisLimiar(fcMax, limiar1, limiar2);
+		}
 
 		function calcularRegressaoLinear(cargas, frequencias) {
     		const n = cargas.length;
