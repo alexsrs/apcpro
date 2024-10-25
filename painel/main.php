@@ -68,10 +68,8 @@
             <a <?php selecionadoMenu('aptidao-cardiorespiratoria'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>aptidao-cardiorespiratoria">Aptidão Cardiorespiratória</a>
             <a <?php selecionadoMenu('teste-fisico'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>teste-fisico">Testes Físico</a>
             <h2 id="menu-biblioteca"><i class="fa fa-book" aria-hidden="true"></i> Biblioteca de exercícios</h2>
-            <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
-            <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
-            
-            
+            <a <?php selecionadoMenu('adicionar-exercicio'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>adicionar-exercicio">Adicionar exercicio</a>
+            <a <?php selecionadoMenu('listar-exercicios'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>listar-exercicios">Listar exercícios</a>
             
             <h2 id="menu-planejamento"><i class="fa fa-calendar" aria-hidden="true"></i> Planejamento de treino</h2>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>

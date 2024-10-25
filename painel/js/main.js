@@ -71,6 +71,15 @@ $(function() {
             ]
         });
 
+        $('#lista-exercicios').DataTable({
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/2.1.8/i18n/pt-BR.json'
+            },
+            pageLength: 25,   // Define o número de registros por página
+            select: true,
+            searching: true, // Remove a caixa de pesquisa
+            });
+
         $('#anamnesesTable').DataTable({
             language: {
                 url: 'https://cdn.datatables.net/plug-ins/2.1.8/i18n/pt-BR.json'
@@ -126,7 +135,6 @@ $(function() {
             columnDefs: [
                 { className: "text-center", width: "50%", targets: 0 },
                 { className: "text-center", width: "50%", targets: 1 }
-                
             ]
         });
 
@@ -143,7 +151,6 @@ $(function() {
             columnDefs: [
                 { className: "text-center", width: "50%", targets: 0 },
                 { className: "text-center", width: "50%", targets: 1 }
-                
             ]
         });
         

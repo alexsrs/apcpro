@@ -40,12 +40,12 @@
 			<div class="box-especialidade w33 left"> 
 				<h3><i class="fa fa-book"></i></h3>
 				<h4>BIBLIOTECA DE EXERCICIOS</h4>
-				<p>Extensa biblioteca categorizada por tipo de exercício, com vídeos demonstrativos e descrições técnicas. Nulla euismod diam id risus maximus rutrum. Integer mollis diam ex, vel molestie orci scelerisque a. Phasellus est risus, pulvinar id volutpat mattis, luctus accumsan purus.</p>
+				<p>Extensa biblioteca categorizada por tipo de exercício, com vídeos demonstrativos e descrições técnicas.</p>
 			</div><!-- box-especialidade -->
 			<div class="box-especialidade w33 left">
 				<h3><i class="fa fa-diamond"></i></h3>
-				<h4>TREINO PERSONALIZADO</h4>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut eros vel tortor blandit ultrices ac ac justo. Nulla euismod diam id risus maximus rutrum. Integer mollis diam ex, vel molestie orci scelerisque a. Phasellus est risus, pulvinar id volutpat mattis, luctus accumsan purus.</p>
+				<h4>BASEADO NO FITT-VP</h4>
+				<p>O diferencial do APC PRO está na utilização do princípio FITT-VP (Frequência, Intensidade, Tempo, Tipo, Volume e Progressão), reconhecido pelo Colégio Americano de Medicina do Esporte, como base para a prescrição dos exercícios. Esse princípio garante que cada cliente tenha um plano de treino ajustado,otimizado e seguro, promovendo resultados consistentes e duradouros."</p>
 			</div><!-- box-especialidade -->
 			<div class="clear"></div><!--clear-->
 		</div><!-- center -->
@@ -71,10 +71,12 @@
 				<h2 class="title">Funcionalidades</h2>
 				<div class="funcionalidades">
 					<ul>
-						<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut eros vel tortor blandit ultrices ac ac justo. Nulla euismod diam id risus maximus rutrum. Integer mollis diam ex, vel molestie orci scelerisque a. Phasellus est risus, pulvinar id volutpat mattis, luctus accumsan purus.</li>
-						<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut eros vel tortor blandit ultrices ac ac justo. Nulla euismod diam id risus maximus rutrum. Integer mollis diam ex, vel molestie orci scelerisque a. Phasellus est risus, pulvinar id volutpat mattis, luctus accumsan purus.</li>
-						<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut eros vel tortor blandit ultrices ac ac justo. Nulla euismod diam id risus maximus rutrum. Integer mollis diam ex, vel molestie orci scelerisque a. Phasellus est risus, pulvinar id volutpat mattis, luctus accumsan purus.</li>
-						<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut eros vel tortor blandit ultrices ac ac justo. Nulla euismod diam id risus maximus rutrum. Integer mollis diam ex, vel molestie orci scelerisque a. Phasellus est risus, pulvinar id volutpat mattis, luctus accumsan purus.</li>
+						<li>Desenvolvido com foco em avaliação contínua, planejamento preciso e controle rigoroso, o APC PRO oferece uma abordagem personalizada para cada indivíduo, adaptando o treino às suas necessidades e ao seu nível de condicionamento físico.</li>
+						<li>Metas SMART: Definir metas específicas, mensuráveis, alcançáveis, realistas e
+						temporais (SMART) baseadas nos objetivos individuais de cada cliente.</li>
+						<li>Fórmulas de gasto calórico para calcular o esforço necessário para
+						alcançar os objetivos de emagrecimento ou manutenção.</li>
+						<li>Ao usar os valores de METs dos esportes e atividades citadas, é possível planejar e ajustar o programa de treinamento, garantindo que cada cliente atinja seu gasto calórico semanal ou diário conforme os objetivos de emagrecimento, hipertrofia ou performance.</li>
 					</ul>
 				</div><!-- funcionalidades -->
 			</div><!-- w50 -->
