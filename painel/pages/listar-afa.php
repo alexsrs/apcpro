@@ -44,6 +44,10 @@ $perfis = $perfil->buscarPerfilPorUsuarioId($id_aluno);
 $medidaCorporal = new MedidaCorporal();
 $medidasCorporais = $medidaCorporal->buscarMedidaCorporalPorUsuarioId($id_aluno);
 
+$aptidaoCardioRespiratoria = new AptidaoCardioRespiratoria();
+$aptidoes = $aptidaoCardioRespiratoria->buscarAptidaoCardioRespiratoriaPorUsuarioId($id_aluno);
+
+
 ?>
 <div class="box-content">
         <div class="box-usuario left">
@@ -210,6 +214,31 @@ $medidasCorporais = $medidaCorporal->buscarMedidaCorporalPorUsuarioId($id_aluno)
                     <td>
                     <a class="btn view" href="<?php echo INCLUDE_PATH_PAINEL . 'ver-medida-corporal?id=' . $medidaCorporal['id']; ?>">Visualizar</a>
                        <!-- <a href="<?php echo INCLUDE_PATH_PAINEL . $medidaCorporal['id']; ?>">Ver</a> -->
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+
+<div class="box-content">
+    <h2>Aptidão Cardiorespiratória</h2>
+    <table id="aptidaoCardioRespiratoriaTable" class="display dt-responsive" width="100%">
+        <thead>
+            <tr>
+                <th>Data da Avaliação</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($aptidoes as $aptidaoCardioRespiratoria): ?>
+                <tr>
+                    <td><?php echo (new DateTime($aptidaoCardioRespiratoria['data_avaliacao']))->format('d/m/Y H:i'); ?></td>
+                
+                    
+                    <td>
+                    <a class="btn view" href="<?php echo INCLUDE_PATH_PAINEL . 'ver-aptidao-cardiorespiratoria?id=' . $aptidaoCardioRespiratoria['id']; ?>">Visualizar</a>
+                       
                     </td>
                 </tr>
             <?php endforeach; ?>

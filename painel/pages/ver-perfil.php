@@ -46,7 +46,7 @@ if (isset($_GET['id'])) {
         <p><strong>Telefone:</strong> <?php echo htmlspecialchars($usuario['telefone']); ?></p>
         <p><strong>Data de Nascimento:</strong> <?php echo htmlspecialchars(date('d/m/Y', strtotime($usuario['data_nascimento']))); ?></p>
         <p><strong>Data de Início:</strong> <?php echo htmlspecialchars(date('d/m/Y', strtotime($usuario['data_inicio']))); ?></p>
-        <p><strong>Gênero:</strong> <?php echo htmlspecialchars($usuario['sexo'] == 'm' ? 'Masculino' : 'Feminino'); ?></p>
+        <p><strong>Gênero:</strong> <?php echo htmlspecialchars($usuario['sexo'] == 'M' ? 'Masculino' : 'Feminino'); ?></p>
         <p><strong>CPF:</strong> <?php echo htmlspecialchars($usuario['cpf']); ?></p>
     </div>
 

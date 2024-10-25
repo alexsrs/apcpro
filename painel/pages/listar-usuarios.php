@@ -170,7 +170,7 @@ $grupos = $sqlGrupos->fetchAll();
                         <td><?php echo (new DateTime($usuario['data_inicio']))->format('d/m/Y'); ?></td>
                         <td><?php echo isset($usuario['grupo_nome']) ? $usuario['grupo_nome'] : 'Sem grupo'; ?></td>
                         <td>
-                            <a class="btn view" href="<?php echo INCLUDE_PATH_PAINEL . 'ver-perfil?id=' . $usuario['id']; ?>"><i class="fa fa-eye" aria-hidden="true"></i> Visualizar</a>
+                            <a class="btn view" href="<?php echo INCLUDE_PATH_PAINEL . 'ver-perfil?id=' . $usuario['id']; ?>"><i class="fa fa-eye" aria-hidden="true"></i> Ver</a>
                             <a class="btn edit" href="<?php echo INCLUDE_PATH_PAINEL . 'editar-perfil?id=' . $usuario['id']; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a>
                             <a class="btn delete open-modal" data-id="<?php echo $usuario['id']; ?>" href="#"><i class="fa fa-times"></i> Excluir</a>
                             <a class="btn edit" href="<?php echo INCLUDE_PATH_PAINEL . 'listar-afa?id=' . $usuario['id']; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> AFA</a>

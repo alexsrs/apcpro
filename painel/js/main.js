@@ -129,6 +129,23 @@ $(function() {
                 
             ]
         });
+
+        $('#aptidaoCardioRespiratoriaTable').DataTable({
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/2.1.8/i18n/pt-BR.json'
+            },
+            pageLength: 10,   // Define o número de registros por página
+            select: true,
+            responsive: true,
+            searching: false,
+            ordering: false, // Remove a caixa de pesquisa
+            autoWidth: false, // Desabilita ajuste automático da largura
+            columnDefs: [
+                { className: "text-center", width: "50%", targets: 0 },
+                { className: "text-center", width: "50%", targets: 1 }
+                
+            ]
+        });
         
         // Restaurar o estado do menu salvo no Local Storage
         var activeMenu = localStorage.getItem('activeMenu');

@@ -208,5 +208,39 @@ class AptidaoCardioRespiratoria {
             throw new Exception("Erro ao salvar a avaliação.");
         }
     }
+
+    public function listarAptidaoCardioRespiratoria() {
+        try {
+            $sql = $this->db->prepare("
+                SELECT a.*, u.nome 
+                FROM tb_aptidao_cardiorespiratoria a 
+                JOIN `tb_admin.usuarios` u ON a.usuario_id = u.id 
+                ORDER BY a.data_avaliacao DESC
+            ");
+            $sql->execute();
+            
+            // Verifique se há resultados
+            $resultados = $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $resultados ?: []; // Retorna um array vazio se não houver resultados
+        } catch (PDOException $e) {
+            // Log de erro detalhado
+            error_log("Erro ao listar Aptidão Cardiorespiratória: " . $e->getMessage());
+            return false; // Retorna false em caso de erro
+        }
+    }
+
+    public function buscarAptidaoCardioRespiratoriaPorId($id) {
+        $sql = $this->db->prepare("SELECT * FROM tb_aptidao_cardiorespiratoria WHERE id = :id");
+        $sql->bindParam(':id', $id);
+        $sql->execute();
+        return $sql->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function buscarAptidaoCardioRespiratoriaPorUsuarioId($usuario_id) {
+        $sql = $this->db->prepare("SELECT * FROM tb_aptidao_cardiorespiratoria WHERE usuario_id = :usuario_id ORDER BY data_avaliacao DESC");
+        $sql->bindParam(':usuario_id', $usuario_id);
+        $sql->execute();
+        return $sql->fetchAll(PDO::FETCH_ASSOC); // Retorna todas as medidas corporais do usuário
+    }
 }
 ?>
