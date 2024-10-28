@@ -9,6 +9,7 @@ $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
 $perfil = new Perfil();
 $perfis = $perfil->buscarPerfilPorId($id);
+$usuarioid = $perfis['usuario_id'];
 
 // Verifica se a anamnese foi encontrada
 if (!$perfis) {
@@ -81,4 +82,5 @@ $sexo = $perfis['sexo']; // Pega o sexo do array
     </div>
     
     <div class="clear"></div><!-- clear -->
+    <a href="<?php echo INCLUDE_PATH_PAINEL . 'listar-afa?id=' . $usuarioid ?>" class="btn voltar">Voltar para a lista de usuários</a>
 </div><!-- box-content -->

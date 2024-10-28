@@ -9,6 +9,7 @@ $id = isset($_GET['id']) ? intval($_GET['id']) : $_SESSION['id'];
 
 $aptidaoCardioRespiratoria = new AptidaoCardioRespiratoria();
 $dadosAptidao = $aptidaoCardioRespiratoria->buscarAptidaoCardioRespiratoriaPorId($id);
+$usuarioid = $dadosAptidao['usuario_id'];
 
 // Verifica se os dados foram encontrados
 if (!$dadosAptidao) {
@@ -47,5 +48,5 @@ if (!$dadosAptidao) {
     }
     ?>
 
-    <a href="listar-usuarios">Voltar para a lista</a>
+<a href="<?php echo INCLUDE_PATH_PAINEL . 'listar-afa?id=' . $usuarioid ?>" class="btn voltar">Voltar para a lista de usuários</a>
 </div>

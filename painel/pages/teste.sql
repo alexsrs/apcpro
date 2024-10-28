@@ -23,43 +23,6 @@ CREATE TABLE tb_categoria_exercicio (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-
-CREATE TABLE tb_treino_serie (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    usuario_id INT NOT NULL,
-    aula_numero INT NOT NULL,
-    metodo VARCHAR(255) NOT NULL,
-    treino_exercicio_id INT NOT NULL,
-    tempo_recuperacao float,
-    macrociclo VARCHAR(255),
-    mesociclo VARCHAR(255), -- introdutório, condicionante, competitivo, recuperativo
-    microciclo VARCHAR(255),  -- 1 a 6 semanas
-    fase VARCHAR(255), -- as semanas do microciclo
-    sessão VARCHAR(255), -- 1 a 3 sessões por semana
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-
-CREATE TABLE tb_treino_exercicio (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    exercicio_id INT NOT NULL,
-    --- array de cargas ---
-    carga_serie1 float,
-    carga_serie2 float,
-    carga_serie3 float,
-    --- array de repeticoes ---
-    repeticoes_serie1 INT,
-    repeticoes_serie2 INT,
-    repeticoes_serie3 INT,
-    -- 1 a 10 sec -- 
-    pausa INT,
-    concentrica INT,
-    excentrica INT,
-    recuperacao_entre_series int,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-)
-
-
 CREATE TABLE tb_composicoes_corporais (
 id INT AUTO_INCREMENT PRIMARY KEY,
 usuario_id INT NOT NULL,
@@ -83,4 +46,55 @@ bicondiliano float,
 bimaleolar float,
 data_avaliacao DATETIME NOT NULL
 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE tb_treino_serie (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    aula_numero INT NOT NULL,
+    descricao VARCHAR(255),
+    zona_alvo VARCHAR(255),
+    ativo BOOLEAN,
+    metodo VARCHAR(255) NOT NULL,
+    treino_exercicio_id INT NOT NULL,
+    fc_maxima INT,
+    fc_reposo INT,
+    vo2_exame FLOAT,
+    vo2_maximo FLOAT,
+    tempo_recuperacao FLOAT,
+    incremento_hiit FLOAT,
+    incremento_miit FLOAT,
+    macrociclo VARCHAR(255),
+    mesociclo ENUM('introdutório', 'condicionante', 'competitivo', 'recuperativo'),
+    microciclo INT,  -- Representando em semanas (1 a 6)
+    fase INT,  -- Número da semana dentro do microciclo
+    sessao INT,  -- Sessões por semana (1 a 3)
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE tb_treino_exercicio (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    treino_serie_id INT NOT NULL, -- Vincula o exercício a uma série específica
+    exercicio_id INT NOT NULL,
+    carga_serie1 FLOAT,
+    carga_serie2 FLOAT,
+    carga_serie3 FLOAT,
+    repeticoes_serie1 INT,
+    repeticoes_serie2 INT,
+    repeticoes_serie3 INT,
+    pausa INT,
+    concentrica INT,
+    excentrica INT,
+    recuperacao_entre_series INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE tb_treino_exercicio_series (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    treino_exercicio_id INT NOT NULL,
+    numero_serie INT,  -- Número da série
+    carga FLOAT,  -- Carga para a série específica
+    repeticoes INT,  -- Número de repetições para a série específica
+    FOREIGN KEY (treino_exercicio_id) REFERENCES tb_treino_exercicio(id) ON DELETE CASCADE
 );

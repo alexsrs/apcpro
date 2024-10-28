@@ -10,6 +10,7 @@ $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
 $anamnese = new Anamnese();
 $dados_anamnese = $anamnese->buscarAnamnesePorId($id);
+$usuarioid = $dados_anamnese['usuario_id'];
 
 // Verifica se a anamnese foi encontrada
 if (!$dados_anamnese) {
@@ -67,5 +68,5 @@ if (!$dados_anamnese) {
     <p><strong>Aceito:</strong> <?php echo htmlspecialchars($dados_anamnese['aceito']); ?></p>
 
     
-    <a href="listar-usuarios">Voltar para a lista</a>
+    <a href="<?php echo INCLUDE_PATH_PAINEL . 'listar-afa?id=' . $usuarioid ?>" class="btn voltar">Voltar para a lista de usuários</a>
 </div>

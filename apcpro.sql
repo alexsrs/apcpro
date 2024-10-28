@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 28/10/2024 às 11:22
+-- Tempo de geração: 28/10/2024 às 20:15
 -- Versão do servidor: 5.7.23-23
 -- Versão do PHP: 8.1.30
 
@@ -41,8 +41,8 @@ CREATE TABLE `tb_admin.online` (
 --
 
 INSERT INTO `tb_admin.online` (`id`, `ip`, `ultima_acao`, `token`) VALUES
-(612, '191.162.172.172', '2024-10-28 11:20:06', '671f8bb6b7b1d'),
-(614, '191.162.172.172', '2024-10-28 10:46:42', '671f8bb993a60');
+(625, '191.162.172.172', '2024-10-28 20:14:21', '6720180ea736a'),
+(623, '191.162.172.172', '2024-10-28 20:14:19', '6720180bbb662');
 
 -- --------------------------------------------------------
 
@@ -553,7 +553,13 @@ INSERT INTO `tb_admin.visitas` (`id`, `ip`, `dia`) VALUES
 (479, '109.248.167.134', '2024-10-28'),
 (480, '95.182.127.250', '2024-10-28'),
 (481, '109.248.14.105', '2024-10-28'),
-(482, '188.130.220.11', '2024-10-28');
+(482, '188.130.220.11', '2024-10-28'),
+(483, '5.133.192.168', '2024-10-28'),
+(484, '5.133.192.168', '2024-10-28'),
+(485, '103.216.223.204', '2024-10-28'),
+(486, '186.202.173.147', '2024-10-28'),
+(487, '2a06:98c0:3600::103', '2024-10-28'),
+(488, '2a06:98c0:3600::103', '2024-10-28');
 
 -- --------------------------------------------------------
 
@@ -948,6 +954,69 @@ INSERT INTO `tb_site.depoimentos` (`id`, `nome`, `depoimento`, `data`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `tb_treino_exercicio`
+--
+
+CREATE TABLE `tb_treino_exercicio` (
+  `id` int(11) NOT NULL,
+  `treino_serie_id` int(11) NOT NULL,
+  `exercicio_id` int(11) NOT NULL,
+  `cargas` json DEFAULT NULL,
+  `repeticoes` json DEFAULT NULL,
+  `pausa` int(11) DEFAULT NULL,
+  `concentrica` int(11) DEFAULT NULL,
+  `excentrica` int(11) DEFAULT NULL,
+  `recuperacao_entre_series` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `tb_treino_exercicio`
+--
+
+INSERT INTO `tb_treino_exercicio` (`id`, `treino_serie_id`, `exercicio_id`, `cargas`, `repeticoes`, `pausa`, `concentrica`, `excentrica`, `recuperacao_entre_series`, `created_at`) VALUES
+(8, 5, 1, '[\"10\", \"10\", \"10\"]', '[\"10\", \"10\", \"10\"]', 0, 1, 2, 2, '2024-10-28 23:11:42');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `tb_treino_serie`
+--
+
+CREATE TABLE `tb_treino_serie` (
+  `id` int(11) NOT NULL,
+  `usuario_id` int(11) NOT NULL,
+  `aula_numero` int(11) NOT NULL,
+  `descricao` varchar(255) DEFAULT NULL,
+  `zona_alvo` varchar(255) DEFAULT NULL,
+  `ativo` tinyint(1) DEFAULT NULL,
+  `metodo` varchar(255) NOT NULL,
+  `treino_exercicio_id` int(11) NOT NULL,
+  `fc_maxima` int(11) DEFAULT NULL,
+  `fc_reposo` int(11) DEFAULT NULL,
+  `vo2_exame` float DEFAULT NULL,
+  `vo2_maximo` float DEFAULT NULL,
+  `tempo_recuperacao` float DEFAULT NULL,
+  `incremento_hiit` float DEFAULT NULL,
+  `incremento_miit` float DEFAULT NULL,
+  `macrociclo` varchar(255) DEFAULT NULL,
+  `mesociclo` enum('introdutório','condicionante','competitivo','recuperativo') DEFAULT NULL,
+  `microciclo` int(11) DEFAULT NULL,
+  `fase` int(11) DEFAULT NULL,
+  `sessao` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `tb_treino_serie`
+--
+
+INSERT INTO `tb_treino_serie` (`id`, `usuario_id`, `aula_numero`, `descricao`, `zona_alvo`, `ativo`, `metodo`, `treino_exercicio_id`, `fc_maxima`, `fc_reposo`, `vo2_exame`, `vo2_maximo`, `tempo_recuperacao`, `incremento_hiit`, `incremento_miit`, `macrociclo`, `mesociclo`, `microciclo`, `fase`, `sessao`, `created_at`) VALUES
+(5, 1, 1, 'vamos treinar', 'Muito leve (>20% RVO²) Reabilitação cardíaca', 0, 'devagar e sempre', 0, 189, 75, 1, 34, 2, 1, 1, 'introdutório', 'introdutório', 1, 1, 1, '2024-10-28 23:11:42');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `tb_usuarios_anamnese`
 --
 
@@ -1086,6 +1155,18 @@ ALTER TABLE `tb_site.depoimentos`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices de tabela `tb_treino_exercicio`
+--
+ALTER TABLE `tb_treino_exercicio`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `tb_treino_serie`
+--
+ALTER TABLE `tb_treino_serie`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices de tabela `tb_usuarios_anamnese`
 --
 ALTER TABLE `tb_usuarios_anamnese`
@@ -1099,7 +1180,7 @@ ALTER TABLE `tb_usuarios_anamnese`
 -- AUTO_INCREMENT de tabela `tb_admin.online`
 --
 ALTER TABLE `tb_admin.online`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=615;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=626;
 
 --
 -- AUTO_INCREMENT de tabela `tb_admin.usuarios`
@@ -1111,7 +1192,7 @@ ALTER TABLE `tb_admin.usuarios`
 -- AUTO_INCREMENT de tabela `tb_admin.visitas`
 --
 ALTER TABLE `tb_admin.visitas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=483;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=489;
 
 --
 -- AUTO_INCREMENT de tabela `tb_aptidao_cardiorespiratoria`
@@ -1166,6 +1247,18 @@ ALTER TABLE `tb_perfis_usuarios`
 --
 ALTER TABLE `tb_site.depoimentos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de tabela `tb_treino_exercicio`
+--
+ALTER TABLE `tb_treino_exercicio`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de tabela `tb_treino_serie`
+--
+ALTER TABLE `tb_treino_serie`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `tb_usuarios_anamnese`

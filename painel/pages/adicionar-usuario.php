@@ -1,5 +1,6 @@
 <?php 
     verificaPermissaoPagina(1);
+    include_once('pages/funcoes.php');
     
     
     // Obter o ID do usuário logado
@@ -28,6 +29,7 @@
 <form method="post" enctype="multipart/form-data"> <!-- sem o atributo enctype nao envia a imagem -->
 
     <?php 
+
         if(isset($_POST['acao'])){
             // enviando o formulario 
             $user = $_POST['user'];

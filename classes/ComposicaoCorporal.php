@@ -51,14 +51,14 @@ class ComposicaoCorporal {
         }
     }
 
-    public function buscarMedidaCorporalPorId($id) {
+    public function buscarComposicaoCorporalPorId($id) {
         $sql = $this->db->prepare("SELECT * FROM tb_composicoes_corporais WHERE id = :id");
         $sql->bindParam(':id', $id);
         $sql->execute();
         return $sql->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function buscarMedidaCorporalPorUsuarioId($usuario_id) {
+    public function buscarComposicaoCorporalPorUsuarioId($usuario_id) {
         $sql = $this->db->prepare("SELECT * FROM tb_composicoes_corporais WHERE usuario_id = :usuario_id ORDER BY data_avaliacao DESC");
         $sql->bindParam(':usuario_id', $usuario_id);
         $sql->execute();

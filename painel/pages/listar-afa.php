@@ -44,6 +44,9 @@ $perfis = $perfil->buscarPerfilPorUsuarioId($id_aluno);
 $medidaCorporal = new MedidaCorporal();
 $medidasCorporais = $medidaCorporal->buscarMedidaCorporalPorUsuarioId($id_aluno);
 
+$composicaoCorporal = new ComposicaoCorporal();
+$composicoesCorporais = $composicaoCorporal->buscarComposicaoCorporalPorUsuarioId($id_aluno);
+
 $aptidaoCardioRespiratoria = new AptidaoCardioRespiratoria();
 $aptidoes = $aptidaoCardioRespiratoria->buscarAptidaoCardioRespiratoriaPorUsuarioId($id_aluno);
 
@@ -104,7 +107,6 @@ $aptidoes = $aptidaoCardioRespiratoria->buscarAptidaoCardioRespiratoriaPorUsuari
                     <td><?php echo htmlspecialchars($perfil['altura']); ?> m</td>
                     <td>
                     <a class="btn view" href="<?php echo INCLUDE_PATH_PAINEL . 'ver-avaliacao?id=' . $perfil['id']; ?>">Visualizar</a>
-                       
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -222,7 +224,36 @@ $aptidoes = $aptidaoCardioRespiratoria->buscarAptidaoCardioRespiratoriaPorUsuari
 </div>
 
 <div class="box-content">
+    <h2>Composição Corporal</h2>
+    <a class="btn edit right" href="<?php echo INCLUDE_PATH_PAINEL . 'composicao-corporal?id=' . $usuario_id; ?>">
+                        <i class="fa fa-link"></i> Realizar avaliação</a>
+    <table id="composicaoCorporalTable" class="display dt-responsive" width="100%">
+        <thead>
+            <tr>
+                <th>Data da Avaliação</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($composicoesCorporais as $composicaoCorporal): ?>
+                <tr>
+                    <td><?php echo (new DateTime($composicaoCorporal['data_avaliacao']))->format('d/m/Y H:i'); ?></td>
+                    
+                    <td>
+                    <a class="btn view" href="<?php echo INCLUDE_PATH_PAINEL . 'ver-composicao-corporal?id=' . $composicaoCorporal['id']; ?>">Visualizar</a>
+                    
+                </td>
+                </tr>
+            <?php endforeach; ?>
+
+        </tbody>
+    </table>
+</div>
+
+<div class="box-content">
     <h2>Aptidão Cardiorespiratória</h2>
+    <a class="btn edit right" href="<?php echo INCLUDE_PATH_PAINEL . 'aptidao-cardiorespiratoria?id=' . $usuario_id; ?>">
+    <i class="fa fa-link"></i> Realizar avaliação</a>
     <table id="aptidaoCardioRespiratoriaTable" class="display dt-responsive" width="100%">
         <thead>
             <tr>
@@ -233,12 +264,9 @@ $aptidoes = $aptidaoCardioRespiratoria->buscarAptidaoCardioRespiratoriaPorUsuari
         <tbody>
             <?php foreach ($aptidoes as $aptidaoCardioRespiratoria): ?>
                 <tr>
-                    <td><?php echo (new DateTime($aptidaoCardioRespiratoria['data_avaliacao']))->format('d/m/Y H:i'); ?></td>
-                
-                    
+                    <td><?php echo (new DateTime($aptidaoCardioRespiratoria['data_avaliacao']))->format('d/m/Y H:i'); ?></td>     
                     <td>
                     <a class="btn view" href="<?php echo INCLUDE_PATH_PAINEL . 'ver-aptidao-cardiorespiratoria?id=' . $aptidaoCardioRespiratoria['id']; ?>">Visualizar</a>
-                       
                     </td>
                 </tr>
             <?php endforeach; ?>

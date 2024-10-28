@@ -1,5 +1,25 @@
 <?php
 
+echo  '<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const inputs = document.querySelectorAll("input, textarea, select");
+
+    inputs.forEach(input => {
+        const savedValue = localStorage.getItem(input.name);
+        if (savedValue) input.value = savedValue;
+
+        input.addEventListener("input", () => {
+            localStorage.setItem(input.name, input.value);
+        });
+    });
+
+    // Limpa o localStorage ao submeter o formulário
+    document.querySelector("form").addEventListener("submit", () => {
+        inputs.forEach(input => localStorage.removeItem(input.name));
+    });
+});
+</script>';
+
 function obterLinkAnamnese($usuario_id) {
     // Conexão com o banco de dados usando as constantes definidas em config.php
     $conn = new mysqli(HOST, USER, PASSWORD, DATABASE);

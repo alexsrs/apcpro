@@ -10,6 +10,7 @@ $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
 $medidaCorporal = new MedidaCorporal();
 $medidasCorporais = $medidaCorporal->buscarMedidaCorporalPorId($id);
+$usuarioid = $medidasCorporais['usuario_id'];
 
 // Verifica se a anamnese foi encontrada
 if (!$medidaCorporal) {
@@ -66,5 +67,5 @@ if (!$medidaCorporal) {
     <p><strong>Somatório Pollock 7D:</strong> <?php echo htmlspecialchars($medidasCorporais['somatorio_pollock_7D'] ?? 'N/A'); ?></p>
     <p><strong>Somatório Guedes 3D:</strong> <?php echo htmlspecialchars($medidasCorporais['somatorio_guedes_3D'] ?? 'N/A'); ?></p>
 
-    <a href="listar-usuarios">Voltar para a lista</a>
+    <a href="<?php echo INCLUDE_PATH_PAINEL . 'listar-afa?id=' . $usuarioid ?>" class="btn voltar">Voltar para a lista de usuários</a>
 </div>

@@ -71,7 +71,7 @@
             <a <?php selecionadoMenu('listar-exercicios'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>listar-exercicios">Listar exercícios</a>
             
             <h2 id="menu-planejamento"><i class="fa fa-calendar" aria-hidden="true"></i> Planejamento de treino</h2>
-            <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
+            <a <?php selecionadoMenu('criar-treino'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>criar-treino">Criar treino</a>
             <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
             
             

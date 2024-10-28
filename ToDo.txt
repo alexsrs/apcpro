@@ -45,15 +45,138 @@ Estrutura do Aplicativo “APC Pro” com Foco em Avaliação
 
 
 
-- nao permitir limpar o formulario ao dar reload
+- nao permitir limpar o formulario ao dar reload - em testes 
+
 - mudar o sistema de criação de aluno
 - bug do responsivo na medida corporal
 - aluno nao faz adipometro
 - conconi so na tela de professor
+
 - estimar vo2 pela equação do aluno ou teste de 12 Monitoramento
-
 - verificar - enter envio antes do esperado
-
 - testes fisicos recebem 4 videos de 10 sec
+
+
+
+
+
+1. VO2 Máximo
+O VO2 máximo é uma medida importante para avaliar a capacidade cardiorrespiratória de um indivíduo
+Teste de Cooper (12 minutos de corrida):
+•	VO2 Máx = (Distância percorrida em metros - 504,9) / 44,73
+
+1. Equação de Jackson e Pollock para Estimar VO2 Máximo
+A investigação de Jackson e Pollock, que é usada principalmente para estimar a densidade corporal e o percentual de gordura, pode ser adaptada para estimar o VO2 máximo. Nesse caso, o percentual de gordura é incorporado na engenharia para fornecer uma estimativa de capacidade aeróbica. Este tipo de abordagem geralmente utiliza o seguinte:
+•	Variáveis : Percentual de gordura, idade, peso e sexo.
+•	Fórmula de Estimativa (baseada em estudos de regressão):
+1. Equação Para Homens
+•	VO2 Máximo (ml/kg/min) = 57,812 - (0,715 x Idade) - (0,426 x Percentual de Gordura)
+•	Esta fórmula é mais adequada para homens devido ao valor base ser ajustado para um metabolismo de massa magra maior e um percentual de gordura geralmente mais baixo.
+2. Equação Para Mulheres
+•	Para mulheres, é comum usar uma base de valor um pouco mais baixa para considerar as diferenças fisiológicas.
+•	VO2 Máximo (ml/kg/min) = 42.834 - (0,611 x Idade) - (0,347 x Percentual de Gordura)
+•	O valor base é menor porque as mulheres, em média, têm maior percentual de gordura corporal do que os homens. Os coeficientes para idade e percentual de gordura também são ajustados para refletir as diferenças fisiológicas.
+
+2. Percentual de Gordura
+Existem várias fórmulas para estimar o percentual de gordura, sendo algumas delas baseadas em medidas de dobras demonstradas e outras em cálculos mais gerais, como o de Jackson & Pollock ou a fórmula da Marinha dos Estados Unidos.
+Fórmula da Marinha dos Estados Unidos:
+•	Homens: % Gordura = 86,010 x (log10 (cintura - pescoço)) - 70,041 x (log10 (altura)) + 36,76
+•	Mulheres: % Gordura = 163.205 x (log10 (cintura + quadril - pescoço)) - 97.684 x (log10 (altura)) - 78.387
+
+
+
+A frequência cardíaca de segurança (FC de segurança) é a quantidade de estresse cardíaco por minuto enquanto uma pessoa está em um estado completamente relaxado, sem realizar atividades físicas ou estar sob estresse. É um dos indicadores mais importantes de resultados cardiovasculares e da saúde do coração. Vou explicar como medi-la corretamente.
+
+
+Como Medir a Frequência Cardíaca de Repouso
+1.	Escolha o Momento Adequado
+o	A melhor hora para medir a FC de repouso é logo ao acordar, antes de sair da cama ou fazer qualquer movimento. A frequência cardíaca pode aumentar com atividades simples, como levantar ou beber água.
+o	Outra alternativa é medir após 10-15 minutos de descanso completo, sentado ou deitado em um ambiente calmo.
+2.	Métodos para Medir a FC de Repouso
+o	Manual (Palpação)
+	Coloque dois dedos (indicador e médio) na lateral do pescoço (artéria carótida) ou no pulso (artéria radial).
+	Conte os corações durante 60 segundos . Se preferir, pode contar por 15 segundos e multiplicar por 4, mas a medição completa por 60 segundos é mais precisa.
+o	Monitor de Frequência Cardíaca
+	Outra opção é usar monitores de frequência cardíaca ou relógios de fitness, que são muito convenientes e oferecem uma medição precisa e consistente.
+Procedimento Completo para Medir a FC de Repouso
+1.	Repouso Prévio : Certifique-se de estar relaxado por pelo menos 10 minutos. É importante evitar o consumo de cafeína, álcool, ou atividades estressantes antes da medição.
+2.	Postura : Você pode medir a FC de repouso sentado ou deitado, desde que esteja confortável e relaxado.
+3.	Localize o Pulso : Utilize os dedos indicador e médio para localizar o pulso. Evite usar a investigação, pois ele tem um pulso próprio que pode interferir na contagem.
+4.	Medição Completa : Conte o número de esforços durante um minuto inteiro para obter uma medição mais precisa.
+Valores Normais do FC de Repouso
+•	Adultos : Para adultos, a FC de tranquilidade normalmente varia entre 60 e 100 limites por minuto (bpm) .
+o	Pessoas treinadas, especialmente atletas, podem ter uma FC de segurança bem mais baixa, às vezes entre 40 e 60 bpm , devido à maior eficiência cardiovascular.
+•	Crianças : A frequência cardíaca de segurança pode ser mais alta, variando entre 70 e 120 bpm , dependendo da idade.
+Fatores que influenciaram o FC de Repouso
+1.	Nível de Condicionamento Físico : Indivíduos bem condicionados condicionados a ter um FC de segurança mais baixo.
+2.	Idade : A FC de repouso tende a aumentar à medida que envelhecemos.
+3.	Estresse e Emoções : O estresse e a ansiedade podem aumentar significativamente a FC de tranquilidade.
+4.	Temperatura e Ambiente : Ambientes quentes podem aumentar a FC de conservação.
+5.	Medicamentos : Alguns medicamentos, como beta-bloqueadores, podem reduzir a FC de repouso.
+Aplicações da FC de Repouso na Prescrição de Exercícios
+A FC de repouso é usada em várias fórmulas e metodologias para monitorar a saúde cardiovascular e para a prescrição de exercícios, como na fórmula de Karvonen , que utiliza a FC de repouso para calcular a frequência cardíaca alvo para treinamento aeróbico:
+•	Fórmula de Karvonen :
+o	FC Alvo = FC Repouso + ((FC Máxima - FC Repouso) x Intensidade do Exercício)
+o	Onde a FC Máxima é geralmente estimado como 220 anos .
+Dica de utilidade
+Para maior precisão, é recomendado medir a frequência cardíaca em dias diferentes e calcular a média, pois ela pode variar de um dia para outro devido a fatores como sono e estresse.
+
+
+A Tabela de Foster , também conhecida como Escala de Percepção Subjetiva do Esforço de Foster , é uma ferramenta amplamente utilizada para monitorar a carga de treinamento em atletas e praticantes de atividade física. Ela ajuda a quantificar a intensidade do treino por meio da percepção subjetiva do atleta, permitindo o controle e a adequação da carga de exercícios ao longo do tempo. Essa escala foi proposta pelo pesquisador Carl Foster e combina a intensidade do treino com a duração, resultando em uma métrica conhecida como Carga de Treinamento (CT) .
+Como Funciona a Tabela de Foster
+A metodologia baseia-se em duas variáveis principais:
+1.	Escala de Percepção Subjetiva de Esforço (PSE)
+o	Essa escala vai de 0 a 10 e representa o nível de esforço percebido pelo atleta durante uma sessão de treinamento.
+o	Os valores da escala são:
+	0 : Nenhum esforço
+	1-2 : Muito leve
+	3-4 : Moderado
+	5-6 : Intenso
+	7-8 : Muito intenso
+	9-10 : Máximo possível
+o	A PSE deve ser registrada logo após o término da sessão de treino, enquanto as sensações ainda são frescas para garantir uma avaliação precisa.
+2.	Duração do Treino (em minutos)
+o	O tempo total da sessão de treinamento é registrado em minutos. Esse valor, em combinação com o PSE, permite calcular a carga de treinamento.
+Cálculo da Carga de Treinamento (CT)
+A Carga de Treinamento (CT) é obtida multiplicando o PSE pela duração do treino (em minutos). A fórmula é:
+•	CT = PSE x Duração (minutos)
+Exemplo Prático :
+•	Um atleta realizou um treino com duração de 60 minutos e, ao final, relatou um nível de esforço percebido de 6 .
+•	Então a carga de treinamento será: CT = 6 x 60 = 360 unidades de carga .
+Interpretação e Uso da Tabela de Foster
+A Tabela de Foster permite que treinadores e atletas avaliem se a carga de treinamento é adequada, evitando o risco de overtraining (sobrecarga) ou undertraining (treinamento insuficiente).
+•	Monitoramento Diário e Semanal : O uso diário da escala permite ajustar a carga de treino em tempo real. A soma das cargas de treinamento ao longo da semana é uma métrica útil para entender o volume total e se existe necessidade de ajustes.
+•	Efeito de Carga Acumulada : É possível identificar se a carga está aumentando gradativamente, de acordo com o planejamento de periodização, ou se há períodos de carga muito altos que podem resultar em fadiga excessiva e aumento do risco de lesões.
+Vantagens do Método de Foster
+1.	Simplicidade : A aplicação da Tabela de Foster é fácil, rápida e não requer equipamentos sofisticados.
+2.	Versatilidade : Pode ser utilizado para qualquer tipo de atividade física (corrida, natação, ciclismo, musculação, etc.).
+3.	Validação Científica : Diversos estudos validaram o PSE como uma métrica eficaz para monitorar a intensidade do esforço, sendo uma ferramenta confiável para medir a carga de treino.
+Cuidados na Aplicação
+•	Percepção Subjetiva : Como a PSE é uma medida subjetiva, ela depende da honestidade e da percepção individual do atleta. Os atletas podem realizar o mesmo treino diferente de forma diferente, dependendo do seu nível de condicionamento, motivação ou até mesmo fatores externos, como sono e estresse.
+•	Consistência : Para ser eficaz, é necessário coletar esses dados de forma consistente ao longo do tempo, sempre no mesmo período (preferencialmente logo após o treino).
+Aplicação Prática em Diferentes Modalidades
+A Tabela de Foster é amplamente utilizada em modalidades esportivas, tanto em esportes individuais como coletivos, porque fornece um método prático para monitorar o impacto do treinamento. Ela é particularmente útil em modalidades como:
+•	Voleibol e Futebol : Para verificar se os jogadores estão sobrecarregados ou deliberados de mais alerta.
+•	Esportes de Endurance (corrida, ciclismo, natação): Para ajudar a ajustar volumes de treinamento, evitando desgastes excessivos.
+Exemplo de Utilização na Periodização
+Na sua prática de voleibol, por exemplo, você pode usar a Tabela de Foster para determinar se a intensidade dos treinos é adequada para os diferentes ciclos de periodização (base, pré-competição, competição, etc.). Isso permite ajustar a carga total ao longo do tempo para atingir o pico de desempenho na fase desejada.
+
+
+Fórmula marinha americana para estimar % Gordura
+Enviar equação para estimar VO2 Máximo
+Roteiro para teste de 12 min
+Roteiro para teste de 6 min
+FC de repouso
+FC de Pico
+Tabela de Foster
+Informações teste físico
+vídeos dos testes supino
+Terra
+Agachamento
+Barra
+Enviar planilha planejamento
+Criar canal youtube APCPRO e Vímeo
+Entregar estudos de gasto calórico
+Explicar periodização desenho
 
 
