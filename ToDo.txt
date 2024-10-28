@@ -57,8 +57,3 @@ Estrutura do Aplicativo “APC Pro” com Foco em Avaliação
 - testes fisicos recebem 4 videos de 10 sec
 
 
-- articulação incluir Integrado
-- trocar combinado por Integrado
-- tirar multiplos movimentos
-
-
