@@ -28,6 +28,7 @@
 		
 		// Chama o método para salvar
 		if ($exercicio->salvar($_POST)) {
+            
 			Painel::alert('sucesso', 'Dados gravados com sucesso!');
 		} else {
 			Painel::alert('erro', 'Erro ao gravar dados.');

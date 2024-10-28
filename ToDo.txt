@@ -42,3 +42,23 @@ Estrutura do Aplicativo “APC Pro” com Foco em Avaliação
     
 	8.	Integração e Compartilhamento
 	•	Capacidade de compartilhar informações de treino e progresso com outros treinadores ou atletas dentro da plataforma.
+
+
+
+- nao permitir limpar o formulario ao dar reload
+- mudar o sistema de criação de aluno
+- bug do responsivo na medida corporal
+- aluno nao faz adipometro
+- conconi so na tela de professor
+- estimar vo2 pela equação do aluno ou teste de 12 Monitoramento
+
+- verificar - enter envio antes do esperado
+
+- testes fisicos recebem 4 videos de 10 sec
+
+
+- articulação incluir Integrado
+- trocar combinado por Integrado
+- tirar multiplos movimentos
+
+

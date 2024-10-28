@@ -10,7 +10,8 @@ class Exercicio {
 
     public static $articulacao = [
         '1' => 'Multi articular',
-        '2' => 'Uni articular'
+        '2' => 'Uni articular',
+        '3' => 'Integrado',
     ];
 
     public static $membro = [
@@ -23,14 +24,13 @@ class Exercicio {
         '1' => 'Contra a gravidade',
         '2' => 'A favor da gravidade',
         '3' => 'Neutro',
-        '4' => 'Combinado'
+        '4' => 'Integrado'
     ];
 
     public static $movimento = [
         '1' => 'De empurrar',
         '2' => 'De puxar',
-        '3' => 'Combinado',
-        '4' => 'Multiplos movimentos'
+        '3' => 'Integrado'
     ];
 
     public static $dificuldade = [
