@@ -151,9 +151,7 @@ if (isset($_POST['acao'])) {
             <div class="serie" data-serie="1">
                 <div class="exercicios">
                     <div class="exercicio" data-exercicio="1">
-                        
                         <table>
-                           
                                 <tr style="background-color: #E1E1E1;">
                                     <td colspan="12">
                                         <h3>Exercício 1</h3>
@@ -165,7 +163,6 @@ if (isset($_POST['acao'])) {
                                         </select>
                                     </td>
                                 </tr>
-                          
                             <tbody class="cargas-repeticoes">
                                 <tr>
                                     <td><label>Carga:</label></td>
