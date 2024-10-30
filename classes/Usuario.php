@@ -1,9 +1,9 @@
 <?php 
     class Usuario{
 
-        public function atualizarUsuario($id, $nome, $password, $imagem, $email, $telefone, $data_nascimento, $data_inicio, $sexo, $cpf){
-            $sql = MySql::conectar()->prepare("UPDATE `tb_admin.usuarios` SET nome = ?, password = ?, img = ?, email = ?, telefone = ?, data_nascimento = ?, data_inicio = ?, sexo = ?, cpf = ? WHERE id = ?");
-            if($sql->execute(array($nome, $password, $imagem, $email, $telefone, $data_nascimento, $data_inicio, $sexo, $cpf, $id))){
+        public function atualizarUsuario($id, $nome, $password, $imagem, $telefone, $data_nascimento, $data_inicio, $sexo, $cpf){
+            $sql = MySql::conectar()->prepare("UPDATE `tb_admin.usuarios` SET nome = ?, password = ?, img = ?, telefone = ?, data_nascimento = ?, data_inicio = ?, sexo = ?, cpf = ? WHERE id = ?");
+            if($sql->execute(array($nome, $password, $imagem, $telefone, $data_nascimento, $data_inicio, $sexo, $cpf, $id))){
                 return true;
             } else {
                 return false;
@@ -19,9 +19,9 @@
                 return false;
         }
 
-        public static function cadastrarUsuario($user,$password,$img,$nome,$cargo,$email,$telefone,$data_nascimento,$data_inicio,$sexo, $cpf, $professor_id, $grupo){
-            $sql = MySql::conectar()->prepare("INSERT INTO `tb_admin.usuarios` VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-            $sql->execute(array($user,$password,$img,$nome,$cargo,$email,$telefone, $data_nascimento,$data_inicio,$sexo,$cpf, $professor_id, $grupo));
+        public static function cadastrarUsuario($user,$password,$img,$nome,$cargo, $telefone, $data_nascimento, $data_inicio,$sexo, $cpf, $professor_id, $grupo){
+            $sql = MySql::conectar()->prepare("INSERT INTO `tb_admin.usuarios` VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?)");
+            $sql->execute(array($user,$password,$img,$nome,$cargo,$telefone, $data_nascimento,$data_inicio,$sexo,$cpf, $professor_id, $grupo));
         }
 
         public static function excluirUsuario($id) {

@@ -1,4 +1,5 @@
 <?php 
+    //include('../config.php'); // Inclua o arquivo de configuração do seu projeto
     verificaPermissaoPagina(1);
     include_once('pages/funcoes.php');
     
@@ -36,7 +37,6 @@
             $nome = $_POST['nome'];
             $password = $_POST['password'];
             $imagem = $_FILES['imagem'];
-            $email = $_POST['email'];
             $telefone= $_POST['telefone'];
             $data_nascimento = $_POST['data_nascimento'];
             $data_inicio = $_POST['data_inicio'];
@@ -64,8 +64,6 @@
                 Painel::alert('erro', 'A senha está vazia');
             //} else if($imagem['name'] == ''){
             //   Painel::alert('erro', 'A imagem precisa estar selecionada');
-            } else if($email == ''){
-                Painel::alert('erro', 'O email precisa ser informado');
             } else if($telefone == ''){
                 Painel::alert('erro', 'O telefone precisa ser informado');  
             } else if($data_nascimento == ''){
@@ -89,7 +87,7 @@
                     $usuario = new Usuario();
                     $img = Painel::uploadImagem($imagem);
                     // Passando o professor_ID ao cadastrar
-                    $usuario->cadastrarUsuario($user, $password, $img, $nome, $cargo, $email, $telefone, $data_nascimento, $data_inicio, $sexo, $cpf, $professor_ID, $grupo);
+                    $usuario->cadastrarUsuario($user, $password, $img, $nome, $cargo, $telefone, $data_nascimento, $data_inicio, $sexo, $cpf, $professor_ID, $grupo);
                     Painel::alert('sucesso', 'Usuário '.$user. ' cadastrado com sucesso');
                 }
             }     
@@ -116,8 +114,8 @@
         </div><!-- button-container -->
     </div><!-- form-group -->
     <div class="form-group left w50">
-        <label>Login:</label>
-        <input type="text" name="user" autocomplete="__away">
+        <label>Email:</label>
+        <input type="email" name="user" autocomplete="__away">
     </div><!-- form-group -->
 
     <div class="form-group right w50">
@@ -136,17 +134,12 @@
         <input type="hidden" name="imagem_atual" />
     </div><!-- form-group --> 
 
-    <div class="form-group left w50">
-        <label>E-mail:</label>
-        <input type="email" name="email" />
-    </div><!-- form-group -->
-
-    <div class="form-group right w50">
+    <div class="form-group w33">
         <label>Telefone:</label>
         <input type="text" name="telefone" data-mask="(00) 00000-0000" />
     </div><!-- form-group -->
 
-    <div class="form-group left w50">
+    <div class="form-group w33">
         <label>Gênero:</label>
         <select name="sexo">
             <?php 
@@ -157,7 +150,7 @@
         </select>
     </div><!-- form-group -->
 
-    <div class="form-group right w50">
+    <div class="form-group w33">
         <label>CPF:</label>
         <input type="text" name="cpf" data-mask="000.000.000-00" />
     </div><!-- form-group -->

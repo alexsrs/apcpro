@@ -1,5 +1,3 @@
-
-<div id="map"></div>
 <div class="contato-container">
 	<div class="center">
 		<form method="post" action="">

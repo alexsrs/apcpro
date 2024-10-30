@@ -456,6 +456,22 @@ section.erro-404 p{
 	font-size: 16px;
 }
 
+.password-wrapper {
+	position: relative;
+	display: inline-block;
+}
+
+.password-wrapper input {
+	padding-right: 30px; /* Espaço para o ícone */
+}
+
+.password-wrapper .fa-eye, .password-wrapper .fa-eye-slash {
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
 @media screen and (max-width: 785px){
 	img{
 		float: none !important;

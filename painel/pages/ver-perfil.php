@@ -42,7 +42,7 @@ if (isset($_GET['id'])) {
         <?php } 
     ?> <!-- fechando o IF lá de cima -->    
         <p><strong>Nome:</strong> <?php echo htmlspecialchars($usuario['nome']); ?></p>
-        <p><strong>Email:</strong> <?php echo htmlspecialchars($usuario['email']); ?></p>
+        <p><strong>Email:</strong> <?php echo htmlspecialchars($usuario['user']); ?></p>
         <p><strong>Telefone:</strong> <?php echo htmlspecialchars($usuario['telefone']); ?></p>
         <p><strong>Data de Nascimento:</strong> <?php echo htmlspecialchars(date('d/m/Y', strtotime($usuario['data_nascimento']))); ?></p>
         <p><strong>Data de Início:</strong> <?php echo htmlspecialchars(date('d/m/Y', strtotime($usuario['data_inicio']))); ?></p>

@@ -84,8 +84,7 @@
 	</footer>
 	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 	<script src="<?php echo INCLUDE_PATH; ?>js/constant.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCnh9a-0dAbErxqWnQiJQqfL4DU_9YLEb8"></script>
-	<script src="<?php echo INCLUDE_PATH;?>js/initMap.js"></script>
+	
 	<script src="<?php echo INCLUDE_PATH; ?>js/scripts.js"></script>
 	<?php 
 		if ($url == 'home' || $url =='') {
