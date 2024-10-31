@@ -6,9 +6,12 @@
 		<div class="overlay"></div><!--overlay-->
 		<div class="center"> 
 			<form method="post">
-				<h2>Qual o seu melhor e-mail</h2>
+				<h2>Teste o APC PRO com Condições Exclusivas</h2>
+				<h3>Seja um dos primeiros a transformar seu atendimento com o APC PRO!<br>Participe da fase de lançamento com uma oferta especial: apenas R$1,99 por mês durante o período de testes. Após esse período, você poderá seguir com o valor atualizado e acesso completo à plataforma.<br>Inscreva-se agora e experimente o futuro do personal digital!</h3>
+				<div>
 				<input type="email" name="email" required />
 				<input type="hidden" name="identificador" value="form_home">
+				</div>
 				<input type="submit" name="acao" value="Cadastrar">
 			</form>
 		</div><!-- center -->
@@ -17,11 +20,9 @@
 	<section class="descricao-autor">
 		<div class="center">
 			<div id="sobre" class="w50 left">
-				<h2>APC Pro</h2>
-				<p>O “APC Pro” redefine o treinamento personalizado, posicionando-se como o personal trainer definitivo na palma da sua mão. Essa ferramenta inovadora transforma o acesso e a entrega de treinamentos físicos, permitindo a profissionais de educação física conduzir avaliações detalhadas e personalizadas tanto presencialmente quanto à distância.</p>
-				<p>Com o “APC Pro”, o planejamento de treinos torna-se extremamente acessível e executável em qualquer parte do mundo, garantindo que cada aspecto do treino seja meticulosamente organizado e monitorado. Os usuários podem seguir sessões com vídeos explicativos integrados, contadores de tempo para cada exercício, e um sistema intuitivo que permite a escolha entre cronômetros digitais ou analógicos, controle de séries e repetições, tudo ao alcance dos dedos.</p>
-				<p>Durante o treino, é possível adicionar notas sobre a execução e as cargas usadas, enriquecendo o feedback para ajustes futuros. Ao final de cada sessão, uma avaliação imediata através da tabela de percepção subjetiva de esforço permite ao usuário e ao treinador avaliar a intensidade do treino, garantindo uma compreensão clara do impacto de cada sessão.</p>
-				<p>O “APC Pro” não é apenas um aplicativo, é uma revolução na maneira como os treinamentos são planejados, executados e monitorados. É a ferramenta essencial para qualquer personal trainer ou profissional de educação física que deseja elevar o padrão de treinamento e oferecer o melhor em treinamento personalizado. Com o “APC Pro”, cada treinador tem o poder de transformar vidas, qualquer que seja o lugar, com precisão científica e um toque pessoal.</p>
+				<h2>APC PRO: A Evolução do Treinamento Personalizado”</h2>
+				<h3>Transforme sua prática e leve seu atendimento a um novo nível, seja presencial ou digital, com a tecnologia que conecta ciência e resultados.</h3>
+				<p>O APC PRO é uma plataforma inovadora desenvolvida para personal trainers e profissionais de educação física, projetada para facilitar cada etapa do treinamento. Desde avaliações precisas até o planejamento e monitoramento, o APC PRO permite um atendimento personalizado e de alta performance, em qualquer lugar e a qualquer momento.</p>
 			</div><!-- w50 -->
 			<div class="w50 left">
 				<img class="right" src="<?php echo INCLUDE_PATH; ?>images/eu.jpg">
@@ -34,18 +35,18 @@
 			<!-- <h2 class="title">Especialidades</h2> -->
 			<div class="box-especialidade w33 left">
 				<h3><i class="fa fa-line-chart"></i></h3>
-				<h4>ANAMNESE INTELIGENTE</h4>
-				<p>Interface para aplicação de questionários detalhados sobre saúde, entrevistas para captar informações qualitativas sobre o bem-estar e expectativas do atleta, com aperguntas pertinentes para que o personal trainer tenha informações relevantes para prescrever o treinamento com segurança e de forma individualizada.</p>
+				<h4>AVALIAR</h4>
+				<p>Conduza avaliações detalhadas com perguntas inteligentes que ajudam a mapear as condições de saúde e objetivos de cada aluno. Avalie de forma completa, garantindo que cada detalhe seja considerado antes de iniciar o plano de treino.</p>
 			</div><!-- box-especialidade -->
 			<div class="box-especialidade w33 left"> 
 				<h3><i class="fa fa-book"></i></h3>
-				<h4>BIBLIOTECA DE EXERCICIOS</h4>
-				<p>Extensa biblioteca categorizada por tipo de exercício, com vídeos demonstrativos e descrições técnicas.</p>
+				<h4>PLANEJAR</h4>
+				<p>Com o APC PRO, o planejamento de treinos é intuitivo e acessível, incluindo uma biblioteca de exercícios com vídeos explicativos, contadores de tempo, controle de séries e repetições. Monte e ajuste periodizações, adaptando-as ao perfil de cada aluno.</p>
 			</div><!-- box-especialidade -->
 			<div class="box-especialidade w33 left">
 				<h3><i class="fa fa-diamond"></i></h3>
-				<h4>BASEADO NO FITT-VP</h4>
-				<p>O diferencial do APC PRO está na utilização do princípio FITT-VP (Frequência, Intensidade, Tempo, Tipo, Volume e Progressão), reconhecido pelo Colégio Americano de Medicina do Esporte, como base para a prescrição dos exercícios. Esse princípio garante que cada cliente tenha um plano de treino ajustado,otimizado e seguro, promovendo resultados consistentes e duradouros."</p>
+				<h4>CONTROLAR</h4>
+				<p>Monitore o progresso em tempo real com feedbacks baseados no esforço e performance dos alunos. Use os dados para ajustar o treino e garantir que os objetivos sejam alcançados de maneira segura e eficaz.</p>
 			</div><!-- box-especialidade -->
 			<div class="clear"></div><!--clear-->
 		</div><!-- center -->
@@ -71,12 +72,9 @@
 				<h2 class="title">Funcionalidades</h2>
 				<div class="funcionalidades">
 					<ul>
-						<li>Desenvolvido com foco em avaliação contínua, planejamento preciso e controle rigoroso, o APC PRO oferece uma abordagem personalizada para cada indivíduo, adaptando o treino às suas necessidades e ao seu nível de condicionamento físico.</li>
-						<li>Metas SMART: Definir metas específicas, mensuráveis, alcançáveis, realistas e
-						temporais (SMART) baseadas nos objetivos individuais de cada cliente.</li>
-						<li>Fórmulas de gasto calórico para calcular o esforço necessário para
-						alcançar os objetivos de emagrecimento ou manutenção.</li>
-						<li>Ao usar os valores de METs dos esportes e atividades citadas, é possível planejar e ajustar o programa de treinamento, garantindo que cada cliente atinja seu gasto calórico semanal ou diário conforme os objetivos de emagrecimento, hipertrofia ou performance.</li>
+						<li>Anamnese Inteligente<br>Nosso sistema de anamnese inteligente permite a aplicação de questionários sobre saúde e estilo de vida, coletando informações essenciais para prescrever treinos seguros e alinhados aos objetivos dos alunos. Cada resposta constrói uma base sólida para um atendimento personalizado.</li>
+						<li>Biblioteca de Exercícios<br>A biblioteca do APC PRO é categorizada por tipos de exercício, com vídeos e descrições técnicas para garantir a execução correta. Essa funcionalidade torna o aplicativo ideal para orientação visual e suporte constante aos alunos.</li>
+						<li>Baseado no Princípio FITT-VP<br>O APC PRO adota o princípio FITT-VP (Frequência, Intensidade, Tempo, Tipo, Volume e Progressão), referência mundial do Colégio Americano de Medicina do Esporte. Este método garante que cada cliente tenha um treino otimizado e seguro, promovendo resultados sólidos e duradouros.</li>
 					</ul>
 				</div><!-- funcionalidades -->
 			</div><!-- w50 -->

@@ -43,8 +43,13 @@
 		</div><!-- center -->
 	</header>
 <body>
+<?php if (!empty($response['mensagem'])) { echo "<div class='alert'>{$response['mensagem']}</div>"; } ?>
+
 
 <?php
+
+include('classes/Painel.php'); // Inclua o arquivo que contém a definição da classe Painel
+
 $response = ['sucesso' => false]; // Inicializa a chave 'sucesso' como false
 
 if (isset($_GET['professor_id']) && isset($_GET['cargo']) && isset($_GET['grupo'])) {
@@ -54,9 +59,9 @@ if (isset($_GET['professor_id']) && isset($_GET['cargo']) && isset($_GET['grupo'
   
 }
 
-echo $professor_id;
-echo $cargo_convite;
-echo $grupo;
+//echo $professor_id;
+//echo $cargo_convite;
+//echo $grupo;
 
 
 if(isset($_POST['acao'])){
@@ -77,79 +82,81 @@ if(isset($_POST['acao'])){
     } elseif ($cargo_convite == 1) {
         $cargo = 0;
     } else {
-        $response['mensagem'] = 'Você não tem permissão para adicionar usuários.';
-        echo json_encode($response);
+        Painel::alert('erro', 'Você não tem permissão para adicionar usuários.');
         exit;
     }
 
     // validar os campos antes de add
     if ($user == '') {
-        $response['mensagem'] = 'O login está vazio';
+        //$response['mensagem'] = 'O login está vazio';
+        Painel::alert('erro', 'O email está vazio');
     } else if ($nome == '') {
-        $response['mensagem'] = 'O nome está vazio';
+        //$response['mensagem'] = 'O nome está vazio';
+        Painel::alert('erro', 'O nome está vazio');
     } else if ($password == '') {
-        $response['mensagem'] = 'A senha está vazia';
+        //$response['mensagem'] = 'A senha está vazia';
+        Painel::alert('erro', 'A senha está vazia');
     } else if ($telefone == '') {
-        $response['mensagem'] = 'O telefone precisa ser informado';
+        //$response['mensagem'] = 'O telefone precisa ser informado';
+        Painel::alert('erro', 'O telefone precisa ser informado');
     } else if ($data_nascimento == '') {
-        $response['mensagem'] = 'A data de nascimento precisa ser informada';
+        //$response['mensagem'] = 'A data de nascimento precisa ser informada';
+        Painel::alert('erro', 'A data de nascimento precisa ser informada');
     } else if ($data_inicio == '') {
-        $response['mensagem'] = 'A data de início de treinamento precisa ser informada';
+        //$response['mensagem'] = 'A data de início de treinamento precisa ser informada';
+        Painel::alert('erro', 'A data de início de treinamento precisa ser informada');
     } else if ($sexo == '') {
-        $response['mensagem'] = 'O gênero precisa ser informado';
+        //$response['mensagem'] = 'O gênero precisa ser informado';
+        Painel::alert('erro', 'O gênero precisa ser informado');
     } else if ($cpf == '') {
-        $response['mensagem'] = 'O CPF precisa ser informado';
+        //$response['mensagem'] = 'O CPF precisa ser informado';
+        Painel::alert('erro', 'O CPF precisa ser informado');
     } else if ($password !== $confirmPassword) {
-        $response['mensagem'] = 'As senhas não correspondem. Por favor, verifique.';
+        //$response['mensagem'] = 'As senhas não correspondem. Por favor, verifique.';
+        Painel::alert('erro', 'As senhas não correspondem. Por favor, verifique.');
     } else {
         // podemos cadastrar !
         if ($cargo >= $cargo_convite) {
-            $response['mensagem'] = 'Você não pode cadastrar um usuário com permissões maiores que as suas';
+            //$response['mensagem'] = 'Você não pode cadastrar um usuário com permissões maiores que as suas';
+            Painel::alert('erro', 'Você não pode cadastrar um usuário com permissões maiores que as suas');
         } else if (Usuario::userExists($user)) {
             //$response['mensagem'] = 'O login já está em uso, selecione outro';
             Painel::alert('erro', 'O login já está em uso, selecione outro');
         } else {
             // Apenas cadastrar no banco de dados 
             $usuario = new Usuario();
-            $img = Painel::uploadImagem($imagem);
+            $img = $imagem['name'] ? Painel::uploadImagem($imagem) : 'default.jpg'; // Define um valor padrão se a imagem não for enviada
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
             $usuario->cadastrarUsuario($user, $hashedPassword, $img, $nome, $cargo, $telefone, $data_nascimento, $data_inicio, $sexo, $cpf, $professor_id, $grupo);
 
-            // Inserir no banco de dados
-            $sql = MySql::conectar()->prepare("INSERT INTO `tb_admin.usuarios` (user, password, img, nome, cargo, telefone, data_nascimento, data_inicio, sexo, cpf, professor_id, grupo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
             $response['sucesso'] = true;
-            //$response['mensagem'] = 'Usuário ' . $user . ' cadastrado com sucesso';
             Painel::alert('sucesso', 'Cadastro realizado com sucesso!');
-            echo "<script>
-                setTimeout(function() {
-                    window.location.href = '" . INCLUDE_PATH_PAINEL . "login';
-                }, 3000);
-              </script>";
+            session_destroy();
+            // Redirecionamento PHP após o cadastro com sucesso
+            echo '<script>
+                alert("Cadastro realizado com sucesso!");
+                window.location.href = "' . INCLUDE_PATH_PAINEL . 'index";
+            </script>';
+            exit();
+            //header('Location: ' . INCLUDE_PATH_PAINEL . 'login.php');
         }   
     }
-} else {
-    $response['mensagem'] = 'Dados incompletos';
-}
+} 
 
-if ($response['sucesso']) {
-    echo '<div class="sucesso">' . $response['mensagem'] . '</div>';
-} else {
-    echo '<div class="erro">' . $response['mensagem'] . '</div>';
-}
+
 ?>
 
-<div class="box-content">
-<h2><i class="fa fa-pencil" aria-hidden="true"></i> Adicionar usuário</h2>
+<div class="box-content-cadastro">
+
 
 <form method="post" enctype="multipart/form-data"> <!-- sem o atributo enctype nao envia a imagem -->
 
-    <div class="form-group">
+    <div class="form-group w50">
         <label>Email:</label>
         <input type="email" name="user" autocomplete="__away">
     </div><!-- form-group -->
 
-    <div class="form-group">
+    <div class="form-group w50 left">
         <label>Senha:</label>
         <div class="password-wrapper">
             <input type="password" id="password" name="password" required>
@@ -157,7 +164,7 @@ if ($response['sucesso']) {
         </div>
     </div><!-- form-group -->
 
-    <div class="form-group">
+    <div class="form-group w50 right" >
         <label for="confirm_password">Confirme a Senha:</label>
         <div class="password-wrapper">
             <input type="password" id="confirm_password" name="confirm_password" required>

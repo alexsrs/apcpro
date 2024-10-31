@@ -19,10 +19,11 @@
                 return false;
         }
 
-        public static function cadastrarUsuario($user,$password,$img,$nome,$cargo, $telefone, $data_nascimento, $data_inicio,$sexo, $cpf, $professor_id, $grupo){
-            $sql = MySql::conectar()->prepare("INSERT INTO `tb_admin.usuarios` VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?)");
-            $sql->execute(array($user,$password,$img,$nome,$cargo,$telefone, $data_nascimento,$data_inicio,$sexo,$cpf, $professor_id, $grupo));
+        public static function cadastrarUsuario($user, $password, $img, $nome, $cargo, $telefone, $data_nascimento, $data_inicio, $sexo, $cpf, $professor_id, $grupo) {
+            $sql = MySql::conectar()->prepare("INSERT INTO `tb_admin.usuarios` (user, password, img, nome, cargo, telefone, data_nascimento, data_inicio, sexo, cpf, professor_id, grupo_id) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+            $sql->execute(array($user, $password, $img, $nome, $cargo, $telefone, $data_nascimento, $data_inicio, $sexo, $cpf, $professor_id, $grupo));
         }
+        
 
         public static function excluirUsuario($id) {
             // Verifica se o usuário existe antes de excluir
