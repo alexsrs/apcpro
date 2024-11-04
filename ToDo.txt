@@ -180,3 +180,23 @@ Entregar estudos de gasto calórico
 Explicar periodização desenho
 
 
+Aqui estão os tópicos organizados para a reunião:
+
+	1.	Alterações no Dashboard:
+	•	Substituir o termo “Cadastro de Atletas” por “Convite”.
+
+	•	Adicionar máscara no campo de telefone para padronizar a entrada de dados.
+
+	•	Editar o Dashboard do aluno para incluir novos elementos e melhorias.
+	
+	2.	Integrações e Comunicação:
+	•	Conferir e ajustar o campo de WhatsApp no cadastro inicial.
+	•	Criar um grupo de WhatsApp para facilitar a comunicação entre alunos e equipe.
+	•	Gerar um QR code para leitura rápida e acesso a informações importantes.
+	3.	Avaliação e Relatórios:
+	•	Exibir a avaliação dos últimos sete dias no Dashboard para facilitar o acompanhamento do aluno.
+	•	Remover o termo incorreto “atletas” onde for necessário.
+	4.	Planejamento de Treino:
+	•	Corrigir e padronizar os termos “concêntrica” e “excêntrica” no planejamento de treinos.
+
+

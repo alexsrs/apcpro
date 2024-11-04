@@ -99,9 +99,9 @@ if (isset($_POST['acao'])) {
         </div><!-- button-container -->
     </div><!-- form-group -->
     <div class="form-group w33">
-        <label>Cadastre o atleta</label>
-        <input type="text" name="telefone" data-mask="(00) 00000-0000" required/>
-        <input type="submit" name="acao" value="Gerar convite"/>
+        
+        <input type="text" name="telefone" placeholder="DDD + Telefone "  data-mask="(00) 00000-0000" required/>
+        <input type="submit" name="acao" value="Convite"/>
     </div><!-- form-group -->
 </form>
 
@@ -113,24 +113,8 @@ if ($linkWhatsApp) {
 ?>
 </div><!-- box-content -->
 
-<!-- Resto do seu código HTML -->
-
-<!-- Modal para adicionar grupo -->
-<div id="modalGrupo" style="display:none;">
-    <div class="modal-content">
-        <form method="post">
-            <h3>Adicionar um novo grupo</h3>
-            <input type="text" name="novo_grupo_texto" placeholder="Digite o nome do novo grupo" required>
-            <input type="submit" name="novo_grupo" value="Adicionar">
-            <button type="button" onclick="document.getElementById('modalGrupo').style.display='none'">Fechar</button>
-        </form>
-    </div>
-</div>
-
-
-
 <div class="box-content left w50">
-    <h3><i class="fa fa-rocket" aria-hidden="true"></i> Atletas com avaliações realizadas nos últimos 7 dias (<?php echo calcularPeriodoUltimos7Dias();?>) </h3>
+    <h4>Avaliações realizadas nos últimos 7 dias (<?php echo calcularPeriodoUltimos7Dias();?>) </h4>
     <div class="table-responsive">
         <div class="row">
             <div class="col">
@@ -159,7 +143,7 @@ if ($linkWhatsApp) {
 
      
 <div class="box-content right w50">
-    <h3><i class="fa fa-rocket" aria-hidden="true"></i> Atletas com treinos realizados nos últimos 7 dias (<?php echo calcularPeriodoUltimos7Dias();?>) </h3>
+    <h4>Treinos realizados nos últimos 7 dias (<?php echo calcularPeriodoUltimos7Dias();?>) </h4>
     <div class="table-responsive">
         <div class="row">
             <div class="col">
@@ -190,19 +174,122 @@ if ($linkWhatsApp) {
     </div><!-- table-responsive -->
 
 </div><!-- box-content -->
+<div class="clear"></div><!-- clear -->
+<?php include_once('pages/listar-usuarios.php'); ?>
 <?php } ?>  <!-- Fim do if($_SESSION['cargo'] == 1) -->
 
+<?php if ($_SESSION['cargo'] == 2) { 
+    // Contador de visitas totais
+    $id = $_SESSION['id'];
+    $totalAtletas = MySql::conectar()->prepare("SELECT * FROM `tb_admin.usuarios` WHERE `professor_id` = $id");
+    $totalAtletas->execute();
+    $totalAtletas = $totalAtletas->rowCount();
+?>
+<div class="box-content left w100">
+    <h2><i class="fa fa-home"></i> Dashboard - <?php echo NOME_EMPRESA ?></h2>
+    <div class="box-metricas">
+        <div class="box-metrica-single">
+            <div class="box-metrica-wraper">
+                <h1>PROFESSORES</h1>
+                <h1><?php echo $totalAtletas ?></h1>
+            </div><!-- box-metrica-wraper -->
+        </div><!-- box-metrica-single -->
+        <div class="box-metrica-single">
+            <div class="box-metrica-wraper">
+                <h1>TOTAL DE USUARIOS</h1>
+                <h1><?php echo "0" ?></h1>
+            </div><!-- box-metrica-wraper -->
+        </div><!-- box-metrica-single -->
+        <div class="box-metrica-single">
+            <div class="box-metrica-wraper">
+                <h1>TOTAL DE ALUNOS</h1>
+                <h1><?php echo "13"; ?></h1>
+            </div><!-- box-metrica-wraper -->
+        </div><!-- box-metrica-single -->
+        <div class="clear"></div><!--clear -->
+    </div><!-- box-metricas -->
 
-    <div class="box-content left w50">
-        
-    </div><!-- box-content -->
+    <form method="post" enctype="multipart/form-data">
+    <div class="form-group flex-container">
+        <div class="select-container">
+            <label>Grupo</label>
+            <select name="grupo">
+                <option value="0">-- Selecione para adicionar a um grupo --</option>
+                <?php 
+                foreach ($grupos as $grupo) {
+                    echo '<option value="'.$grupo['id'].'">'.$grupo['grupo'].'</option>';
+                }
+                ?>
+            </select>
+        </div><!-- select-container -->
+        <div class="button-container">
+            <button type="button" onclick="document.getElementById('modalGrupo').style.display='flex'">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+            </button>
+        </div><!-- button-container -->
+    </div><!-- form-group -->
+    <div class="form-group w33">
+        <label>Cadastre o atleta</label>
+        <input type="text" name="telefone" data-mask="(00) 00000-0000" required/>
+        <input type="submit" name="acao" value="Gerar convite"/>
+    </div><!-- form-group -->
+    </form>
+
+<!-- Exibir link do WhatsApp após o envio do formulário -->
+<?php
+if ($linkWhatsApp) {
+    echo "<div class='whatsapp-button'>$linkWhatsApp</div>";
+}
+?>
+</div><!-- box-content -->
+
+<div class="clear"></div><!-- clear -->
+
+
+
+<?php include_once('pages/listar-usuarios.php'); ?>
+
+<?php } ?>  <!-- Fim do if($_SESSION['cargo'] == 2) -->
 
 
 
 
-    <div class="box-content right w50">
-        
-    </div><!-- box-content -->
+<?php if ($_SESSION['cargo'] == 0) { 
+?>
+<div class="box-content left w100">
+    <h2><i class="fa fa-home"></i> Dashboard - <?php echo NOME_EMPRESA ?></h2>
+    <div class="box-metricas">
+        <div class="box-metrica-single">
+            <div class="box-metrica-wraper">
+                <h1>PRÓXIMO TREINO</h1>
+                <h1>01/01/2025</h1>
+            </div><!-- box-metrica-wraper -->
+        </div><!-- box-metrica-single -->
+        <div class="box-metrica-single">
+            <div class="box-metrica-wraper">
+                <h1>STATUS AVALIAÇÂO</h1>
+                <h1><?php echo "0" ?></h1>
+            </div><!-- box-metrica-wraper -->
+        </div><!-- box-metrica-single -->
+        <div class="box-metrica-single">
+            <div class="box-metrica-wraper">
+                <h1>GASTO CALÓRICO</h1>
+                <h1><?php echo "13"; ?></h1>
+            </div><!-- box-metrica-wraper -->
+        </div><!-- box-metrica-single -->
+        <div class="clear"></div><!--clear -->
+    </div><!-- box-metricas -->
+
+    
+</div><!-- box-content -->
+
+<div class="clear"></div><!-- clear -->
+<?php include_once('pages/teste-fisico.php'); ?>
+
+<?php } ?>  <!-- Fim do if($_SESSION['cargo'] == 0) -->
+ 
+
+  
 
     <!-- Modal -->
 <div id="modalGrupo" style="display:none;">

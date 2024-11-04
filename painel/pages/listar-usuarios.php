@@ -139,9 +139,7 @@ $grupos = $sqlGrupos->fetchAll();
             <button type="submit" name="filtrar"><a><i class="fa fa-search mr-2"></i>Filtrar</a></button>
         </div>
     </form>
-</div><!--box-content-->
-
-<div class="box-content">
+    <h2><i class="fa fa-th-list" aria-hidden="true"></i> Listagem</h2>
 <table id="lista-usuarios" class="display" style="width:100%" data-order='[[ 1, "asc" ]]'>
         <thead>
             <tr>

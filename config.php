@@ -62,8 +62,8 @@
 		}
 	}
 
-	function verificaPermissaoMenuAlunoAdm($permissao) {
-		if ($_SESSION['cargo'] == $permissao || $_SESSION['cargo'] == 2) {
+	function verificaPermissaoMenuExata($permissao) {
+		if ($_SESSION['cargo'] == $permissao) {
 			return; // Se a permissão for verdadeira, não faz nada
 		} else {
 			echo 'style="display:none;"'; // Se a permissão não for verdadeira, retorna o estilo para ocultar

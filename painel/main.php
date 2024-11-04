@@ -57,27 +57,42 @@
         </div><!-- box-usuario -->
         <div class="items-menu">
             <h2 <?php verificaPermissaoMenu(1); ?>id="menu-usuarios" class="ativo"><i class="fa fa-id-card-o" aria-hidden="true"></i> Cadastro de <?php if($_SESSION['cargo'] == 2) { echo 'professores'; } else { echo 'alunos'; } ?></h2>
-            <a <?php selecionadoMenu('adicionar-usuario');  ?> href="<?php echo INCLUDE_PATH_PAINEL ?>adicionar-usuario">Adicionar <?php if($_SESSION['cargo'] == 2) { echo 'professores'; } else { echo 'alunos'; } ?> </a>
             <a <?php selecionadoMenu('listar-usuarios'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>listar-usuarios">Listar <?php if($_SESSION['cargo'] == 2) { echo 'professores'; } else { echo 'alunos'; } ?></a>
-            <h2 <?php verificaPermissaoMenuAlunoAdm(0); ?>id="menu-analise"><i class="fa fa-line-chart" aria-hidden="true"></i> Análise física avançada</h2>
+
+            <h2 <?php verificaPermissaoMenu(2); ?>id="menu-analise"><i class="fa fa-line-chart" aria-hidden="true"></i> Análise física avançada</h2>
             <a <?php selecionadoMenu('formulario-perfis'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>formulario-perfis">Avaliação</a>
             <a <?php selecionadoMenu($anamneseLink); ?> href="<?php echo INCLUDE_PATH_PAINEL . $anamneseLink;?>">Anamnese Inteligente</a>
             <a <?php selecionadoMenu('medida-corporal'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>medida-corporal">Medida Corporal</a>
             <a <?php selecionadoMenu('composicao-corporal'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>composicao-corporal">Composição Corporal</a>
             <a <?php selecionadoMenu('aptidao-cardiorespiratoria'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>aptidao-cardiorespiratoria">Aptidão Cardiorespiratória</a>
             <a <?php selecionadoMenu('teste-fisico'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>teste-fisico">Testes Físico</a>
-            <h2 id="menu-biblioteca"><i class="fa fa-book" aria-hidden="true"></i> Biblioteca de exercícios</h2>
+            
+            <h2 <?php verificaPermissaoMenuExata(0); ?>id="menu-analisealuno"><i class="fa fa-line-chart" aria-hidden="true"></i> Análise física avançada</h2>
+            <a <?php selecionadoMenu('formulario-perfis'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>formulario-perfis">Avaliação</a>
+            <a <?php selecionadoMenu($anamneseLink); ?> href="<?php echo INCLUDE_PATH_PAINEL . $anamneseLink;?>">Anamnese Inteligente</a>
+            <a <?php selecionadoMenu('medida-corporal'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>medida-corporal">Medida Corporal</a>
+            <a <?php selecionadoMenu('composicao-corporal'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>teste-fisico">Composição Corporal</a>
+            <a <?php selecionadoMenu('aptidao-cardiorespiratoria'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>teste-fisico">Aptidão Cardiorespiratória</a>
+            <a <?php selecionadoMenu('teste-fisico'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>teste-fisico">Testes Físico</a>
+
+
+       
+            <h2 <?php verificaPermissaoMenu(1); ?>id="menu-biblioteca"><i class="fa fa-book" aria-hidden="true"></i> Biblioteca de exercícios</h2>
             <a <?php selecionadoMenu('adicionar-exercicio'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>adicionar-exercicio">Adicionar exercicio</a>
             <a <?php selecionadoMenu('listar-exercicios'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>listar-exercicios">Listar exercícios</a>
+
+
+            <h2 <?php verificaPermissaoMenuExata(0); ?>id="menu-bibliotecaaluno"><i class="fa fa-book" aria-hidden="true"></i> Biblioteca de exercícios</h2>
+            <a <?php selecionadoMenu('listar-exercicios'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>listar-exercicios">Listar exercícios</a>
             
-            <h2 id="menu-planejamento"><i class="fa fa-calendar" aria-hidden="true"></i> Planejamento de treino</h2>
+            <h2 <?php verificaPermissaoMenu(1); ?>id="menu-planejamento"><i class="fa fa-calendar" aria-hidden="true"></i> Planejamento de treino</h2>
             <a <?php selecionadoMenu('criar-treino'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>criar-treino">Criar treino</a>
-            <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
+            <a <?php selecionadoMenu('editar-site'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>teste-fisico">Editar Site</a>
             
             
-            <h2 id="menu-controle"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Controle de treinos</h2>
-            <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
-            <a <?php selecionadoMenu('editar-site'); ?>href="">Editar Site</a>
+            <h2 <?php verificaPermissaoMenu(1); ?>id="menu-planejamento"><i class="fa fa-calendar" aria-hidden="true"></i> Controlre de treino</h2>
+            <a <?php selecionadoMenu('editar-site'); ?>href=""<?php echo INCLUDE_PATH_PAINEL ?>teste-fisico"">Editar Site</a>
+            <a <?php selecionadoMenu('editar-site'); ?>href=""<?php echo INCLUDE_PATH_PAINEL ?>teste-fisico">Editar Site</a>
             
             
             <h2 id="menu-monitoramento"><i class="fa fa-bar-chart" aria-hidden="true"></i> Monitoramento e feedback</h2>

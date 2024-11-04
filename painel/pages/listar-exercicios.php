@@ -1,6 +1,6 @@
 <?php 
 
-verificaPermissaoPagina(1);
+verificaPermissaoPagina(0);
 
 // Instancia a classe Anamnese
 $exercicio = new Exercicio();
