@@ -20,6 +20,23 @@ class Painel {
         'V' => 'Vigorosa'
     ];
 
+    public static $ciclo_menstrual = [
+        ' ' => '-- Selecione uma opção --',
+        '1' => 'Ciclo menstrual irregular somente no último mês',
+        '2' => 'Ciclo menstrual irregular nos últimos 3 meses',
+        '3' => 'Ciclo menstrual irregular nos últimos 4 a 6 meses',
+        '4' => 'Ciclo menstrual suspenso pelo menos por 3 meses'
+    ];
+
+    public static $auto_estima =[
+        ' ' => '-- Selecione uma opção --',
+        'Muito Alta' => 'Sinto-me muito confiante e satisfeito comigo mesmo.',
+        'Alta' => 'Tenho uma boa confiança e valorizo minhas habilidades e características.',
+        'Moderada' => 'Tenho uma autoestima razoável, mas há aspectos que gostaria de melhorar.',
+        'Baixa' =>  'Tenho dificuldades em me sentir confiante e valorizado.',
+        'Muito Baixa' => 'Frequentemente luto contra a autocrítica e me sinto desvalorizado.'
+    ];
+
     public static function logado(){
         return isset($_SESSION['login']) ? true : false;
     }

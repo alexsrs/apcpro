@@ -52,19 +52,41 @@ class Anamnese {
         $info_pertinente = $dados['info_pertinente'];
         $aceito = $dados['aceito'];
 
+        // Novos campos
+        $ciclo_menstrual = isset($dados['ciclo_menstrual']) ? $dados['ciclo_menstrual'] : null;
+        $ciclo_menstrual_irregular = isset($dados['ciclo_menstrual_irregular']) ? $dados['ciclo_menstrual_irregular'] : null;
+        $sintomas_menstruais = isset($dados['sintomas_menstruais']) ? $dados['sintomas_menstruais'] : null; // JSON
+        $uso_anticoncepcional = isset($dados['uso_anticoncepcional']) ? $dados['uso_anticoncepcional'] : null;
+        $fatores_impedem_treino = isset($dados['fatores_impedem_treino']) ? $dados['fatores_impedem_treino'] : null; // JSON
+        $dificuldade_emagrecer = isset($dados['dificuldade_emagrecer']) ? $dados['dificuldade_emagrecer'] : null; // JSON
+        
+        $remedios_emagrecer =  isset($dados['remedios_emagrecer']) ? 1 : 0;
+        $autoestima = isset($dados['autoestima']) ? htmlspecialchars(trim($dados['autoestima'])) : null;
+        $silhueta_real = isset($dados['silhueta_real']) && is_numeric($dados['silhueta_real']) ? intval($dados['silhueta_real']) : null;
+        $silhueta_ideal = isset($dados['silhueta_ideal']) && is_numeric($dados['silhueta_ideal']) ? intval($dados['silhueta_ideal']) : null;
+        $objetivos_6_meses = isset($dados['objetivos_6_meses']) ? $dados['objetivos_6_meses'] : null; // JSON
+        $nome_remedios_emagrecer = !empty($dados['nome_remedios_emagrecer']) ? htmlspecialchars(trim($dados['nome_remedios_emagrecer'])) : null;
+        $resultados_remedios = !empty($dados['resultados_remedios']) ? htmlspecialchars(trim($dados['resultados_remedios'])) : null;
+        $dificuldade_emagrecer_outros = !empty($dados['dificuldade_emagrecer_outros']) ? htmlspecialchars(trim($dados['dificuldade_emagrecer_outros'])) : null;
+
+
         // Preparar a query de inserção
         $sql = $this->db->prepare("INSERT INTO tb_usuarios_anamnese 
             (usuario_id, data_avaliacao, domingo, segunda, terca, quarta, quinta, sexta, sabado, minutos_dia,
             exercicios, outros_exercicios,nao_gosta, nao_gosta_exercicios, atividade_recente, nome_atividade_recente, 
             dias_semana_recente, horas_dia_recente, intensidade, doencas, doencas_nome, remedios, 
             cirurgias, regiao_cirurgia, dor_muscular, regioes_dor, dor_peito, tontura, movimento_diario, 
-            movimentos_dia, parente_cardiaco, num_parente_cardiaco, fumante, info_pertinente, aceito)
+            movimentos_dia, parente_cardiaco, num_parente_cardiaco, fumante, info_pertinente, aceito,
+            ciclo_menstrual, ciclo_menstrual_irregular, sintomas_menstruais, uso_anticoncepcional, 
+            fatores_impedem_treino, dificuldade_emagrecer, remedios_emagrecer, autoestima, silhueta_real, silhueta_ideal, objetivos_6_meses, nome_remedios_emagrecer, resultados_remedios, dificuldade_emagrecer_outros)
             VALUES 
             (:usuario_id, :data_avaliacao, :domingo, :segunda, :terca, :quarta, :quinta, :sexta, :sabado, :minutos_dia,
             :exercicios, :outros_exercicios, :nao_gosta, :nao_gosta_exercicios, :atividade_recente, :nome_atividade_recente, 
             :dias_semana_recente, :horas_dia_recente, :intensidade, :doencas, :doencas_nome, :remedios, 
             :cirurgias, :regiao_cirurgia, :dor_muscular, :regioes_dor, :dor_peito, :tontura, :movimento_diario, 
-            :movimentos_dia, :parente_cardiaco, :num_parente_cardiaco, :fumante, :info_pertinente, :aceito)");
+            :movimentos_dia, :parente_cardiaco, :num_parente_cardiaco, :fumante, :info_pertinente, :aceito,
+            :ciclo_menstrual, :ciclo_menstrual_irregular, :sintomas_menstruais, :uso_anticoncepcional, 
+            :fatores_impedem_treino, :dificuldade_emagrecer, :remedios_emagrecer, :autoestima, :silhueta_real, :silhueta_ideal, :objetivos_6_meses, :nome_remedios_emagrecer, :resultados_remedios, :dificuldade_emagrecer_outros)");
 
         // Bind dos parâmetros
         $sql->bindParam(':usuario_id', $usuario_id);
@@ -102,6 +124,21 @@ class Anamnese {
         $sql->bindParam(':fumante', $fumante);
         $sql->bindParam(':info_pertinente', $info_pertinente);
         $sql->bindParam(':aceito', $aceito);
+        $sql->bindParam(':ciclo_menstrual', $ciclo_menstrual);
+        $sql->bindParam(':ciclo_menstrual_irregular', $ciclo_menstrual_irregular);
+        $sql->bindParam(':sintomas_menstruais', $sintomas_menstruais);
+        $sql->bindParam(':uso_anticoncepcional', $uso_anticoncepcional);
+        $sql->bindParam(':fatores_impedem_treino', $fatores_impedem_treino);
+        $sql->bindParam(':dificuldade_emagrecer', $dificuldade_emagrecer);
+        $sql->bindParam(':remedios_emagrecer', $remedios_emagrecer);
+        $sql->bindParam(':autoestima', $autoestima);
+        $sql->bindParam(':silhueta_real', $silhueta_real);
+        $sql->bindParam(':silhueta_ideal', $silhueta_ideal);
+        $sql->bindParam(':objetivos_6_meses', $objetivos_6_meses);
+        $sql->bindParam(':nome_remedios_emagrecer', $nome_remedios_emagrecer);
+        $sql->bindParam(':resultados_remedios', $resultados_remedios);
+        $sql->bindParam(':dificuldade_emagrecer_outros', $dificuldade_emagrecer_outros);
+
 
         // Executar a query
         try {
@@ -147,5 +184,5 @@ class Anamnese {
         $sql->execute();
         return $sql->fetchAll(PDO::FETCH_ASSOC); // Retorna todas as anamneses do usuário
     }
-}
+} 
 ?>

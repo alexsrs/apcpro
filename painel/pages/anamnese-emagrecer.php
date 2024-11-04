@@ -51,9 +51,6 @@
 <div class="box-content">
     <h2><i class="fa fa-pencil" aria-hidden="true"></i>Anamnese para Mulheres que desejam emagrecer</h2>
 
-
-
-
     <form method="post">
     <?php
             if (isset($_POST['acao'])) {  
@@ -107,7 +104,23 @@
                         'num_parente_cardiaco' => isset($_POST['num-parente-cardiaco']) && is_numeric($_POST['num-parente-cardiaco']) ? intval($_POST['num-parente-cardiaco']) : null,
                         'fumante' => isset($_POST['fumante']) ? 1 : 0,
                         'info_pertinente' => !empty($_POST['info-pertinente']) ? htmlspecialchars(trim($_POST['info-pertinente'])) : null,
-                        'aceito' => isset($_POST['aceito']) ? 1 : 0
+                        'aceito' => isset($_POST['aceito']) ? 1 : 0,
+
+                        // Mulheres desejam emagrecer
+                        'ciclo_menstrual' => isset($_POST['ciclo_menstrual']) ? 1 : 0,
+                        'ciclo_menstrual_irregular' => !empty($_POST['ciclo_menstrual_irregular']) ? htmlspecialchars(trim($_POST['ciclo_menstrual_irregular'])) : null,
+                        'sintomas_menstruais' => isset($_POST['sintomas_menstruais']) ? json_encode($_POST['sintomas_menstruais']) : null,
+                        'uso_anticoncepcional' => !empty($_POST['uso_anticoncepcional']) ? htmlspecialchars(trim($_POST['uso_anticoncepcional'])) : null,
+                        'fatores_impedem_treino' => isset($_POST['fatores_impedem_treino']) ? json_encode($_POST['fatores_impedem_treino']) : null,
+                        'dificuldade_emagrecer' => isset($_POST['dificuldade_emagrecer']) ? json_encode($_POST['dificuldade_emagrecer']) : null,
+                        'remedios_emagrecer' => isset($_POST['remedios_emagrecer']) ? 1 : 0,
+                        'autoestima' => isset($_POST['autoestima']) ? htmlspecialchars(trim($_POST['autoestima'])) : null,
+                        'silhueta_real' => isset($_POST['silhueta_real']) && is_numeric($_POST['silhueta_real']) ? intval($_POST['silhueta_real']) : null,
+                        'silhueta_ideal' => isset($_POST['silhueta_ideal']) && is_numeric($_POST['silhueta_ideal']) ? intval($_POST['silhueta_ideal']) : null,
+                        'objetivos_6_meses' => isset($_POST['objetivos_6_meses']) ? json_encode($_POST['objetivos_6_meses']) : null,
+                        'nome_remedios_emagrecer' => !empty($_POST['nome_remedios_emagrecer']) ? htmlspecialchars(trim($_POST['nome_remedios_emagrecer'])) : null,
+                        'resultados_remedios' => !empty($_POST['resultados_remedios']) ? htmlspecialchars(trim($_POST['resultados_remedios'])) : null,
+                        'dificuldade_emagrecer_outros' => !empty($_POST['dificuldade_emagrecer_outros']) ? htmlspecialchars(trim($_POST['dificuldade_emagrecer_outros'])) : null,
                     ];
 
                     // Processar as regiões de dor, notas e dificuldades
@@ -130,7 +143,6 @@
                         }
                         $dados['regioes_dor'] = json_encode($regioes);
                     }
-
                     // Chamar o método para cadastrar a anamnese
                     if ($anamnese->cadastrarAnamnese($dados)) {
                         Painel::alert('sucesso', 'Anamnese cadastrada com sucesso!');
@@ -212,106 +224,365 @@ rápida, prática e com maior possibilidade de prescrição de um programa de tr
     </div><!-- form-group -->
     </fieldset>
     <fieldset>
+    <div class="form-group">
+        <label>Como você classificaria sua autoestima hoje?</label>
+            <select name="autoestima">
+                <?php 
+                    foreach (Painel::$auto_estima as $key => $value){
+                    echo '<option value="'.$key.'">'.$value.'</option>';
+                    }
+                ?>
+        </select>
+    </div><!-- form-group -->
+    <br><br>
+    <div class="img-escala">
+        <img src="<?php echo INCLUDE_PATH ?>images/escala_fisica.jpg" style="max-width: 300px !important;" />
+    </div><!-- img-escala -->
+    <div class="form-group w50 left">
+        <label>Aponte o número de qual é a silhueta que melhor representa a sua aparência física atualmente?</label>
+        <input type="number" name="silhueta_real">
+    </div>
+    <div class="form-group w50 right">
+        <label>Aponte o número de qual é a silhueta que você gostaria de ter (silhueta ideal)?</label>
+        <input type="number" name="silhueta_ideal">
+    </div>
+     
+    <div class="clear"></div><!-- clear -->
+
+    <br><br>
         <div class="form-group">
-            <label>Como você classificaria sua autoestima hoje?</label>
-            <input type="text" name="autoestima">
-        </div>
-        <div class="form-group">
-            <label>Aponte o número de qual é a silhueta que melhor representa a sua aparência física atualmente (silhueta real)?</label>
-            <input type="number" name="silhueta_real">
-        </div>
-        <div class="form-group">
-            <label>Aponte o número de qual é a silhueta que você gostaria de ter (silhueta ideal)?</label>
-            <input type="number" name="silhueta_ideal">
-        </div>
-        <div class="form-group">
-            <label>Imagine daqui 6 meses. Quais dos seguintes objetivos conquistados, te deixaria mais feliz?</label>
-            <input type="checkbox" name="objetivos_6_meses[]" value="emagrecer"> Conseguir emagrecer
-            <input type="checkbox" name="objetivos_6_meses[]" value="tonificar_musculatura"> Conseguir tonificar a musculatura do corpo
-            <input type="checkbox" name="objetivos_6_meses[]" value="ganho_massa_quadril_coxas"> Ganhar massa muscular no quadril e coxas
-            <input type="checkbox" name="objetivos_6_meses[]" value="mais_disposta"> Me sentir mais disposta para o dia a dia
-            <input type="checkbox" name="objetivos_6_meses[]" value="mais_energia"> Ter mais energia
-            <input type="checkbox" name="objetivos_6_meses[]" value="bem_consigo_mesma"> Se sentir bem consigo mesma
-            <input type="checkbox" name="objetivos_6_meses[]" value="viver_sem_dor"> Viver sem dor
-            <input type="checkbox" name="objetivos_6_meses[]" value="outros"> Outros. Quais?
-            <input type="text" name="objetivos_6_meses_outros">
-        </div>
-        <div class="form-group">
-            <label>Você já fez uso de remédios para emagrecer?</label>
-            <input type="radio" name="remedios_emagrecer" value="SIM"> SIM
-            <input type="radio" name="remedios_emagrecer" value="NAO"> NÃO
+            <label for="objetivos_6_meses">Imagine daqui 6 meses. Quais dos seguintes objetivos conquistados, te deixaria mais feliz?</label>
             <div class="form-group">
-                <label>Nome dos remédios:</label>
-                <input type="text" name="nome_remedios_emagrecer">
-            </div>
+            <label class="switch-label" for="emagrecer">
+                <input type="checkbox" id="emagrecer" name="objetivos_6_meses[]" value="emagrecer">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Conseguir emagrecer</span>
+            </label>
+            </div><!-- form-group -->
             <div class="form-group">
-                <label>Resultados conquistados:</label>
-                <input type="text" name="resultados_remedios">
-            </div>
-        </div>
-        <div class="form-group">
-            <label>Hoje, qual é a sua maior dificuldade para conseguir emagrecer?</label>
-            <input type="checkbox" name="dificuldade_emagrecer[]" value="regularidade_exercicios"> Manter a regularidade nos exercícios
-            <input type="checkbox" name="dificuldade_emagrecer[]" value="regularidade_dieta"> Manter a regularidade na dieta
-            <input type="checkbox" name="dificuldade_emagrecer[]" value="animo_exercicio"> Manter o ânimo para fazer exercício
-            <input type="checkbox" name="dificuldade_emagrecer[]" value="tristeza_comida"> Quando me sinto triste, desconto na comida
-            <input type="checkbox" name="dificuldade_emagrecer[]" value="tristeza_falta_treinos"> Quando fico triste, falto aos treinos
-            <input type="checkbox" name="dificuldade_emagrecer[]" value="outros"> Outras. Quais?
-            <input type="text" name="dificuldade_emagrecer_outros">
-        </div>
-        <div class="form-group">
-            <label>Nos últimos 6 meses, o ciclo menstrual esteve regulado?</label>
-            <input type="radio" name="ciclo_menstrual" value="SIM"> SIM
-            <input type="radio" name="ciclo_menstrual" value="NAO"> NÃO
+            <label class="switch-label" for="tonificar_musculatura">
+            <input type="checkbox" id="tonificar_musculatura" name="objetivos_6_meses[]" value="tonificar_musculatura">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Conseguir tonificar a musculatura do corpo</span>
+            </label>
+            </div><!-- form-group -->
             <div class="form-group">
-                <label>Ciclo menstrual irregular somente no último mês</label>
-                <input type="checkbox" name="ciclo_menstrual_irregular[]" value="ultimo_mes">
-                <label>Ciclo menstrual irregular nos últimos 3 meses</label>
-                <input type="checkbox" name="ciclo_menstrual_irregular[]" value="ultimos_3_meses">
-                <label>Ciclo menstrual irregular nos últimos 4 a 6 meses</label>
-                <input type="checkbox" name="ciclo_menstrual_irregular[]" value="ultimos_4_6_meses">
-                <label>Ciclo menstrual suspenso pelo menos por 3 meses</label>
-                <input type="checkbox" name="ciclo_menstrual_irregular[]" value="suspenso_3_meses">
-            </div>
-        </div>
-        <div class="form-group">
-            <label>Durante o período menstrual (fluxo), quais dos sintomas abaixo comumente você sente?</label>
-            <input type="checkbox" name="sintomas_menstruais[]" value="tontura"> Tontura
-            <input type="checkbox" name="sintomas_menstruais[]" value="moleza"> Moleza
-            <input type="checkbox" name="sintomas_menstruais[]" value="dor_abdominal"> Dor abdominal
-            <input type="checkbox" name="sintomas_menstruais[]" value="dor_coluna_lombar"> Dor na coluna lombar
-            <input type="checkbox" name="sintomas_menstruais[]" value="dor_pernas"> Dor nas pernas
-            <input type="checkbox" name="sintomas_menstruais[]" value="irritacao"> Irritação
-            <input type="checkbox" name="sintomas_menstruais[]" value="tristeza"> Tristeza
-            <input type="checkbox" name="sintomas_menstruais[]" value="queda_pressao"> Queda de pressão
-            <input type="checkbox" name="sintomas_menstruais[]" value="visao_escurecida"> Visão escurecida
-            <input type="checkbox" name="sintomas_menstruais[]" value="formigamento"> Formigamento nos dedos das mãos e pés
-            <input type="checkbox" name="sintomas_menstruais[]" value="palpitacao"> Palpitação
-            <input type="checkbox" name="sintomas_menstruais[]" value="sono_dia"> Sono durante o dia
-            <input type="checkbox" name="sintomas_menstruais[]" value="outros"> Outros. Quais?
-            <input type="text" name="sintomas_menstruais_outros">
-        </div>
-        <div class="form-group">
-            <label>Nos últimos 6 meses, você fez uso de anticoncepcional?</label>
-            <input type="radio" name="uso_anticoncepcional" value="SIM"> SIM
-            <input type="radio" name="uso_anticoncepcional" value="NAO"> NÃO
-        </div>
+            <label class="switch-label" for="ganho_massa_quadril_coxas">
+            <input type="checkbox" id="ganho_massa_quadril_coxas" name="objetivos_6_meses[]" value="ganho_massa_quadril_coxas">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Ganhar massa muscular no quadril e coxas</span>
+            </label>
+            </div><!-- form-group -->
+            <div class="form-group">
+            <label class="switch-label" for="mais_disposta">
+                <input type="checkbox" id="mais_disposta" name="objetivos_6_meses[]" value="mais_disposta">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Me sentir mais disposta para o dia a dia</span>
+            </label>
+            </div><!-- form-group -->
+            <div class="form-group">
+            <label class="switch-label" for="mais_energia">
+                <input type="checkbox" id="mais_energia"="objetivos_6_meses[]" value="mais_energia">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Ter mais energia</span>
+            </label>
+            </div><!-- form-group -->
+            <div class="form-group">
+            <label class="switch-label" for="bem_consigo_mesma">
+                <input type="checkbox" id="bem_consigo_mesma" name="objetivos_6_meses[]" value="bem_consigo_mesma">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Se sentir bem consigo mesma</span>
+            </label>
+            </div><!-- form-group -->
+            <div class="form-group">
+            <label class="switch-label" for="viver_sem_dor">
+                <input type="checkbox" id="viver_sem_dor" name="objetivos_6_meses[]" value="viver_sem_dor"> 
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Viver sem dor</span>
+            </label>
+            </div><!-- form-group -->
+            <div class="form-group">
+            <label class="switch-label" for="outros_objetivos">
+                <input type="checkbox" id="outros_objetivos" name="objetivos_6_meses[]" value="outros">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Outros</span>
+            </label>
+            <input type="text" name="outros_objetivos" placeholder="Descreva se houver outros" style="flex-grow: 1;">
+        </div><!-- form-group --><br><br>
+
+
+    <div class="form-group">
+        <label>Você já fez uso de remédios para emagrecer?</label>
+            <label class="switch-label" for="remedios_emagrecer">
+            <input type="checkbox" id="remedios_emagrecer" name="remedios_emagrecer" value="1">
+            <span class="slider-switch round"></span>
+            <span class="slider-text">Sim</span>
+        </label>
+    </div><!-- form-group -->
+    <div class="form-group">
+        <label>Nome dos remédios:</label>
+        <input type="text" name="nome_remedios_emagrecer">
+    </div>
+    <div class="form-group">
+        <label>Resultados conquistados:</label>
+        <input type="text" name="resultados_remedios">
+    </div><br><br>
         
+    <div class="form-group">
+            <label for="dificuldade_emagrecer">Hoje, qual é a sua maior dificuldade para conseguir emagrecer?</label>
+            <div class="form-group">
+            <label class="switch-label" for="regularidade_exercicios">
+                <input type="checkbox" id="regularidade_exercicios" name="dificuldade_emagrecer[]" value="regularidade_exercicios">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Manter a regularidade nos exercícios</span>
+            </label>
+            </div><!-- form-group -->
+            <div class="form-group">
+            <label class="switch-label" for="regularidade_dieta">
+            <input type="checkbox" name="" value=""> 
+            <input type="checkbox" id="regularidade_dieta" name="dificuldade_emagrecer[]" value="regularidade_dieta">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Manter a regularidade na dieta</span>
+            </label>
+            </div><!-- form-group -->
+            <div class="form-group">
+            <label class="switch-label" for="animo_exercicio">
+            <input type="checkbox" id="animo_exercicio" name="dificuldade_emagrecer[]" value="animo_exercicio">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Manter o ânimo para fazer exercício</span>
+            </label>
+            </div><!-- form-group -->
+            <div class="form-group">
+            <label class="switch-label" for="tristeza_comida">
+                <input type="checkbox" id="tristeza_comida" name="dificuldade_emagrecer[]" value="tristeza_comida">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Quando me sinto triste, desconto na comida</span>
+            </label>
+            </div><!-- form-group -->
+
+            <div class="form-group">
+            <label class="switch-label" for="tristeza_falta_treinos">
+                <input type="checkbox" id="tristeza_falta_treinos" name="dificuldade_emagrecer[]" value="tristeza_falta_treinos">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Quando fico triste, falto aos treinos</span>
+            </label>
+            </div><!-- form-group -->
+
+            <div class="form-group">
+            <label class="switch-label" for="outros_emagrecer">
+                <input type="checkbox" id="outros_emagrecer" name="dificuldade_emagrecer[]" value="outros">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Outros</span>
+            </label>
+            <input type="text" name="dificuldade_emagrecer_outros" placeholder="Descreva se houver outros" style="flex-grow: 1;">
+        </div><!-- form-group --><br><br>
+
         <div class="form-group">
-            <label>Assinale os fatores abaixo que tem impedem de manter a regularidade nos treinos semanais:</label>
-            <input type="checkbox" name="fatores_impedem_treino[]" value="falta_tempo"> Falta de tempo
-            <input type="checkbox" name="fatores_impedem_treino[]" value="falta_motivacao"> Falta de motivação
-            <input type="checkbox" name="fatores_impedem_treino[]" value="falta_energia"> Falta de energia
-            <input type="checkbox" name="fatores_impedem_treino[]" value="falta_conhecimento"> Falta de conhecimento em como se exercitar
-            <input type="checkbox" name="fatores_impedem_treino[]" value="nao_gosto_exercicios_vigorosos"> Não gosto de fazer exercícios vigorosos
-            <input type="checkbox" name="fatores_impedem_treino[]" value="nao_gosto_suar"> Não gosto de suar
-            <input type="checkbox" name="fatores_impedem_treino[]" value="dores_durante_exercicio"> Sinto dores no corpo durante o exercício
-            <input type="checkbox" name="fatores_impedem_treino[]" value="dores_apos_exercicio"> Sinto dores no corpo após o exercício
-            <input type="checkbox" name="fatores_impedem_treino[]" value="experiencias_negativas"> Tive experiências negativas com o exercício
-            <input type="checkbox" name="fatores_impedem_treino[]" value="medo_machucar"> Tenho medo de me machucar durante os treinos
-            <input type="checkbox" name="fatores_impedem_treino[]" value="nao_gosto_treinar_sozinha"> Não gosto de treinar sozinha
+        <label>Nos últimos 6 meses, o ciclo menstrual esteve regulado?</label>
+            <label class="switch-label" for="ciclo_menstrual">
+            <input type="checkbox" id="ciclo_menstrual" name="ciclo_menstrual" value="1">
+            <span class="slider-switch round"></span>
+            <span class="slider-text">Sim</span>
+        </label>
+    </div><!-- form-group -->
+    <div class="form-group">
+        <label>Ciclo menstrual irregular</label>
+            <select name="ciclo_menstrual_irregular">
+                <?php 
+                    foreach (Painel::$ciclo_menstrual as $key => $value){
+                    echo '<option value="'.$value.'">'.$value.'</option>';
+                    }
+                ?>
+        </select>
+    </div><!-- form-group -->
+
+    <div class="form-group">
+        <label for="sintomas_menstruais">Durante o período menstrual (fluxo), quais dos sintomas abaixo comumente você sente?</label>
+        <div class="form-group">
+            <label class="switch-label" for="tontura">
+                <input type="checkbox" id="tontura" name="sintomas_menstruais[]" value="tontura">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Tontura</span>
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="switch-label" for="moleza">
+                <input type="checkbox" id="moleza" name="sintomas_menstruais[]" value="moleza">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Moleza</span>
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="switch-label" for="dor_abdominal">
+                <input type="checkbox" id="dor_abdominal" name="sintomas_menstruais[]" value="dor_abdominal">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Dor abdominal</span>
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="switch-label" for="dor_coluna_lombar">
+                <input type="checkbox" id="dor_coluna_lombar" name="sintomas_menstruais[]" value="dor_coluna_lombar">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Dor na coluna lombar</span>
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="switch-label" for="dor_pernas">
+                <input type="checkbox" id="dor_pernas" name="sintomas_menstruais[]" value="dor_pernas">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Dor nas pernas</span>
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="switch-label" for="irritacao">
+                <input type="checkbox" id="irritacao" name="sintomas_menstruais[]" value="irritacao">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Irritação</span>
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="switch-label" for="tristeza">
+                <input type="checkbox" id="tristeza" name="sintomas_menstruais[]" value="tristeza">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Tristeza</span>
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="switch-label" for="queda_pressao">
+                <input type="checkbox" id="queda_pressao" name="sintomas_menstruais[]" value="queda_pressao">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Queda de pressão</span>
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="switch-label" for="visao_escurecida">
+                <input type="checkbox" id="visao_escurecida" name="sintomas_menstruais[]" value="visao_escurecida">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Visão escurecida</span>
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="switch-label" for="formigamento">
+                <input type="checkbox" id="formigamento" name="sintomas_menstruais[]" value="formigamento">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Formigamento nos dedos das mãos e pés</span>
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="switch-label" for="palpitacao">
+                <input type="checkbox" id="palpitacao" name="sintomas_menstruais[]" value="palpitacao">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Palpitação</span>
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="switch-label" for="sono_dia">
+                <input type="checkbox" id="sono_dia" name="sintomas_menstruais[]" value="sono_dia">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Sono durante o dia</span>
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="switch-label" for="outros_sintomas_menstruais">
+                <input type="checkbox" id="outros_sintomas_menstruais" name="sintomas_menstruais[]" value="outros">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Outros</span>
+            </label>
+            <input type="text" name="sintomas_menstruais_outros" placeholder="Descreva se houver outros" style="flex-grow: 1;">
+        </div>
+    </div><br><br>
+
+    <div class="form-group">
+    <label>Nos últimos 6 meses, você fez uso de anticoncepcional?</label>
+        <label class="switch-label" for="anticoncepcional">
+            <input type="checkbox" id="anticoncepcional" name="uso_anticoncepcional" value="1">
+            <span class="slider-switch round"></span>
+            <span class="slider-text">SIM</span>
+        </label>
+    </div><br><br>
+
+    <div class="form-group">
+        <label for="fatores_impedem_treino">Assinale os fatores abaixo que têm impedido você de manter a regularidade nos treinos semanais:</label>
+        <div class="form-group">
+            <label class="switch-label" for="falta_tempo">
+                <input type="checkbox" id="falta_tempo" name="fatores_impedem_treino[]" value="falta_tempo">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Falta de tempo</span>
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="switch-label" for="falta_motivacao">
+                <input type="checkbox" id="falta_motivacao" name="fatores_impedem_treino[]" value="falta_motivacao">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Falta de motivação</span>
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="switch-label" for="falta_energia">
+                <input type="checkbox" id="falta_energia" name="fatores_impedem_treino[]" value="falta_energia">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Falta de energia</span>
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="switch-label" for="falta_conhecimento">
+                <input type="checkbox" id="falta_conhecimento" name="fatores_impedem_treino[]" value="falta_conhecimento">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Falta de conhecimento em como se exercitar</span>
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="switch-label" for="nao_gosto_exercicios_vigorosos">
+                <input type="checkbox" id="nao_gosto_exercicios_vigorosos" name="fatores_impedem_treino[]" value="nao_gosto_exercicios_vigorosos">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Não gosto de fazer exercícios vigorosos</span>
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="switch-label" for="nao_gosto_suar">
+                <input type="checkbox" id="nao_gosto_suar" name="fatores_impedem_treino[]" value="nao_gosto_suar">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Não gosto de suar</span>
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="switch-label" for="dores_durante_exercicio">
+                <input type="checkbox" id="dores_durante_exercicio" name="fatores_impedem_treino[]" value="dores_durante_exercicio">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Sinto dores no corpo durante o exercício</span>
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="switch-label" for="dores_apos_exercicio">
+                <input type="checkbox" id="dores_apos_exercicio" name="fatores_impedem_treino[]" value="dores_apos_exercicio">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Sinto dores no corpo após o exercício</span>
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="switch-label" for="experiencias_negativas">
+                <input type="checkbox" id="experiencias_negativas" name="fatores_impedem_treino[]" value="experiencias_negativas">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Tive experiências negativas com o exercício</span>
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="switch-label" for="medo_machucar">
+                <input type="checkbox" id="medo_machucar" name="fatores_impedem_treino[]" value="medo_machucar">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Tenho medo de me machucar durante os treinos</span>
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="switch-label" for="nao_gosto_treinar_sozinha">
+                <input type="checkbox" id="nao_gosto_treinar_sozinha" name="fatores_impedem_treino[]" value="nao_gosto_treinar_sozinha">
+                <span class="slider-switch round"></span>
+                <span class="slider-text">Não gosto de treinar sozinha</span>
+            </label>
+        </div>
+    </div>
+    
         
-        </div><!-- form-group -->
     </fieldset>
         <div class="form-group">
             <fieldset>

@@ -1,13 +1,13 @@
 <?php 
     class Usuario{
 
-        public function atualizarUsuario($id, $nome, $password, $imagem, $telefone, $data_nascimento, $data_inicio, $sexo, $cpf){
-            $sql = MySql::conectar()->prepare("UPDATE `tb_admin.usuarios` SET nome = ?, password = ?, img = ?, telefone = ?, data_nascimento = ?, data_inicio = ?, sexo = ?, cpf = ? WHERE id = ?");
-            if($sql->execute(array($nome, $password, $imagem, $telefone, $data_nascimento, $data_inicio, $sexo, $cpf, $id))){
+        public function atualizarUsuario($id, $nome, $password, $imagem, $user, $telefone, $data_nascimento, $data_inicio, $sexo, $cpf){
+            // Exemplo de atualização no banco de dados
+            $sql = MySql::conectar()->prepare("UPDATE `tb_admin.usuarios` SET nome = ?, password = ?, img = ?, user = ?, telefone = ?, data_nascimento = ?, data_inicio = ?, sexo = ?, cpf = ? WHERE id = ?");
+            if($sql->execute([$nome, $password, $imagem, $user, $telefone, $data_nascimento, $data_inicio, $sexo, $cpf, $id])){
                 return true;
-            } else {
-                return false;
             }
+            return false;
         }
 
         public static function userExists($user){

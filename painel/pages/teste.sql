@@ -99,6 +99,25 @@ CREATE TABLE tb_treino_exercicio_series (
     FOREIGN KEY (treino_exercicio_id) REFERENCES tb_treino_exercicio(id) ON DELETE CASCADE
 );
 
+ALTER TABLE tb_usuarios_anamnese
+ADD COLUMN `ciclo_menstrual` TINYINT(1) DEFAULT NULL,
+ADD COLUMN `ciclo_menstrual_irregular` VARCHAR(255) DEFAULT NULL,
+ADD COLUMN `sintomas_menstruais` JSON DEFAULT NULL,
+ADD COLUMN `uso_anticoncepcional` VARCHAR(3) DEFAULT NULL,
+ADD COLUMN `fatores_impedem_treino` JSON DEFAULT NULL,
+ADD COLUMN `dificuldade_emagrecer` JSON DEFAULT NULL,
+
+ADD COLUMN `remedios_emagrecer` TINYINT(1) DEFAULT NULL,
+ADD COLUMN `autoestima` VARCHAR(255) DEFAULT NULL;
+ADD COLUMN `silhueta_real` INT DEFAULT NULL,
+ADD COLUMN `silhueta_ideal` INT DEFAULT NULL,
+ADD COLUMN `objetivos_6_meses` JSON DEFAULT NULL,
+ADD COLUMN `nome_remedios_emagrecer` VARCHAR(255) DEFAULT NULL,
+ADD COLUMN `resultados_remedios` VARCHAR(255) DEFAULT NULL,
+ADD COLUMN `dificuldade_emagrecer_outros` VARCHAR(255) DEFAULT NULL;
+
+
+
 
 
 
