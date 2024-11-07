@@ -1,297 +1,194 @@
 <?php 
     verificaPermissaoPagina(0);
     include_once('pages/funcoes.php');
-    // Obtém o usuario_id da sessão ou pela URL (para admins ou edições externas)
+
     if (isset($_GET['id'])) {
-        $usuario_id = (int)$_GET['id']; // ID passado pela URL
+        $usuario_id = (int)$_GET['id']; 
     } else {
-        $usuario_id = $_SESSION['id']; // ID do usuário logado
+        $usuario_id = $_SESSION['id']; 
     }
-    // Verifica se o ID existe no banco de dados
+
     $sql = MySql::conectar()->prepare("SELECT sexo FROM `tb_admin.usuarios` WHERE id = ?");
     $sql->execute([$usuario_id]);
     $result = $sql->fetch();
-    // Caso o usuário não exista
+    $sexo = $result['sexo'];
+
     if (!$result) {
         echo "Usuário não encontrado!";
         exit();
     }
-    // Inicializa a etapa na sessão, se ainda não estiver definida
+
     if (!isset($_SESSION['etapa'])) {
         $_SESSION['etapa'] = 3;
     }
-    echo "<script>
-    // Função para calcular a média de um grupo de valores
-function calcularMedia(grupo) {
-    // Obtém os valores dos três inputs e converte para número (ou 0 se vazio)
-    const valor1 = parseFloat(document.getElementById(grupo + '-1').value) || 0;
-    const valor2 = parseFloat(document.getElementById(grupo + '-2').value) || 0;
-    const valor3 = parseFloat(document.getElementById(grupo + '-3').value) || 0;
-    // Calcula a média dos três valores
-    const media = (valor1 + valor2 + valor3) / 3;
-    // Atualiza o campo de média do grupo
-    document.getElementById(grupo + '-m').value = media.toFixed(2);
-    // Atualiza os somatórios
-    calcularSomatorio();           // Somatório geral de todas as médias
-    calcularSomatorioGuedes3d();   // Somatório específico para Guedes 3D
-    calcularSomatorioPollock3d();  // Somatório específico para Pollock 3D
-    calcularSomatorioPollock7d();  // Somatório específico para Pollock 3D
-}
-// Função para calcular o somatório de todas as médias
-function calcularSomatorio() {
-    const grupos = ['tricipital', 'subescapular', 'suprailiaca', 'abdominal', 'supraespinhal', 'coxa-guedes', 'coxa-pollock', 'panturrilha', 'peitoral', 'axilar-media', 'biceps'];
-    let somatorio = 0;
-    // Percorre cada grupo, soma as médias e atualiza o campo somatório geral
-    grupos.forEach(grupo => {
-        const media = parseFloat(document.getElementById(grupo + '-m').value) || 0;
-        somatorio += media;
-    });
-    document.getElementById('somatorio').value = somatorio.toFixed(2);
-}
-// Função para calcular o somatório específico de Guedes 3D
-function calcularSomatorioGuedes3d() {
-    const gruposGuedes = ['subescapular', 'suprailiaca', 'coxa-guedes'];
-    let somatorio = 0;
-    // Soma as médias dos grupos Guedes e atualiza o campo somatório de Guedes 3D
-    gruposGuedes.forEach(grupo => {
-        const media = parseFloat(document.getElementById(grupo + '-m').value) || 0;
-        somatorio += media;
-    });
-    document.getElementById('somatorio-guedes-3D').value = somatorio.toFixed(2);
-}
-// Função para calcular o somatório específico de Pollock 3D
-function calcularSomatorioPollock3d() {
-    const gruposPollock3d = ['abdominal', 'coxa-pollock', 'peitoral'];
-    let somatorio = 0;
-    // Soma as médias dos grupos Pollock 3D e atualiza o campo somatório
-    gruposPollock3d.forEach(grupo => {
-        const media = parseFloat(document.getElementById(grupo + '-m').value) || 0;
-        somatorio += media;
-    });
-    document.getElementById('somatorio-pollock-3D').value = somatorio.toFixed(2);
-}
-// Função para calcular o somatório específico de Pollock 7D
-function calcularSomatorioPollock7d() {
-    const gruposPollock7d = ['tricipital', 'subescapular', 'suprailiaca', 'abdominal', 'coxa-pollock', 'peitoral', 'axilar-media'];
-    let somatorio = 0;
-    // Soma as médias dos grupos Pollock 7D e atualiza o campo somatório
-    gruposPollock7d.forEach(grupo => {
-        const media = parseFloat(document.getElementById(grupo + '-m').value) || 0;
-        somatorio += media;
-    });
-    document.getElementById('somatorio-pollock-7D').value = somatorio.toFixed(2);
-}
-</script>";
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $composicoes = new ComposicaoCorporal();
-    $dadosMedidas = [
-        'tricipital' => $_POST['tricipital'],
-        'subescapular' => $_POST['subescapular'],
-        'suprailiaca' => $_POST['suprailiaca'],
-        'abdominal' => $_POST['abdominal'],
-        'supraespinhal' => $_POST['supraespinhal'],
-        'coxa_guedes' => $_POST['coxa-guedes'],
-        'coxa_pollock' => $_POST['coxa-pollock'],
-        'peitoral' => $_POST['peitoral'],
-        'axilar_media' => $_POST['axilar-media'],
-        'biceps' => $_POST['biceps'],
-        'somatorio' => $_POST['somatorio'],
-        'somatorio_pollock_3D' => $_POST['somatorio-pollock-3D'],
-        'somatorio_pollock_7D' => $_POST['somatorio-pollock-7D'],
-        'somatorio_guedes_3D' => $_POST['somatorio-guedes-3D'],
-        'biestiloide' => $_POST['biestiloide'],
-        'biepicondiliano' => $_POST['biepicondiliano'],
-        'bicondiliano' => $_POST['bicondiliano'],
-        'bimaleolar' => $_POST['bimaleolar']
-    ];
+    // Consulta a altura e o peso na tabela de perfis de usuários
+    $sql = MySql::conectar()->prepare("SELECT altura, peso FROM `tb_perfis_usuarios` WHERE usuario_id = ? ORDER BY data_avaliacao DESC LIMIT 1");
+    $sql->execute([$usuario_id]);
+    $perfil = $sql->fetch();
 
-    $dataAvaliacao = (new DateTime())->format('Y-m-d H:i:s');
-
-    if ($composicoes->gravarMedidas($usuario_id, $dadosMedidas, $dataAvaliacao)) {
-        Painel::alert('sucesso', 'Dados gravados com sucesso!');
-        $_SESSION['etapa'] = 4;
-
-                        // Defina o tempo de contagem regressiva
-                        $tempoContagem = 5; // Tempo em segundos
-
-                        // Exibir a mensagem de contagem
-                        echo "<div id='contador' style='text-align:center; color:#007bff; padding-top:20px;'>Redirecionando em <span id='tempo'>$tempoContagem</span> segundos...</div>";
-
-                        echo "<script>
-                            // Defina o tempo de contagem
-                            var tempo = $tempoContagem;
-                            
-                            // Atualiza a contagem a cada segundo
-                            var intervalo = setInterval(function() {
-                                tempo--;
-                                document.getElementById('tempo').innerText = tempo;
-
-                                // Quando o tempo acabar, redirecione
-                                if (tempo <= 0) {
-                                    clearInterval(intervalo);
-                                    window.location.href='" . INCLUDE_PATH_PAINEL . 'aptidao-cardiorespiratoria' . "?id=" . $usuario_id . "';
-                                }
-                            }, 1000);
-                        </script>";
-                        exit();
-    } else {
-        Painel::alert('erro', 'Erro ao gravar dados.');
-        echo "";
+    if (!$perfil) {
+        echo "Perfil de usuário não encontrado!";
+        exit();
     }
-}
+
+    $altura = $perfil['altura'] * 100; // Altura em cm
+    $peso = $perfil['peso']; // Peso em kg
+
+    // Consulta as medidas corporais na tabela de medidas
+    $sql = MySql::conectar()->prepare("SELECT cintura, quadril, pescoco FROM `tb_medidas_corporais` WHERE usuario_id = ? ORDER BY data_avaliacao DESC LIMIT 1");
+    $sql->execute([$usuario_id]);
+    $medidas = $sql->fetch();
+
+    if (!$medidas) {
+        echo "Medidas corporais não encontradas!";
+        exit();
+    }
+
+    $cintura = $medidas['cintura'];
+    $quadril = $medidas['quadril'];
+    $pescoco = $medidas['pescoco'];
+
+    function calcularPercentualGordura($sexo, $altura, $cintura, $quadril, $pescoco) {
+        if ($sexo == 'M') {
+            if ($cintura > $pescoco) {
+                // Fórmula para homens
+                return 86.010 * log10($cintura - $pescoco) - 70.041 * log10($altura) + 30.30;
+            } else {
+                return "Erro: a medida da cintura deve ser maior que a do pescoço para um cálculo válido.";
+            }
+        } else {
+            if (($cintura + $quadril) > $pescoco) {
+                // Fórmula para mulheres
+                return 163.205 * log10($cintura + $quadril - $pescoco) - 97.684 * log10($altura) - 104.912;
+            } else {
+                return "Erro: a soma da cintura e do quadril deve ser maior que o pescoço para um cálculo válido.";
+            }
+        }
+    }
+
+    // Cálculo do percentual de gordura corporal
+    $percentualGordura = calcularPercentualGordura($sexo, $altura, $cintura, $quadril, $pescoco);
+
+    if (is_numeric($percentualGordura)) {
+        // Cálculo da massa de gordura e massa magra
+        $massaGordura = ($percentualGordura / 100) * $peso;
+        $massaMagra = $peso - $massaGordura;
+    }
 ?>
+
 <div class="step-indicator">
-    <div class="step <?php echo ($_SESSION['etapa'] >= 1) ? 'completed' : ''; ?>">
-        <div class="step-number">1</div>
-        <div class="step-label">Perfil</div>
+    <!-- Indicador de etapas, permanece igual -->
+</div>
+
+<div class="box-content">
+    <h2 id="user-choice"><i class="fa fa-pencil" aria-hidden="true"></i>Composição corporal</h2>
+    <div class="form-group center">       
+        <fieldset style="border: none;">
+            <div class="center" style="text-align:center; max-width: 70%;">
+                <p style="text-align: justify;">O percentual de gordura corporal é uma medida que indica a quantidade de gordura no corpo em relação ao peso total. Essa métrica é importante para avaliar a composição corporal e entender melhor a proporção de massa magra (músculos, ossos, órgãos) em relação à massa gorda (gordura).</p><br><br>
+                <p>Escolha o método para estimar o percentual de gordura corporal:</p>
+
+                <div class="checkbox-wrapper-16" style="display: inline-block; margin:15px">
+                    <label class="checkbox-wrapper">
+                    <input type="radio" class="checkbox-input" name="metodo" value="Equação" onclick="atualizarEscolha('equacao')" />
+                    <span class="checkbox-tile">
+                        <span class="checkbox-icon">
+                            <img src="<?php echo INCLUDE_PATH_PAINEL ?>/svg/equacao.svg" alt="Ícone equação">
+                        </span><br>
+                        <span class="checkbox-label">Equação</span>
+                    </span>
+                    </label> 
+                </div>
+
+                <div class="checkbox-wrapper-16" style="display: inline-block; margin:15px">
+                    <label class="checkbox-wrapper">
+                    <input type="radio" class="checkbox-input" name="metodo" value="Balança" onclick="atualizarEscolha('balanca')" />
+                    <span class="checkbox-tile">
+                        <span class="checkbox-icon">
+                            <img src="<?php echo INCLUDE_PATH_PAINEL ?>/svg/balanca.svg" alt="Ícone Balança">
+                        </span><br>
+                        <span class="checkbox-label">Balança</span>
+                    </span>
+                    </label> 
+                </div>
+
+                <div class="checkbox-wrapper-16" style="display: inline-block; margin:15px">
+                    <label class="checkbox-wrapper">
+                    <input type="radio" class="checkbox-input" name="metodo" value="Exame" onclick="atualizarEscolha('exame')" />
+                    <span class="checkbox-tile">
+                        <span class="checkbox-icon">
+                            <img src="<?php echo INCLUDE_PATH_PAINEL ?>/svg/exame.svg" alt="Ícone Exame">
+                        </span><br>
+                        <span class="checkbox-label">Exame</span>
+                    </span>
+                    </label> 
+                </div>
+            </div>
+        </fieldset>
+    </div><!-- form-group -->    
+    <div class="clear"></div>
+</div><!-- box-content -->
+
+<div class="box-content" id="formulario-selecionado">
+    <!-- Formulário Equação -->
+    <div class="form-group" id="form-equacao" style="display: none;">
+        <h2>Percentual de gordura corporal por equação</h2>
+        <div class="form-group">
+            <p>Fórmula da Marinha Americana utilizada para estimar o percentual de gordura corporal usando medidas corporais. Essa fórmula usa a circunferência de determinadas áreas do corpo, além da altura.</p>
+            <?php if (is_numeric($percentualGordura)) { ?>
+                <p>O percentual de gordura corporal estimado é: <strong><?php echo number_format($percentualGordura, 2); ?>%</strong></p>
+                <p>Massa de gordura: <strong><?php echo number_format($massaGordura, 2); ?> kg</strong></p>
+                <p>Massa magra: <strong><?php echo number_format($massaMagra, 2); ?> kg</strong></p>
+            <?php } else { ?>
+                <p><strong><?php echo $percentualGordura; ?></strong></p>
+            <?php } ?>
+        </div>
     </div>
-    <div class="step <?php echo ($_SESSION['etapa'] >= 2) ? 'completed' : ''; ?>">
-        <div class="step-number">2</div>
-        <div class="step-label">Anamnese</div>
+
+    <!-- Formulário Balança -->
+    <div id="form-balanca" style="display: none;">
+        <h2>Formulário para Balança</h2>
+        <form>
+            <!-- Campos específicos para Balança -->
+            <label for="input3">Campo 3:</label>
+            <input type="text" id="input3" name="input3"><br>
+            <label for="input4">Campo 4:</label>
+            <input type="text" id="input4" name="input4"><br>
+        </form>
     </div>
-    <div class="step <?php echo ($_SESSION['etapa'] >= 3) ? 'completed' : ''; ?>">
-        <div class="step-number">3</div>
-        <div class="step-label">Medida corporal</div>
-    </div>
-    <div class="step <?php echo ($_SESSION['etapa'] >= 4) ? 'completed' : ''; ?>">
-        <div class="step-number">4</div>
-        <div class="step-label">Aptidão Cardiorespiratória</div>
-    </div>
-    <div class="step <?php echo ($_SESSION['etapa'] >= 5) ? 'completed' : ''; ?>">
-        <div class="step-number">5</div>
-        <div class="step-label">Teste Físico</div>
+
+    <!-- Formulário Exame -->
+    <div id="form-exame" style="display: none;">
+        <h2>Formulário para Exame</h2>
+        <form>
+            <!-- Campos específicos para Exame -->
+            <label for="input5">Campo 5:</label>
+            <input type="text" id="input5" name="input5"><br>
+            <label for="input6">Campo 6:</label>
+            <input type="text" id="input6" name="input6"><br>
+        </form>
     </div>
 </div>
-<div class="box-content">
-<h2><i class="fa fa-pencil" aria-hidden="true"></i>Medida corporal</h2>
-    <form method="post">  
-        
-        <div class="form-group">
-            <fieldset>
-                <legend>Composição corporal</legend>
-                    <!-- Formulário de Antropometria -->
-        <div class="form-group w50  center video-tutorial">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/Ef14WYaxTXQ?si=b_YJdeXv3OlzFHVy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-        <div class="clear"></div><!-- clear -->  
-                    <div class="form-group-antropometria">
-                        <label>Tricipital</label>
-                        <input type="text" name="tricipital" id="tricipital-m" placeholder="média" readonly />
-                        <input type="number" id="tricipital-1" placeholder="valor 1" oninput="calcularMedia('tricipital')" />
-                        <input type="number" id="tricipital-2" placeholder="valor 2" oninput="calcularMedia('tricipital')" />
-                        <input type="number" id="tricipital-3" placeholder="valor 3" oninput="calcularMedia('tricipital')" />
-                    </div>
-                    <div class="form-group-antropometria">
-                        <label>Subescapular</label>
-                        <input type="number"  name="subescapular" id="subescapular-m" readonly/>
-                        <input type="number" id="subescapular-1" oninput="calcularMedia('subescapular')"/>
-                        <input type="number" id="subescapular-2" oninput="calcularMedia('subescapular')"/>
-                        <input type="number" id="subescapular-3" oninput="calcularMedia('subescapular')"/>
-                    </div><!-- form-group -->
-                    <div class="form-group-antropometria">
-                        <label>Suprailíaca</label>
-                        <input type="number" name="suprailiaca" id="suprailiaca-m" readonly/>
-                        <input type="number" id="suprailiaca-1" oninput="calcularMedia('suprailiaca')"/>
-                        <input type="number" id="suprailiaca-2" oninput="calcularMedia('suprailiaca')"/>
-                        <input type="number" id="suprailiaca-3" oninput="calcularMedia('suprailiaca')"/>
-                    </div><!-- form-group -->
-                    <div class="form-group-antropometria">
-                        <label>Abdominal</label>
-                        <input type="number" name="abdominal" id="abdominal-m" readonly/>
-                        <input type="number" id="abdominal-1" oninput="calcularMedia('abdominal')"/>
-                        <input type="number" id="abdominal-2" oninput="calcularMedia('abdominal')"/>
-                        <input type="number" id="abdominal-3" oninput="calcularMedia('abdominal')"/>
-                    </div><!-- form-group -->
-                    <div class="form-group-antropometria">
-                        <label>Supraespinhal</label>
-                        <input type="number" name="supraespinhal" id="supraespinhal-m" readonly/>
-                        <input type="number" id="supraespinhal-1" oninput="calcularMedia('supraespinhal')"/>
-                        <input type="number" id="supraespinhal-2" oninput="calcularMedia('supraespinhal')"/>
-                        <input type="number" id="supraespinhal-3" oninput="calcularMedia('supraespinhal')"/>
-                    </div><!-- form-group -->
-                    <div class="form-group-antropometria">
-                        <label>Coxa Guedes</label>
-                        <input type="number" name="coxa-guedes" id="coxa-guedes-m" readonly/>
-                        <input type="number" id="coxa-guedes-1" oninput="calcularMedia('coxa-guedes')"/>
-                        <input type="number" id="coxa-guedes-2" oninput="calcularMedia('coxa-guedes')"/>
-                        <input type="number" id="coxa-guedes-3" oninput="calcularMedia('coxa-guedes')"/>
-                    </div><!-- form-group -->
-                    <div class="form-group-antropometria">
-                        <label>Coxa Pollock</label>
-                        <input type="number" name="coxa-pollock" id="coxa-pollock-m" readonly/>
-                        <input type="number" id="coxa-pollock-1" oninput="calcularMedia('coxa-pollock')"/>
-                        <input type="number" id="coxa-pollock-2" oninput="calcularMedia('coxa-pollock')"/>
-                        <input type="number" id="coxa-pollock-3" oninput="calcularMedia('coxa-pollock')"/>
-                    </div><!-- form-group -->
-                    <div class="form-group-antropometria">
-                        <label>Panturrilha</label>
-                        <input type="number" name="panturrilha" id="panturrilha-m" readonly/>
-                        <input type="number" id="panturrilha-1" oninput="calcularMedia('panturrilha')"/>
-                        <input type="number" id="panturrilha-2" oninput="calcularMedia('panturrilha')"/>
-                        <input type="number" id="panturrilha-3" oninput="calcularMedia('panturrilha')"/>
-                    </div><!-- form-group -->
-                    <div class="form-group-antropometria">
-                        <label>Peitoral</label>
-                        <input type="number" name="peitoral" id="peitoral-m" readonly/>
-                        <input type="number" id="peitoral-1" oninput="calcularMedia('peitoral')"/>
-                        <input type="number" id="peitoral-2" oninput="calcularMedia('peitoral')"/>
-                        <input type="number" id="peitoral-3" oninput="calcularMedia('peitoral')"/>
-                    </div><!-- form-group -->
-                    <div class="form-group-antropometria">
-                        <label>Axilar Média</label>
-                        <input type="number" name="axilar-media" id="axilar-media-m" readonly/>
-                        <input type="number" id="axilar-media-1" oninput="calcularMedia('axilar-media')"/>
-                        <input type="number" id="axilar-media-2" oninput="calcularMedia('axilar-media')"/>
-                        <input type="number" id="axilar-media-3" oninput="calcularMedia('axilar-media')"/>
-                    </div><!-- form-group -->
-                    <div class="form-group-antropometria">
-                        <label>Biceps</label>
-                        <input type="number" name="biceps" id="biceps-m" readonly/>
-                        <input type="number" id="biceps-1" oninput="calcularMedia('biceps')"/>
-                        <input type="number" id="biceps-2" oninput="calcularMedia('biceps')"/>
-                        <input type="number" id="biceps-3" oninput="calcularMedia('biceps')"/>
-                    </div><!-- form-group -->
-                    <div class="form-group-antropometria left w50">
-                        <label>SOMATÓRIO</label>
-                        <input type="number" name="somatorio" id="somatorio" readonly oninput="calcularSomatorio()"/>
-                    </div><!-- form-group -->
-                    <div class="form-group-antropometria right w50">
-                        <label>SOMATÓRIO Pollock 3D</label>
-                        <input type="number" name="somatorio-pollock-3D" id="somatorio-pollock-3D" readonly readonly oninput="calcularSomatorioPollock3d()"/>
-                    </div><!-- form-group -->
-                    <div class="form-group-antropometria left w50">
-                        <label>SOMATÓRIO Pollock 7D</label>
-                        <input type="number" name="somatorio-pollock-7D" id="somatorio-pollock-7D" readonly oninput="calcularSomatorioPollock7d()"/>
-                    </div><!-- form-group -->
-                    <div class="form-group-antropometria right w50">
-                        <label>SOMATÓRIO Guedes 3D</label>
-                        <input type="number" name="somatorio-guedes-3D" id="somatorio-guedes-3D" readonly oninput="calcularSomatorioGuedes3d()"/>
-                    </div><!-- form-group -->
-                    <div class="clear"></div><!-- clear -->    
-                    <div class="form-group-antropometria left w50">
-                        <label>Biestilóide</label>
-                        <input type="number" name="biestiloide"/>
-                    </div><!-- form-group -->
-                    <div class="form-group-antropometria right w50">
-                        <label>Biepicondiliano</label>
-                        <input type="number" name="biepicondiliano"/>
-                    </div><!-- form-group -->
-                    <div class="form-group-antropometria left w50">
-                        <label>Bicondiliano</label>
-                        <input type="number" name="bicondiliano"/>
-                    </div><!-- form-group -->
-                    <div class="form-group-antropometria right w50">
-                        <label>Bimaleolar</label>
-                        <input type="number" name="bimaleolar"/>
-                    </div><!-- form-group -->
-            </fieldset>
-        </div><!-- form-group right w50 -->
-    <div class="clear"></div><!-- clear -->           
-    <div class="form-group">
-        <input type="submit" name="acao" value="Enviar"/>
-    </div><!-- form-group -->
-    </form>
-</div><!-- box-content -->
+
+<script>
+function atualizarEscolha(metodo) {
+    // Oculta todos os formulários
+    document.getElementById('form-equacao').style.display = 'none';
+    document.getElementById('form-balanca').style.display = 'none';
+    document.getElementById('form-exame').style.display = 'none';
+
+    // Exibe o formulário correspondente
+    if (metodo === 'equacao') {
+        document.getElementById('form-equacao').style.display = 'block';
+    } else if (metodo === 'balanca') {
+        document.getElementById('form-balanca').style.display = 'block';
+    } else if (metodo === 'exame') {
+        document.getElementById('form-exame').style.display = 'block';
+    }
+}
+</script>
+
+
 
 

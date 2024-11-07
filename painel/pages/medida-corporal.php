@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 // Quando o tempo acabar, redirecione
                                 if (tempo <= 0) {
                                     clearInterval(intervalo);
-                                    window.location.href='" . INCLUDE_PATH_PAINEL . 'aptidao-cardiorespiratoria' . "?id=" . $usuario_id . "';
+                                    window.location.href='" . INCLUDE_PATH_PAINEL . 'composicao-corporal' . "?id=" . $usuario_id . "';
                                 }
                             }, 1000);
                         </script>";
