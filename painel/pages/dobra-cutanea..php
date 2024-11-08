@@ -84,7 +84,7 @@ function calcularSomatorioPollock7d() {
 </script>";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $composicoes = new ComposicaoCorporal();
+    $composicoes = new DobraCutanea();
     $dadosMedidas = [
         'tricipital' => $_POST['tricipital'],
         'subescapular' => $_POST['subescapular'],

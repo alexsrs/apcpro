@@ -23,7 +23,7 @@ CREATE TABLE tb_categoria_exercicio (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE tb_composicoes_corporais (
+CREATE TABLE tb_dobras_cutanea (
 id INT AUTO_INCREMENT PRIMARY KEY,
 usuario_id INT NOT NULL,
 tricipital float,

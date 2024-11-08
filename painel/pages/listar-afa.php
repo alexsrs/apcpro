@@ -44,8 +44,8 @@ $perfis = $perfil->buscarPerfilPorUsuarioId($id_aluno);
 $medidaCorporal = new MedidaCorporal();
 $medidasCorporais = $medidaCorporal->buscarMedidaCorporalPorUsuarioId($id_aluno);
 
-$composicaoCorporal = new ComposicaoCorporal();
-$composicoesCorporais = $composicaoCorporal->buscarComposicaoCorporalPorUsuarioId($id_aluno);
+//$composicaoCorporal = new ComposicaoCorporal();
+//$composicoesCorporais = $composicaoCorporal->buscarComposicaoCorporalPorUsuarioId($id_aluno);
 
 $aptidaoCardioRespiratoria = new AptidaoCardioRespiratoria();
 $aptidoes = $aptidaoCardioRespiratoria->buscarAptidaoCardioRespiratoriaPorUsuarioId($id_aluno);

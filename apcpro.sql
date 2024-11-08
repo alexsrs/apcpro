@@ -693,10 +693,10 @@ INSERT INTO `tb_categoria_exercicio` (`id`, `categoria`, `created_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tb_composicoes_corporais`
+-- Estrutura para tabela `tb_dobras_cutanea`
 --
 
-CREATE TABLE `tb_composicoes_corporais` (
+CREATE TABLE `tb_dobras_cutanea` (
   `id` int(11) NOT NULL,
   `usuario_id` int(11) NOT NULL,
   `tricipital` float DEFAULT NULL,
@@ -1110,9 +1110,9 @@ ALTER TABLE `tb_categoria_exercicio`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `tb_composicoes_corporais`
+-- Índices de tabela `tb_dobras_cutanea`
 --
-ALTER TABLE `tb_composicoes_corporais`
+ALTER TABLE `tb_dobras_cutanea`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1207,9 +1207,9 @@ ALTER TABLE `tb_categoria_exercicio`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT de tabela `tb_composicoes_corporais`
+-- AUTO_INCREMENT de tabela `tb_dobras_cutanea`
 --
-ALTER TABLE `tb_composicoes_corporais`
+ALTER TABLE `tb_dobras_cutanea`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --

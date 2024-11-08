@@ -266,11 +266,11 @@ INSERT INTO `tb_categoria_exercicio` (`id`, `categoria`, `created_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tb_composicoes_corporais`
+-- Estrutura para tabela `tb_dobras_cutanea`
 --
 
-DROP TABLE IF EXISTS `tb_composicoes_corporais`;
-CREATE TABLE IF NOT EXISTS `tb_composicoes_corporais` (
+DROP TABLE IF EXISTS `tb_dobras_cutanea`;
+CREATE TABLE IF NOT EXISTS `tb_dobras_cutanea` (
   `id` int NOT NULL AUTO_INCREMENT,
   `usuario_id` int NOT NULL,
   `tricipital` float DEFAULT NULL,
@@ -297,10 +297,10 @@ CREATE TABLE IF NOT EXISTS `tb_composicoes_corporais` (
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 
 --
--- Despejando dados para a tabela `tb_composicoes_corporais`
+-- Despejando dados para a tabela `tb_dobras_cutanea`
 --
 
-INSERT INTO `tb_composicoes_corporais` (`id`, `usuario_id`, `tricipital`, `subescapular`, `suprailiaca`, `abdominal`, `supraespinhal`, `coxa_guedes`, `coxa_pollock`, `peitoral`, `axilar_media`, `biceps`, `somatorio`, `somatorio_pollock_3D`, `somatorio_pollock_7D`, `somatorio_guedes_3D`, `biestiloide`, `biepicondiliano`, `bicondiliano`, `bimaleolar`, `data_avaliacao`, `created_at`) VALUES
+INSERT INTO `tb_dobras_cutanea` (`id`, `usuario_id`, `tricipital`, `subescapular`, `suprailiaca`, `abdominal`, `supraespinhal`, `coxa_guedes`, `coxa_pollock`, `peitoral`, `axilar_media`, `biceps`, `somatorio`, `somatorio_pollock_3D`, `somatorio_pollock_7D`, `somatorio_guedes_3D`, `biestiloide`, `biepicondiliano`, `bicondiliano`, `bimaleolar`, `data_avaliacao`, `created_at`) VALUES
 (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.67, 10.67, 3, 7, 3, 1, 1, 1, 1, '2024-10-28 10:34:33', '2024-10-28 13:34:33'),
 (2, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2024-10-28 11:40:24', '2024-10-28 14:40:24');
 
