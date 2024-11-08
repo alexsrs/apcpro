@@ -66,7 +66,6 @@
             }
         }
     }
-
     // Cálculo do percentual de gordura corporal
     $percentualGordura = calcularPercentualGordura($sexo, $altura, $cintura, $quadril, $pescoco);
 
@@ -86,9 +85,8 @@
     <div class="form-group center">       
         <fieldset style="border: none;">
             <div class="center" style="text-align:center; max-width: 70%;">
-                <p style="text-align: justify;">O percentual de gordura corporal é uma medida que indica a quantidade de gordura no corpo em relação ao peso total. Essa métrica é importante para avaliar a composição corporal e entender melhor a proporção de massa magra (músculos, ossos, órgãos) em relação à massa gorda (gordura).</p><br><br>
+                <p style="text-align: justify;">O percentual de gordura corporal é uma medida que indica a quantidade de gordura no corpo em relação ao peso total. Essa métrica é importante para avaliar a composição corporal e entender melhor a proporção de massa magra (músculos, ossos, órgãos) em relação à massa gorda (gordura).</p><br>
                 <p>Escolha o método para estimar o percentual de gordura corporal:</p>
-
                 <div class="checkbox-wrapper-16" style="display: inline-block; margin:15px">
                     <label class="checkbox-wrapper">
                     <input type="radio" class="checkbox-input" name="metodo" value="Equação" onclick="atualizarEscolha('equacao')" />
@@ -136,10 +134,14 @@
         <h2>Percentual de gordura corporal por equação</h2>
         <div class="form-group">
             <p>Fórmula da Marinha Americana utilizada para estimar o percentual de gordura corporal usando medidas corporais. Essa fórmula usa a circunferência de determinadas áreas do corpo, além da altura.</p>
+            <p>Essas fórmulas são úteis para uma estimativa do percentual de gordura corporal, e são usadas por militares dos EUA para avaliar a composição corporal sem a necessidade de equipamentos sofisticados.</p>
             <?php if (is_numeric($percentualGordura)) { ?>
                 <p>O percentual de gordura corporal estimado é: <strong><?php echo number_format($percentualGordura, 2); ?>%</strong></p>
                 <p>Massa de gordura: <strong><?php echo number_format($massaGordura, 2); ?> kg</strong></p>
                 <p>Massa magra: <strong><?php echo number_format($massaMagra, 2); ?> kg</strong></p>
+              
+                <img src="<?php echo INCLUDE_PATH_PAINEL ?>../images/tabela-percentual-gordura.jpg" alt="Tabela percentrual de gordura" style="max-width: 100%; margin-top: 20px;">
+                <p>É importante ressaltar que, apesar de úteis, essas fórmulas fornecem apenas uma estimativa e podem não ser tão precisas quanto métodos mais avançados, como a balança de bioimpedância ou exames realizados por profissionais capacitados.</p>
             <?php } else { ?>
                 <p><strong><?php echo $percentualGordura; ?></strong></p>
             <?php } ?>
@@ -188,7 +190,3 @@ function atualizarEscolha(metodo) {
     }
 }
 </script>
-
-
-
-
