@@ -45,10 +45,7 @@ if ($sexo['sexo'] == 'M') {
 } else {
     $vo2_maximo = 74.99 - (0.14 * $percentual_gordura) - (0.15 * $idade);
 }
-
 $mets = $vo2_maximo / 3.5;
-
-
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$aptidao = new AptidaoModel();
@@ -76,11 +73,6 @@ $mets = $vo2_maximo / 3.5;
 
 		$sql->execute();
 	
-
-
-
-	
-    
             // Defina o tempo de contagem regressiva
             $tempoContagem = 5; // Tempo em segundos
     
@@ -90,7 +82,7 @@ $mets = $vo2_maximo / 3.5;
             echo "<script>
                 // Defina o tempo de contagem
                 var tempo = $tempoContagem;
-                
+
                 // Atualiza a contagem a cada segundo
                 var intervalo = setInterval(function() {
                     tempo--;

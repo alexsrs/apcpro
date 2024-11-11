@@ -763,7 +763,7 @@ rápida, prática e com maior possibilidade de prescrição de um programa de tr
                     </label>
                 <br><br>
                     <div class="form-group">
-                    <label>Imagine movimentos que você realizada em seu dia a dia (na sua casa, no trabalho, subir e descer escadas, caminhar, correr), você sente algum tipo de desconforto ao realizar essas atividades?</label>
+                    <label>Imagine movimentos que você realiza em seu dia a dia (na sua casa, no trabalho, subir e descer escadas, caminhar, correr), você sente algum tipo de desconforto ao realizar essas atividades?</label>
                         <label class="switch-label" for="movimento-diario">
                             <input type="checkbox" id="movimento-diario" name="movimento-diario" value="1">
                             <span class="slider-switch round"></span>
