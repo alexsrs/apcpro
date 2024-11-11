@@ -46,7 +46,7 @@ if (!$dados_anamnese) {
     <p><strong>Atividade Recente:</strong> <?php echo htmlspecialchars($dados_anamnese['atividade_recente']); ?></p>
     <p><strong>Tipo de Exercício Recente:</strong> <?php echo isset($dados_anamnese['tipo_exercicio_recente']) ? htmlspecialchars($dados_anamnese['tipo_exercicio_recente']) : 'N/A'; ?></p>
     <p><strong>Dias da Semana Recente:</strong> <?php echo htmlspecialchars($dados_anamnese['dias_semana_recente'] ?? 'N/A'); ?></p>
-    <p><strong>Horas por Dia Recente:</strong> <?php echo htmlspecialchars($dados_anamnese['horas_dia_recente'] ?? 'N/A'); ?></p>
+    <p><strong>Minutos por Dia Recente:</strong> <?php echo htmlspecialchars($dados_anamnese['minutos_dia_recente'] ?? 'N/A'); ?></p>
     <p><strong>Intensidade:</strong> <?php echo htmlspecialchars($dados_anamnese['intensidade']); ?></p>
 
     <h3>Dados Médicos</h3>

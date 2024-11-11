@@ -1039,7 +1039,7 @@ CREATE TABLE `tb_usuarios_anamnese` (
   `atividade_recente` tinyint(1) DEFAULT '0',
   `nome_atividade_recente` varchar(255) DEFAULT NULL,
   `dias_semana_recente` int(11) DEFAULT NULL,
-  `horas_dia_recente` float DEFAULT NULL,
+  `minutos_dia_recente` float DEFAULT NULL,
   `intensidade` varchar(50) DEFAULT NULL,
   `doencas` tinyint(1) DEFAULT '0',
   `doencas_nome` varchar(255) DEFAULT NULL,
@@ -1063,7 +1063,7 @@ CREATE TABLE `tb_usuarios_anamnese` (
 -- Despejando dados para a tabela `tb_usuarios_anamnese`
 --
 
-INSERT INTO `tb_usuarios_anamnese` (`id`, `usuario_id`, `data_avaliacao`, `domingo`, `segunda`, `terca`, `quarta`, `quinta`, `sexta`, `sabado`, `minutos_dia`, `exercicios`, `outros_exercicios`, `nao_gosta`, `nao_gosta_exercicios`, `atividade_recente`, `nome_atividade_recente`, `dias_semana_recente`, `horas_dia_recente`, `intensidade`, `doencas`, `doencas_nome`, `remedios`, `cirurgias`, `regiao_cirurgia`, `dor_muscular`, `regioes_dor`, `dor_peito`, `tontura`, `movimento_diario`, `movimentos_dia`, `parente_cardiaco`, `num_parente_cardiaco`, `fumante`, `info_pertinente`, `aceito`) VALUES
+INSERT INTO `tb_usuarios_anamnese` (`id`, `usuario_id`, `data_avaliacao`, `domingo`, `segunda`, `terca`, `quarta`, `quinta`, `sexta`, `sabado`, `minutos_dia`, `exercicios`, `outros_exercicios`, `nao_gosta`, `nao_gosta_exercicios`, `atividade_recente`, `nome_atividade_recente`, `dias_semana_recente`, `minutos_dia_recente`, `intensidade`, `doencas`, `doencas_nome`, `remedios`, `cirurgias`, `regiao_cirurgia`, `dor_muscular`, `regioes_dor`, `dor_peito`, `tontura`, `movimento_diario`, `movimentos_dia`, `parente_cardiaco`, `num_parente_cardiaco`, `fumante`, `info_pertinente`, `aceito`) VALUES
 (33, 30, '2024-10-28 10:57:08', 0, 1, 0, 1, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1),
 (32, 32, '2024-10-27 18:58:35', 0, 1, 0, 1, 0, 1, 0, 60, '[\"musculacao\",\"peso_corpo\",\"esteira\",\"lutas\"]', NULL, 1, 'Pedalar', 1, 'Musculação e treino com peso do corpo', 3, 1, 'M', 0, NULL, NULL, 1, 'joelho, hérnia umbilical', 1, '[{\"regiao\":\"Joelho\",\"nota\":7,\"dificuldade\":\"corrida\"},{\"regiao\":\"lombar\",\"nota\":5,\"dificuldade\":\"corrida\"}]', 0, 0, 0, NULL, 1, NULL, 0, NULL, 1),
 (31, 31, '2024-10-25 15:26:33', 0, 1, 0, 1, 0, 1, 0, 60, '[\"musculacao\",\"esteira\",\"bike\"]', NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 1, 'Cesárea', 0, '[]', 0, 0, 0, NULL, 1, 1, 0, NULL, 1),

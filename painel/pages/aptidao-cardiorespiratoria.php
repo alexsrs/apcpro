@@ -12,17 +12,17 @@
     }
 
 // Consulta as medidas corporais na tabela de medidas
-$sql = MySql::conectar()->prepare("SELECT percentual_gordura FROM `tb_composicao_corporal` WHERE usuario_id = ? ORDER BY data_avaliacao DESC LIMIT 1");
+$sql = MySql::conectar()->prepare("SELECT peso FROM `tb_perfis_usuarios` WHERE usuario_id = ? ORDER BY data_avaliacao DESC LIMIT 1");
 $sql->execute([$usuario_id]);
 $result = $sql->fetch();
 
 if ($result) {
-    $percentual_gordura = $result['percentual_gordura'];
+    $peso = $result['peso'];
 } else {
     // Defina um valor padrão ou exiba uma mensagem caso o percentual de gordura não seja encontrado
-    $percentual_gordura = null; // ou qualquer valor padrão, como 0
+    $peso = null; // ou qualquer valor padrão, como 0
     // Opcionalmente, exiba uma mensagem informativa
-    Painel::alert('erro', 'Percentual de gordura não encontrado!');
+    Painel::alert('erro', 'Peso não encontrado!');
 }
 
 
@@ -41,9 +41,9 @@ $idade = (new DateTime())->diff($dataNascimento)->y; // Calcula a diferença de 
 
 // Calcula o VO2 máximo e os METs
 if ($sexo['sexo'] == 'M') {
-    $vo2_maximo = 98.42 - (0.12 * $percentual_gordura) - (0.14 * $idade);
+    $vo2_maximo = 57.8 - (0.445 * $idade) + (0.0969 * $peso);
 } else {
-    $vo2_maximo = 74.99 - (0.14 * $percentual_gordura) - (0.15 * $idade);
+    $vo2_maximo = 41.2 - (0.325 * $idade) + (0.0194 * $peso);
 }
 $mets = $vo2_maximo / 3.5;
 
@@ -134,11 +134,33 @@ $mets = $vo2_maximo / 3.5;
                         <span class="checkbox-icon">
                             <img src="<?php echo INCLUDE_PATH_PAINEL ?>/svg/cooper.svg" alt="Ícone Teste de Cooper">
                         </span><br>
-                        <span class="checkbox-label">Cooper</span>
+                        <span class="checkbox-label">Pista</span>
                     </span>
                     </label> 
                 </div>
 
+                <div class="checkbox-wrapper-16" style="display: inline-block; margin:15px">
+                    <label class="checkbox-wrapper">
+                    <input type="radio" class="checkbox-input" name="metodo" value="Teste de bike" onclick="atualizarEscolha('bike')" />
+                    <span class="checkbox-tile">
+                        <span class="checkbox-icon">
+                            <img src="<?php echo INCLUDE_PATH_PAINEL ?>/svg/bike.svg" alt="Ícone Teste de bike">
+                        </span><br>
+                        <span class="checkbox-label">Bike</span>
+                    </span>
+                    </label> 
+                </div>
+                <div class="checkbox-wrapper-16" style="display: inline-block; margin:15px">
+                    <label class="checkbox-wrapper">
+                    <input type="radio" class="checkbox-input" name="metodo" value="Teste de esteira" onclick="atualizarEscolha('esteira')" />
+                    <span class="checkbox-tile">
+                        <span class="checkbox-icon">
+                            <img src="<?php echo INCLUDE_PATH_PAINEL ?>/svg/esteira.svg" alt="Ícone Teste de esteira">
+                        </span><br>
+                        <span class="checkbox-label">Esteira</span>
+                    </span>
+                    </label> 
+                </div>
                 <div class="checkbox-wrapper-16" style="display: inline-block; margin:15px">
                     <label class="checkbox-wrapper">
                     <input type="radio" class="checkbox-input" name="metodo" value="Exame" onclick="atualizarEscolha('exame')" />
@@ -162,12 +184,12 @@ $mets = $vo2_maximo / 3.5;
         <div class="form-group" id="form-equacao" style="display: none;">
             <h2>Aptidão cardiorespiratória por equação</h2>
             <div class="form-group">
-                <p>Essas fórmulas fornecem uma estimativa e são válidas principalmente para adultos saudáveis.</p>
+                <p>Fórmula de Jackson e Pollock fornece uma estimativa e são válidas principalmente para adultos saudáveis.</p>
                 <p>O valor de MET é uma unidade relativa ao consumo de oxigênio em repouso, que é aproximadamente 3,5 mL/kg/min para um adulto médio.</p>
-                <?php if (is_numeric($percentual_gordura)) { ?>
+                <?php if (is_numeric($peso)) { ?>
                     <div class="form-group">
-                        <label>Percentual de Gordura estimado:</label>
-                        <input type="text" name="percentual_gordura" value="<?php echo number_format($percentual_gordura, 2); ?>%"/>
+                        <label>Peso:</label>
+                        <input type="text" name="peso" value="<?php echo number_format($peso, 2); ?> Kg"/>
                     </div><!-- form-group -->
                     <div class="form-group">
                         <label>Vo² Máximo</label>
@@ -178,7 +200,7 @@ $mets = $vo2_maximo / 3.5;
                         <input type="text" name="mets" value="<?php echo number_format($mets, 2); ?>"/>
                     </div><!-- form-group -->
                 <?php } else { ?>
-                    <p><strong><?php echo $percentual_gordura; ?></strong></p>
+                    <p><strong><?php echo $peso; ?></strong></p>
                 <?php } ?>
             </div>
             <div class="form-group">
@@ -189,13 +211,37 @@ $mets = $vo2_maximo / 3.5;
 
     <!-- Formulário Teste de Cooper -->
     <div id="form-cooper" style="display: none;">
-        <h2>Formulário para Teste de Cooper</h2>
+        <h2>Formulário para Teste de Pista</h2>
         <form>
             <!-- Campos específicos para Teste de Cooper -->
             <label for="input3">Campo 3:</label>
             <input type="text" id="input3" name="input3"><br>
             <label for="input4">Campo 4:</label>
             <input type="text" id="input4" name="input4"><br>
+        </form>
+    </div>
+
+    <!-- Formulário Teste de Bike -->
+    <div id="form-bike" style="display: none;">
+        <h2>Formulário para Teste de bike</h2>
+        <form>
+            <!-- Campos específicos para Teste de bike -->
+            <label for="input1">Campo 1:</label>
+            <input type="text" id="input1" name="input1"><br>
+            <label for="input2">Campo 2:</label>
+            <input type="text" id="input2" name="input2"><br>
+        </form>
+    </div>
+
+    <!-- Formulário Teste de Esteira -->
+    <div id="form-esteira" style="display: none;">
+        <h2>Formulário para Teste de Esteira</h2>
+        <form>
+            <!-- Campos específicos para Teste de bike -->
+            <label for="input1">Campo 7:</label>
+            <input type="text" id="input7" name="input7"><br>
+            <label for="input2">Campo 8:</label>
+            <input type="text" id="input8" name="input8"><br>
         </form>
     </div>
 
@@ -217,14 +263,20 @@ function atualizarEscolha(metodo) {
     // Oculta todos os formulários
     document.getElementById('form-equacao').style.display = 'none';
     document.getElementById('form-cooper').style.display = 'none';
+    document.getElementById('form-bike').style.display = 'none';
+    document.getElementById('form-esteira').style.display = 'none';
     document.getElementById('form-exame').style.display = 'none';
 
     // Exibe o formulário correspondente
     if (metodo === 'equacao') {
         document.getElementById('form-equacao').style.display = 'block';
-    } else if (metodo === 'cooper') {
+    }   else if (metodo === 'cooper') {
         document.getElementById('form-cooper').style.display = 'block';
-    } else if (metodo === 'exame') {
+    }   else if (metodo === 'bike') {
+        document.getElementById('form-bike').style.display = 'block';
+    }   else if (metodo === 'esteira') {
+        document.getElementById('form-esteira').style.display = 'block';
+    }   else if (metodo === 'exame') {
         document.getElementById('form-exame').style.display = 'block';
     }
 }

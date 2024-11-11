@@ -31,7 +31,7 @@ class Anamnese {
         $atividade_recente = $dados['atividade_recente'];
         $nome_atividade_recente = $dados['nome_atividade_recente'];
         $dias_semana_recente = $dados['dias_semana_recente'];
-        $horas_dia_recente = $dados['horas_dia_recente'];
+        $minutos_dia_recente = $dados['minutos_dia_recente'];
         $intensidade = $dados['intensidade'];
 
         // Dados Médicos
@@ -74,7 +74,7 @@ class Anamnese {
         $sql = $this->db->prepare("INSERT INTO tb_usuarios_anamnese 
             (usuario_id, data_avaliacao, domingo, segunda, terca, quarta, quinta, sexta, sabado, minutos_dia,
             exercicios, outros_exercicios,nao_gosta, nao_gosta_exercicios, atividade_recente, nome_atividade_recente, 
-            dias_semana_recente, horas_dia_recente, intensidade, doencas, doencas_nome, remedios, 
+            dias_semana_recente, minutos_dia_recente, intensidade, doencas, doencas_nome, remedios, 
             cirurgias, regiao_cirurgia, dor_muscular, regioes_dor, dor_peito, tontura, movimento_diario, 
             movimentos_dia, parente_cardiaco, num_parente_cardiaco, fumante, info_pertinente, aceito,
             ciclo_menstrual, ciclo_menstrual_irregular, sintomas_menstruais, uso_anticoncepcional, 
@@ -82,7 +82,7 @@ class Anamnese {
             VALUES 
             (:usuario_id, :data_avaliacao, :domingo, :segunda, :terca, :quarta, :quinta, :sexta, :sabado, :minutos_dia,
             :exercicios, :outros_exercicios, :nao_gosta, :nao_gosta_exercicios, :atividade_recente, :nome_atividade_recente, 
-            :dias_semana_recente, :horas_dia_recente, :intensidade, :doencas, :doencas_nome, :remedios, 
+            :dias_semana_recente, :minutos_dia_recente, :intensidade, :doencas, :doencas_nome, :remedios, 
             :cirurgias, :regiao_cirurgia, :dor_muscular, :regioes_dor, :dor_peito, :tontura, :movimento_diario, 
             :movimentos_dia, :parente_cardiaco, :num_parente_cardiaco, :fumante, :info_pertinente, :aceito,
             :ciclo_menstrual, :ciclo_menstrual_irregular, :sintomas_menstruais, :uso_anticoncepcional, 
@@ -106,7 +106,7 @@ class Anamnese {
         $sql->bindParam(':atividade_recente', $atividade_recente);
         $sql->bindParam(':nome_atividade_recente', $nome_atividade_recente);
         $sql->bindParam(':dias_semana_recente', $dias_semana_recente);
-        $sql->bindParam(':horas_dia_recente', $horas_dia_recente);
+        $sql->bindParam(':minutos_dia_recente', $minutos_dia_recente);
         $sql->bindParam(':intensidade', $intensidade);
         $sql->bindParam(':doencas', $doencas);
         $sql->bindParam(':doencas_nome', $doencas_nome);

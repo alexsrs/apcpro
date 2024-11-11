@@ -86,7 +86,7 @@
                         'nome_atividade_recente' => !empty($_POST['nome-atividade-recente']) ? htmlspecialchars(trim($_POST['nome-atividade-recente'])) : null,
                         'tipo_exercicio_recente' => !empty($_POST['tipo_exercicio_recente']) ? htmlspecialchars(trim($_POST['tipo_exercicio_recente'])) : null, // Verifique o nome correto
                         'dias_semana_recente' => isset($_POST['dias-semana']) && is_numeric($_POST['dias-semana']) ? intval($_POST['dias-semana']) : null,
-                        'horas_dia_recente' => isset($_POST['horas-dia']) && is_numeric($_POST['horas-dia']) ? floatval($_POST['horas-dia']) : null,
+                        'minutos_dia_recente' => isset($_POST['minutos-dia']) && is_numeric($_POST['minutos-dia']) ? floatval($_POST['minutos-dia']) : null,
                         'intensidade' => !empty($_POST['intensidade']) ? htmlspecialchars(trim($_POST['intensidade'])) : null,
                         
                         // Dados Médicos
@@ -297,8 +297,8 @@ rápida, prática e com maior possibilidade de prescrição de um programa de tr
                     <div class="form-group left w50">
                         <label>Quantas vezes por semana estava praticando?</label>
                         <input type="text" name="dias-semana" style="flex-grow: 1;">
-                        <label>Quantas horas por dia estava praticando?</label>
-                        <input type="text" name="horas-dia" style="flex-grow: 1;">
+                        <label>Quantos minutos por dia estava praticando?</label>
+                        <input type="text" name="minutos-dia" style="flex-grow: 1;">
                     </div><!-- form-group -->
                     <div class="form-group right w50">
                         <label>Intensidade:</label>
