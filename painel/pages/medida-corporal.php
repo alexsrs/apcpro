@@ -102,6 +102,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </div>
 <div class="box-content">
 <h2><i class="fa fa-pencil" aria-hidden="true"></i>Medida corporal</h2>
+<p>O método mais simples e barato de todos é com a boa e velha fita métrica.</p>
+<p>Mas só porque ela é fácil de usar, não significa que podemos tirar as medidas do corpo de qualquer forma. Existem, sim, algumas dicas básicas para as medições serem mais precisas e fidedignas.</p>
+<P> Com ela, é possível medir várias partes do corpo e acompanhar a evolução do seu corpo. A medição deve ser feita sempre no mesmo horário e com a mesma quantidade de roupas. O ideal é que seja feita pela manhã, em jejum e utilizando roupas leves ou, de preferência, tire as medidas sem roupa para maior precisão..</p>   
+<p>Repita as medidas duas vezes para garantir precisão. Anote todas as medidas e repita esse processo periodicamente para acompanhar mudanças corporais.</p>
+
     <form method="post">  
         <!-- Formulário de Antropometria -->
         <div class="form-group left w50">
@@ -179,8 +184,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div><!-- form-group left w50 -->
         <div class="form-group w50 right center video-tutorial">
             <img src="<?php echo INCLUDE_PATH;?>images/avatar_medidas_pt.png?>" alt="Foto do Usuário" class="">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/48lYW2DUo0I?si=TGwF67vqrxLGqpYd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
+            <div class="iframe-container">
+            <iframe  src="https://www.youtube.com/embed/48lYW2DUo0I?si=TGwF67vqrxLGqpYd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div><!-- iframe-container -->
+            </div><!-- form-group w50 right -->
         <div class="clear"></div><!-- clear -->          
     <div class="form-group">
         <input type="submit" name="acao" value="Enviar"/>
