@@ -38,7 +38,7 @@ $sql->execute([$usuario_id]);
 $dataNascimentoArray = $sql->fetch();
 $dataNascimento = new DateTime($dataNascimentoArray['data_nascimento']); // Converte a string em um objeto DateTime
 $idade = (new DateTime())->diff($dataNascimento)->y; // Calcula a diferença de idade em anos
-
+$FcMaxPred = 220 - $idade;
 // $metodo = isset($_POST['metodo']) ? $_POST['metodo'] : ''; // ou qualquer valor padrão, como 'equacao'
 //echo $metodo;
 
@@ -52,12 +52,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $vo2_maximo = isset($_POST['vo2_maximo']) ? $_POST['vo2_maximo'] : null;
     $mets = isset($_POST['mets']) ? $_POST['mets'] : null;
     $metodo = isset($_POST['metodo']) ? $_POST['metodo'] : null;
+    $fc_repouso = isset($_POST['fc-repouso']) ? $_POST['fc-repouso'] : null;
+    $fc_max_pred = isset($_POST['resultado-fc-max-pred']) ? $_POST['resultado-fc-max-pred'] : null;
     
     // Dados a serem salvos na tabela
     $dadosAptidao = [
         'vo2_maximo' => $vo2_maximo,
         'mets' => $mets,
-        'metodo' => $metodo
+        'metodo' => $metodo,
+        'fc_repouso' => $fc_repouso,
+        'fc_max_pred' => $fc_max_pred   
     ];
 
     // Chama o método para gravar os dados
@@ -172,8 +176,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="clear"></div>
 </div><!-- box-content -->
 
-
-
 <div class="box-content" id="formulario-selecionado">
 
      <form method="post" id="metodoForm">   
@@ -181,8 +183,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
      <!-- Campo oculto para armazenar o método selecionado -->
         
             <!-- Outros campos do formulário -->
-      
-
+    
         <?php $metodo = 'equacao'; 
         if ($metodo == 'equacao') {
             // Calcula o VO2 máximo e os METs
@@ -192,17 +193,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $vo2_maximo = 41.2 - (0.325 * $idade) + (0.0194 * $peso);
             }
             $mets = $vo2_maximo / 3.5;
-        }
+        
         ?>
         <div class="form-group" id="form-equacao" style="display: none;">
             <h2>Aptidão cardiorespiratória por equação</h2>
             <div class="form-group">
-            
-            <?php $metodo = 'equacao'; echo $metodo; ?>
-            
+                     
                 <p>Fórmula de Jackson e Pollock fornece uma estimativa e são válidas principalmente para adultos saudáveis.</p>
                 <p>O valor de MET é uma unidade relativa ao consumo de oxigênio em repouso, que é aproximadamente 3,5 mL/kg/min para um adulto médio.</p>
                 <input type="text" id="metodo" name="metodo" value="">
+                <div class="form-group">
+                <label for="fc-repouso">FC Repouso:</label>
+                <input type="text" id="fc-repouso" name="fc-repouso" value="" placeholder="Digite a frequência cárdiaca em repouso">
+            </div><!-- form-group -->
+            <div class="form-group">
+                <label>FC máxima preditiva</label>
+                <input type="text" name="resultado-fc-max-pred" id="resultado-fc-max-pred" value="<?php echo $FcMaxPred;?>" />
+             </div><!-- form-group -->
                 <?php if (is_numeric($peso)) { ?>
                     <div class="form-group">
                         <label>Peso:</label>
@@ -225,8 +232,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div><!-- form-group -->
         </div>
     </form>
+    <?php } ?>
     
-
+    <?php $metodo = 'cooper'; 
+        if ($metodo == 'cooper') { ?>
     <!-- Formulário Teste de Cooper -->
     <div class="form-group" id="form-cooper" style="display: none;">
         <h2>Formulário para Teste de Pista</h2>
@@ -240,11 +249,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ?>. Utilize um  relógio ou cronômetro para medir o tempo exato e uma forma de medir a distância percorrida (pode ser uma pista marcada ou aplicativos de GPS).</p>
         <p>A classificação do VO₂ máximo pode variar de acordo com a idade e o gênero, mas existem tabelas de referência que ajudam a entender se o nível de aptidão é considerado "excelente", "bom", "médio" ou "abaixo da média".</p>
         <form method="post" id="metodoForm"> 
-        <input type="text" id="metodo" name="metodo" value="">  
-        <?php $metodo = 'cooper'; echo $metodo;?>
-    
         
+        <input type="text" id="metodo" name="metodo" value="">
 
+            <div class="form-group">
+                <label for="fc-repouso">FC Repouso:</label>
+                <input type="text" id="fc-repouso" name="fc-repouso" value="" placeholder="Digite a frequência cárdiaca em repouso">
+            </div><!-- form-group -->
+            <div class="form-group">
+                <label>FC máxima preditiva</label>
+                <input type="text" name="resultado-fc-max-pred" id="resultado-fc-max-pred" value="<?php echo $FcMaxPred;?>" />
+             </div><!-- form-group -->
             <!-- Campos específicos para Teste de Cooper -->
             <div class="form-group">
                 <label for="distancia">Distancia percorrida:</label>
@@ -253,7 +268,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="form-group">
                 <label>Vo² Máximo</label>
                 <input type="text" name="vo2_maximo" id="resultado-vo2max" />
-                
              </div><!-- form-group -->
              <div class="form-group">
                 <label>METs</label>
@@ -264,12 +278,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div><!-- form-group -->
         </form>
     </div>
+    <?php } ?>
+
+    <?php $metodo = 'bike'; 
+        if ($metodo == 'bike') { ?>
 
     <!-- Formulário Teste de Bike -->
     <div class="form-group" id="form-bike" style="display: none;">
         <h2>Formulário para Teste de bike</h2>
         <form method="post">
-        <?php $metodo = 'bike'; echo $metodo;?>
             <!-- Campos específicos para Teste de bike -->
             <label for="input1">Campo 1:</label>
             <input type="text" id="input1" name="input1"><br>
@@ -280,12 +297,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div><!-- form-group -->
         </form>
     </div>
+    <?php } ?>
+    <?php $metodo = 'esteira'; 
+        if ($metodo == 'esteira') { ?>
 
     <!-- Formulário Teste de Esteira -->
     <div class="form-group" id="form-esteira" style="display: none;">
         <h2>Formulário para Teste de Esteira</h2>
         <form method="post">
-        <?php $metodo = 'esteira'; echo $metodo;?>
             <!-- Campos específicos para Teste de Esteira -->
             <label for="input7">Campo 7:</label>
             <input type="text" id="input7" name="input7"><br>
@@ -296,6 +315,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div><!-- form-group -->
         </form>
     </div>
+    <?php } ?>
+    <?php $metodo = 'exame'; 
+        if ($metodo == 'exame') { ?>
 
     <!-- Formulário Exame -->
     <div class="form-group" id="form-exame" style="display: none;">
@@ -312,6 +334,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div><!-- form-group -->
         </form>
     </div>
+    <?php } ?>
+
+    <?php $metodo = 'outros'; 
+        if ($metodo == 'outros') { ?>
 
     <!-- Formulário Outros -->
     <div class="form-group" id="form-outros" style="display: none;">
@@ -329,7 +355,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </form>
     </div>
 </div>
-
+<?php } ?>
 
 
 <script>
@@ -361,6 +387,8 @@ function atualizarEscolha(metodo) {
     }
 }
 
+
+
 function calcularVO2MaxCooper() {
     var distancia = document.getElementById('distancia').value;
 
@@ -384,5 +412,7 @@ function calcularVO2MaxCooper() {
         document.getElementById('resultado-mets').value = "";
         }
 }
+
+
 </script>
 
