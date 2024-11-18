@@ -19,7 +19,6 @@ $result = $sql->fetch();
 if ($result) {
     $peso = $result['peso'];
 } else {
-    
     $peso = null; // ou qualquer valor padrão, como 0
     // Opcionalmente, exiba uma mensagem informativa
     Painel::alert('erro', 'Peso não encontrado!');
@@ -39,8 +38,8 @@ $dataNascimentoArray = $sql->fetch();
 $dataNascimento = new DateTime($dataNascimentoArray['data_nascimento']); // Converte a string em um objeto DateTime
 $idade = (new DateTime())->diff($dataNascimento)->y; // Calcula a diferença de idade em anos
 $FcMaxPred = 220 - $idade;
-// $metodo = isset($_POST['metodo']) ? $_POST['metodo'] : ''; // ou qualquer valor padrão, como 'equacao'
-//echo $metodo;
+
+
 
 
 
@@ -387,8 +386,6 @@ function atualizarEscolha(metodo) {
     }
 }
 
-
-
 function calcularVO2MaxCooper() {
     var distancia = document.getElementById('distancia').value;
 
@@ -412,7 +409,6 @@ function calcularVO2MaxCooper() {
         document.getElementById('resultado-mets').value = "";
         }
 }
-
 
 </script>
 

@@ -65,6 +65,7 @@
                     $dados = [
                         'usuario_id' => $usuario_id,
                         'data_avaliacao' => (new DateTime())->format('Y-m-d H:i:s'),
+                        'nivel_treinamento' => !empty($_POST['nivel-treinamento']) ? htmlspecialchars(trim($_POST['nivel-treinamento'])) : null,
                         // Disponibilidade de Treino
                         'domingo' => isset($_POST['domingo']) ? 1 : 0,
                         'segunda' => isset($_POST['segunda']) ? 1 : 0,
@@ -181,6 +182,16 @@
         <!-- Perguntas adicionais -->
         <p>Responda as perguntas para aplicação da ANAMNESE INTELIGENTE de forma mais
 rápida, prática e com maior possibilidade de prescrição de um programa de treinamento individualizado.</p>
+<div class="form-group">
+            <label>Nível de treinamento</label>
+            <select name="nivel-treinamento">
+                <?php 
+                    foreach (Anamnese::$nivelTreinamento as $key => $value){
+                    echo '<option value="'.$value.'">'.$value.'</option>';
+                                }
+                ?>
+            </select>
+        </div><!-- form-group -->
 <fieldset>
                 <legend>Disponibilidade de treino</legend>
                 <label class="switch-label" for="domingo" style="display: inline-block; margin-right: 70px;">
