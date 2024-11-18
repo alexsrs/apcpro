@@ -120,9 +120,27 @@
 ?>
 
 <div class="step-indicator">
-    <!-- Indicador de etapas, permanece igual -->
+    <div class="step <?php echo ($_SESSION['etapa'] >= 1) ? 'completed' : ''; ?>">
+        <div class="step-number">1</div>
+        <div class="step-label">Perfil</div>
+    </div>
+    <div class="step <?php echo ($_SESSION['etapa'] >= 2) ? 'completed' : ''; ?>">
+        <div class="step-number">2</div>
+        <div class="step-label">Anamnese</div>
+    </div>
+    <div class="step <?php echo ($_SESSION['etapa'] >= 3) ? 'completed' : ''; ?>">
+        <div class="step-number">3</div>
+        <div class="step-label">Medida corporal</div>
+    </div>
+    <div class="step <?php echo ($_SESSION['etapa'] >= 4) ? 'completed' : ''; ?>">
+        <div class="step-number">4</div>
+        <div class="step-label">Aptidão Cardiorespiratória</div>
+    </div>
+    <div class="step <?php echo ($_SESSION['etapa'] >= 5) ? 'completed' : ''; ?>">
+        <div class="step-number">5</div>
+        <div class="step-label">Teste Físico</div>
+    </div>
 </div>
-
 <div class="box-content">
     <h2 id="user-choice"><i class="fa fa-pencil" aria-hidden="true"></i>Composição corporal</h2>
     <div class="form-group center">       

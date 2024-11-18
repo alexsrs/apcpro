@@ -668,6 +668,15 @@ form .form-group-login:nth-of-type(2) {
   color: #007bff;
 }
 
+#form-cooper,
+#form-bike,
+#form-equacao,
+#form-esteira,
+#form-outros,
+#form-exame {
+  display: none; /* Inicialmente ocultos */
+}
+
 /* The switch - the box around the slider */
 .switch-label {
   position: relative;
