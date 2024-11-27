@@ -209,3 +209,97 @@ Aqui estão os tópicos organizados para a reunião:
 	- QUando fizer avaliação presencial apresentar o somatório das dobras
 	- valores de cintura e quadril para calcular o risco de doenças cardiacas, (vai mandar a formula)
 	- valores do abdomen para calcular risco de doenças metabolicas no maximo 100cm mulher 88cm. chances aumentadas
+
+
+
+
+	<div class="box-dashboard">
+        <div class="checkbox-wrapper-16" style="display: inline-block; margin:5px">
+            <?php 
+                if ($obesidade == 1) {
+                    echo '<label class="checkbox-wrapper">
+                        <span class="checkbox-tile">
+                        <span class="checkbox-icon">
+                        <img src="' . INCLUDE_PATH_PAINEL . '/svg/fat.svg" alt="Ícone deseja emagrecer">
+                        </span><br>
+                        <span class="checkbox-label">Obesidade</span>
+                        </span>
+                    </label>';
+                } else if ($diabetes == 1) {
+                    echo '<label class="checkbox-wrapper">
+                        <span class="checkbox-tile">
+                        <span class="checkbox-icon">
+                        <img src="' . INCLUDE_PATH_PAINEL . '/svg/glicose.svg" alt="Ícone Diabético">
+                        </span><br>
+                        <span class="checkbox-label">Diabetes</span>
+                        </span>
+                    </label>';
+                } else if ($hipertensao == 1) {
+                    echo '<label class="checkbox-wrapper">
+                        <span class="checkbox-tile">
+                        <span class="checkbox-icon">
+                        <img src="' . INCLUDE_PATH_PAINEL . '/svg/hipertenso.svg" alt="Ícone Hipertenso">
+                        </span><br>
+                        <span class="checkbox-label">Hipertensão</span>
+                        </span>
+                    </label>';
+                } else if ($depressao == 1) {
+                    echo '<label class="checkbox-wrapper">
+                        <span class="checkbox-tile">
+                        <span class="checkbox-icon">
+                        <img src="' . INCLUDE_PATH_PAINEL . '/svg/depressao.svg" alt="Ícone Depressão">
+                        </span><br>
+                        <span class="checkbox-label">Depressão</span>
+                        </span>
+                    </label>';
+                } else if ($pos_covid == 1) {
+                    echo '<label class="checkbox-wrapper">
+                        <span class="checkbox-tile">
+                        <span class="checkbox-icon">
+                        <img src="' . INCLUDE_PATH_PAINEL . '/svg/covid.svg" alt="Ícone Pós-Covid">
+                        </span><br>
+                        <span class="checkbox-label">Pós Covid</span>
+                        </span>
+                    </label>';
+                } else if ($idoso == 1) {
+                    echo '<label class="checkbox-wrapper">
+                        <span class="checkbox-tile">
+                        <span class="checkbox-icon">
+                        <img src="' . INCLUDE_PATH_PAINEL . '/svg/idoso.svg" alt="Ícone Idoso">
+                        </span><br>
+                        <span class="checkbox-label">Idoso</span>
+                        </span>
+                    </label>';
+                } else if ($gestante == 1) {
+                    echo '<label class="checkbox-wrapper">
+                        <span class="checkbox-tile">
+                        <span class="checkbox-icon">
+                        <img src="' . INCLUDE_PATH_PAINEL . '/svg/gestante.svg" alt="Ícone Gestante">
+                        </span><br>
+                        <span class="checkbox-label">Gestante</span>
+                        </span>
+                    </label>';
+                } else if ($pos_parto == 1) {
+                    echo '<label class="checkbox-wrapper">
+                        <span class="checkbox-tile">
+                        <span class="checkbox-icon">
+                        <img src="' . INCLUDE_PATH_PAINEL . '/svg/posparto.svg" alt="Ícone Pós-Parto">
+                        </span><br>
+                        <span class="checkbox-label">Pós Parto</span>
+                        </span>
+                    </label>';
+                } else if ($emagrecer == 1) {
+                    echo '<label class="checkbox-wrapper">
+                        <span class="checkbox-tile">
+                        <span class="checkbox-icon">
+                        <img src="' . INCLUDE_PATH_PAINEL . '/svg/emagrecer.svg" alt="Ícone Emagrecimento">
+                        </span><br>
+                        <span class="checkbox-label">Emagrecimento</span>
+                        </span>
+                    </label>';
+                } else {
+                    echo '';
+                }
+            ?>
+        </div><!--dashboard-wrapper w33 left-->
+    </div>

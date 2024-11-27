@@ -240,6 +240,21 @@ div.box-usuario {
   padding: 0 5px;
 }
 
+.w20 {
+  width: 20%;
+  float: left;
+  position: relative;
+  padding: 0 5px;
+}
+
+.w40 {
+  width: 40%;
+  float: left;
+  position: relative;
+  padding: 0 5px;
+}
+
+
 .linha {
   display: flex;
   flex-flow: row wrap;
@@ -1099,6 +1114,7 @@ p.conconi {
 
 .box-dashboard {
   display: inline-block;
+  padding-bottom: 20px;
 }
 
 .box-dashboard h2 {
@@ -1107,6 +1123,10 @@ p.conconi {
 
 .box-dashboard p {
   text-align: left;
+}
+
+.dashboard-wrapper img {
+  width: 20%;
 }
 
 @media screen and (max-width: 1200px) {

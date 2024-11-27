@@ -57,7 +57,7 @@
             return $sql->fetchAll(PDO::FETCH_ASSOC); // Retorna todas as anamneses do usuário
         }
         public function buscarUltimoPerfilPorUsuarioId($usuario_id) {
-            $sql = $this->db->prepare("SELECT * FROM tb_perfis_usuarios WHERE usuario_id = :usuario_id ORDER BY data_avaliacao LIMIT 1");
+            $sql = $this->db->prepare("SELECT * FROM tb_perfis_usuarios WHERE usuario_id = :usuario_id ORDER BY data_avaliacao DESC LIMIT 1");
             $sql->bindParam(':usuario_id', $usuario_id);
             $sql->execute();
             return $sql->fetch(PDO::FETCH_ASSOC); // Retorna todas as anamneses do usuário
