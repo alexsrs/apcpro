@@ -57,13 +57,11 @@ Estrutura do Aplicativo “APC Pro” com Foco em Avaliação
 - testes fisicos recebem 4 videos de 10 sec
 
 
-
-
-
 1. VO2 Máximo
 O VO2 máximo é uma medida importante para avaliar a capacidade cardiorrespiratória de um indivíduo
 Teste de Cooper (12 minutos de corrida):
 •	VO2 Máx = (Distância percorrida em metros - 504,9) / 44,73
+
 
 1. Equação de Jackson e Pollock para Estimar VO2 Máximo
 A investigação de Jackson e Pollock, que é usada principalmente para estimar a densidade corporal e o percentual de gordura, pode ser adaptada para estimar o VO2 máximo. Nesse caso, o percentual de gordura é incorporado na engenharia para fornecer uma estimativa de capacidade aeróbica. Este tipo de abordagem geralmente utiliza o seguinte:
@@ -77,6 +75,7 @@ A investigação de Jackson e Pollock, que é usada principalmente para estimar 
 •	VO2 Máximo (ml/kg/min) = 42.834 - (0,611 x Idade) - (0,347 x Percentual de Gordura)
 •	O valor base é menor porque as mulheres, em média, têm maior percentual de gordura corporal do que os homens. Os coeficientes para idade e percentual de gordura também são ajustados para refletir as diferenças fisiológicas.
 
+
 2. Percentual de Gordura
 Existem várias fórmulas para estimar o percentual de gordura, sendo algumas delas baseadas em medidas de dobras demonstradas e outras em cálculos mais gerais, como o de Jackson & Pollock ou a fórmula da Marinha dos Estados Unidos.
 Fórmula da Marinha dos Estados Unidos:
@@ -84,9 +83,7 @@ Fórmula da Marinha dos Estados Unidos:
 •	Mulheres: % Gordura = 163.205 x (log10 (cintura + quadril - pescoço)) - 97.684 x (log10 (altura)) - 78.387
 
 
-
 A frequência cardíaca de segurança (FC de segurança) é a quantidade de estresse cardíaco por minuto enquanto uma pessoa está em um estado completamente relaxado, sem realizar atividades físicas ou estar sob estresse. É um dos indicadores mais importantes de resultados cardiovasculares e da saúde do coração. Vou explicar como medi-la corretamente.
-
 
 Como Medir a Frequência Cardíaca de Repouso
 1.	Escolha o Momento Adequado
@@ -200,3 +197,15 @@ Aqui estão os tópicos organizados para a reunião:
 	•	Corrigir e padronizar os termos “concêntrica” e “excêntrica” no planejamento de treinos.
 
 
+	------------- dia 21-11-24 ---------------
+
+	- trocar iniciante intermediario e avançado para Ativo e inativo aí depois abrir o nivel somente para ativos
+	- trocar a formula do FC preditivo (ja mandou) 
+	- incluir o teste de caminhada
+
+	- aluno precisa ver um card com a ficha de avaliação com as informações finais dos testes.
+	* \imc , percentual de gordura peso atual massa muscular, treinamentos, Vo2 max metS.
+	- a  cada reavaliação apresentar os novos valores e os resultados utilizando graficos, com percentual de evolução ou regressão
+	- QUando fizer avaliação presencial apresentar o somatório das dobras
+	- valores de cintura e quadril para calcular o risco de doenças cardiacas, (vai mandar a formula)
+	- valores do abdomen para calcular risco de doenças metabolicas no maximo 100cm mulher 88cm. chances aumentadas

@@ -131,10 +131,13 @@
 
 <div class="content">
     <?php Painel::loadPage(); ?>
+    <div id="qrcode1"></div> <!-- Added element with id "qrcode1" -->
 </div><!-- content -->
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
 <script src="<?php echo INCLUDE_PATH_PAINEL ?>js/jquery.mask.js"></script>
 <script src="<?php echo INCLUDE_PATH_PAINEL ?>js/main.js"></script>
+
+
 </body>
 </html>

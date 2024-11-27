@@ -1074,6 +1074,41 @@ p.conconi {
   text-align: center;
 }
 
+.whatsapp-container {
+  display: flex;
+  align-items: center;
+  justify-content: start; /* Ajuste conforme a necessidade */
+  margin-top: 20px; /* Espaçamento para evitar sobreposição */
+  gap: 20px; /* Espaçamento entre o botão e o QR Code */
+}
+
+.whatsapp-button {
+  background-color: #25d366; /* Cor do WhatsApp */
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+#qrcode {
+  display: inline-block;
+  margin-left: 20px; /* Ajuste conforme necessário */
+}
+
+.box-dashboard {
+  display: inline-block;
+}
+
+.box-dashboard h2 {
+  margin-bottom: 0px;
+}
+
+.box-dashboard p {
+  text-align: left;
+}
+
 @media screen and (max-width: 1200px) {
   .box-metrica-single {
     height: 120px;

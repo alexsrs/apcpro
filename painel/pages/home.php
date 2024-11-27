@@ -48,6 +48,8 @@ if (isset($_POST['acao'])) {
 
 ?>
 
+
+
 <?php if ($_SESSION['cargo'] == 1) { 
     // Contador de visitas totais
     $id = $_SESSION['id'];
@@ -55,6 +57,7 @@ if (isset($_POST['acao'])) {
     $totalAtletas->execute();
     $totalAtletas = $totalAtletas->rowCount();
 ?>
+    
 <div class="box-content left w100">
     <h2><i class="fa fa-home"></i> Dashboard - <?php echo NOME_EMPRESA ?></h2>
     <div class="box-metricas">
@@ -80,6 +83,7 @@ if (isset($_POST['acao'])) {
     </div><!-- box-metricas -->
 
     <form method="post" enctype="multipart/form-data">
+
     <div class="form-group flex-container">
         <div class="select-container">
             <label>Grupo</label>
@@ -101,6 +105,7 @@ if (isset($_POST['acao'])) {
     <div class="form-group w33">
         
         <input type="text" name="telefone" placeholder="DDD + Telefone "  data-mask="(00) 00000-0000" required/>
+       
         <input type="submit" name="acao" value="Convite"/>
     </div><!-- form-group -->
 </form>
@@ -108,11 +113,17 @@ if (isset($_POST['acao'])) {
 <!-- Exibir link do WhatsApp após o envio do formulário -->
 <?php
 if ($linkWhatsApp) {
+    echo "<div class='whatsapp-container'>";
     echo "<div class='whatsapp-button'>$linkWhatsApp</div>";
+    echo "<div id='qrcode'></div>";
+    echo "</div>";
+    echo "
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js'></script>
+    <script type='text/javascript'>
+        new QRCode(document.getElementById('qrcode'), 'https://apcpro.com.br/cadastro-online.php?professor_id=" . $professor_id . "&cargo=" . $cargo . "&grupo=" . $grupo_id . "');
+    </script>";
 }
 ?>
-</div><!-- box-content -->
-
 <div class="box-content left w50">
     <h4>Avaliações realizadas nos últimos 7 dias (<?php echo calcularPeriodoUltimos7Dias();?>) </h4>
     <div class="table-responsive">
@@ -126,7 +137,6 @@ if ($linkWhatsApp) {
             <div class="clear"></div><!-- clear -->
         </div><!-- row -->
 
-   
         <div class="row">
             <div class="col">
                 <span><?php echo "teste" ?></span>
@@ -140,8 +150,7 @@ if ($linkWhatsApp) {
     </div><!-- table-responsive -->
 
 </div><!-- box-content -->
-
-     
+    
 <div class="box-content right w50">
     <h4>Treinos realizados nos últimos 7 dias (<?php echo calcularPeriodoUltimos7Dias();?>) </h4>
     <div class="table-responsive">
@@ -187,6 +196,7 @@ if ($linkWhatsApp) {
 ?>
 <div class="box-content left w100">
     <h2><i class="fa fa-home"></i> Dashboard - <?php echo NOME_EMPRESA ?></h2>
+
     <div class="box-metricas">
         <div class="box-metrica-single">
             <div class="box-metrica-wraper">
@@ -232,64 +242,38 @@ if ($linkWhatsApp) {
         <label>Cadastre o atleta</label>
         <input type="text" name="telefone" data-mask="(00) 00000-0000" required/>
         <input type="submit" name="acao" value="Gerar convite"/>
-    </div><!-- form-group -->
-    </form>
+         
+        </div><!-- form-group -->
+        </form>
 
 <!-- Exibir link do WhatsApp após o envio do formulário -->
 <?php
 if ($linkWhatsApp) {
+    echo "<div class='whatsapp-container'>";
     echo "<div class='whatsapp-button'>$linkWhatsApp</div>";
+    echo "<div id='qrcode'></div>";
+    echo "</div>";
+    echo "
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js'></script>
+    <script type='text/javascript'>
+        new QRCode(document.getElementById('qrcode'), 'https://apcpro.com.br/cadastro-online.php?professor_id=" . $professor_id . "&cargo=" . $cargo . "&grupo=" . $grupo_id . "');
+    </script>";
 }
 ?>
 </div><!-- box-content -->
 
 <div class="clear"></div><!-- clear -->
 
-
-
 <?php include_once('pages/listar-usuarios.php'); ?>
 
 <?php } ?>  <!-- Fim do if($_SESSION['cargo'] == 2) -->
 
-
-
-
 <?php if ($_SESSION['cargo'] == 0) { 
 ?>
-<div class="box-content left w100">
-    <h2><i class="fa fa-home"></i> Dashboard - <?php echo NOME_EMPRESA ?></h2>
-    <div class="box-metricas">
-        <div class="box-metrica-single">
-            <div class="box-metrica-wraper">
-                <h1>PRÓXIMO TREINO</h1>
-                <h1>01/01/2025</h1>
-            </div><!-- box-metrica-wraper -->
-        </div><!-- box-metrica-single -->
-        <div class="box-metrica-single">
-            <div class="box-metrica-wraper">
-                <h1>STATUS AVALIAÇÂO</h1>
-                <h1><?php echo "0" ?></h1>
-            </div><!-- box-metrica-wraper -->
-        </div><!-- box-metrica-single -->
-        <div class="box-metrica-single">
-            <div class="box-metrica-wraper">
-                <h1>GASTO CALÓRICO</h1>
-                <h1><?php echo "13"; ?></h1>
-            </div><!-- box-metrica-wraper -->
-        </div><!-- box-metrica-single -->
-        <div class="clear"></div><!--clear -->
-    </div><!-- box-metricas -->
 
-    
-</div><!-- box-content -->
-
-<div class="clear"></div><!-- clear -->
-<?php include_once('pages/teste-fisico.php'); ?>
+<?php include_once('pages/dashboard-aluno.php'); ?>
 
 <?php } ?>  <!-- Fim do if($_SESSION['cargo'] == 0) -->
- 
-
-  
 
     <!-- Modal -->
 <div id="modalGrupo" style="display:none;">
@@ -302,3 +286,10 @@ if ($linkWhatsApp) {
         </form>
     </div>
 </div>
+
+
+
+
+
+
+

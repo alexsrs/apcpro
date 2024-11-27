@@ -10,9 +10,10 @@ class Anamnese {
 
     public static $nivelTreinamento = [
         ' ' => '-- Selecione uma opção --',
-        '1' => 'Iniciante',
-        '2' => 'Intermediário',
-        '3' => 'Avançado'
+        '0' => 'Inativo',
+        '1' => 'Ativo - Iniciante',
+        '2' => 'Ativo - Intermediário',
+        '3' => 'Ativo - Avançado'
     ];
 
 
@@ -223,5 +224,15 @@ class Anamnese {
         $sql->execute();
         return $sql->fetchAll(PDO::FETCH_ASSOC); // Retorna todas as anamneses do usuário
     }
+
+    public function buscarUltimaAnamnesePorUsuarioId($usuario_id) {
+        $sql = $this->db->prepare("SELECT * FROM tb_usuarios_anamnese WHERE usuario_id = :usuario_id ORDER BY data_avaliacao DESC LIMIT 1");
+        $sql->bindParam(':usuario_id', $usuario_id);
+        $sql->execute();
+        return $sql->fetch(PDO::FETCH_ASSOC); // Retorna apenas a última anamnese do usuário
+    
+    }
+
+
 } 
 ?>

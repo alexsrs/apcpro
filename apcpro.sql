@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 13/11/2024 às 08:56
+-- Tempo de geração: 27/11/2024 às 10:42
 -- Versão do servidor: 8.3.0
 -- Versão do PHP: 8.3.6
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `tb_admin.online` (
   `ultima_acao` datetime NOT NULL,
   `token` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=189 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=192 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `tb_admin.online`
@@ -88,7 +88,10 @@ INSERT INTO `tb_admin.online` (`id`, `ip`, `ultima_acao`, `token`) VALUES
 (185, '::1', '2024-11-04 12:24:58', '6728e73faafe9'),
 (186, '::1', '2024-11-07 08:03:05', '672c9e5debc50'),
 (187, '::1', '2024-11-08 12:49:12', '672d326e879dd'),
-(188, '::1', '2024-11-12 07:48:13', '672e33dcdc103');
+(188, '::1', '2024-11-26 08:53:19', '672e33dcdc103'),
+(189, '::1', '2024-11-26 10:06:32', '6745c7980660b'),
+(190, '::1', '2024-11-26 10:06:39', '6745c7dbb6664'),
+(191, '::1', '2024-11-26 10:30:35', '6745cce5cfc9b');
 
 -- --------------------------------------------------------
 
@@ -124,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `tb_admin.usuarios` (
 INSERT INTO `tb_admin.usuarios` (`id`, `user`, `password`, `img`, `nome`, `cargo`, `telefone`, `data_nascimento`, `data_inicio`, `sexo`, `cpf`, `professor_id`, `grupo_id`, `create_at`) VALUES
 (1, 'admin', '$2y$10$IJkR7pqep3GAaKCRpHlpE.f4VdBt2kkfYd8FFH8inTJmOXAqrpE4q', '655387240a70f.jpg', 'Alex Sandro', 2, '(21) 98989-0615', '1981-01-04', '2024-09-30', 'F', '086.899.137-69', 0, 0, '2024-10-31 14:29:35'),
 (4, 'prof', '$2y$10$IJkR7pqep3GAaKCRpHlpE.f4VdBt2kkfYd8FFH8inTJmOXAqrpE4q', '65538e7ea62a1.jpg', 'Professor baitola', 1, '(21) 98989-0615', '2014-09-02', '2024-09-25', 'M', '086899137-69', 1, 0, '2024-10-31 14:29:35'),
-(7, 'teste', 'teste', '66f2c68510739.jpg', 'Testando ', 0, '(21) 98989-0615', '2024-09-05', '2024-09-11', 'F', '086899137-69', 1, 0, '2024-10-31 14:29:35'),
+(7, 'aluno', '$2y$10$IJkR7pqep3GAaKCRpHlpE.f4VdBt2kkfYd8FFH8inTJmOXAqrpE4q', '66f2c68510739.jpg', 'Testando ', 0, '(21) 98989-0615', '1981-09-05', '2024-09-11', 'F', '086899137-69', 1, 0, '2024-10-31 14:29:35'),
 (15, 'joao', 'joao', '66f42cc21846d.jpg', 'Joao', 0, '(21) 98989-0615', '1981-01-04', '1982-02-05', 'M', '086899137-69', 4, 0, '2024-10-31 14:29:35'),
 (16, 'prof2', 'prof2', '66f42d0c0dea8.jpg', 'professor 2', 1, '(21) 98989-0615', '1973-01-06', '2024-12-26', 'F', '086899137-69', 1, 0, '2024-10-31 14:29:35'),
 (17, 'jkerbin ', '1234', '66f4a3ad8411e.jpeg', 'Jebediah Kerbin', 0, '(21) 96787-0567', '1992-11-06', '2024-10-12', 'M', '121232343-79', 4, 0, '2024-10-31 14:29:35'),
@@ -196,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `tb_admin.visitas` (
   `ip` varchar(255) NOT NULL,
   `dia` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `tb_admin.visitas`
@@ -230,7 +233,9 @@ INSERT INTO `tb_admin.visitas` (`id`, `ip`, `dia`) VALUES
 (25, '::1', '2024-10-21'),
 (26, '::1', '2024-10-28'),
 (27, '::1', '2024-11-04'),
-(28, '::1', '2024-11-11');
+(28, '::1', '2024-11-11'),
+(29, '::1', '2024-11-18'),
+(30, '::1', '2024-11-26');
 
 -- --------------------------------------------------------
 
@@ -607,7 +612,7 @@ CREATE TABLE IF NOT EXISTS `tb_perfis_usuarios` (
   PRIMARY KEY (`id`),
   KEY `usuario_id` (`usuario_id`),
   KEY `objetivo_id` (`objetivo_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=103 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `tb_perfis_usuarios`
@@ -712,7 +717,8 @@ INSERT INTO `tb_perfis_usuarios` (`id`, `usuario_id`, `data_avaliacao`, `peso`, 
 (96, 1, '2024-11-07 09:37:57', 80.6, 1.9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (97, 1, '2024-11-07 10:14:18', 104.1, 1.73, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (98, 1, '2024-11-07 10:24:57', 53.7, 1.56, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(101, 1, '2024-11-11 20:27:55', 76.9, 1.49, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+(101, 1, '2024-11-11 20:27:55', 76.9, 1.49, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(102, 7, '2024-11-26 20:22:20', 78.8, 1.65, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -826,6 +832,7 @@ CREATE TABLE IF NOT EXISTS `tb_usuarios_anamnese` (
   `id` int NOT NULL AUTO_INCREMENT,
   `usuario_id` int NOT NULL,
   `data_avaliacao` datetime NOT NULL,
+  `nivel_treinamento` varchar(30) NOT NULL,
   `domingo` tinyint(1) DEFAULT '0',
   `segunda` tinyint(1) DEFAULT '0',
   `terca` tinyint(1) DEFAULT '0',
@@ -873,54 +880,75 @@ CREATE TABLE IF NOT EXISTS `tb_usuarios_anamnese` (
   `dificuldade_emagrecer_outros` varchar(255) DEFAULT NULL,
   `remedios_emagrecer` tinyint(1) DEFAULT NULL,
   `autoestima` varchar(255) DEFAULT NULL,
+  `vestir` varchar(255) DEFAULT NULL,
+  `banho` varchar(255) DEFAULT NULL,
+  `caminhar` varchar(255) DEFAULT NULL,
+  `atividade_domestica_leve` varchar(255) DEFAULT NULL,
+  `subir_escada` varchar(255) DEFAULT NULL,
+  `fazer_compras` varchar(255) DEFAULT NULL,
+  `carregar_arroz` varchar(255) DEFAULT NULL,
+  `caminhar_moderado` varchar(255) DEFAULT NULL,
+  `caminhar_intenso` varchar(255) DEFAULT NULL,
+  `carregar_mala` varchar(255) DEFAULT NULL,
+  `atividade_domestica_pesada` varchar(255) DEFAULT NULL,
+  `atividade_vigorosa` varchar(255) DEFAULT NULL,
+  `nivel_funcional` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `tb_usuarios_anamnese`
 --
 
-INSERT INTO `tb_usuarios_anamnese` (`id`, `usuario_id`, `data_avaliacao`, `domingo`, `segunda`, `terca`, `quarta`, `quinta`, `sexta`, `sabado`, `minutos_dia`, `exercicios`, `outros_exercicios`, `nao_gosta`, `nao_gosta_exercicios`, `atividade_recente`, `nome_atividade_recente`, `dias_semana_recente`, `minutos_dia_recente`, `intensidade`, `doencas`, `doencas_nome`, `remedios`, `cirurgias`, `regiao_cirurgia`, `dor_muscular`, `regioes_dor`, `dor_peito`, `tontura`, `movimento_diario`, `movimentos_dia`, `parente_cardiaco`, `num_parente_cardiaco`, `fumante`, `info_pertinente`, `aceito`, `ciclo_menstrual`, `ciclo_menstrual_irregular`, `sintomas_menstruais`, `uso_anticoncepcional`, `fatores_impedem_treino`, `dificuldade_emagrecer`, `silhueta_real`, `silhueta_ideal`, `objetivos_6_meses`, `nome_remedios_emagrecer`, `resultados_remedios`, `dificuldade_emagrecer_outros`, `remedios_emagrecer`, `autoestima`) VALUES
-(1, 1, '2024-10-13 10:47:29', 0, 1, 1, 0, 0, 0, 0, NULL, '[\"musculacao\",\"esteira\",\"outros\"]', 'Capoeira', 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[{\"regiao\":\"Ombro\",\"nota\":4,\"dificuldade\":\"Dores musculares\"}]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 1, '2024-10-13 10:49:52', 0, 1, 0, 0, 1, 1, 0, NULL, '[\"esteira\",\"bike\",\"outros\"]', 'Capoeira', 0, 'Capoeira&#039;', 1, NULL, 2, 1, 'M', 1, 'cachaça, barrigao', 'nenhum', 1, 'no cerebro', 1, '[{\"regiao\":\"Ombro\",\"nota\":6,\"dificuldade\":\"Dores musculares\"},{\"regiao\":\"Pesco\\u00e7o\",\"nota\":1,\"dificuldade\":\"Dores musculares\"}]', 0, 0, 1, 'correr', 1, NULL, 1, 'Vamos ver', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 1, '2024-10-14 09:51:32', 1, 1, 1, 1, 1, 0, 0, 50, '[\"musculacao\",\"esteira\",\"natacao\"]', NULL, 0, 'Capoeira', 1, NULL, NULL, NULL, 'L', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 1, 'correr', 1, NULL, 1, 'sou cansado', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 1, '2024-10-14 10:30:52', 1, 1, 1, 1, 1, 1, 1, 60, '[\"natacao\",\"outros\"]', 'Tênis', NULL, 'Capoeira', 1, NULL, NULL, 30, 'L', 0, NULL, NULL, 0, NULL, 0, '[{\"regiao\":\"Ombro\",\"nota\":5,\"dificuldade\":\"Dores musculares\"}]', 0, 0, 1, 'correr', 1, NULL, 1, 'Nada a declarar', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 1, '2024-10-14 10:33:06', 1, 1, 1, 1, 1, 1, 1, 60, '[\"natacao\",\"outros\"]', 'Tênis', NULL, 'Capoeira', 1, NULL, NULL, 30, 'L', 0, NULL, NULL, 0, NULL, 0, '[{\"regiao\":\"Ombro\",\"nota\":5,\"dificuldade\":\"Dores musculares\"}]', 0, 0, 1, 'correr', 1, NULL, 1, 'Nada a declarar', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(6, 1, '2024-10-14 10:38:23', 1, 1, 1, 1, 1, 1, 1, 60, '[\"natacao\",\"outros\"]', 'Tênis', 1, 'Capoeira', 1, NULL, NULL, 30, 'L', 0, NULL, NULL, 0, NULL, 0, '[{\"regiao\":\"Ombro\",\"nota\":5,\"dificuldade\":\"Dores musculares\"}]', 0, 0, 1, 'correr', 1, NULL, 1, 'Nada a declarar', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(7, 1, '2024-10-14 10:39:05', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 1, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(8, 1, '2024-10-14 10:58:05', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 1, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(9, 1, '2024-10-14 10:59:33', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 1, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(10, 1, '2024-10-14 11:00:30', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(11, 1, '2024-10-14 11:04:17', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, 'Capoeira', 1, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(12, 1, '2024-10-14 11:12:03', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, '', 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(13, 1, '2024-10-14 11:13:14', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 1, '', 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(14, 1, '2024-10-14 11:15:27', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 1, '', 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(15, 1, '2024-10-14 11:17:05', 1, 1, 1, 0, 0, 0, 0, 60, '[\"musculacao\",\"outros\"]', 'Tênis', 1, 'Capoeira', 1, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(16, 1, '2024-10-14 11:26:31', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 1, '', 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(17, 1, '2024-10-14 11:29:44', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 1, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(18, 1, '2024-10-14 11:40:38', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 1, 'beber', 1, 'capoeira', 2, 12, 'L', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(19, 1, '2024-10-15 19:58:22', 1, 1, 1, 1, 1, 1, 1, NULL, '[\"musculacao\",\"peso_corpo\",\"esteira\",\"bike\",\"natacao\",\"lutas\",\"combolas\"]', NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(20, 4, '2024-10-15 19:58:38', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(21, 1, '2024-10-15 23:23:28', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(22, 1, '2024-10-15 23:24:07', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(23, 1, '2024-10-15 23:26:49', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(24, 1, '2024-10-15 23:28:08', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(25, 1, '2024-10-15 23:30:48', 1, 0, 1, 0, 1, 1, 1, NULL, '[\"natacao\",\"lutas\",\"outros\"]', 'Tênis', 1, 'Correr', 1, 'capoeira', 2, 1, 'L', 0, NULL, NULL, 0, NULL, 1, '[{\"regiao\":\"Ombro\",\"nota\":5,\"dificuldade\":\"Dores musculares\"}]', 0, 0, 0, NULL, 0, NULL, 1, 'Sou mocorongo', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(26, 17, '2024-10-17 10:37:31', 0, 1, 0, 1, 0, 1, 0, NULL, '[\"esteira\"]', NULL, 1, 'Correr', 1, 'Futebol', 1, 1, 'L', 0, NULL, NULL, 1, 'Lobotomia', 0, '[]', 1, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(27, 7, '2024-10-18 12:13:16', 0, 1, 0, 1, 0, 1, 0, 60, '[\"musculacao\",\"esteira\",\"bike\"]', NULL, 1, 'Futebol', 1, 'Bike', 2, 1, 'L', 0, NULL, NULL, 0, NULL, 1, '[{\"regiao\":\"Ombro\",\"nota\":4,\"dificuldade\":\"Dores musculares\"}]', 0, 0, 0, NULL, 1, NULL, 1, 'nada a declarar', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(28, 20, '2024-10-21 07:51:57', 0, 1, 0, 1, 0, 1, 0, NULL, '[\"musculacao\",\"natacao\"]', NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(29, 7, '2024-10-22 19:03:55', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(30, 72, '2024-11-04 14:53:15', 0, 1, 0, 1, 0, 1, 0, 60, '[\"bike\",\"natacao\",\"combolas\"]', NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(31, 72, '2024-11-04 14:53:58', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(32, 72, '2024-11-04 14:54:44', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(33, 72, '2024-11-04 14:58:25', 0, 1, 0, 1, 0, 1, 0, 90, '[\"musculacao\",\"natacao\"]', NULL, 1, 'Correr', 1, 'capoeira', 2, 1, 'L', 0, NULL, NULL, 0, NULL, 0, '[{\"regiao\":\"Ombro\",\"nota\":10,\"dificuldade\":\"Dores musculares\"}]', 0, 0, 0, NULL, 1, NULL, 1, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(34, 72, '2024-11-04 15:16:53', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, 1, 'Ciclo menstrual irregular nos últimos 3 meses', '[\"visao_escurecida\", \"palpitacao\", \"outros\"]', 'SIM', '[\"dores_durante_exercicio\", \"nao_gosto_treinar_sozinha\"]', '[\"regularidade_dieta\", \"outros\"]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(35, 72, '2024-11-04 15:55:20', 0, 1, 0, 1, 1, 0, 0, 90, '[\"bike\",\"natacao\"]', NULL, 0, NULL, 0, NULL, NULL, NULL, '', 1, NULL, NULL, 0, NULL, 0, '[{\"regiao\":\"Ombro\",\"nota\":6,\"dificuldade\":\"Dores musculares\"}]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, 1, 'Ciclo menstrual irregular nos últimos 3 meses', '[\"moleza\", \"tristeza\", \"palpitacao\", \"outros\"]', 'SIM', '[\"falta_conhecimento\", \"nao_gosto_suar\", \"dores_apos_exercicio\"]', '[\"regularidade_dieta\", \"tristeza_falta_treinos\", \"outros\"]', 8, 5, '\"[\\\"emagrecer\\\",\\\"bem_consigo_mesma\\\",\\\"outros\\\"]\"', 'ozenpic', 'nenhum', 'Preguiça', 1, 'Alta'),
-(36, 72, '2024-11-04 16:00:58', 0, 1, 0, 1, 0, 1, 0, 90, '[\"musculacao\",\"esteira\",\"natacao\"]', 'Capoeira', 1, 'correr', 1, 'Futebol', 1, 1, 'M', 1, 'cachaça, barrigao', 'nenhum', 1, 'no cerebro', 1, '[{\"regiao\":\"Ombro\",\"nota\":4,\"dificuldade\":\"Dores musculares\"}]', 1, 0, 1, 'correr', 1, NULL, 1, 'nada a declarar', 1, 1, 'Ciclo menstrual irregular nos últimos 4 a 6 meses', '[\"tontura\", \"dor_coluna_lombar\", \"dor_pernas\", \"palpitacao\", \"outros\"]', 'SIM', '[\"nao_gosto_suar\", \"experiencias_negativas\", \"nao_gosto_treinar_sozinha\"]', '[\"regularidade_exercicios\\\"\", \"tristeza_falta_treinos\", \"outros\"]', 7, 2, '[\"emagrecer\", \"ganho_massa_quadril_coxas\"]', 'ozenpic', 'nenhum', 'Preguiça', 1, 'Muito Alta'),
-(37, 72, '2024-11-04 16:20:09', 0, 0, 0, 0, 0, 0, 0, NULL, '[\"outros\"]', 'Capoeira', 1, 'Correr', 1, 'Futebol', NULL, NULL, '', 1, NULL, NULL, 1, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, 1, 'Ciclo menstrual irregular somente no último mês', '[\"outros\", \"outros\"]', 'SIM', '[\"falta_energia\", \"falta_conhecimento\", \"medo_machucar\", \"nao_gosto_treinar_sozinha\"]', '[\"outros\"]', NULL, NULL, '[\"outros\"]', NULL, NULL, 'Preguiça', 1, ''),
-(38, 1, '2024-11-07 09:38:09', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(39, 1, '2024-11-07 10:14:30', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(40, 1, '2024-11-11 20:42:44', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, 60, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL);
+INSERT INTO `tb_usuarios_anamnese` (`id`, `usuario_id`, `data_avaliacao`, `nivel_treinamento`, `domingo`, `segunda`, `terca`, `quarta`, `quinta`, `sexta`, `sabado`, `minutos_dia`, `exercicios`, `outros_exercicios`, `nao_gosta`, `nao_gosta_exercicios`, `atividade_recente`, `nome_atividade_recente`, `dias_semana_recente`, `minutos_dia_recente`, `intensidade`, `doencas`, `doencas_nome`, `remedios`, `cirurgias`, `regiao_cirurgia`, `dor_muscular`, `regioes_dor`, `dor_peito`, `tontura`, `movimento_diario`, `movimentos_dia`, `parente_cardiaco`, `num_parente_cardiaco`, `fumante`, `info_pertinente`, `aceito`, `ciclo_menstrual`, `ciclo_menstrual_irregular`, `sintomas_menstruais`, `uso_anticoncepcional`, `fatores_impedem_treino`, `dificuldade_emagrecer`, `silhueta_real`, `silhueta_ideal`, `objetivos_6_meses`, `nome_remedios_emagrecer`, `resultados_remedios`, `dificuldade_emagrecer_outros`, `remedios_emagrecer`, `autoestima`, `vestir`, `banho`, `caminhar`, `atividade_domestica_leve`, `subir_escada`, `fazer_compras`, `carregar_arroz`, `caminhar_moderado`, `caminhar_intenso`, `carregar_mala`, `atividade_domestica_pesada`, `atividade_vigorosa`, `nivel_funcional`) VALUES
+(1, 1, '2024-10-13 10:47:29', '', 0, 1, 1, 0, 0, 0, 0, NULL, '[\"musculacao\",\"esteira\",\"outros\"]', 'Capoeira', 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[{\"regiao\":\"Ombro\",\"nota\":4,\"dificuldade\":\"Dores musculares\"}]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, 1, '2024-10-13 10:49:52', '', 0, 1, 0, 0, 1, 1, 0, NULL, '[\"esteira\",\"bike\",\"outros\"]', 'Capoeira', 0, 'Capoeira&#039;', 1, NULL, 2, 1, 'M', 1, 'cachaça, barrigao', 'nenhum', 1, 'no cerebro', 1, '[{\"regiao\":\"Ombro\",\"nota\":6,\"dificuldade\":\"Dores musculares\"},{\"regiao\":\"Pesco\\u00e7o\",\"nota\":1,\"dificuldade\":\"Dores musculares\"}]', 0, 0, 1, 'correr', 1, NULL, 1, 'Vamos ver', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 1, '2024-10-14 09:51:32', '', 1, 1, 1, 1, 1, 0, 0, 50, '[\"musculacao\",\"esteira\",\"natacao\"]', NULL, 0, 'Capoeira', 1, NULL, NULL, NULL, 'L', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 1, 'correr', 1, NULL, 1, 'sou cansado', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 1, '2024-10-14 10:30:52', '', 1, 1, 1, 1, 1, 1, 1, 60, '[\"natacao\",\"outros\"]', 'Tênis', NULL, 'Capoeira', 1, NULL, NULL, 30, 'L', 0, NULL, NULL, 0, NULL, 0, '[{\"regiao\":\"Ombro\",\"nota\":5,\"dificuldade\":\"Dores musculares\"}]', 0, 0, 1, 'correr', 1, NULL, 1, 'Nada a declarar', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 1, '2024-10-14 10:33:06', '', 1, 1, 1, 1, 1, 1, 1, 60, '[\"natacao\",\"outros\"]', 'Tênis', NULL, 'Capoeira', 1, NULL, NULL, 30, 'L', 0, NULL, NULL, 0, NULL, 0, '[{\"regiao\":\"Ombro\",\"nota\":5,\"dificuldade\":\"Dores musculares\"}]', 0, 0, 1, 'correr', 1, NULL, 1, 'Nada a declarar', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(6, 1, '2024-10-14 10:38:23', '', 1, 1, 1, 1, 1, 1, 1, 60, '[\"natacao\",\"outros\"]', 'Tênis', 1, 'Capoeira', 1, NULL, NULL, 30, 'L', 0, NULL, NULL, 0, NULL, 0, '[{\"regiao\":\"Ombro\",\"nota\":5,\"dificuldade\":\"Dores musculares\"}]', 0, 0, 1, 'correr', 1, NULL, 1, 'Nada a declarar', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(7, 1, '2024-10-14 10:39:05', '', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 1, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(8, 1, '2024-10-14 10:58:05', '', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 1, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(9, 1, '2024-10-14 10:59:33', '', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 1, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(10, 1, '2024-10-14 11:00:30', '', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(11, 1, '2024-10-14 11:04:17', '', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, 'Capoeira', 1, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(12, 1, '2024-10-14 11:12:03', '', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, '', 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(13, 1, '2024-10-14 11:13:14', '', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 1, '', 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(14, 1, '2024-10-14 11:15:27', '', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 1, '', 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(15, 1, '2024-10-14 11:17:05', '', 1, 1, 1, 0, 0, 0, 0, 60, '[\"musculacao\",\"outros\"]', 'Tênis', 1, 'Capoeira', 1, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(16, 1, '2024-10-14 11:26:31', '', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 1, '', 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(17, 1, '2024-10-14 11:29:44', '', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 1, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(18, 1, '2024-10-14 11:40:38', '', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 1, 'beber', 1, 'capoeira', 2, 12, 'L', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(19, 1, '2024-10-15 19:58:22', '', 1, 1, 1, 1, 1, 1, 1, NULL, '[\"musculacao\",\"peso_corpo\",\"esteira\",\"bike\",\"natacao\",\"lutas\",\"combolas\"]', NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(20, 4, '2024-10-15 19:58:38', '', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(21, 1, '2024-10-15 23:23:28', '', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(22, 1, '2024-10-15 23:24:07', '', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(23, 1, '2024-10-15 23:26:49', '', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(24, 1, '2024-10-15 23:28:08', '', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, NULL, 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(25, 1, '2024-10-15 23:30:48', '', 1, 0, 1, 0, 1, 1, 1, NULL, '[\"natacao\",\"lutas\",\"outros\"]', 'Tênis', 1, 'Correr', 1, 'capoeira', 2, 1, 'L', 0, NULL, NULL, 0, NULL, 1, '[{\"regiao\":\"Ombro\",\"nota\":5,\"dificuldade\":\"Dores musculares\"}]', 0, 0, 0, NULL, 0, NULL, 1, 'Sou mocorongo', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(26, 17, '2024-10-17 10:37:31', '', 0, 1, 0, 1, 0, 1, 0, NULL, '[\"esteira\"]', NULL, 1, 'Correr', 1, 'Futebol', 1, 1, 'L', 0, NULL, NULL, 1, 'Lobotomia', 0, '[]', 1, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(27, 7, '2024-10-18 12:13:16', '', 0, 1, 0, 1, 0, 1, 0, 60, '[\"musculacao\",\"esteira\",\"bike\"]', NULL, 1, 'Futebol', 1, 'Bike', 2, 1, 'L', 0, NULL, NULL, 0, NULL, 1, '[{\"regiao\":\"Ombro\",\"nota\":4,\"dificuldade\":\"Dores musculares\"}]', 0, 0, 0, NULL, 1, NULL, 1, 'nada a declarar', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(28, 20, '2024-10-21 07:51:57', '', 0, 1, 0, 1, 0, 1, 0, NULL, '[\"musculacao\",\"natacao\"]', NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(29, 7, '2024-10-22 19:03:55', '', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(30, 72, '2024-11-04 14:53:15', '', 0, 1, 0, 1, 0, 1, 0, 60, '[\"bike\",\"natacao\",\"combolas\"]', NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(31, 72, '2024-11-04 14:53:58', '', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(32, 72, '2024-11-04 14:54:44', '', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(33, 72, '2024-11-04 14:58:25', '', 0, 1, 0, 1, 0, 1, 0, 90, '[\"musculacao\",\"natacao\"]', NULL, 1, 'Correr', 1, 'capoeira', 2, 1, 'L', 0, NULL, NULL, 0, NULL, 0, '[{\"regiao\":\"Ombro\",\"nota\":10,\"dificuldade\":\"Dores musculares\"}]', 0, 0, 0, NULL, 1, NULL, 1, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(34, 72, '2024-11-04 15:16:53', '', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, 1, 'Ciclo menstrual irregular nos últimos 3 meses', '[\"visao_escurecida\", \"palpitacao\", \"outros\"]', 'SIM', '[\"dores_durante_exercicio\", \"nao_gosto_treinar_sozinha\"]', '[\"regularidade_dieta\", \"outros\"]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(35, 72, '2024-11-04 15:55:20', '', 0, 1, 0, 1, 1, 0, 0, 90, '[\"bike\",\"natacao\"]', NULL, 0, NULL, 0, NULL, NULL, NULL, '', 1, NULL, NULL, 0, NULL, 0, '[{\"regiao\":\"Ombro\",\"nota\":6,\"dificuldade\":\"Dores musculares\"}]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, 1, 'Ciclo menstrual irregular nos últimos 3 meses', '[\"moleza\", \"tristeza\", \"palpitacao\", \"outros\"]', 'SIM', '[\"falta_conhecimento\", \"nao_gosto_suar\", \"dores_apos_exercicio\"]', '[\"regularidade_dieta\", \"tristeza_falta_treinos\", \"outros\"]', 8, 5, '\"[\\\"emagrecer\\\",\\\"bem_consigo_mesma\\\",\\\"outros\\\"]\"', 'ozenpic', 'nenhum', 'Preguiça', 1, 'Alta', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(36, 72, '2024-11-04 16:00:58', '', 0, 1, 0, 1, 0, 1, 0, 90, '[\"musculacao\",\"esteira\",\"natacao\"]', 'Capoeira', 1, 'correr', 1, 'Futebol', 1, 1, 'M', 1, 'cachaça, barrigao', 'nenhum', 1, 'no cerebro', 1, '[{\"regiao\":\"Ombro\",\"nota\":4,\"dificuldade\":\"Dores musculares\"}]', 1, 0, 1, 'correr', 1, NULL, 1, 'nada a declarar', 1, 1, 'Ciclo menstrual irregular nos últimos 4 a 6 meses', '[\"tontura\", \"dor_coluna_lombar\", \"dor_pernas\", \"palpitacao\", \"outros\"]', 'SIM', '[\"nao_gosto_suar\", \"experiencias_negativas\", \"nao_gosto_treinar_sozinha\"]', '[\"regularidade_exercicios\\\"\", \"tristeza_falta_treinos\", \"outros\"]', 7, 2, '[\"emagrecer\", \"ganho_massa_quadril_coxas\"]', 'ozenpic', 'nenhum', 'Preguiça', 1, 'Muito Alta', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(37, 72, '2024-11-04 16:20:09', '', 0, 0, 0, 0, 0, 0, 0, NULL, '[\"outros\"]', 'Capoeira', 1, 'Correr', 1, 'Futebol', NULL, NULL, '', 1, NULL, NULL, 1, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, 1, 'Ciclo menstrual irregular somente no último mês', '[\"outros\", \"outros\"]', 'SIM', '[\"falta_energia\", \"falta_conhecimento\", \"medo_machucar\", \"nao_gosto_treinar_sozinha\"]', '[\"outros\"]', NULL, NULL, '[\"outros\"]', NULL, NULL, 'Preguiça', 1, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(38, 1, '2024-11-07 09:38:09', '', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(39, 1, '2024-11-07 10:14:30', '', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(40, 1, '2024-11-11 20:42:44', '', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, 60, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(41, 1, '2024-11-18 13:37:42', 'Iniciante', 0, 1, 0, 1, 0, 1, 0, 60, '[\"musculacao\",\"natacao\",\"lutas\",\"outros\"]', 'Tênis, capoeira', 1, 'Correr', 1, 'capoeira', 1, 20, 'L', 0, NULL, NULL, 0, NULL, 1, '[{\"regiao\":\"Ombro\",\"nota\":5,\"dificuldade\":\"Dores musculares\"}]', 0, 0, 0, NULL, 1, NULL, 1, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(42, 1, '2024-11-18 13:38:55', 'Iniciante', 0, 1, 0, 1, 0, 1, 0, 60, '[\"musculacao\",\"natacao\",\"lutas\",\"outros\"]', 'Tênis, capoeira', 1, 'Correr', 1, 'capoeira', 1, 20, 'L', 0, NULL, NULL, 0, NULL, 1, '[{\"regiao\":\"Ombro\",\"nota\":5,\"dificuldade\":\"Dores musculares\"}]', 0, 0, 0, NULL, 1, NULL, 1, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(43, 1, '2024-11-18 13:39:57', 'Iniciante', 0, 1, 0, 1, 0, 1, 0, 60, '[\"musculacao\",\"natacao\",\"lutas\",\"outros\"]', 'Tênis, capoeira', 1, 'Correr', 1, 'capoeira', 1, 20, 'L', 0, NULL, NULL, 0, NULL, 1, '[{\"regiao\":\"Ombro\",\"nota\":5,\"dificuldade\":\"Dores musculares\"}]', 0, 0, 0, NULL, 1, NULL, 1, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(44, 1, '2024-11-18 17:25:43', 'Intermediário', 0, 0, 1, 0, 1, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(45, 1, '2024-11-18 17:36:13', 'Iniciante', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(46, 1, '2024-11-18 17:38:09', 'Intermediário', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(47, 1, '2024-11-21 21:53:10', 'Iniciante', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(48, 7, '2024-11-26 12:02:09', 'Ativo - Iniciante', 0, 1, 0, 0, 1, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
