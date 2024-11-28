@@ -23,5 +23,12 @@ class AptidaoModel {
         $sql->bindParam(':fc_max_pred', $dadosAptidao['fc_max_pred']);
         return $sql->execute(); // Retorna true se a operação for bem-sucedida
     }
+
+    public function buscarUltimoAptidaoPorUsuarioId($usuario_id) {
+        $sql = MySql::conectar()->prepare("SELECT * FROM tb_usuarios_aptidao WHERE usuario_id = :usuario_id ORDER BY data_avaliacao DESC LIMIT 1");
+        $sql->bindParam(':usuario_id', $usuario_id);
+        $sql->execute();
+        return $sql->fetch(PDO::FETCH_ASSOC); // Retorna a ultima aptidão do usuário
+    }
 }
 ?>

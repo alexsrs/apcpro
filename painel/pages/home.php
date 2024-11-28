@@ -48,8 +48,6 @@ if (isset($_POST['acao'])) {
 
 ?>
 
-
-
 <?php if ($_SESSION['cargo'] == 1) { 
     // Contador de visitas totais
     $id = $_SESSION['id'];

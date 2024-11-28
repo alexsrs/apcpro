@@ -37,6 +37,77 @@
     $sql_professor->execute([$professor_id]);
     $professor = $sql_professor->fetch(PDO::FETCH_ASSOC);
     $professor = $professor['nome'];
+
+    $aptidao = new AptidaoModel();
+    $dados_aptidao = $aptidao->buscarUltimoAptidaoPorUsuarioId($usuario_id);
+    $fc_repouso = $dados_aptidao['fc_repouso'];
+    $fc_max = $dados_aptidao['fc_max_pred'];
+    $fc_reserva = $fc_max - $fc_repouso;
+    $vo2_max = $dados_aptidao['vo2_maximo'];
+    $data_aptidao = new DateTime($dados_aptidao['data_avaliacao']);
+    $metodo = $dados_aptidao['metodo'];
+    //echo '<pre>'; print_r($dados_aptidao); echo '</pre>';
+    //echo $data_aptidao->format('d/m/Y');
+
+    // Consulta o sexo do usuário
+    $sql = MySql::conectar()->prepare("SELECT sexo FROM `tb_admin.usuarios` WHERE id = ?");
+    $sql->execute([$usuario_id]);
+    $sexo = $sql->fetch();
+
+    // Calcula a idade do usuário
+    $sql = MySql::conectar()->prepare("SELECT data_nascimento FROM `tb_admin.usuarios` WHERE id = ?");
+    $sql->execute([$usuario_id]);
+    $dataNascimentoArray = $sql->fetch();
+    $dataNascimento = new DateTime($dataNascimentoArray['data_nascimento']); // Converte a string em um objeto DateTime
+    $idade = (new DateTime())->diff($dataNascimento)->y; // Calcula a diferença de idade em anos
+
+    function classificarVo2Max($vo2_max, $sexo, $idade) {
+      // Tabelas de classificação baseadas na idade e no sexo
+      $classificacoes = [
+          'm' => [
+              [14, 19, 65, 61, 55, 50, 45, 35], // Excelente, Boa, Acima da média, Média, Abaixo da média, Ruim, Muito Ruim
+              [20, 29, 61, 57, 52, 47, 42, 33],
+              [30, 39, 59, 55, 50, 45, 40, 31],
+              [40, 49, 54, 50, 45, 41, 36, 28],
+              [50, 59, 51, 47, 43, 39, 34, 25],
+              [60, 69, 46, 43, 39, 35, 31, 22],
+              [70, 79, 43, 40, 36, 32, 28, 20],
+              [80, 89, 41, 38, 34, 30, 26, 18],
+              [90, 99, 39, 36, 32, 28, 24, 16]
+          ],
+          'f' => [
+              [14, 19, 54, 50, 45, 40, 35, 25],
+              [20, 29, 52, 48, 43, 38, 33, 23],
+              [30, 39, 50, 46, 41, 36, 31, 21],
+              [40, 49, 46, 42, 38, 33, 28, 19],
+              [50, 59, 42, 39, 35, 30, 25, 17],
+              [60, 69, 38, 35, 31, 27, 23, 15],
+              [70, 79, 36, 33, 29, 25, 21, 13],
+              [80, 89, 34, 31, 27, 23, 19, 11],
+              [90, 99, 32, 29, 25, 21, 17, 9]
+          ]
+      ];
+  
+      // Encontra a faixa etária e retorna a classificação
+      foreach ($classificacoes[$sexo] as $faixa) {
+          [$minIdade, $maxIdade, $excelente, $boa, $acima, $media, $abaixo, $ruim] = $faixa;
+          if ($idade >= $minIdade && $idade <= $maxIdade) {
+              if ($vo2_max > $excelente) return 'Excelente';
+              if ($vo2_max > $boa) return 'Boa';
+              if ($vo2_max > $acima) return 'Acima da Média';
+              if ($vo2_max > $media) return 'Média';
+              if ($vo2_max > $abaixo) return 'Abaixo da Média';
+              if ($vo2_max > $ruim) return 'Ruim';
+              return 'Muito Ruim';
+          }
+      }
+      return 'Faixa etária não encontrada';
+  }
+  
+    // Calcular a classificação do VO₂ Máximo
+    $sexo = strtolower($usuario['sexo']); // Converte o sexo para minúsculas
+    $classificacao_vo2 = classificarVo2Max($vo2_max, $sexo, $idade);
+    
 ?>
 
 <div class="box-content left w100">
@@ -76,14 +147,93 @@
 
 <div class="clear"></div><!-- clear -->
 
-<div class="box-content w33" style="text-align: center;">
-    <h3 style="text-align: center; width: 100%;">Frequência Cardíaca</h3><br>
-    <div style="max-height: 180px; display: flex; justify-content: center; align-items: center;">
-        <canvas id="fcChart1"></canvas>
-        <canvas id="fcChart2"></canvas>
-        <canvas id="fcChart3"></canvas>
+<div class="container-flex " style="height: 40%;">
+  <div class="box-content w33 left" style="text-align: center; margin-right: 10px;">
+    <h3 style="text-align: left; width: 100%;">Indice de massa corporal</h3><br><br>
+    <div class="imc-info">
+      <div class="imc-item w33">
+        <h4>Peso: <?php echo htmlspecialchars($peso); ?> kg</h4>
+        <img src="<?php echo INCLUDE_PATH_PAINEL ?>/svg/peso.svg" alt="Ícone peso" style="width: 65%;">
+      </div>
+      <div class="imc-item w33">
+        <h4>Altura: <?php echo htmlspecialchars($altura); ?> m</h4>
+        <img src="<?php echo INCLUDE_PATH_PAINEL ?>/svg/altura.svg" alt="Ícone altura" style="width: 65%;">
+      </div>
+      <div class="imc-item w33">
+        <h4>IMC: <?php echo htmlspecialchars($imc); ?></h4>
+        <img src="<?php echo INCLUDE_PATH_PAINEL ?>/svg/equacao.svg" alt="Ícone equação" style="width: 65%;">
+      </div>
     </div>
-</div><!-- box-content -->
+
+      </div><!-- box-content -->
+
+      <div class="box-content w33 right" style="text-align: center; margin-right: 10px;">
+        <h3 style="text-align: left; width: 100%;">Composição corporal</h3><br>
+        
+        
+      </div><!-- box-content -->
+
+  <div class="box-content w33 right" style="text-align: center;">
+    <h3 style="text-align: left; width: 100%;">Metas</h3><br>
+    <div class="fcChart">
+      <canvas id="fcChart5" style="max-width: 100%;"></canvas>
+      <canvas id="fcChart6" style="max-width: 100%;"></canvas>
+    </div>
+    
+  </div><!-- box-content -->
+</div>
+
+
+<div class="container-flex " style="height: 50%;">
+  <div class="box-content w50 left" style="text-align: center; margin-right: 10px;">
+    <h3 style="text-align: left; width: 100%;">Frequência Cardíaca</h3><br>
+    <p>Data da Avaliação: <?php 
+    
+    echo $data_aptidao->format('d/m/Y');
+?>
+
+    
+    
+     - Método: <?php echo $metodo;?></p><br><br>
+    <div class="fcChart">
+      <canvas id="fcChart1" style="max-width: 100%;"></canvas>
+      <canvas id="fcChart2" style="max-width: 100%;"></canvas>
+      <canvas id="fcChart3" style="max-width: 100%;"></canvas>
+    </div>
+
+  <?php
+  if ($fc_repouso < 60) {
+    echo '<h4>Baixa</h4>';
+  } elseif ($fc_repouso <= 100) {
+    echo '<h4>Normal</h4>';
+  } else {
+    echo '<h4>Alta</h4>';
+  }
+  echo '<h4></h4>';
+  ?>
+  </div><!-- box-content -->
+
+  <div class="box-content w50 right" style="text-align: center;">
+    <h3 style="text-align: left; width: 100%;">Oxigênio - Vo² Máx</h3><br>
+    <p>Data da Avaliação: <?php 
+    
+    echo $data_aptidao->format('d/m/Y');
+?>
+
+    
+    
+     - Método: <?php echo $metodo;?></p><br><br>
+    <div class="fcChart">
+      <canvas id="fcChart4" style="max-width: 100%;"></canvas>
+    </div>
+    <h4 style="padding-top 10px; text-align: center; width: 100%;"><?php echo htmlspecialchars($classificacao_vo2); ?></h4>
+  </div><!-- box-content -->
+</div>
+
+<div class="clear"></div><!-- clear -->
+
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -91,12 +241,16 @@
   const ctx1 = document.getElementById('fcChart1');
   const ctx2 = document.getElementById('fcChart2');
   const ctx3 = document.getElementById('fcChart3');
+  const ctx4 = document.getElementById('fcChart4');
+  const ctx5 = document.getElementById('fcChart5');
+  const ctx6 = document.getElementById('fcChart6');
+
 
   const data1 = {
     labels: ['Repouso'],
     datasets: [{
       label: 'bpm',
-      data: [60, 177],
+      data: [<?php echo $fc_repouso; ?>,<?php echo $fc_max; ?>],
       backgroundColor: [
         'rgba(207, 20, 189, 1.00)',
         'rgba(93,96,104,1)',
@@ -109,7 +263,7 @@
     labels: ['Máxima'],
     datasets: [{
       label: 'bpm',
-      data: [177],
+      data: [<?php echo $fc_max; ?>],
       backgroundColor: [
         'rgba(207, 20, 189, 1.00)',
         'rgba(93,96,104,1)',
@@ -122,7 +276,7 @@
     labels: ['Reserva'],
     datasets: [{
       label: 'bpm',
-      data: [117, 60],
+      data: [<?php echo $fc_reserva; ?>, <?php echo $fc_repouso; ?>],
       backgroundColor: [
         'rgba(207, 20, 189, 1.00)',
         'rgba(93,96,104,1)',
@@ -130,6 +284,50 @@
       borderWidth: 0
     }]
   };
+
+
+  const data4 = {
+
+
+    labels: ['Vo² Máximo'],
+    datasets: [{
+      label: 'mL/kg/min',
+      data:[<?php echo $vo2_max; ?>],
+      backgroundColor: [
+        'rgba(58,115,170,1)',
+        'rgba(93,96,104,1)',
+      ],
+      borderWidth: 0
+    }]
+  };
+
+  const data5 = {
+    labels: ['Peso a perder'],
+    datasets: [{
+      label: 'Kg',
+      data: [<?php echo $fc_repouso; ?>,<?php echo $fc_max; ?>],
+      backgroundColor: [
+        'rgba(207, 20, 189, 1.00)',
+        'rgba(93,96,104,1)',
+      ],
+      borderWidth: 0
+    }]
+  };
+
+  const data6 = {
+    labels: ['Peso alvo'],
+    datasets: [{
+      label: 'Kg',
+      data: [60,<?php echo $peso; ?>],
+      backgroundColor: [
+        'rgba(207, 20, 189, 1.00)',
+        'rgba(93,96,104,1)',
+      ],
+      borderWidth: 0
+    }]
+  };
+
+
 
   // Plugin customizado para exibir o rótulo e o valor
   const customLegend = {
@@ -145,11 +343,15 @@
 
       // Exibir o rótulo e o valor
       if (data.labels.length > 0 && data.datasets[0].data.length > 0) {
-        const text = `${data.labels[0]}: ${data.datasets[0].data[0]} bpm`; // Exibe rótulo e valor
+        let text;
+        if (chart.canvas.id === 'fcChart4') {
+          text = `${data.labels[0]}: ${data.datasets[0].data[0]} mL/kg/min`; // Exibe rótulo e valor para o quarto gráfico
+        } else {
+          text = `${data.labels[0]}: ${data.datasets[0].data[0]} bpm`; // Exibe rótulo e valor para os outros gráficos
+        }
         const yOffset = chart.height - 30; // Ajusta a posição abaixo do gráfico
         ctx.fillText(text, left + width / 2, yOffset);
       }
-
       ctx.restore();
     }
   };
@@ -211,7 +413,86 @@
     plugins: [customLegend],
   };
 
+  const config4 = {
+    type: 'bar',
+    data: data4,
+    options: {
+        indexAxis: 'y', // Troca os eixos
+        responsive: true,
+        layout: {
+            padding: {
+                bottom: 50 // Reserva espaço para a legenda
+            }
+        },
+        plugins: {
+            legend: {
+                display: false, // Remove a legenda padrão
+            },
+        },
+        scales: {
+            y: {
+                min: 0, // Valor mínimo no eixo Y
+                max: 100, // Valor máximo no eixo Y
+                ticks: {
+                    stepSize: 10, // Incremento entre os valores do eixo Y
+                    autoSkip: false, // Garante que nenhum tick será omitido
+                    maxTicksLimit: 11, // Limita os ticks ao número esperado (0 a 100, com 10 em 10)
+                    callback: function(value) {
+                        return value === 0 ? '' : value; // Oculta o valor 0
+                    }
+                }
+            },
+            x: {
+                min: 0, // Valor mínimo no eixo X
+                max: 100, // Valor máximo no eixo X
+                ticks: {
+                    stepSize: 10, // Incremento entre os valores do eixo X
+                }
+            }
+        }
+    },
+    plugins: [customLegend],
+};
+const config5 = {
+    type: 'doughnut',
+    data: data1,
+    options: {
+      responsive: true,
+      layout: {
+        padding: {
+          bottom: 50 // Reserva espaço para a legenda
+        }
+      },
+      plugins: {
+        legend: {
+          display: false, // Remove a legenda padrão
+        },
+      }
+    },
+    plugins: [customLegend],
+  };
+  const config6 = {
+    type: 'doughnut',
+    data: data1,
+    options: {
+      responsive: true,
+      layout: {
+        padding: {
+          bottom: 50 // Reserva espaço para a legenda
+        }
+      },
+      plugins: {
+        legend: {
+          display: false, // Remove a legenda padrão
+        },
+      }
+    },
+    plugins: [customLegend],
+  };
   new Chart(ctx1, config1);
   new Chart(ctx2, config2);
   new Chart(ctx3, config3);
+  new Chart(ctx4, config4);
+  new Chart(ctx5, config5);
+  new Chart(ctx6, config6);
 </script>
