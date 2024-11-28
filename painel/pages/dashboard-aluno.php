@@ -1,5 +1,4 @@
 <?php
-
     if (isset($_GET['id'])) {
         $usuario_id = (int)$_GET['id']; // ID passado pela URL
     } else {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 27/11/2024 às 10:42
+-- Tempo de geração: 28/11/2024 às 16:08
 -- Versão do servidor: 8.3.0
 -- Versão do PHP: 8.3.6
 
@@ -91,7 +91,7 @@ INSERT INTO `tb_admin.online` (`id`, `ip`, `ultima_acao`, `token`) VALUES
 (188, '::1', '2024-11-26 08:53:19', '672e33dcdc103'),
 (189, '::1', '2024-11-26 10:06:32', '6745c7980660b'),
 (190, '::1', '2024-11-26 10:06:39', '6745c7dbb6664'),
-(191, '::1', '2024-11-26 10:30:35', '6745cce5cfc9b');
+(191, '::1', '2024-11-28 11:24:56', '6745cce5cfc9b');
 
 -- --------------------------------------------------------
 
@@ -385,7 +385,7 @@ CREATE TABLE IF NOT EXISTS `tb_composicao_corporal` (
   `massa_gordura` float DEFAULT NULL,
   `massa_magra` float DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `tb_composicao_corporal`
@@ -396,7 +396,9 @@ INSERT INTO `tb_composicao_corporal` (`id`, `usuario_id`, `data_avaliacao`, `per
 (2, 1, '2024-11-08 13:24:51', NULL, NULL, NULL),
 (3, 1, '2024-11-08 13:25:02', NULL, NULL, NULL),
 (4, 1, '2024-11-08 13:33:18', 29.06, 15.6, 38.1),
-(5, 1, '2024-11-08 13:34:33', 29.06, 15.6, 38.1);
+(5, 1, '2024-11-08 13:34:33', 29.06, 15.6, 38.1),
+(6, 7, '2024-11-28 11:48:43', 26.73, 19.91, 54.59),
+(7, 7, '2024-11-28 13:07:28', 26.73, 19.91, 54.59);
 
 -- --------------------------------------------------------
 
@@ -536,7 +538,7 @@ CREATE TABLE IF NOT EXISTS `tb_medidas_corporais` (
   `data_avaliacao` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `usuario_id` (`usuario_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `tb_medidas_corporais`
@@ -552,7 +554,8 @@ INSERT INTO `tb_medidas_corporais` (`id`, `usuario_id`, `punho_direito`, `ante_b
 (7, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2024-10-22 19:04:03'),
 (8, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2024-10-28 10:30:53'),
 (9, 1, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, '2024-11-07 09:38:35'),
-(10, 1, 14, 26, 25, 26, 15, 26, 26, 27, 32, 89, 74, 77, 94, 51, 50, 33, 33, '2024-11-07 10:22:16');
+(10, 1, 14, 26, 25, 26, 15, 26, 26, 27, 32, 89, 74, 77, 94, 51, 50, 33, 33, '2024-11-07 10:22:16'),
+(11, 7, 17, 29, 30, 31, 17, 29, 30, 31, 39, 94, 87, 91, 92, 44, 44, 33, 33, '2024-11-28 11:48:06');
 
 -- --------------------------------------------------------
 
@@ -612,7 +615,7 @@ CREATE TABLE IF NOT EXISTS `tb_perfis_usuarios` (
   PRIMARY KEY (`id`),
   KEY `usuario_id` (`usuario_id`),
   KEY `objetivo_id` (`objetivo_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=103 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=104 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `tb_perfis_usuarios`
@@ -718,7 +721,8 @@ INSERT INTO `tb_perfis_usuarios` (`id`, `usuario_id`, `data_avaliacao`, `peso`, 
 (97, 1, '2024-11-07 10:14:18', 104.1, 1.73, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (98, 1, '2024-11-07 10:24:57', 53.7, 1.56, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (101, 1, '2024-11-11 20:27:55', 76.9, 1.49, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(102, 7, '2024-11-26 20:22:20', 78.8, 1.65, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1);
+(102, 7, '2024-11-26 20:22:20', 78.8, 1.65, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
+(103, 7, '2024-11-28 11:39:12', 74.5, 1.73, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8);
 
 -- --------------------------------------------------------
 
@@ -894,7 +898,7 @@ CREATE TABLE IF NOT EXISTS `tb_usuarios_anamnese` (
   `atividade_vigorosa` varchar(255) DEFAULT NULL,
   `nivel_funcional` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `tb_usuarios_anamnese`
@@ -948,7 +952,8 @@ INSERT INTO `tb_usuarios_anamnese` (`id`, `usuario_id`, `data_avaliacao`, `nivel
 (45, 1, '2024-11-18 17:36:13', 'Iniciante', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (46, 1, '2024-11-18 17:38:09', 'Intermediário', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (47, 1, '2024-11-21 21:53:10', 'Iniciante', 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(48, 7, '2024-11-26 12:02:09', 'Ativo - Iniciante', 0, 1, 0, 0, 1, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(48, 7, '2024-11-26 12:02:09', 'Ativo - Iniciante', 0, 1, 0, 0, 1, 0, 0, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 0, '[]', 0, 0, 0, NULL, 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(49, 7, '2024-11-28 11:40:19', 'Inativo', 0, 1, 0, 1, 0, 1, 0, 60, '[\"musculacao\",\"natacao\",\"lutas\",\"outros\"]', 'Tênis, capoeira', 1, 'Correr', 0, NULL, NULL, NULL, '', 0, NULL, NULL, 0, NULL, 1, '[{\"regiao\":\"Ombro\",\"nota\":5,\"dificuldade\":\"Dores musculares\"}]', 0, 0, 0, NULL, 1, NULL, 1, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -964,29 +969,33 @@ CREATE TABLE IF NOT EXISTS `tb_usuarios_aptidao` (
   `vo2_maximo` decimal(5,2) NOT NULL,
   `mets` decimal(5,2) NOT NULL,
   `metodo` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `fc_repouso` int NOT NULL,
+  `fc_max_pred` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `usuario_id` (`usuario_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `tb_usuarios_aptidao`
 --
 
-INSERT INTO `tb_usuarios_aptidao` (`id`, `usuario_id`, `data_avaliacao`, `vo2_maximo`, `mets`, `metodo`) VALUES
-(1, 1, '2024-11-08 19:02:28', 64.47, 18.42, ''),
-(2, 1, '2024-11-08 19:03:27', 64.47, 18.42, ''),
-(3, 1, '2024-11-08 19:03:27', 64.47, 18.42, ''),
-(4, 1, '2024-11-08 19:05:47', 64.47, 18.42, ''),
-(5, 1, '2024-11-08 19:05:47', 64.47, 18.42, ''),
-(6, 1, '2024-11-12 10:25:27', 28.72, 8.20, 'equacao'),
-(7, 1, '2024-11-12 10:41:22', 28.72, 8.20, 'equacao'),
-(8, 1, '2024-11-12 10:47:14', 28.72, 8.20, 'equacao'),
-(9, 1, '2024-11-12 10:50:32', 28.72, 8.20, 'equacao'),
-(10, 1, '2024-11-12 10:50:39', 28.95, 8.27, 'equacao'),
-(11, 1, '2024-11-12 10:58:20', 28.72, 8.20, 'equacao'),
-(12, 1, '2024-11-12 11:16:24', 0.00, 0.00, 'cooper'),
-(13, 1, '2024-11-12 11:19:31', 35.66, 10.19, 'cooper'),
-(14, 1, '2024-11-12 12:47:08', 17.78, 5.08, 'cooper');
+INSERT INTO `tb_usuarios_aptidao` (`id`, `usuario_id`, `data_avaliacao`, `vo2_maximo`, `mets`, `metodo`, `fc_repouso`, `fc_max_pred`) VALUES
+(1, 1, '2024-11-08 19:02:28', 64.47, 18.42, '', 0, 0),
+(2, 1, '2024-11-08 19:03:27', 64.47, 18.42, '', 0, 0),
+(3, 1, '2024-11-08 19:03:27', 64.47, 18.42, '', 0, 0),
+(4, 1, '2024-11-08 19:05:47', 64.47, 18.42, '', 0, 0),
+(5, 1, '2024-11-08 19:05:47', 64.47, 18.42, '', 0, 0),
+(6, 1, '2024-11-12 10:25:27', 28.72, 8.20, 'equacao', 0, 0),
+(7, 1, '2024-11-12 10:41:22', 28.72, 8.20, 'equacao', 0, 0),
+(8, 1, '2024-11-12 10:47:14', 28.72, 8.20, 'equacao', 0, 0),
+(9, 1, '2024-11-12 10:50:32', 28.72, 8.20, 'equacao', 0, 0),
+(10, 1, '2024-11-12 10:50:39', 28.95, 8.27, 'equacao', 0, 0),
+(11, 1, '2024-11-12 10:58:20', 28.72, 8.20, 'equacao', 0, 0),
+(12, 1, '2024-11-12 11:16:24', 0.00, 0.00, 'cooper', 0, 0),
+(13, 1, '2024-11-12 11:19:31', 35.66, 10.19, 'cooper', 0, 0),
+(14, 1, '2024-11-12 12:47:08', 17.78, 5.08, 'cooper', 0, 0),
+(15, 7, '2024-11-28 12:00:08', 28.95, 8.19, 'equacao', 65, 177),
+(16, 7, '2024-11-28 13:07:46', 28.67, 8.19, 'equacao', 70, 177);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

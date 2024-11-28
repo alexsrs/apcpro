@@ -8,6 +8,17 @@
         $usuario_id = $_SESSION['id']; 
     }
 
+    // Construir a mensagem para WhatsApp com os parâmetros recebidos
+    $mensagem = "Ol%C3%A1%20Professor(a)%2C%20tudo%20bem%3F%0A%0APreciso%20agendar%20uma%20avalia%C3%A7%C3%A3o%20da%20composi%C3%A7%C3%A3o%20corporal%20atrav%C3%A9s%20de%20exames%20realizados%20por%20profissionais%20de%20educa%C3%A7%C3%A3o%20f%C3%ADsica.%0AQuando%20seria%20poss%C3%ADvel%20realizar%20este%20agendamento%3F%0A%0AEstou%20%C3%A0%20disposi%C3%A7%C3%A3o%20para%20qualquer%20d%C3%BAvida%20ou%20ajuste.";
+
+    // Consulta o telefone do professor
+    $sql = MySql::conectar()->prepare("SELECT professor_id FROM `tb_admin.usuarios` WHERE id = ?");
+    $sql->execute([$usuario_id]);
+    $professor_id = $sql->fetch()['professor_id'];
+    $sql = MySql::conectar()->prepare("SELECT telefone FROM `tb_admin.usuarios` WHERE id = ?");
+    $sql->execute([$professor_id]);
+    $telefone = $sql->fetch()['telefone'];
+
     $sql = MySql::conectar()->prepare("SELECT sexo FROM `tb_admin.usuarios` WHERE id = ?");
     $sql->execute([$usuario_id]);
     $result = $sql->fetch();
@@ -237,14 +248,8 @@
 
     <!-- Formulário Exame -->
     <div id="form-exame" style="display: none;">
-        <h2>Formulário para Exame</h2>
-        <form>
-            <!-- Campos específicos para Exame -->
-            <label for="input5">Campo 5:</label>
-            <input type="text" id="input5" name="input5"><br>
-            <label for="input6">Campo 6:</label>
-            <input type="text" id="input6" name="input6"><br>
-        </form>
+        <!-- Campos específicos para Exame -->
+        <a class='whatsapp-link' href="https://web.whatsapp.com/send?phone=55<?php echo $telefone; ?>&text=<?php echo $mensagem; ?>" target='_blank'>Enviar Mensagem no WhatsApp</a>
     </div>
 </div>
 

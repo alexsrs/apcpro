@@ -71,8 +71,8 @@
             <a <?php selecionadoMenu('formulario-perfis'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>formulario-perfis">Avaliação</a>
             <a <?php selecionadoMenu($anamneseLink); ?> href="<?php echo INCLUDE_PATH_PAINEL . $anamneseLink;?>">Anamnese Inteligente</a>
             <a <?php selecionadoMenu('medida-corporal'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>medida-corporal">Medida Corporal</a>
-            <a <?php selecionadoMenu('composicao-corporal'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>teste-fisico">Composição Corporal</a>
-            <a <?php selecionadoMenu('aptidao-cardiorespiratoria'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>teste-fisico">Aptidão Cardiorespiratória</a>
+            <a <?php selecionadoMenu('composicao-corporal'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>composicao-corporal">Composição Corporal</a>
+            <a <?php selecionadoMenu('aptidao-cardiorespiratoria'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>aptidao-cardiorespiratoria">Aptidão Cardiorespiratória</a>
             <a <?php selecionadoMenu('teste-fisico'); ?>href="<?php echo INCLUDE_PATH_PAINEL ?>teste-fisico">Testes Físico</a>
 
 

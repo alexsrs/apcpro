@@ -11,10 +11,14 @@
         $_SESSION['etapa'] = 4;
     }
 
+ // Construir a mensagem para WhatsApp com os parâmetros recebidos
+ $mensagem = "Ol%C3%A1%20Professor(a)%2C%20tudo%20bem%3F%0A%0APreciso%20agendar%20uma%20avalia%C3%A7%C3%A3o%20cardiorrespirat%C3%B3ria%20atrav%C3%A9s%20de%20exames%20realizados%20por%20profissionais%20de%20educa%C3%A7%C3%A3o%20f%C3%ADsica.%0AQuando%20seria%20poss%C3%ADvel%20realizar%20este%20agendamento%3F%0A%0AEstou%20%C3%A0%20disposi%C3%A7%C3%A3o%20para%20qualquer%20d%C3%BAvida%20ou%20ajuste.";
+
 // Consulta as medidas corporais na tabela de medidas
 $sql = MySql::conectar()->prepare("SELECT peso FROM `tb_perfis_usuarios` WHERE usuario_id = ? ORDER BY data_avaliacao DESC LIMIT 1");
 $sql->execute([$usuario_id]);
 $result = $sql->fetch();
+
 
 if ($result) {
     $peso = $result['peso'];
@@ -32,6 +36,14 @@ $nivel_treinamento = $sql->fetch();
 $sql = MySql::conectar()->prepare("SELECT sexo FROM `tb_admin.usuarios` WHERE id = ?");
 $sql->execute([$usuario_id]);
 $sexo = $sql->fetch();
+
+// Consulta o telefone do professor
+$sql = MySql::conectar()->prepare("SELECT professor_id FROM `tb_admin.usuarios` WHERE id = ?");
+$sql->execute([$usuario_id]);
+$professor_id = $sql->fetch()['professor_id'];
+$sql = MySql::conectar()->prepare("SELECT telefone FROM `tb_admin.usuarios` WHERE id = ?");
+$sql->execute([$professor_id]);
+$telefone = $sql->fetch()['telefone'];
 
 // Calcula a idade do usuário
 $sql = MySql::conectar()->prepare("SELECT data_nascimento FROM `tb_admin.usuarios` WHERE id = ?");
@@ -57,6 +69,8 @@ $sql = MySql::conectar()->prepare("SELECT peso FROM `tb_perfis_usuarios` WHERE u
 	// Exibir o usuario_id para uso no JavaScript
 
 	echo "<script>var peso = " . $peso . ";</script>";
+
+
 
 // Verifica se o formulário foi submetido
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -101,6 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         Painel::alert('erro', 'Erro ao gravar dados.');
     }
 }
+
 ?>
 
 <div class="step-indicator">
@@ -157,7 +172,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </span>
                     </label> 
                 </div>
-
+                <?php if ($_SESSION['cargo'] == 1) { ?>
                 <div class="checkbox-wrapper-16" style="display: inline-block; margin:15px">
                     <label class="checkbox-wrapper">
                     <input type="radio" class="checkbox-input" name="metodo" value="bike" onclick="atualizarEscolha('bike')" />
@@ -180,6 +195,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </span>
                     </label> 
                 </div>
+                <?php }; ?>
+
                 <div class="checkbox-wrapper-16" style="display: inline-block; margin:15px">
                     <label class="checkbox-wrapper">
                     <input type="radio" class="checkbox-input" name="metodo" value="exame" onclick="atualizarEscolha('exame')" />
@@ -187,10 +204,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <span class="checkbox-icon">
                             <img src="<?php echo INCLUDE_PATH_PAINEL ?>/svg/exame.svg" alt="Ícone Exame">
                         </span><br>
+                        
                         <span class="checkbox-label">Exame</span>
                     </span>
                     </label> 
                 </div>
+
+                <?php if ($_SESSION['cargo'] == 1) { ?>
                 <div class="checkbox-wrapper-16" style="display: inline-block; margin:15px">
                     <label class="checkbox-wrapper">
                     <input type="radio" class="checkbox-input" name="metodo" value="outros" onclick="atualizarEscolha('outros')" />
@@ -202,6 +222,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </span>
                     </label> 
                 </div>
+                <?php }; ?>
             </div>
         </fieldset>
     </div><!-- form-group -->    
@@ -234,7 +255,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <p>Fórmula de Jackson e Pollock fornece uma estimativa e são válidas principalmente para adultos saudáveis.</p>
                 <p>O valor de MET é uma unidade relativa ao consumo de oxigênio em repouso, que é aproximadamente 3,5 mL/kg/min para um adulto médio.</p>
                 <!-- Campo oculto para armazenar o método selecionado -->
-                <input type="text" id="metodo-equacao" name="metodo" value="" >
+                <input type="hidden" id="metodo-equacao" name="metodo" value="" >
                 <div class="form-group">
                 <label for="fc-repouso">FC Repouso:</label>
                 <input type="text" id="fc-repouso" name="fc-repouso" value="" placeholder="Digite a frequência cárdiaca em repouso">
@@ -283,7 +304,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <p>A classificação do VO₂ máximo pode variar de acordo com a idade e o gênero, mas existem tabelas de referência que ajudam a entender se o nível de aptidão é considerado "excelente", "bom", "médio" ou "abaixo da média".</p>
         <form method="post" id="metodoForm"> 
         <!-- Campo oculto para armazenar o método selecionado -->
-        <input type="text" id="metodo-cooper" name="metodo" value="">
+        <input type="hidden" id="metodo-cooper" name="metodo" value="">
 
             <div class="form-group">
                 <label for="fc-repouso">FC Repouso:</label>
@@ -330,17 +351,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <!-- Formulário Exame -->
     <div class="form-group" id="form-exame" style="display: none;">
-        <h2>Formulário para Exame</h2>
         <form method="post" id="metodoForm"> 
-        <input type="text" id="metodo-exame" name="metodo" value="">
-        <?php $metodo = 'exame'; echo $metodo;?>
+        <input type="hidden" id="metodo-exame" name="metodo" value="">
+        <?php $metodo = 'exame';?>
             <!-- Campos específicos para Exame -->
-            <label for="input5">Campo 5:</label>
-            <input type="text" id="input5" name="input5"><br>
-            <label for="input6">Campo 6:</label>
-            <input type="text" id="input6" name="input6"><br>
-            <div class="form-group">
-                <input type="submit" name="acao" value="Enviar"/>
+            <a class='whatsapp-link' href="https://web.whatsapp.com/send?phone=55<?php echo $telefone; ?>&text=<?php echo $mensagem; ?>" target='_blank'>Enviar Mensagem no WhatsApp</a>
             </div><!-- form-group -->
         </form>
     </div>
