@@ -107,7 +107,15 @@
     // Calcular a classificação do VO₂ Máximo
     $sexo = strtolower($usuario['sexo']); // Converte o sexo para minúsculas
     $classificacao_vo2 = classificarVo2Max($vo2_max, $sexo, $idade);
-    
+
+    //consultar a ultima avaliação de composicao corporal
+    $composicao = new ComposicaoCorporal();
+    $dados_composicao = $composicao->buscarUltimoComposicaoPorUsuarioId($usuario_id);
+    $percentual_gordura = $dados_composicao['percentual_gordura'];
+    $massa_gordura = $dados_composicao['massa_gordura'];
+    $massa_magra = $dados_composicao['massa_magra'];
+    $data_avaliacao_composicao = new DateTime($dados_composicao['data_avaliacao']);
+    //echo '<pre>'; print_r($dados_composicao); echo '</pre>';
 ?>
 
 <div class="box-content left w100">
@@ -169,16 +177,14 @@
 
       <div class="box-content w33 right" style="text-align: center; margin-right: 10px;">
         <h3 style="text-align: left; width: 100%;">Composição corporal</h3><br>
-        
-        
+        <div class="fcChart">
+          <canvas id="fcChart5" width="400"></canvas>
+        </div>
       </div><!-- box-content -->
 
   <div class="box-content w33 right" style="text-align: center;">
     <h3 style="text-align: left; width: 100%;">Metas</h3><br>
-    <div class="fcChart">
-      <canvas id="fcChart5" style="max-width: 100%;"></canvas>
-      <canvas id="fcChart6" style="max-width: 100%;"></canvas>
-    </div>
+    
     
   </div><!-- box-content -->
 </div>
@@ -243,7 +249,7 @@
   const ctx3 = document.getElementById('fcChart3');
   const ctx4 = document.getElementById('fcChart4');
   const ctx5 = document.getElementById('fcChart5');
-  const ctx6 = document.getElementById('fcChart6');
+
 
 
   const data1 = {
@@ -302,31 +308,17 @@
   };
 
   const data5 = {
-    labels: ['Peso a perder'],
+    labels: ['Massa gorda - <?php echo $massa_gordura; ?> kg', 'Massa magra - <?php echo $massa_magra; ?> kg'],
     datasets: [{
       label: 'Kg',
-      data: [<?php echo $fc_repouso; ?>,<?php echo $fc_max; ?>],
+      data: [<?php echo $massa_gordura; ?>, <?php echo $massa_magra; ?>],
       backgroundColor: [
+        'rgba(58,115,170,1)',
         'rgba(207, 20, 189, 1.00)',
-        'rgba(93,96,104,1)',
       ],
       borderWidth: 0
     }]
   };
-
-  const data6 = {
-    labels: ['Peso alvo'],
-    datasets: [{
-      label: 'Kg',
-      data: [60,<?php echo $peso; ?>],
-      backgroundColor: [
-        'rgba(207, 20, 189, 1.00)',
-        'rgba(93,96,104,1)',
-      ],
-      borderWidth: 0
-    }]
-  };
-
 
 
   // Plugin customizado para exibir o rótulo e o valor
@@ -454,45 +446,30 @@
     plugins: [customLegend],
 };
 const config5 = {
-    type: 'doughnut',
-    data: data1,
-    options: {
-      responsive: true,
-      layout: {
-        padding: {
-          bottom: 50 // Reserva espaço para a legenda
+  type: 'pie',
+  data: data5,
+  options: {
+    responsive: true,
+    
+    plugins: {
+      legend: {
+        display: true,
+        position: 'bottom', // Posiciona a legenda na parte inferior
+        labels: {
+          boxWidth: 20, // Largura da caixa de cor da legenda
+          font: {
+            size: 14 // Tamanho da fonte da legenda
+          }
         }
-      },
-      plugins: {
-        legend: {
-          display: false, // Remove a legenda padrão
-        },
       }
-    },
-    plugins: [customLegend],
-  };
-  const config6 = {
-    type: 'doughnut',
-    data: data1,
-    options: {
-      responsive: true,
-      layout: {
-        padding: {
-          bottom: 50 // Reserva espaço para a legenda
-        }
-      },
-      plugins: {
-        legend: {
-          display: false, // Remove a legenda padrão
-        },
-      }
-    },
-    plugins: [customLegend],
-  };
+    }
+  }
+};
+  
   new Chart(ctx1, config1);
   new Chart(ctx2, config2);
   new Chart(ctx3, config3);
   new Chart(ctx4, config4);
   new Chart(ctx5, config5);
-  new Chart(ctx6, config6);
+ 
 </script>
