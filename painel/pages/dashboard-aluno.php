@@ -116,6 +116,96 @@
     $massa_magra = $dados_composicao['massa_magra'];
     $data_avaliacao_composicao = new DateTime($dados_composicao['data_avaliacao']);
     //echo '<pre>'; print_r($dados_composicao); echo '</pre>';
+
+    function classificarIMC($imc) {
+      if ($imc < 18.5) {
+        return 'Abaixo do peso';
+      } elseif ($imc >= 18.5 && $imc < 24.9) {
+        return 'Peso normal';
+      } elseif ($imc >= 25 && $imc < 29.9) {
+        return 'Sobrepeso';
+      } elseif ($imc >= 30 && $imc < 34.9) {
+        return 'Obesidade grau 1';
+      } elseif ($imc >= 35 && $imc < 39.9) {
+        return 'Obesidade grau 2';
+      } else {
+        return 'Obesidade grau 3';
+      }
+    }
+
+    function classificarPercentualGordura($percentual_gordura, $sexo, $idade) {
+      $classificacoes = [
+        'm' => [
+          [18, 39, 6, 14, 18, 25, 30], // Atleta, Excelente, Boa, Moderada, Alta
+          [40, 59, 7, 16, 20, 26, 31],
+          [60, 79, 9, 18, 22, 28, 33]
+        ],
+        'f' => [
+          [18, 39, 14, 21, 25, 31, 36],
+          [40, 59, 15, 23, 27, 32, 37],
+          [60, 79, 16, 24, 29, 34, 39]
+        ]
+      ];
+
+      foreach ($classificacoes[$sexo] as $faixa) {
+        [$minIdade, $maxIdade, $atleta, $excelente, $boa, $moderada, $alta] = $faixa;
+        if ($idade >= $minIdade && $idade <= $maxIdade) {
+          if ($percentual_gordura <= $atleta) return 'Atleta';
+          if ($percentual_gordura <= $excelente) return 'Excelente';
+          if ($percentual_gordura <= $boa) return 'Boa';
+          if ($percentual_gordura <= $moderada) return 'Moderada';
+          return 'Alta';
+        }
+      }
+      return 'Faixa etária não encontrada';
+    }
+
+    $classificacao_gordura = classificarPercentualGordura($percentual_gordura, $sexo, $idade);
+    $classificacao_imc = classificarIMC($imc);
+
+    // Função para calcular a relação cintura-quadril
+    function calcularRelacaoCinturaQuadril($cintura, $quadril) {
+      return $cintura / $quadril;
+    }
+
+    // Função para classificar a relação cintura-quadril
+    function classificarRelacaoCinturaQuadril($relacao, $sexo) {
+      if ($sexo == 'm') {
+        if ($relacao < 0.90) return 'Baixo risco';
+        if ($relacao <= 0.99) return 'Risco moderado';
+        return 'Alto risco';
+      } else {
+        if ($relacao < 0.80) return 'Baixo risco';
+        if ($relacao <= 0.85) return 'Risco moderado';
+        return 'Alto risco';
+      }
+    }
+
+    $sql_medidas = MySql::conectar()->prepare("SELECT cintura, quadril FROM `tb_medidas_corporais` WHERE usuario_id = ? ORDER BY data_avaliacao DESC LIMIT 1");
+    $sql_medidas->execute([$usuario_id]);
+    $medidas = $sql_medidas->fetch(PDO::FETCH_ASSOC);
+
+    $cintura = $medidas['cintura'];
+    $quadril = $medidas['quadril'];
+
+    $relacao_cintura_quadril = calcularRelacaoCinturaQuadril($cintura, $quadril);
+    $classificacao_rcq = classificarRelacaoCinturaQuadril($relacao_cintura_quadril, $sexo);
+
+    // Função para classificar o risco com base na circunferência abdominal
+  function classificarRiscoCircunferenciaAbdominal($cintura, $sexo) {
+    if ($sexo == 'm') {
+      if ($cintura < 94) return 'Baixo risco';
+      if ($cintura <= 102) return 'Risco aumentado';
+      return 'Risco muito aumentado';
+    } else {
+      if ($cintura < 80) return 'Baixo risco';
+      if ($cintura <= 88) return 'Risco aumentado';
+      return 'Risco muito aumentado';
+    }
+  }
+
+  $classificacao_risco_cintura = classificarRiscoCircunferenciaAbdominal($cintura, $sexo);
+
 ?>
 
 <div class="box-content left w100">
@@ -155,7 +245,7 @@
 
 <div class="clear"></div><!-- clear -->
 
-<div class="container-flex " style="height: 40%;">
+<div class="container-flex " style="height: 45%;">
   <div class="box-content w33 left" style="text-align: center; margin-right: 10px;">
     <h3 style="text-align: left; width: 100%;">Indice de massa corporal</h3><br><br>
     <div class="imc-info">
@@ -169,9 +259,12 @@
       </div>
       <div class="imc-item w33">
         <h4>IMC: <?php echo htmlspecialchars($imc); ?></h4>
-        <img src="<?php echo INCLUDE_PATH_PAINEL ?>/svg/equacao.svg" alt="Ícone equação" style="width: 65%;">
+        <img src="<?php echo INCLUDE_PATH_PAINEL ?>/svg/equacao.svg" alt="Ícone equação" style="width: 65%;"><br><br><br><br>    
       </div>
-    </div>
+      <p>IMC segundo a Organização Mundial da Saúde:</p><br><h4> <?php echo htmlspecialchars($classificacao_imc); ?></h4><br>
+  </div>
+  
+
 
       </div><!-- box-content -->
 
@@ -179,14 +272,22 @@
         <h3 style="text-align: left; width: 100%;">Composição corporal</h3><br>
         <div class="fcChart">
           <canvas id="fcChart5" width="400"></canvas>
-        </div>
+        </div><br>
+        <p style="text-align: justifys;">Percentual de Gordura Corporal (%GC) é utilizada para avaliar a distribuição de gordura corporal e o risco de doenças cardiovasculares e metabólicas.:</p><br><h4><?php echo htmlspecialchars($classificacao_gordura); ?></h4>
+        
       </div><!-- box-content -->
 
-  <div class="box-content w33 right" style="text-align: center;">
-    <h3 style="text-align: left; width: 100%;">Metas</h3><br>
+  <div class="box-content w33 right" style="text-align: justify;">
+    <h3 style="text-align: left; width: 100%;">Padrões fisiológicos de normalidade</h3><br>
     
     
+   <p>Relação Cintura-Quadril é uma medida antropométrica utilizada para avaliar a distribuição de gordura corporal e o risco de doenças cardiovasculares e metabólicas. Ela é obtida dividindo a medida da circunferência da cintura pela circunferência do quadril.</p><h4 style="text-align: center;"><?php echo htmlspecialchars($classificacao_rcq); ?></h4>
+  <br><br>
+
+  <p>Circunferência Abdominal é um indicador importante pois reflete a quantidade de gordura visceral, que está associada a maior risco de doenças como diabetes tipo 2, hipertensão e dislipidemias:</p>
+  <h4 style="text-align: center;"><?php echo htmlspecialchars($classificacao_risco_cintura); ?></h4>
   </div><!-- box-content -->
+
 </div>
 
 
@@ -197,9 +298,6 @@
     
     echo $data_aptidao->format('d/m/Y');
 ?>
-
-    
-    
      - Método: <?php echo $metodo;?></p><br><br>
     <div class="fcChart">
       <canvas id="fcChart1" style="max-width: 100%;"></canvas>
