@@ -253,17 +253,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="form-group">
                      
                 <p>Fórmula de Jackson e Pollock fornece uma estimativa e são válidas principalmente para adultos saudáveis.</p>
-                <p>O valor de MET é uma unidade relativa ao consumo de oxigênio em repouso, que é aproximadamente 3,5 mL/kg/min para um adulto médio.</p>
+                <p>O valor de MET é uma unidade relativa ao consumo de oxigênio em repouso, que é aproximadamente 3,5 mL/kg/min para um adulto médio.</p><br>
                 <!-- Campo oculto para armazenar o método selecionado -->
                 <input type="hidden" id="metodo-equacao" name="metodo" value="" >
-                <div class="form-group">
-                <label for="fc-repouso">FC Repouso:</label>
-                <input type="text" id="fc-repouso" name="fc-repouso" value="" placeholder="Digite a frequência cárdiaca em repouso">
-            </div><!-- form-group -->
-            <div class="form-group">
-                <label>FC máxima preditiva</label>
-                <input type="text" name="resultado-fc-max-pred" id="resultado-fc-max-pred" value="<?php echo $FcMaxPred;?>" style="background-color: #EBE7E1;" readonly />
-             </div><!-- form-group -->
+                <div class="form-group w50 left">
+                    <div class="form-group">
+                        <label for="fc-repouso">FC Repouso:</label>
+                        <input type="text" id="fc-repouso" name="fc-repouso" value="" placeholder="Digite a frequência cárdiaca em repouso">
+                    </div><!-- form-group -->
+                    <div class="form-group">
+                        <label>FC máxima preditiva</label>
+                        <input type="text" name="resultado-fc-max-pred" id="resultado-fc-max-pred" value="<?php echo $FcMaxPred;?>" style="background-color: #EBE7E1;" readonly />
+                    </div><!-- form-group -->
                 <?php if (is_numeric($peso)) { ?>
                     <div class="form-group">
                         <label>Peso:</label>
@@ -281,6 +282,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <p><strong><?php echo $peso; ?></strong></p>
                 <?php } ?>
             </div>
+
+            <div class="form-group w50 right">
+                    
+                <p>A frequência cardíaca de repouso (FC de repouso) é uma métrica simples e importante para avaliar a saúde cardiovascular. Ela reflete a quantidade de vezes que o coração bate por minuto enquanto o corpo está em repouso. Medir corretamente essa frequência requer atenção a alguns detalhes. Aqui está um tutorial passo a passo:</p>
+
+                <h4>Passo 1: Escolha o momento ideal</h4>
+                <p>- Ao acordar: Meça a frequência cardíaca logo após acordar, antes de levantar da cama. Este é o momento mais indicado, pois o corpo está em completo repouso.</p>
+                <p>- Evite influências externas: Não meça sua frequência cardíaca após atividades físicas, refeições, ingestão de cafeína ou situações estressantes.</p>
+                <h4>Passo 2: Prepare-se para a medição</h4>
+                <p>- Ambiente tranquilo: Certifique-se de estar em um lugar silencioso e confortável.</p>
+                <p>- Posição adequada: Deite-se ou sente-se confortavelmente. Relaxe por pelo menos 5 minutos antes da medição.</p>
+                <h4>Passo 3: Encontre o pulso</h4>
+                <p>Locais comuns para medir o pulso:</p>
+                <p>Pulso radial: Na parte interna do pulso, logo abaixo do polegar.</p>
+                <p>Pulso carotídeo: Na lateral do pescoço, próximo à traqueia.</p>
+                <p>Use os dedos corretos: Utilize o indicador e o dedo médio para sentir o pulso. Nunca use o polegar, pois ele possui seu próprio pulso e pode interferir na medição.</p>
+                <h4>Passo 4: Faça a contagem</h4>
+                <p>Cronometre 60 segundos: Use um cronômetro ou relógio com ponteiro de segundos.</p>
+                <p>Conte as batidas: Durante 60 segundos, conte quantas vezes o coração bate. Se preferir, conte as batidas durante 15 segundos e multiplique por 4.</p>
+                <p>Registre o valor: Anote o número obtido para acompanhar tendências ao longo do tempo.</p>
+                <h4>Dicas adicionais</h4>
+                <p>Meça a frequência cardíaca em dias consecutivos para obter uma média mais confiável.</p>
+                <p>Utilize um monitor cardíaco, como smartwatches ou cintas torácicas, se preferir maior precisão.</p>
+            </div>
+
+            </div>
+            <div class="clear"></div>
             <div class="form-group">
                 <input type="submit" name="acao" value="Enviar"/>
             </div><!-- form-group -->
@@ -305,7 +333,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <form method="post" id="metodoForm"> 
         <!-- Campo oculto para armazenar o método selecionado -->
         <input type="hidden" id="metodo-cooper" name="metodo" value="">
-
+        <div class="form-group w50 left">
             <div class="form-group">
                 <label for="fc-repouso">FC Repouso:</label>
                 <input type="text" id="fc-repouso" name="fc-repouso" value="" placeholder="Digite a frequência cárdiaca em repouso">
@@ -327,9 +355,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <label>METs</label>
                 <input type="text" name="mets" id="resultado-mets" style="background-color: #EBE7E1;" readonly/>
             </div><!-- form-group -->
+        </div>
+        <div class="form-group w50 right">
+                    
+                <p>A frequência cardíaca de repouso (FC de repouso) é uma métrica simples e importante para avaliar a saúde cardiovascular. Ela reflete a quantidade de vezes que o coração bate por minuto enquanto o corpo está em repouso. Medir corretamente essa frequência requer atenção a alguns detalhes. Aqui está um tutorial passo a passo:</p>
+
+                <h4>Passo 1: Escolha o momento ideal</h4>
+                <p>- Ao acordar: Meça a frequência cardíaca logo após acordar, antes de levantar da cama. Este é o momento mais indicado, pois o corpo está em completo repouso.</p>
+                <p>- Evite influências externas: Não meça sua frequência cardíaca após atividades físicas, refeições, ingestão de cafeína ou situações estressantes.</p>
+                <h4>Passo 2: Prepare-se para a medição</h4>
+                <p>- Ambiente tranquilo: Certifique-se de estar em um lugar silencioso e confortável.</p>
+                <p>- Posição adequada: Deite-se ou sente-se confortavelmente. Relaxe por pelo menos 5 minutos antes da medição.</p>
+                <h4>Passo 3: Encontre o pulso</h4>
+                <p>Locais comuns para medir o pulso:</p>
+                <p>Pulso radial: Na parte interna do pulso, logo abaixo do polegar.</p>
+                <p>Pulso carotídeo: Na lateral do pescoço, próximo à traqueia.</p>
+                <p>Use os dedos corretos: Utilize o indicador e o dedo médio para sentir o pulso. Nunca use o polegar, pois ele possui seu próprio pulso e pode interferir na medição.</p>
+                <h4>Passo 4: Faça a contagem</h4>
+                <p>Cronometre 60 segundos: Use um cronômetro ou relógio com ponteiro de segundos.</p>
+                <p>Conte as batidas: Durante 60 segundos, conte quantas vezes o coração bate. Se preferir, conte as batidas durante 15 segundos e multiplique por 4.</p>
+                <p>Registre o valor: Anote o número obtido para acompanhar tendências ao longo do tempo.</p>
+                <h4>Dicas adicionais</h4>
+                <p>Meça a frequência cardíaca em dias consecutivos para obter uma média mais confiável.</p>
+                <p>Utilize um monitor cardíaco, como smartwatches ou cintas torácicas, se preferir maior precisão.</p>
+            </div>
+
+            <div class="clear"></div>
             <div class="form-group">
                 <input type="submit" name="acao" value="Enviar"/>
             </div><!-- form-group -->
+
         </form>
     </div>
     <?php } ?>

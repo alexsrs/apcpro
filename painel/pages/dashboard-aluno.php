@@ -206,6 +206,38 @@
 
   $classificacao_risco_cintura = classificarRiscoCircunferenciaAbdominal($cintura, $sexo);
 
+  function verificarDados($dados_anamnese, $perfil, $dados_aptidao, $dados_composicao, $sql_medidas, $usuario_id) {
+    
+    if (is_null($perfil)) {
+        header("Location: formulario-perfis.php");
+        exit();
+    }
+
+    if (is_null($dados_anamnese)) {
+      header("Location: " . obterLinkAnamnese($usuario_id) . "?id=" . $usuario_id);
+      exit();
+    }
+
+    if (is_null($sql_medidas)) {
+      header("Location: medida-corporal.php");
+      exit();
+    }
+
+    if (is_null($dados_composicao)) {
+      header("Location: composicao-corporal.php");
+      exit();
+    }
+
+    if (is_null($dados_aptidao)) {
+        header("Location: aptidao-cardiorespiratoria.php");
+        exit();
+    }
+    
+}
+
+// Exemplo de uso da função
+verificarDados($dados_anamnese, $perfil, $dados_aptidao, $dados_composicao, $sql_medidas, $usuario_id);
+
 ?>
 
 <div class="box-content left w100">

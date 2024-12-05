@@ -7,7 +7,7 @@
 		<div class="center"> 
 			<form method="post">
 				<h2>Teste o APC PRO com Condições Exclusivas</h2>
-				<h3>Seja um dos primeiros a transformar seu atendimento com o APC PRO!<br>Participe da fase de lançamento com uma oferta especial: apenas R$1,99 por mês durante o período de testes. Após esse período, você poderá seguir com o valor atualizado e acesso completo à plataforma.<br>Inscreva-se agora e experimente o futuro do personal digital!</h3>
+				<h3>O APC PRO é o aplicativo que une ciência e tecnologia para revolucionar a prescrição de treinos físicos, oferecendo avaliação detalhada, planejamento personalizado e controle preciso de carga em uma única plataforma. Baseado no método “Avaliar, Planejar e Controlar” (APC), ele garante treinos mais eficazes, seguros e adaptados às necessidades individuais de cada aluno. Diferente de outros apps, o APC PRO se destaca pela personalização avançada e integração completa, permitindo ajustes contínuos e otimizando o trabalho de profissionais de educação física, tudo para transformar a experiência de treino e elevar os resultados a outro nível.</h3>
 				<div>
 				<input type="email" name="email" required />
 				<input type="hidden" name="identificador" value="form_home">

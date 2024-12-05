@@ -1,6 +1,9 @@
-<?php include_once('config.php'); ?>
-<?php Site::updateUsuarioOnline(); ?>
-<?php Site::contador(); ?>
+<?php 
+include_once('config.php'); 
+// include('classes/Painel.php'); // Inclua o arquivo que contém a definição da classe Painel
+Site::updateUsuarioOnline();
+Site::contador(); 
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

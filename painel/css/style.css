@@ -456,6 +456,11 @@ a.btn.view {
   gap: 10px;
 }
 
+.box-content h4{
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
 .box-content h2 i {
   font-size: 20px;
   color: #555;
