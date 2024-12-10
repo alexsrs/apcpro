@@ -153,7 +153,7 @@ if (isset($_POST['acao'])) {
                     <div class="exercicio" data-exercicio="1">
                         <table>
                                 <tr style="background-color: #E1E1E1;">
-                                    <td colspan="12">
+                                    <td colspan="13">
                                         <h3>Exercício 1</h3>
                                         <select name="series[1][exercicios][1][exercicio_id]" required>
                                             <option value="">Selecione um exercício</option>
@@ -177,11 +177,14 @@ if (isset($_POST['acao'])) {
                                     <td><input type="number" name="series[1][exercicios][1][excentrica]" value="1"required></td>
                                     <td><label>Recuperação entre Séries:</label></td>
                                     <td><input type="number" name="series[1][exercicios][1][recuperacao_entre_series]" value="2" required></td>
+                                    <td><button type="button" style="margin-top: 0;" onclick="removerCargaRepeticao(this)">Remover</button></td>
                                 </tr>
                             </tbody>
                         </table>
                         <!-- Botão para adicionar mais cargas e repetições -->
                         <button type="button" onclick="adicionarCargaRepeticao(this)">Adicionar Carga/Repetição</button>
+                        
+                    
                     </div>
                 </div>
             </div>
@@ -191,6 +194,7 @@ if (isset($_POST['acao'])) {
 
         <!-- Botão Adicionar Exercício Reposicionado -->
         <button type="button" onclick="adicionarExercicio(this)">Adicionar Exercício</button>
+        <button type="button" onclick="removerExercicio(this)">Remover Exercício</button>
         </fieldset>
         <div class="form-group">
             <input type="submit" name="acao" value="Cadastrar">
@@ -212,7 +216,7 @@ if (isset($_POST['acao'])) {
             
             <table>
                     <tr style="background-color: #E1E1E1;">
-                        <td colspan="12">
+                        <td colspan="13">
                             <h3>Exercício ${exercicioCount}</h3>
                             <select name="series[${serieCount}][exercicios][${exercicioCount}][exercicio_id]" required>
                                 <option value="">Selecione um exercício</option>
@@ -237,6 +241,7 @@ if (isset($_POST['acao'])) {
                         <td><input type="number" name="series[${serieCount}][exercicios][${exercicioCount}][excentrica]" value="1" required></td>
                         <td><label>Recuperação entre Séries:</label></td>
                         <td><input type="number" name="series[${serieCount}][exercicios][${exercicioCount}][recuperacao_entre_series]" value="2" required></td>
+                        <td><button type="button" style="margin-top: 0;" onclick="removerCargaRepeticao(this)">Remover</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -263,7 +268,21 @@ if (isset($_POST['acao'])) {
             <td><input type="number" name="series[${serieNumber}][exercicios][${exercicioNumber}][excentrica]" value="2" required></td>
             <td><label>Recuperação entre Séries:</label></td>
             <td><input type="number" name="series[${serieNumber}][exercicios][${exercicioNumber}][recuperacao_entre_series]" value="2" required></td>
+            <td><button type="button" style="margin-top: 0;" onclick="removerCargaRepeticao(this)">Remover</button></td>
         `;
         exercicioDiv.querySelector('.cargas-repeticoes').appendChild(cargaRepDiv);
     }
+
+    function removerCargaRepeticao(button) {
+        const tbody = button.closest('.exercicio').querySelector('.cargas-repeticoes');
+        const rows = tbody.querySelectorAll('tr');
+        if (rows.length > 1) {
+                tbody.removeChild(rows[rows.length - 1]); // Remove a última linha
+            } else {
+                alert('Não é possível remover todas as cargas e repetições.');
+        }
+    }
+
+
+
 </script>
