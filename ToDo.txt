@@ -212,94 +212,107 @@ Aqui estão os tópicos organizados para a reunião:
 
 
 
+27/01/2025
 
-	<div class="box-dashboard">
-        <div class="checkbox-wrapper-16" style="display: inline-block; margin:5px">
-            <?php 
-                if ($obesidade == 1) {
-                    echo '<label class="checkbox-wrapper">
-                        <span class="checkbox-tile">
-                        <span class="checkbox-icon">
-                        <img src="' . INCLUDE_PATH_PAINEL . '/svg/fat.svg" alt="Ícone deseja emagrecer">
-                        </span><br>
-                        <span class="checkbox-label">Obesidade</span>
-                        </span>
-                    </label>';
-                } else if ($diabetes == 1) {
-                    echo '<label class="checkbox-wrapper">
-                        <span class="checkbox-tile">
-                        <span class="checkbox-icon">
-                        <img src="' . INCLUDE_PATH_PAINEL . '/svg/glicose.svg" alt="Ícone Diabético">
-                        </span><br>
-                        <span class="checkbox-label">Diabetes</span>
-                        </span>
-                    </label>';
-                } else if ($hipertensao == 1) {
-                    echo '<label class="checkbox-wrapper">
-                        <span class="checkbox-tile">
-                        <span class="checkbox-icon">
-                        <img src="' . INCLUDE_PATH_PAINEL . '/svg/hipertenso.svg" alt="Ícone Hipertenso">
-                        </span><br>
-                        <span class="checkbox-label">Hipertensão</span>
-                        </span>
-                    </label>';
-                } else if ($depressao == 1) {
-                    echo '<label class="checkbox-wrapper">
-                        <span class="checkbox-tile">
-                        <span class="checkbox-icon">
-                        <img src="' . INCLUDE_PATH_PAINEL . '/svg/depressao.svg" alt="Ícone Depressão">
-                        </span><br>
-                        <span class="checkbox-label">Depressão</span>
-                        </span>
-                    </label>';
-                } else if ($pos_covid == 1) {
-                    echo '<label class="checkbox-wrapper">
-                        <span class="checkbox-tile">
-                        <span class="checkbox-icon">
-                        <img src="' . INCLUDE_PATH_PAINEL . '/svg/covid.svg" alt="Ícone Pós-Covid">
-                        </span><br>
-                        <span class="checkbox-label">Pós Covid</span>
-                        </span>
-                    </label>';
-                } else if ($idoso == 1) {
-                    echo '<label class="checkbox-wrapper">
-                        <span class="checkbox-tile">
-                        <span class="checkbox-icon">
-                        <img src="' . INCLUDE_PATH_PAINEL . '/svg/idoso.svg" alt="Ícone Idoso">
-                        </span><br>
-                        <span class="checkbox-label">Idoso</span>
-                        </span>
-                    </label>';
-                } else if ($gestante == 1) {
-                    echo '<label class="checkbox-wrapper">
-                        <span class="checkbox-tile">
-                        <span class="checkbox-icon">
-                        <img src="' . INCLUDE_PATH_PAINEL . '/svg/gestante.svg" alt="Ícone Gestante">
-                        </span><br>
-                        <span class="checkbox-label">Gestante</span>
-                        </span>
-                    </label>';
-                } else if ($pos_parto == 1) {
-                    echo '<label class="checkbox-wrapper">
-                        <span class="checkbox-tile">
-                        <span class="checkbox-icon">
-                        <img src="' . INCLUDE_PATH_PAINEL . '/svg/posparto.svg" alt="Ícone Pós-Parto">
-                        </span><br>
-                        <span class="checkbox-label">Pós Parto</span>
-                        </span>
-                    </label>';
-                } else if ($emagrecer == 1) {
-                    echo '<label class="checkbox-wrapper">
-                        <span class="checkbox-tile">
-                        <span class="checkbox-icon">
-                        <img src="' . INCLUDE_PATH_PAINEL . '/svg/emagrecer.svg" alt="Ícone Emagrecimento">
-                        </span><br>
-                        <span class="checkbox-label">Emagrecimento</span>
-                        </span>
-                    </label>';
-                } else {
-                    echo '';
-                }
-            ?>
-        </div><!--dashboard-wrapper w33 left-->
-    </div>
+Organização do Projeto para o APC PRO
+
+1. Processo Geral:
+
+O professor convida o aluno para o cadastro, respeitando a Lei Geral de Proteção de Dados (LGPD).
+Cadastro do Aluno:
+Aluno online: Recebe instruções para realizar a Avaliação Física Avançada (AFA) de forma autônoma.
+Aluno presencial: Cadastro inicial é realizado pelo professor, enquanto medidas e testes são conduzidos no local.
+
+
+
+2. Etapas da Avaliação Física Avançada (AFA):
+1ª Etapa: Questionários de Triagem e Anamnese
+Objetivo do aluno.
+Dados de saúde.
+Anamnese específica (lesões, dores, histórico).
+Status de treino atual.
+Disponibilidade semanal para treinos.
+Preferências de exercícios.
+Dados médicos (critérios de dor e restrições).
+Espaço para inserir resultados de exames de sangue.
+2ª Etapa: Medidas Corporais
+Circunferência corporal.
+Peso e altura.
+Composição corporal (utilizando balança TANITA).
+Foco na caracterização estética (melhorar visual).
+
+3ª Etapa: Testes Físicos
+Neuromuscular
+Testes de força máxima preditiva com equação:
+1
+𝑅
+𝑀
+=
+(
+0
+,
+0333
+×
+peso levantado
+×
+m
+a
+ˊ
+ximo de repeti
+c
+¸
+o
+˜
+es
+)
++
+peso levantado
+1RM=(0,0333×peso levantado×m 
+a
+ˊ
+ ximo de repeti 
+c
+¸
+​
+  
+o
+˜
+ es)+peso levantado
+Exercícios utilizados:
+Agachamento.
+Levantamento Terra.
+Supino.
+Barra fixa.
+Basear status de treino (iniciante, intermediário ou avançado) conforme estudo recente de Belmiro de Salles.
+Cardiometabólico
+Aptidão cardiorrespiratória utilizando equações de frequência cardíaca máxima.
+Flexibilidade Geral
+Testes de flexibilidade (definir padrões).
+3. Relatórios Gerados:
+
+Informações claras e detalhadas para o aluno e o treinador.
+Critérios de saúde com base na fisiologia do exercício e princípios do treinamento físico (FIT-VP).
+Acompanhamento da evolução do aluno.
+4. Divisão das Avaliações:
+
+Diagnóstica:
+No início do programa.
+Formativa:
+Após 4 a 6 semanas (verificação da eficácia do planejamento).
+Somativa:
+Após 12 semanas, encerrando o Ciclo 1 e iniciando o Ciclo 2.
+5. Links para Acesso:
+
+Presencial: O professor cadastra o aluno e realiza todas as etapas da AFA.
+Online: O aluno segue as instruções para realizar as etapas de forma independente.
+6. Fundamentação e Organização no App:
+
+Três pilares principais:
+A - Avaliação: Base inicial para individualização do treino.
+P - Prescrição: Treino fundamentado na avaliação completa.
+C - Controle: Monitoramento baseado no método Fit Load de Renato Massaferi.
+Objetivo: Criar um sistema intuitivo para geração de treinos inteligentes, sustentado por evidências científicas.
+7. Considerações Finais para o Desenvolvimento:
+
+As informações foram discutidas entre o programador e o idealizador, Fabiano de Brito.
+O gerente de programação deve garantir que todos os dados estejam implementados no app de forma funcional e acessível.

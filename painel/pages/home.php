@@ -122,6 +122,8 @@ if ($linkWhatsApp) {
     </script>";
 }
 ?>
+</div><!-- box-content -->
+<div class="clear"></div><!-- clear -->
 <div class="box-content left w50">
     <h4>Avaliações realizadas nos últimos 7 dias (<?php echo calcularPeriodoUltimos7Dias();?>) </h4>
     <div class="table-responsive">
