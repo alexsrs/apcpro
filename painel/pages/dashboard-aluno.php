@@ -279,21 +279,21 @@ verificarDados($dados_anamnese, $perfil, $dados_aptidao, $dados_composicao, $sql
 
 <div class="container-flex " style="height: 45%;">
   <div class="box-content w33 left" style="text-align: center; margin-right: 10px;">
-    <h3 style="text-align: left; width: 100%;">Indice de massa corporal</h3><br><br>
+    <h3 style="text-align: left; width: 100%;">Indice de massa corporal</h3>
     <div class="imc-info">
       <div class="imc-item w33">
         <h4>Peso: <?php echo htmlspecialchars($peso); ?> kg</h4>
-        <img src="<?php echo INCLUDE_PATH_PAINEL ?>/svg/peso.svg" alt="Ícone peso" style="width: 65%;">
+        <img src="<?php echo INCLUDE_PATH_PAINEL ?>/svg/peso.svg" alt="Ícone peso" style="width: 45%;">
       </div>
       <div class="imc-item w33">
         <h4>Altura: <?php echo htmlspecialchars($altura); ?> m</h4>
-        <img src="<?php echo INCLUDE_PATH_PAINEL ?>/svg/altura.svg" alt="Ícone altura" style="width: 65%;">
+        <img src="<?php echo INCLUDE_PATH_PAINEL ?>/svg/altura.svg" alt="Ícone altura" style="width: 45%;">
       </div>
       <div class="imc-item w33">
         <h4>IMC: <?php echo htmlspecialchars($imc); ?></h4>
-        <img src="<?php echo INCLUDE_PATH_PAINEL ?>/svg/equacao.svg" alt="Ícone equação" style="width: 65%;"><br><br><br><br>    
+        <img src="<?php echo INCLUDE_PATH_PAINEL ?>/svg/equacao.svg" alt="Ícone equação" style="width: 45%;">
       </div>
-      <p>IMC segundo a Organização Mundial da Saúde:</p><br><h4> <?php echo htmlspecialchars($classificacao_imc); ?></h4><br>
+      <p>IMC segundo a Organização Mundial da Saúde:</p><h4> <?php echo htmlspecialchars($classificacao_imc); ?></h4>
   </div>
   
 
@@ -301,20 +301,20 @@ verificarDados($dados_anamnese, $perfil, $dados_aptidao, $dados_composicao, $sql
       </div><!-- box-content -->
 
       <div class="box-content w33 right" style="text-align: center; margin-right: 10px;">
-        <h3 style="text-align: left; width: 100%;">Composição corporal</h3><br>
+        <h3 style="text-align: left; width: 100%;">Composição corporal</h3>
         <div class="fcChart">
           <canvas id="fcChart5" width="400"></canvas>
-        </div><br>
-        <p style="text-align: justifys;">Percentual de Gordura Corporal (%GC) é utilizada para avaliar a distribuição de gordura corporal e o risco de doenças cardiovasculares e metabólicas.:</p><br><h4><?php echo htmlspecialchars($classificacao_gordura); ?></h4>
+        </div>
+        <p style="text-align: justifys;">Percentual de Gordura Corporal (%GC) é utilizada para avaliar a distribuição de gordura corporal e o risco de doenças cardiovasculares e metabólicas.:</p><h4><?php echo htmlspecialchars($classificacao_gordura); ?></h4>
         
       </div><!-- box-content -->
 
   <div class="box-content w33 right" style="text-align: justify;">
-    <h3 style="text-align: left; width: 100%;">Padrões fisiológicos de normalidade</h3><br>
+    <h3 style="text-align: left; width: 100%;">Padrões fisiológicos de normalidade</h3>
     
     
    <p>Relação Cintura-Quadril é uma medida antropométrica utilizada para avaliar a distribuição de gordura corporal e o risco de doenças cardiovasculares e metabólicas. Ela é obtida dividindo a medida da circunferência da cintura pela circunferência do quadril.</p><h4 style="text-align: center;"><?php echo htmlspecialchars($classificacao_rcq); ?></h4>
-  <br><br>
+
 
   <p>Circunferência Abdominal é um indicador importante pois reflete a quantidade de gordura visceral, que está associada a maior risco de doenças como diabetes tipo 2, hipertensão e dislipidemias:</p>
   <h4 style="text-align: center;"><?php echo htmlspecialchars($classificacao_risco_cintura); ?></h4>
@@ -325,12 +325,12 @@ verificarDados($dados_anamnese, $perfil, $dados_aptidao, $dados_composicao, $sql
 
 <div class="container-flex " style="height: 50%;">
   <div class="box-content w50 left" style="text-align: center; margin-right: 10px;">
-    <h3 style="text-align: left; width: 100%;">Frequência Cardíaca</h3><br>
+    <h3 style="text-align: left; width: 100%;">Frequência Cardíaca</h3>
     <p>Data da Avaliação: <?php 
     
     echo $data_aptidao->format('d/m/Y');
 ?>
-     - Método: <?php echo $metodo;?></p><br><br>
+     - Método: <?php echo $metodo;?></p>
     <div class="fcChart">
       <canvas id="fcChart1" style="max-width: 100%;"></canvas>
       <canvas id="fcChart2" style="max-width: 100%;"></canvas>
@@ -350,7 +350,7 @@ verificarDados($dados_anamnese, $perfil, $dados_aptidao, $dados_composicao, $sql
   </div><!-- box-content -->
 
   <div class="box-content w50 right" style="text-align: center;">
-    <h3 style="text-align: left; width: 100%;">Oxigênio - Vo² Máx</h3><br>
+    <h3 style="text-align: left; width: 100%;">Oxigênio - Vo² Máx</h3>
     <p>Data da Avaliação: <?php 
     
     echo $data_aptidao->format('d/m/Y');
@@ -358,7 +358,7 @@ verificarDados($dados_anamnese, $perfil, $dados_aptidao, $dados_composicao, $sql
 
     
     
-     - Método: <?php echo $metodo;?></p><br><br>
+     - Método: <?php echo $metodo;?></p>
     <div class="fcChart">
       <canvas id="fcChart4" style="max-width: 100%;"></canvas>
     </div>
