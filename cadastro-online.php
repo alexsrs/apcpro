@@ -59,12 +59,13 @@ if (isset($_GET['professor_id']) && isset($_GET['cargo']) && isset($_GET['grupo'
     $professor_id = (int)$_GET['professor_id']; // Professor passado pela URL
     $cargo_convite = (int)$_GET['cargo']; // Cargo passado pela URL
     $grupo = (int)$_GET['grupo']; // Grupo passado pela URL
-  
+    $presencial = (int)$_GET['acompanhamento']; // Grupo passado pela URL
 }
 
 //echo $professor_id;
 //echo $cargo_convite;
 //echo $grupo;
+echo $presencial;
 
 
 if(isset($_POST['acao'])){
@@ -130,7 +131,7 @@ if(isset($_POST['acao'])){
             $usuario = new Usuario();
             $img = $imagem['name'] ? Painel::uploadImagem($imagem) : 'default.jpg'; // Define um valor padrão se a imagem não for enviada
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-            $usuario->cadastrarUsuario($user, $hashedPassword, $img, $nome, $cargo, $telefone, $data_nascimento, $data_inicio, $sexo, $cpf, $professor_id, $grupo);
+            $usuario->cadastrarUsuario($user, $hashedPassword, $img, $nome, $cargo, $telefone, $data_nascimento, $data_inicio, $sexo, $cpf, $professor_id, $grupo, $presencial);
 
             $response['sucesso'] = true;
             Painel::alert('sucesso', 'Cadastro realizado com sucesso!');

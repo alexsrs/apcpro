@@ -19,9 +19,9 @@
                 return false;
         }
 
-        public static function cadastrarUsuario($user, $password, $img, $nome, $cargo, $telefone, $data_nascimento, $data_inicio, $sexo, $cpf, $professor_id, $grupo) {
-            $sql = MySql::conectar()->prepare("INSERT INTO `tb_admin.usuarios` (user, password, img, nome, cargo, telefone, data_nascimento, data_inicio, sexo, cpf, professor_id, grupo_id) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
-            $sql->execute(array($user, $password, $img, $nome, $cargo, $telefone, $data_nascimento, $data_inicio, $sexo, $cpf, $professor_id, $grupo));
+        public static function cadastrarUsuario($user, $password, $img, $nome, $cargo, $telefone, $data_nascimento, $data_inicio, $sexo, $cpf, $professor_id, $grupo, $presencial) {
+            $sql = MySql::conectar()->prepare("INSERT INTO `tb_admin.usuarios` (user, password, img, nome, cargo, telefone, data_nascimento, data_inicio, sexo, cpf, professor_id, grupo_id, presencial) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            $sql->execute(array($user, $password, $img, $nome, $cargo, $telefone, $data_nascimento, $data_inicio, $sexo, $cpf, $professor_id, $grupo, $presencial));
         }
         
 

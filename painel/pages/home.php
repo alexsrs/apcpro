@@ -38,9 +38,10 @@ if (isset($_POST['acao'])) {
     $grupo_id = $_POST['grupo'];
     $cargo = $_SESSION['cargo'];
     $professor_id = $_SESSION['id'];
+    $acompanhamento = isset($_POST['acompanhamento']) ? $_POST['acompanhamento'] : 'false';
     
     // Construir a mensagem para WhatsApp com os parâmetros recebidos
-    $mensagem = "Ol%C3%A1%2C%20para%20iniciar%20seu%20processo%20de%20acompanhamento%2C%20pedimos%20que%20voc%C3%AA%20realize%20seu%20cadastro%20no%20sistema.%0A%0AClique%20no%20link%20abaixo%20para%20acessar%20o%20formul%C3%A1rio%20de%20cadastro%3A%0A%0Ahttps%3A%2F%2Fapcpro.com.br%2Fcadastro-online.php%3Fprofessor_id%3D{$professor_id}%26cargo%3D{$cargo}%26grupo%3D{$grupo_id}%0A%0AEstamos%20%C3%A0%20disposi%C3%A7%C3%A3o%20para%20ajud%C3%A1-lo%21%20%F0%9F%98%8A";
+    $mensagem = "Ol%C3%A1%2C%20para%20iniciar%20seu%20processo%20de%20acompanhamento%2C%20pedimos%20que%20voc%C3%AA%20realize%20seu%20cadastro%20no%20sistema.%0A%0AClique%20no%20link%20abaixo%20para%20acessar%20o%20formul%C3%A1rio%20de%20cadastro%3A%0A%0Ahttps%3A%2F%2Fapcpro.com.br%2Fcadastro-online.php%3Fprofessor_id%3D{$professor_id}%26cargo%3D{$cargo}%26grupo%3D{$grupo_id}%26acompanhamento%3D{$acompanhamento}%0A%0AEstamos%20%C3%A0%20disposi%C3%A7%C3%A3o%20para%20ajud%C3%A1-lo%21%20%F0%9F%98%8A";
     
     // Gerar link do WhatsApp
     $linkWhatsApp = "<a class='whatsapp-link' href='https://web.whatsapp.com/send?phone=55{$telefone}&text={$mensagem}' target='_blank'>Enviar Mensagem no WhatsApp</a>";

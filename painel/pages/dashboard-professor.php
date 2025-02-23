@@ -51,12 +51,21 @@
         </div><!-- button-container -->
     </div><!-- form-group -->
     <div class="form-group w33">
-        
         <input type="text" name="telefone" placeholder="DDD + Telefone "  data-mask="(00) 00000-0000" required/>
-       
+    </div><!-- form-group -->
+    <div class="form-group w33">
+        <label>Acompanhamento:</label>
+        <input type="radio" id="online" name="acompanhamento" value="0" checked>
+        <label for="online">Online</label>
+        <input type="radio" id="presencial" name="acompanhamento" value="1">
+        <label for="presencial">Presencial</label><br>
+    
         <input type="submit" name="acao" value="Convite"/>
     </div><!-- form-group -->
+    <div class="clear"></div><!-- clear -->
 </form>
+
+
 
 <!-- Exibir link do WhatsApp após o envio do formulário -->
 <?php
@@ -68,7 +77,7 @@ if ($linkWhatsApp) {
     echo "
     <script src='https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js'></script>
     <script type='text/javascript'>
-        new QRCode(document.getElementById('qrcode'), 'https://apcpro.com.br/cadastro-online.php?professor_id=" . $professor_id . "&cargo=" . $cargo . "&grupo=" . $grupo_id . "');
+        new QRCode(document.getElementById('qrcode'), 'https://apcpro.com.br/cadastro-online.php?professor_id=" . $professor_id . "&cargo=" . $cargo . "&grupo=" . $grupo_id . "&acompanhamento=" . $acompanhamento . "');
     </script>";
 }
 ?>
@@ -129,9 +138,7 @@ if ($linkWhatsApp) {
             </div><!-- col -->
             <div class="clear"></div><!-- clear -->
         </div><!-- row -->
-    
     </div><!-- table-responsive -->
-
 </div><!-- box-content -->
 <div class="clear"></div><!-- clear -->
 <?php include_once('pages/listar-usuarios.php'); ?>

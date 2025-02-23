@@ -156,9 +156,9 @@
 </div><!-- form-group -->
         <div class="form-group left w50"> 
             <label for="peso">Peso: </label>
-            <input type="range" id="peso" class="slider" name="peso" min="40.0" max="299.9" step="0.1" value="50.0" oninput="updatePeso(this.value)">
-            <br>
-            <input type="text" id="peso-valor" value="50.0 Kg" readonly></input>
+            <!--<input type="range" id="peso" class="slider" name="peso" min="40.0" max="299.9" step="0.1" value="50.0" oninput="updatePeso(this.value)">
+            <br>-->
+            <input type="text" id="peso-valor" value="50.0 Kg"></input>
             <script>
                 function updatePeso(value) {
                     document.getElementById('peso-valor').value = parseFloat(value).toFixed(1) + ' Kg';
@@ -168,9 +168,9 @@
 
         <div class="form-group right w50"> 
             <label for="altura">Altura: </label>
-            <input type="range" id="altura" class="slider" name="altura" min="1.20" max="2.51" step="0.01" value="1.50" oninput="updateAltura(this.value)">
-            <br>
-            <input type="text" id="altura-valor" value="1.50 m" readonly></input>
+           <!-- <input type="range" id="altura" class="slider" name="altura" min="1.20" max="2.51" step="0.01" value="1.50" oninput="updateAltura(this.value)">
+            <br>-->
+            <input type="text" id="altura-valor" value="1.50 m"></input>
             <script>
                 function updateAltura(value) {
                     document.getElementById('altura-valor').value = parseFloat(value).toFixed(2) + ' m';

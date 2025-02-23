@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 28/11/2024 às 16:08
+-- Tempo de geração: 23/02/2025 às 15:12
 -- Versão do servidor: 8.3.0
 -- Versão do PHP: 8.3.6
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `tb_admin.online` (
   `ultima_acao` datetime NOT NULL,
   `token` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=192 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=198 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `tb_admin.online`
@@ -91,7 +91,13 @@ INSERT INTO `tb_admin.online` (`id`, `ip`, `ultima_acao`, `token`) VALUES
 (188, '::1', '2024-11-26 08:53:19', '672e33dcdc103'),
 (189, '::1', '2024-11-26 10:06:32', '6745c7980660b'),
 (190, '::1', '2024-11-26 10:06:39', '6745c7dbb6664'),
-(191, '::1', '2024-11-28 11:24:56', '6745cce5cfc9b');
+(191, '::1', '2024-11-29 08:54:48', '6745cce5cfc9b'),
+(192, '::1', '2024-12-10 20:22:47', '6749ac0ecf803'),
+(193, '::1', '2024-12-10 20:23:08', '6758cd5728e9e'),
+(194, '::1', '2025-01-11 11:02:44', '6758cd708985e'),
+(195, '::1', '2025-02-22 17:36:58', '67827a2acc2b1'),
+(196, '::1', '2025-02-23 11:24:35', '67ba39e1bdb5a'),
+(197, '::1', '2025-02-23 11:38:02', '67bb2fa583dc4');
 
 -- --------------------------------------------------------
 
@@ -112,80 +118,82 @@ CREATE TABLE IF NOT EXISTS `tb_admin.usuarios` (
   `data_inicio` date NOT NULL,
   `sexo` varchar(1) NOT NULL,
   `cpf` varchar(30) NOT NULL,
+  `presencial` tinyint(1) NOT NULL,
   `professor_id` int NOT NULL,
   `grupo_id` int NOT NULL,
   `create_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `professor_id` (`professor_id`),
   KEY `grupo_id` (`grupo_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=74 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `tb_admin.usuarios`
 --
 
-INSERT INTO `tb_admin.usuarios` (`id`, `user`, `password`, `img`, `nome`, `cargo`, `telefone`, `data_nascimento`, `data_inicio`, `sexo`, `cpf`, `professor_id`, `grupo_id`, `create_at`) VALUES
-(1, 'admin', '$2y$10$IJkR7pqep3GAaKCRpHlpE.f4VdBt2kkfYd8FFH8inTJmOXAqrpE4q', '655387240a70f.jpg', 'Alex Sandro', 2, '(21) 98989-0615', '1981-01-04', '2024-09-30', 'F', '086.899.137-69', 0, 0, '2024-10-31 14:29:35'),
-(4, 'prof', '$2y$10$IJkR7pqep3GAaKCRpHlpE.f4VdBt2kkfYd8FFH8inTJmOXAqrpE4q', '65538e7ea62a1.jpg', 'Professor baitola', 1, '(21) 98989-0615', '2014-09-02', '2024-09-25', 'M', '086899137-69', 1, 0, '2024-10-31 14:29:35'),
-(7, 'aluno', '$2y$10$IJkR7pqep3GAaKCRpHlpE.f4VdBt2kkfYd8FFH8inTJmOXAqrpE4q', '66f2c68510739.jpg', 'Testando ', 0, '(21) 98989-0615', '1981-09-05', '2024-09-11', 'F', '086899137-69', 1, 0, '2024-10-31 14:29:35'),
-(15, 'joao', 'joao', '66f42cc21846d.jpg', 'Joao', 0, '(21) 98989-0615', '1981-01-04', '1982-02-05', 'M', '086899137-69', 4, 0, '2024-10-31 14:29:35'),
-(16, 'prof2', 'prof2', '66f42d0c0dea8.jpg', 'professor 2', 1, '(21) 98989-0615', '1973-01-06', '2024-12-26', 'F', '086899137-69', 1, 0, '2024-10-31 14:29:35'),
-(17, 'jkerbin ', '1234', '66f4a3ad8411e.jpeg', 'Jebediah Kerbin', 0, '(21) 96787-0567', '1992-11-06', '2024-10-12', 'M', '121232343-79', 4, 0, '2024-10-31 14:29:35'),
-(18, 'zuka', '1234', '66f5a7e46eace.png', 'Zuka da Silva sauro', 1, '(21) 95499-1323', '1967-09-01', '2025-01-12', 'F', '111.222.333-44', 1, 0, '2024-10-31 14:29:35'),
-(19, 'teste0', 'teste0', '66ff3eb0994ea.jpeg', 'Teste 0', 1, '(21) 32346-260', '1937-10-03', '2024-11-06', 'M', '111.111.111-11', 1, 0, '2024-10-31 14:29:35'),
-(20, 'fernanda', 'fernanda', '', 'Fernanda', 1, '(21) 98487-0182', '1985-07-05', '2024-11-08', 'F', '111.111.111-11', 1, 0, '2024-10-31 14:29:35'),
-(21, 'sofia', 'sofia', '6711118ee2354.jpeg', 'sofia', 1, '(11) 11111-1111', '2007-02-07', '2024-11-04', 'F', '111.111.111-11', 1, 0, '2024-10-31 14:29:35'),
-(22, 'Joselia', 'joselia', '', 'Joselia', 1, '(21) 22222-2222', '1963-09-05', '2024-11-01', 'F', '122.222.222-22', 1, 2, '2024-10-31 14:29:35'),
-(23, 'Josias', 'josias', '', 'Josias da silva', 1, '(21) 98487-0182', '1986-11-08', '2024-11-01', 'M', '000.000.000-00', 1, 1, '2024-10-31 14:29:35'),
-(24, 'natalia', 'natalia', '', 'Natalia xupa q e de uva', 1, '(11) 11111-1111', '1991-05-24', '2024-10-31', 'F', '122.222.222-22', 1, 31, '2024-10-31 14:29:35'),
-(25, 'louro', 'louro', '', 'Louro José', 1, '(22) 22222-2222', '1976-12-09', '2024-11-08', 'M', '333.333.333-33', 1, 31, '2024-10-31 14:29:35'),
-(26, 'joselito', 'joselito', '', 'Alex Sandro Ribeiro de Souza', 1, '(21) 32346-260', '1994-03-18', '2024-11-09', 'M', '111.111.111-11', 1, 32, '2024-10-31 14:29:35'),
-(27, 'alex@teste.com', '$2y$10$Knj/IbXTF/nqrKaGWtK/Jem7Zv6WlY.NGVixz7G87GYq4WBzSaR96', '67238b7ab3fcd.jpeg', 'Alex Sandro Ribeiro de Souza', 1, '(21) 98989-0615', '1981-01-04', '2025-10-10', 'M', '111.111.111-11', 1, 0, '2024-10-31 14:29:35'),
-(28, 'jurubeba@jutru.com', '$2y$10$Qxlb6rbS/PU.fm7zRzAJfu5it9dWLoBHSSLxVnRfASs7H6NZWx94a', '6723938771174.jpeg', 'Jurubeba', 1, '(21) 98989-0615', '1999-11-09', '2025-10-10', 'M', '111.111.111-11', 1, 0, '2024-10-31 14:29:35'),
-(29, 'novinho@novo.psd', '$2y$10$LfT8t1yR0wzJ9US4wOqg3OyRLqmogu9Dcq/W21pk9/XjTUResAlq6', '67239497892b6.jpeg', 'Novinho da silva', 1, '(21) 98989-0615', '1999-03-10', '2025-01-01', 'F', '111.111.111-11', 1, 0, '2024-10-31 14:30:47'),
-(30, 'novinho@novo.psd', '$2y$10$LfT8t1yR0wzJ9US4wOqg3OyRLqmogu9Dcq/W21pk9/XjTUResAlq6', '67239497892b6.jpeg', 'Novinho da silva', 1, '(21) 98989-0615', '1999-03-10', '2025-01-01', 'F', '111.111.111-11', 1, 0, '2024-10-31 14:30:47'),
-(31, 'gerente@socio.let', '$2y$10$pEkRYUDkAMRKKMvGnVY7ZOHiHmr8W3g/e.6KazX76gIONGSjThaNO', '6723978429f7c.jpeg', 'gerente de teste', 1, '(21) 98989-0615', '1997-06-19', '2025-01-01', 'M', '555.555.555-55', 1, 0, '2024-10-31 14:43:16'),
-(32, 'gerente@socio.let', '$2y$10$pEkRYUDkAMRKKMvGnVY7ZOHiHmr8W3g/e.6KazX76gIONGSjThaNO', '6723978429f7c.jpeg', 'gerente de teste', 1, '(21) 98989-0615', '1997-06-19', '2025-01-01', 'M', '555.555.555-55', 1, 0, '2024-10-31 14:43:16'),
-(33, 'assassino@confesso', '$2y$10$sCEFHw/eAxUsfeOdp9EMN.hrIiNAjmx/0VBMtql6oDwtFyjHtU1/.', '672398a9e90ea.jpeg', 'Assassino confesso', 1, '(11) 11111-1111', '0000-00-00', '1111-11-11', 'M', '111.111.111-11', 1, 0, '2024-10-31 14:48:10'),
-(34, 'assassino@confesso', '$2y$10$sCEFHw/eAxUsfeOdp9EMN.hrIiNAjmx/0VBMtql6oDwtFyjHtU1/.', '672398a9e90ea.jpeg', 'Assassino confesso', 1, '(11) 11111-1111', '0000-00-00', '1111-11-11', 'M', '111.111.111-11', 1, 0, '2024-10-31 14:48:10'),
-(35, 'alegacoes@jejej.ckdk', '$2y$10$PqFkLrxBjVS8toOL/tFV3.a9wAOMwGply3pID9zXEgkT9WvZc5YqG', '6723992963abe.png', 'Alegou', 1, '(21) 98989-0615', '0000-00-00', '1111-11-11', 'M', '111.111.111-11', 1, 0, '2024-10-31 14:50:17'),
-(36, 'alegacoes@jejej.ckdk', '$2y$10$PqFkLrxBjVS8toOL/tFV3.a9wAOMwGply3pID9zXEgkT9WvZc5YqG', '6723992963abe.png', 'Alegou', 1, '(21) 98989-0615', '0000-00-00', '1111-11-11', 'M', '111.111.111-11', 1, 0, '2024-10-31 14:50:17'),
-(37, 'alegacoes@gm', '$2y$10$gKfLCTM/RfAapBAwr4GQb.f/YZ/a36WcC7PC5uAFgMYGheKKlsYcu', '6723999f76b83.png', 'Alex Sandro Ribeiro de Souza', 1, '(21) 98989-0615', '0000-00-00', '1111-11-11', 'M', '111.111.111-11', 1, 0, '2024-10-31 14:52:15'),
-(38, 'alegacoes@gm', '$2y$10$gKfLCTM/RfAapBAwr4GQb.f/YZ/a36WcC7PC5uAFgMYGheKKlsYcu', '6723999f76b83.png', 'Alex Sandro Ribeiro de Souza', 1, '(21) 98989-0615', '0000-00-00', '1111-11-11', 'M', '111.111.111-11', 1, 0, '2024-10-31 14:52:15'),
-(39, 'bandido@band', '$2y$10$gkGHOncVm2U4bAOV6Fj1UOfuQ7aVb6rzDIzvcvLssxvFLBufzceEi', '672399e64cff9.png', 'Bandido', 1, '(21) 98989-0615', '2010-10-10', '2025-01-30', 'M', '111.111.111-11', 1, 0, '2024-10-31 14:53:26'),
-(40, 'bandido@band', '$2y$10$gkGHOncVm2U4bAOV6Fj1UOfuQ7aVb6rzDIzvcvLssxvFLBufzceEi', '672399e64cff9.png', 'Bandido', 1, '(21) 98989-0615', '2010-10-10', '2025-01-30', 'M', '111.111.111-11', 1, 0, '2024-10-31 14:53:26'),
-(41, 'amor@amor', '$2y$10$G/XJtklhtqMASxbIc/D8Nu6VfwjJmh95S1SATnJClln1e3TvlH9/e', '67239a397130f.jpeg', 'Amor', 1, '(21) 98989-0615', '2022-02-02', '2026-02-02', 'F', '111.111.111-11', 1, 0, '2024-10-31 14:54:49'),
-(42, 'amor@amor', '$2y$10$G/XJtklhtqMASxbIc/D8Nu6VfwjJmh95S1SATnJClln1e3TvlH9/e', '67239a397130f.jpeg', 'Amor', 1, '(21) 98989-0615', '2022-02-02', '2026-02-02', 'F', '111.111.111-11', 1, 0, '2024-10-31 14:54:49'),
-(43, 'amor@amor', '$2y$10$x8qXWxwnVKAfE8rLJ1N2A.esxhKFlyd7gwLoVtX7I1It5FRzqi71u', '67239bcb10828.jpeg', 'Amor', 1, '(21) 98989-0615', '2022-02-02', '2026-02-02', 'F', '111.111.111-11', 1, 0, '2024-10-31 15:01:31'),
-(44, 'amor@amor', '$2y$10$x8qXWxwnVKAfE8rLJ1N2A.esxhKFlyd7gwLoVtX7I1It5FRzqi71u', '67239bcb10828.jpeg', 'Amor', 1, '(21) 98989-0615', '2022-02-02', '2026-02-02', 'F', '111.111.111-11', 1, 0, '2024-10-31 15:01:31'),
-(45, 'alegacoes@gm', '$2y$10$w6yi0KC3APi4O3y1wuLsTeLWOVgL1hz9vrTYGAERFg8FFnEZxwV1i', '67239c4b93ace.png', 'Alex Sandro Ribeiro de Souza', 1, '(21) 98989-0615', '0000-00-00', '1111-11-11', 'M', '111.111.111-11', 1, 0, '2024-10-31 15:03:39'),
-(46, 'alegacoes@gm', '$2y$10$w6yi0KC3APi4O3y1wuLsTeLWOVgL1hz9vrTYGAERFg8FFnEZxwV1i', '67239c4b93ace.png', 'Alex Sandro Ribeiro de Souza', 1, '(21) 98989-0615', '0000-00-00', '1111-11-11', 'M', '111.111.111-11', 1, 0, '2024-10-31 15:03:39'),
-(47, 'gaming@joe', '$2y$10$ehPI3EkflBJimwLaiG6YQe2cX39Co9oIwWZPhs3vqs8gF2L4WSYma', '67239d31633ea.png', 'Alex Sandro Ribeiro de Souza', 1, '(11) 11111-1111', '0000-00-00', '1111-11-11', 'M', '111.111.111-11', 1, 0, '2024-10-31 15:07:29'),
-(48, 'gaming@joe', '$2y$10$ehPI3EkflBJimwLaiG6YQe2cX39Co9oIwWZPhs3vqs8gF2L4WSYma', '67239d31633ea.png', 'Alex Sandro Ribeiro de Souza', 1, '(11) 11111-1111', '0000-00-00', '1111-11-11', 'M', '111.111.111-11', 1, 0, '2024-10-31 15:07:29'),
-(49, 'josealdo@sooo', '$2y$10$hIf2avX/m8cHFjS1ewmWf.lpafeIHrTk6vlpdBGoIoaO8R7lA3pEa', '67239f574f378.jpeg', 'Jose Aldo', 1, '(21) 98989-0615', '1990-05-05', '2025-02-04', 'M', '555.555.555-55', 1, 0, '2024-10-31 15:16:39'),
-(50, 'josealdo@sooo', '$2y$10$hIf2avX/m8cHFjS1ewmWf.lpafeIHrTk6vlpdBGoIoaO8R7lA3pEa', '67239f574f378.jpeg', 'Jose Aldo', 1, '(21) 98989-0615', '1990-05-05', '2025-02-04', 'M', '555.555.555-55', 1, 0, '2024-10-31 15:16:39'),
-(51, 'lklaklk@lklkal', '$2y$10$9PaVNVoQG3HTE0dHDWTpP.1OatGh0zy0VeELPB63aDONG90w3/n4a', 'default.jpg', 'ksmmsmm', 1, '(11) 11111-1111', '1111-01-01', '1111-01-01', 'F', '111.111.111-11', 1, 0, '2024-10-31 15:26:12'),
-(52, 'lklaklk@lklkal', '$2y$10$9PaVNVoQG3HTE0dHDWTpP.1OatGh0zy0VeELPB63aDONG90w3/n4a', 'default.jpg', 'ksmmsmm', 1, '(11) 11111-1111', '1111-01-01', '1111-01-01', 'F', '111.111.111-11', 1, 0, '2024-10-31 15:26:12'),
-(53, 'jurados@juri', '$2y$10$Dkh8E79QswhyYvhPBM/cceP/x2zkLc5VafUlFpkGO4hJvJ5Kqg/9W', '6723a208dd1c1.png', 'Jurado', 1, '(21) 98989-0615', '2000-06-09', '2025-02-05', 'M', '111.111.111-11', 1, 0, '2024-10-31 15:28:08'),
-(54, 'jurados@juri', '$2y$10$Dkh8E79QswhyYvhPBM/cceP/x2zkLc5VafUlFpkGO4hJvJ5Kqg/9W', '6723a208dd1c1.png', 'Jurado', 1, '(21) 98989-0615', '2000-06-09', '2025-02-05', 'M', '111.111.111-11', 1, 0, '2024-10-31 15:28:08'),
-(55, 'jururu@okokok', '$2y$10$KQHbP71xw3arHph.Mv5pzuDATd5GETLa3dCzxwQ.V8Egpwh40FlMe', '6723a25c599ff.png', 'Jurado', 1, '(22) 22222-2222', '2000-06-09', '2025-02-05', 'M', '111.111.333-33', 1, 0, '2024-10-31 15:29:32'),
-(56, 'jururu@okokok', '$2y$10$KQHbP71xw3arHph.Mv5pzuDATd5GETLa3dCzxwQ.V8Egpwh40FlMe', '6723a25c599ff.png', 'Jurado', 1, '(22) 22222-2222', '2000-06-09', '2025-02-05', 'M', '111.111.333-33', 1, 0, '2024-10-31 15:29:32'),
-(57, 'debates@gggsg', '$2y$10$e4xYuQIPNHHRJGwIdWw1ruvbIAa9DsM5uyQVFdn0Jrdw89OCEiRei', '6723a2a3d2123.png', 'Debates', 1, '(11) 11111-1111', '2000-06-09', '2025-02-05', 'M', '111.111.111-11', 1, 0, '2024-10-31 15:30:43'),
-(58, 'debates@gggsg', '$2y$10$e4xYuQIPNHHRJGwIdWw1ruvbIAa9DsM5uyQVFdn0Jrdw89OCEiRei', '6723a2a3d2123.png', 'Debates', 1, '(11) 11111-1111', '2000-06-09', '2025-02-05', 'M', '111.111.111-11', 1, 0, '2024-10-31 15:30:43'),
-(59, 'yeeee@esquem', '$2y$10$VMLb7uAneA7mkYqB/NVhherC8s7uykAX.JMEl19VZBmTTpK22qNNe', '6723a2d69861c.jpeg', 'Esuema', 1, '(21) 98989-0615', '0000-00-00', '0000-00-00', 'M', '222.222.222-22', 1, 0, '2024-10-31 15:31:34'),
-(60, 'yeeee@esquem', '$2y$10$VMLb7uAneA7mkYqB/NVhherC8s7uykAX.JMEl19VZBmTTpK22qNNe', '6723a2d69861c.jpeg', 'Esuema', 1, '(21) 98989-0615', '0000-00-00', '0000-00-00', 'M', '222.222.222-22', 1, 0, '2024-10-31 15:31:34'),
-(61, 'emprestimo@12vezes', '$2y$10$IiBZedwNX/3YDnQQEfqtL.V1L5ipyhBGoCyTJ.33S.zbZKjwIi7vi', '6723a348292b1.jpeg', 'Emprestimo', 1, '(22) 22222-2222', '2002-02-22', '2025-02-22', 'F', '111.111.111-11', 1, 0, '2024-10-31 15:33:28'),
-(62, 'emprestimo@12vezes', '$2y$10$IiBZedwNX/3YDnQQEfqtL.V1L5ipyhBGoCyTJ.33S.zbZKjwIi7vi', '6723a348292b1.jpeg', 'Emprestimo', 1, '(22) 22222-2222', '2002-02-22', '2025-02-22', 'F', '111.111.111-11', 1, 0, '2024-10-31 15:33:28'),
-(63, 'onibus@onibus', '$2y$10$dCXFnDXQ4N42/zSDKhsabuNWMUx/ejimJaPj7og0jAJ4Geka7T3wu', '6723a39d9b9aa.jpeg', 'Onibus', 1, '(11) 11111-1111', '1981-01-04', '2026-01-01', 'F', '111.111.111-11', 1, 0, '2024-10-31 15:34:53'),
-(64, 'onibus@onibus', '$2y$10$dCXFnDXQ4N42/zSDKhsabuNWMUx/ejimJaPj7og0jAJ4Geka7T3wu', '6723a39d9b9aa.jpeg', 'Onibus', 1, '(11) 11111-1111', '1981-01-04', '2026-01-01', 'F', '111.111.111-11', 1, 0, '2024-10-31 15:34:53'),
-(65, 'transport@onibus', '$2y$10$V6B8u/.HVT9TBHfZA.J/nuvD3wsDn5UkpA87HT1SWkdkZRF.9l5AG', '6723a40e33d51.jpeg', 'Onibus', 1, '(11) 22222-2222', '1981-01-05', '2026-01-05', 'M', '245.666.666-66', 1, 0, '2024-10-31 15:36:46'),
-(66, 'teste@teste.com', '123', '6723a834207a2.png', 'Jose', 0, '(21) 98989-0615', '2025-01-03', '2025-01-03', 'F', '111.111.111-11', 4, 35, '2024-10-31 15:54:28'),
-(67, 'pegoa@spspsps', '$2y$10$IJkR7pqep3GAaKCRpHlpE.f4VdBt2kkfYd8FFH8inTJmOXAqrpE4q', 'default.jpg', 'Admin', 1, '(22) 22222-2222', '1091-01-01', '2010-10-20', 'M', '222.222.222-22', 1, 0, '2024-10-31 18:21:57'),
-(68, 'novo@nuevo.com', '$2y$10$7aZkMia6T9meeujKtGMmQOdgtCAlSE5c53ESGKVNHc/MTB/mnVndS', 'default.jpg', 'novo ', 1, '(11) 11111-1111', '1978-09-03', '2025-01-05', 'F', '111.111.111-11', 1, 0, '2024-10-31 18:47:36'),
-(69, 'teste@tette', '$2y$10$2cFxd9X4xE30GFMpFHTFHuwPs5AcQRFhU1lGmZKJ07g45NXEA.AdK', 'default.jpg', 'Fabiano', 1, '(11) 11111-1111', '1981-01-01', '2025-01-01', 'F', '111.111.111-11', 1, 0, '2024-10-31 18:50:19'),
-(70, 'oi@paz', '$2y$10$LKO1ErwfGyQEPMBUNbThLeVj8wqVXkh2AFQIsaqWScAmyre6boQMq', 'default.jpg', 'caramujo', 1, '(11) 11111-1111', '2001-01-01', '2025-01-01', 'F', '111.111.111-11', 1, 0, '2024-10-31 18:55:40'),
-(71, 'fernanda@nada', '$2y$10$HAqvdLV./AfUvRy.diF6GetysBquiko7PPIMXcm03BwYa8avgWIbO', 'default.jpg', 'fernanda', 1, '(11) 11111-1111', '1989-04-03', '2026-01-01', 'M', '111.111.111-11', 1, 0, '2024-10-31 19:18:14'),
-(72, 'alexsrs@gmail.com', '$2y$10$XQgNVJ65o/j8EHpwtMZfMOHKJVTgulBL6ovJemkkID2QME3XEIHIq', '6728e66225182.jpeg', 'Alex Sandro o cara', 0, '(21) 98989-0615', '1981-01-04', '2025-01-01', 'F', '086.899.137-69', 4, 37, '2024-11-01 23:09:27');
+INSERT INTO `tb_admin.usuarios` (`id`, `user`, `password`, `img`, `nome`, `cargo`, `telefone`, `data_nascimento`, `data_inicio`, `sexo`, `cpf`, `presencial`, `professor_id`, `grupo_id`, `create_at`) VALUES
+(1, 'admin', '$2y$10$IJkR7pqep3GAaKCRpHlpE.f4VdBt2kkfYd8FFH8inTJmOXAqrpE4q', '655387240a70f.jpg', 'Alex Sandro', 2, '(21) 98989-0615', '1981-01-04', '2024-09-30', 'F', '086.899.137-69', 0, 0, 0, '2024-10-31 14:29:35'),
+(4, 'prof', '$2y$10$IJkR7pqep3GAaKCRpHlpE.f4VdBt2kkfYd8FFH8inTJmOXAqrpE4q', '65538e7ea62a1.jpg', 'Professor baitola', 1, '(21) 98989-0615', '2014-09-02', '2024-09-25', 'M', '086899137-69', 0, 1, 0, '2024-10-31 14:29:35'),
+(7, 'aluno', '$2y$10$IJkR7pqep3GAaKCRpHlpE.f4VdBt2kkfYd8FFH8inTJmOXAqrpE4q', '66f2c68510739.jpg', 'Testando ', 0, '(21) 98989-0615', '1981-09-05', '2024-09-11', 'F', '086899137-69', 0, 1, 0, '2024-10-31 14:29:35'),
+(15, 'joao', 'joao', '66f42cc21846d.jpg', 'Joao', 0, '(21) 98989-0615', '1981-01-04', '1982-02-05', 'M', '086899137-69', 0, 4, 0, '2024-10-31 14:29:35'),
+(16, 'prof2', 'prof2', '66f42d0c0dea8.jpg', 'professor 2', 1, '(21) 98989-0615', '1973-01-06', '2024-12-26', 'F', '086899137-69', 0, 1, 0, '2024-10-31 14:29:35'),
+(17, 'jkerbin ', '1234', '66f4a3ad8411e.jpeg', 'Jebediah Kerbin', 0, '(21) 96787-0567', '1992-11-06', '2024-10-12', 'M', '121232343-79', 0, 4, 0, '2024-10-31 14:29:35'),
+(18, 'zuka', '1234', '66f5a7e46eace.png', 'Zuka da Silva sauro', 1, '(21) 95499-1323', '1967-09-01', '2025-01-12', 'F', '111.222.333-44', 0, 1, 0, '2024-10-31 14:29:35'),
+(19, 'teste0', 'teste0', '66ff3eb0994ea.jpeg', 'Teste 0', 1, '(21) 32346-260', '1937-10-03', '2024-11-06', 'M', '111.111.111-11', 0, 1, 0, '2024-10-31 14:29:35'),
+(20, 'fernanda', 'fernanda', '', 'Fernanda', 1, '(21) 98487-0182', '1985-07-05', '2024-11-08', 'F', '111.111.111-11', 0, 1, 0, '2024-10-31 14:29:35'),
+(21, 'sofia', 'sofia', '6711118ee2354.jpeg', 'sofia', 1, '(11) 11111-1111', '2007-02-07', '2024-11-04', 'F', '111.111.111-11', 0, 1, 0, '2024-10-31 14:29:35'),
+(22, 'Joselia', 'joselia', '', 'Joselia', 1, '(21) 22222-2222', '1963-09-05', '2024-11-01', 'F', '122.222.222-22', 0, 1, 2, '2024-10-31 14:29:35'),
+(23, 'Josias', 'josias', '', 'Josias da silva', 1, '(21) 98487-0182', '1986-11-08', '2024-11-01', 'M', '000.000.000-00', 0, 1, 1, '2024-10-31 14:29:35'),
+(24, 'natalia', 'natalia', '', 'Natalia xupa q e de uva', 1, '(11) 11111-1111', '1991-05-24', '2024-10-31', 'F', '122.222.222-22', 0, 1, 31, '2024-10-31 14:29:35'),
+(25, 'louro', 'louro', '', 'Louro José', 1, '(22) 22222-2222', '1976-12-09', '2024-11-08', 'M', '333.333.333-33', 0, 1, 31, '2024-10-31 14:29:35'),
+(26, 'joselito', 'joselito', '', 'Alex Sandro Ribeiro de Souza', 1, '(21) 32346-260', '1994-03-18', '2024-11-09', 'M', '111.111.111-11', 0, 1, 32, '2024-10-31 14:29:35'),
+(27, 'alex@teste.com', '$2y$10$Knj/IbXTF/nqrKaGWtK/Jem7Zv6WlY.NGVixz7G87GYq4WBzSaR96', '67238b7ab3fcd.jpeg', 'Alex Sandro Ribeiro de Souza', 1, '(21) 98989-0615', '1981-01-04', '2025-10-10', 'M', '111.111.111-11', 0, 1, 0, '2024-10-31 14:29:35'),
+(28, 'jurubeba@jutru.com', '$2y$10$Qxlb6rbS/PU.fm7zRzAJfu5it9dWLoBHSSLxVnRfASs7H6NZWx94a', '6723938771174.jpeg', 'Jurubeba', 1, '(21) 98989-0615', '1999-11-09', '2025-10-10', 'M', '111.111.111-11', 0, 1, 0, '2024-10-31 14:29:35'),
+(29, 'novinho@novo.psd', '$2y$10$LfT8t1yR0wzJ9US4wOqg3OyRLqmogu9Dcq/W21pk9/XjTUResAlq6', '67239497892b6.jpeg', 'Novinho da silva', 1, '(21) 98989-0615', '1999-03-10', '2025-01-01', 'F', '111.111.111-11', 0, 1, 0, '2024-10-31 14:30:47'),
+(30, 'novinho@novo.psd', '$2y$10$LfT8t1yR0wzJ9US4wOqg3OyRLqmogu9Dcq/W21pk9/XjTUResAlq6', '67239497892b6.jpeg', 'Novinho da silva', 1, '(21) 98989-0615', '1999-03-10', '2025-01-01', 'F', '111.111.111-11', 0, 1, 0, '2024-10-31 14:30:47'),
+(31, 'gerente@socio.let', '$2y$10$pEkRYUDkAMRKKMvGnVY7ZOHiHmr8W3g/e.6KazX76gIONGSjThaNO', '6723978429f7c.jpeg', 'gerente de teste', 1, '(21) 98989-0615', '1997-06-19', '2025-01-01', 'M', '555.555.555-55', 0, 1, 0, '2024-10-31 14:43:16'),
+(32, 'gerente@socio.let', '$2y$10$pEkRYUDkAMRKKMvGnVY7ZOHiHmr8W3g/e.6KazX76gIONGSjThaNO', '6723978429f7c.jpeg', 'gerente de teste', 1, '(21) 98989-0615', '1997-06-19', '2025-01-01', 'M', '555.555.555-55', 0, 1, 0, '2024-10-31 14:43:16'),
+(33, 'assassino@confesso', '$2y$10$sCEFHw/eAxUsfeOdp9EMN.hrIiNAjmx/0VBMtql6oDwtFyjHtU1/.', '672398a9e90ea.jpeg', 'Assassino confesso', 1, '(11) 11111-1111', '0000-00-00', '1111-11-11', 'M', '111.111.111-11', 0, 1, 0, '2024-10-31 14:48:10'),
+(34, 'assassino@confesso', '$2y$10$sCEFHw/eAxUsfeOdp9EMN.hrIiNAjmx/0VBMtql6oDwtFyjHtU1/.', '672398a9e90ea.jpeg', 'Assassino confesso', 1, '(11) 11111-1111', '0000-00-00', '1111-11-11', 'M', '111.111.111-11', 0, 1, 0, '2024-10-31 14:48:10'),
+(35, 'alegacoes@jejej.ckdk', '$2y$10$PqFkLrxBjVS8toOL/tFV3.a9wAOMwGply3pID9zXEgkT9WvZc5YqG', '6723992963abe.png', 'Alegou', 1, '(21) 98989-0615', '0000-00-00', '1111-11-11', 'M', '111.111.111-11', 0, 1, 0, '2024-10-31 14:50:17'),
+(36, 'alegacoes@jejej.ckdk', '$2y$10$PqFkLrxBjVS8toOL/tFV3.a9wAOMwGply3pID9zXEgkT9WvZc5YqG', '6723992963abe.png', 'Alegou', 1, '(21) 98989-0615', '0000-00-00', '1111-11-11', 'M', '111.111.111-11', 0, 1, 0, '2024-10-31 14:50:17'),
+(37, 'alegacoes@gm', '$2y$10$gKfLCTM/RfAapBAwr4GQb.f/YZ/a36WcC7PC5uAFgMYGheKKlsYcu', '6723999f76b83.png', 'Alex Sandro Ribeiro de Souza', 1, '(21) 98989-0615', '0000-00-00', '1111-11-11', 'M', '111.111.111-11', 0, 1, 0, '2024-10-31 14:52:15'),
+(38, 'alegacoes@gm', '$2y$10$gKfLCTM/RfAapBAwr4GQb.f/YZ/a36WcC7PC5uAFgMYGheKKlsYcu', '6723999f76b83.png', 'Alex Sandro Ribeiro de Souza', 1, '(21) 98989-0615', '0000-00-00', '1111-11-11', 'M', '111.111.111-11', 0, 1, 0, '2024-10-31 14:52:15'),
+(39, 'bandido@band', '$2y$10$gkGHOncVm2U4bAOV6Fj1UOfuQ7aVb6rzDIzvcvLssxvFLBufzceEi', '672399e64cff9.png', 'Bandido', 1, '(21) 98989-0615', '2010-10-10', '2025-01-30', 'M', '111.111.111-11', 0, 1, 0, '2024-10-31 14:53:26'),
+(40, 'bandido@band', '$2y$10$gkGHOncVm2U4bAOV6Fj1UOfuQ7aVb6rzDIzvcvLssxvFLBufzceEi', '672399e64cff9.png', 'Bandido', 1, '(21) 98989-0615', '2010-10-10', '2025-01-30', 'M', '111.111.111-11', 0, 1, 0, '2024-10-31 14:53:26'),
+(41, 'amor@amor', '$2y$10$G/XJtklhtqMASxbIc/D8Nu6VfwjJmh95S1SATnJClln1e3TvlH9/e', '67239a397130f.jpeg', 'Amor', 1, '(21) 98989-0615', '2022-02-02', '2026-02-02', 'F', '111.111.111-11', 0, 1, 0, '2024-10-31 14:54:49'),
+(42, 'amor@amor', '$2y$10$G/XJtklhtqMASxbIc/D8Nu6VfwjJmh95S1SATnJClln1e3TvlH9/e', '67239a397130f.jpeg', 'Amor', 1, '(21) 98989-0615', '2022-02-02', '2026-02-02', 'F', '111.111.111-11', 0, 1, 0, '2024-10-31 14:54:49'),
+(43, 'amor@amor', '$2y$10$x8qXWxwnVKAfE8rLJ1N2A.esxhKFlyd7gwLoVtX7I1It5FRzqi71u', '67239bcb10828.jpeg', 'Amor', 1, '(21) 98989-0615', '2022-02-02', '2026-02-02', 'F', '111.111.111-11', 0, 1, 0, '2024-10-31 15:01:31'),
+(44, 'amor@amor', '$2y$10$x8qXWxwnVKAfE8rLJ1N2A.esxhKFlyd7gwLoVtX7I1It5FRzqi71u', '67239bcb10828.jpeg', 'Amor', 1, '(21) 98989-0615', '2022-02-02', '2026-02-02', 'F', '111.111.111-11', 0, 1, 0, '2024-10-31 15:01:31'),
+(45, 'alegacoes@gm', '$2y$10$w6yi0KC3APi4O3y1wuLsTeLWOVgL1hz9vrTYGAERFg8FFnEZxwV1i', '67239c4b93ace.png', 'Alex Sandro Ribeiro de Souza', 1, '(21) 98989-0615', '0000-00-00', '1111-11-11', 'M', '111.111.111-11', 0, 1, 0, '2024-10-31 15:03:39'),
+(46, 'alegacoes@gm', '$2y$10$w6yi0KC3APi4O3y1wuLsTeLWOVgL1hz9vrTYGAERFg8FFnEZxwV1i', '67239c4b93ace.png', 'Alex Sandro Ribeiro de Souza', 1, '(21) 98989-0615', '0000-00-00', '1111-11-11', 'M', '111.111.111-11', 0, 1, 0, '2024-10-31 15:03:39'),
+(47, 'gaming@joe', '$2y$10$ehPI3EkflBJimwLaiG6YQe2cX39Co9oIwWZPhs3vqs8gF2L4WSYma', '67239d31633ea.png', 'Alex Sandro Ribeiro de Souza', 1, '(11) 11111-1111', '0000-00-00', '1111-11-11', 'M', '111.111.111-11', 0, 1, 0, '2024-10-31 15:07:29'),
+(48, 'gaming@joe', '$2y$10$ehPI3EkflBJimwLaiG6YQe2cX39Co9oIwWZPhs3vqs8gF2L4WSYma', '67239d31633ea.png', 'Alex Sandro Ribeiro de Souza', 1, '(11) 11111-1111', '0000-00-00', '1111-11-11', 'M', '111.111.111-11', 0, 1, 0, '2024-10-31 15:07:29'),
+(49, 'josealdo@sooo', '$2y$10$hIf2avX/m8cHFjS1ewmWf.lpafeIHrTk6vlpdBGoIoaO8R7lA3pEa', '67239f574f378.jpeg', 'Jose Aldo', 1, '(21) 98989-0615', '1990-05-05', '2025-02-04', 'M', '555.555.555-55', 0, 1, 0, '2024-10-31 15:16:39'),
+(50, 'josealdo@sooo', '$2y$10$hIf2avX/m8cHFjS1ewmWf.lpafeIHrTk6vlpdBGoIoaO8R7lA3pEa', '67239f574f378.jpeg', 'Jose Aldo', 1, '(21) 98989-0615', '1990-05-05', '2025-02-04', 'M', '555.555.555-55', 0, 1, 0, '2024-10-31 15:16:39'),
+(51, 'lklaklk@lklkal', '$2y$10$9PaVNVoQG3HTE0dHDWTpP.1OatGh0zy0VeELPB63aDONG90w3/n4a', 'default.jpg', 'ksmmsmm', 1, '(11) 11111-1111', '1111-01-01', '1111-01-01', 'F', '111.111.111-11', 0, 1, 0, '2024-10-31 15:26:12'),
+(52, 'lklaklk@lklkal', '$2y$10$9PaVNVoQG3HTE0dHDWTpP.1OatGh0zy0VeELPB63aDONG90w3/n4a', 'default.jpg', 'ksmmsmm', 1, '(11) 11111-1111', '1111-01-01', '1111-01-01', 'F', '111.111.111-11', 0, 1, 0, '2024-10-31 15:26:12'),
+(53, 'jurados@juri', '$2y$10$Dkh8E79QswhyYvhPBM/cceP/x2zkLc5VafUlFpkGO4hJvJ5Kqg/9W', '6723a208dd1c1.png', 'Jurado', 1, '(21) 98989-0615', '2000-06-09', '2025-02-05', 'M', '111.111.111-11', 0, 1, 0, '2024-10-31 15:28:08'),
+(54, 'jurados@juri', '$2y$10$Dkh8E79QswhyYvhPBM/cceP/x2zkLc5VafUlFpkGO4hJvJ5Kqg/9W', '6723a208dd1c1.png', 'Jurado', 1, '(21) 98989-0615', '2000-06-09', '2025-02-05', 'M', '111.111.111-11', 0, 1, 0, '2024-10-31 15:28:08'),
+(55, 'jururu@okokok', '$2y$10$KQHbP71xw3arHph.Mv5pzuDATd5GETLa3dCzxwQ.V8Egpwh40FlMe', '6723a25c599ff.png', 'Jurado', 1, '(22) 22222-2222', '2000-06-09', '2025-02-05', 'M', '111.111.333-33', 0, 1, 0, '2024-10-31 15:29:32'),
+(56, 'jururu@okokok', '$2y$10$KQHbP71xw3arHph.Mv5pzuDATd5GETLa3dCzxwQ.V8Egpwh40FlMe', '6723a25c599ff.png', 'Jurado', 1, '(22) 22222-2222', '2000-06-09', '2025-02-05', 'M', '111.111.333-33', 0, 1, 0, '2024-10-31 15:29:32'),
+(57, 'debates@gggsg', '$2y$10$e4xYuQIPNHHRJGwIdWw1ruvbIAa9DsM5uyQVFdn0Jrdw89OCEiRei', '6723a2a3d2123.png', 'Debates', 1, '(11) 11111-1111', '2000-06-09', '2025-02-05', 'M', '111.111.111-11', 0, 1, 0, '2024-10-31 15:30:43'),
+(58, 'debates@gggsg', '$2y$10$e4xYuQIPNHHRJGwIdWw1ruvbIAa9DsM5uyQVFdn0Jrdw89OCEiRei', '6723a2a3d2123.png', 'Debates', 1, '(11) 11111-1111', '2000-06-09', '2025-02-05', 'M', '111.111.111-11', 0, 1, 0, '2024-10-31 15:30:43'),
+(59, 'yeeee@esquem', '$2y$10$VMLb7uAneA7mkYqB/NVhherC8s7uykAX.JMEl19VZBmTTpK22qNNe', '6723a2d69861c.jpeg', 'Esuema', 1, '(21) 98989-0615', '0000-00-00', '0000-00-00', 'M', '222.222.222-22', 0, 1, 0, '2024-10-31 15:31:34'),
+(60, 'yeeee@esquem', '$2y$10$VMLb7uAneA7mkYqB/NVhherC8s7uykAX.JMEl19VZBmTTpK22qNNe', '6723a2d69861c.jpeg', 'Esuema', 1, '(21) 98989-0615', '0000-00-00', '0000-00-00', 'M', '222.222.222-22', 0, 1, 0, '2024-10-31 15:31:34'),
+(61, 'emprestimo@12vezes', '$2y$10$IiBZedwNX/3YDnQQEfqtL.V1L5ipyhBGoCyTJ.33S.zbZKjwIi7vi', '6723a348292b1.jpeg', 'Emprestimo', 1, '(22) 22222-2222', '2002-02-22', '2025-02-22', 'F', '111.111.111-11', 0, 1, 0, '2024-10-31 15:33:28'),
+(62, 'emprestimo@12vezes', '$2y$10$IiBZedwNX/3YDnQQEfqtL.V1L5ipyhBGoCyTJ.33S.zbZKjwIi7vi', '6723a348292b1.jpeg', 'Emprestimo', 1, '(22) 22222-2222', '2002-02-22', '2025-02-22', 'F', '111.111.111-11', 0, 1, 0, '2024-10-31 15:33:28'),
+(63, 'onibus@onibus', '$2y$10$dCXFnDXQ4N42/zSDKhsabuNWMUx/ejimJaPj7og0jAJ4Geka7T3wu', '6723a39d9b9aa.jpeg', 'Onibus', 1, '(11) 11111-1111', '1981-01-04', '2026-01-01', 'F', '111.111.111-11', 0, 1, 0, '2024-10-31 15:34:53'),
+(64, 'onibus@onibus', '$2y$10$dCXFnDXQ4N42/zSDKhsabuNWMUx/ejimJaPj7og0jAJ4Geka7T3wu', '6723a39d9b9aa.jpeg', 'Onibus', 1, '(11) 11111-1111', '1981-01-04', '2026-01-01', 'F', '111.111.111-11', 0, 1, 0, '2024-10-31 15:34:53'),
+(65, 'transport@onibus', '$2y$10$V6B8u/.HVT9TBHfZA.J/nuvD3wsDn5UkpA87HT1SWkdkZRF.9l5AG', '6723a40e33d51.jpeg', 'Onibus', 1, '(11) 22222-2222', '1981-01-05', '2026-01-05', 'M', '245.666.666-66', 0, 1, 0, '2024-10-31 15:36:46'),
+(66, 'teste@teste.com', '123', '6723a834207a2.png', 'Jose', 0, '(21) 98989-0615', '2025-01-03', '2025-01-03', 'F', '111.111.111-11', 0, 4, 35, '2024-10-31 15:54:28'),
+(67, 'pegoa@spspsps', '$2y$10$IJkR7pqep3GAaKCRpHlpE.f4VdBt2kkfYd8FFH8inTJmOXAqrpE4q', 'default.jpg', 'Admin', 1, '(22) 22222-2222', '1091-01-01', '2010-10-20', 'M', '222.222.222-22', 0, 1, 0, '2024-10-31 18:21:57'),
+(68, 'novo@nuevo.com', '$2y$10$7aZkMia6T9meeujKtGMmQOdgtCAlSE5c53ESGKVNHc/MTB/mnVndS', 'default.jpg', 'novo ', 1, '(11) 11111-1111', '1978-09-03', '2025-01-05', 'F', '111.111.111-11', 0, 1, 0, '2024-10-31 18:47:36'),
+(69, 'teste@tette', '$2y$10$2cFxd9X4xE30GFMpFHTFHuwPs5AcQRFhU1lGmZKJ07g45NXEA.AdK', 'default.jpg', 'Fabiano', 1, '(11) 11111-1111', '1981-01-01', '2025-01-01', 'F', '111.111.111-11', 0, 1, 0, '2024-10-31 18:50:19'),
+(70, 'oi@paz', '$2y$10$LKO1ErwfGyQEPMBUNbThLeVj8wqVXkh2AFQIsaqWScAmyre6boQMq', 'default.jpg', 'caramujo', 1, '(11) 11111-1111', '2001-01-01', '2025-01-01', 'F', '111.111.111-11', 0, 1, 0, '2024-10-31 18:55:40'),
+(71, 'fernanda@nada', '$2y$10$HAqvdLV./AfUvRy.diF6GetysBquiko7PPIMXcm03BwYa8avgWIbO', 'default.jpg', 'fernanda', 1, '(11) 11111-1111', '1989-04-03', '2026-01-01', 'M', '111.111.111-11', 0, 1, 0, '2024-10-31 19:18:14'),
+(72, 'alexsrs@gmail.com', '$2y$10$XQgNVJ65o/j8EHpwtMZfMOHKJVTgulBL6ovJemkkID2QME3XEIHIq', '6728e66225182.jpeg', 'Alex Sandro o cara', 0, '(21) 98989-0615', '1981-01-04', '2025-01-01', 'F', '086.899.137-69', 0, 4, 37, '2024-11-01 23:09:27'),
+(73, 'teste@acompanhamento.com', '$2y$10$Noj9ZarW0K8X83C6DZ38VOeSJe1Kp.3dYg2fKuD0J46rrfaVvuC2y', '67bb2fa33db1f.jpg', 'Testando a passagem de acompanhamento', 0, '(21) 98989-0615', '1997-01-04', '2025-03-20', 'M', '111.111.111-11', 1, 4, 36, '2025-02-23 14:24:35');
 
 -- --------------------------------------------------------
 
@@ -199,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `tb_admin.visitas` (
   `ip` varchar(255) NOT NULL,
   `dia` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `tb_admin.visitas`
@@ -235,7 +243,10 @@ INSERT INTO `tb_admin.visitas` (`id`, `ip`, `dia`) VALUES
 (27, '::1', '2024-11-04'),
 (28, '::1', '2024-11-11'),
 (29, '::1', '2024-11-18'),
-(30, '::1', '2024-11-26');
+(30, '::1', '2024-11-26'),
+(31, '::1', '2024-12-10'),
+(32, '::1', '2025-01-11'),
+(33, '::1', '2025-02-22');
 
 -- --------------------------------------------------------
 
